@@ -16,7 +16,6 @@ namespace he_CLKDevice {
             original(self, _cmd);
             
             assert(object_setInstanceVariable(self, "_collectionType", reinterpret_cast<void *>(5)));
-//            assert()
         }
         void swizzle() {
             Method method = class_getInstanceMethod(objc_lookUpClass("CLKDevice"), sel_registerName("_loadDeviceInfo"));
