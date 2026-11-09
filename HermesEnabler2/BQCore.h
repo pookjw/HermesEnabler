@@ -60,6 +60,9 @@ BOOL BQEnableHermes(NSString **err);
 // Adds the verified 27.3 beta 1 AOD capability overrides to CacheExtra.
 BOOL BQEnableAODSupport(NSString **err);
 
+// Adds the verified 27.3 beta 1 AOD flipbook capability override to CacheExtra.
+BOOL BQEnableAODSecondsSupport(NSString **err);
+
 // Adds the Action Button capability override to CacheExtra.
 BOOL BQEnableActionButton(NSString **err);
 
