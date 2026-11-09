@@ -1,14 +1,16 @@
 import SwiftUI
 
 struct ContentView: View {
-    @State private var message = "Back up MobileGestalt before making changes."
+    @State private var message = BQBackupExists() ? "Backup ready." : "Back up MobileGestalt before making changes."
     @State private var hasBackup = BQBackupExists()
 
     var body: some View {
         ScrollView {
             VStack(spacing: 8) {
                 Text("Hermès Enabler").font(.headline)
-                Button("Backup MG") { perform(.backup) }
+                if !hasBackup {
+                    Button("Backup MG") { perform(.backup) }
+                }
                 Button("Enable Hermès") { perform(.enable) }
                     .disabled(!hasBackup)
                 Button("Restart Carousel") {

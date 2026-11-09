@@ -937,6 +937,19 @@ BOOL BQRestoreGestalt(NSString **err) {
     return ok;
 }
 
+typedef struct {
+    const char *build;
+    const char *cacheUUID;
+    NSUInteger dataLength;
+    NSUInteger valueOffset;
+    NSUInteger presentOffset;
+} BQDeviceBrandLayout;
+
+static const BQDeviceBrandLayout kDeviceBrandLayouts[] = {
+    {"24S5284h", "DB380F61-0014-418D-9799-876666B459E3", 0x1950, 0x348, 0x16e9},
+    {"24R365", "6F8372B0-1583-4031-A4BC-A54A18B0DD5A", 0x1947, 0x348, 0x16e1},
+};
+
 BOOL BQEnableHermes(NSString **err) {
     if (!BQBackupExists()) {
         if (err) *err = @"Back up MobileGestalt first.";
@@ -950,22 +963,34 @@ BOOL BQEnableHermes(NSString **err) {
     }
     NSMutableDictionary *plist = BQLoadGestalt(err);
     if (!plist) return NO;
-    // These offsets and the cache layout were verified for watchOS 27.3 beta 1.
     char build[128] = {0};
     size_t buildLength = sizeof(build);
-    if (sysctlbyname("kern.osversion", build, &buildLength, NULL, 0) != 0 || strcmp(build, "24S5284h") != 0) {
-        if (err) *err = @"DeviceBrand CacheData layout is only verified for build 24S5284h.";
+    if (sysctlbyname("kern.osversion", build, &buildLength, NULL, 0) != 0) {
+        if (err) *err = @"Could not identify the watchOS build.";
+        return NO;
+    }
+    const BQDeviceBrandLayout *layout = NULL;
+    for (size_t i = 0; i < sizeof(kDeviceBrandLayouts) / sizeof(kDeviceBrandLayouts[0]); i++) {
+        if (strcmp(build, kDeviceBrandLayouts[i].build) == 0) {
+            layout = &kDeviceBrandLayouts[i];
+            break;
+        }
+    }
+    if (!layout) {
+        if (err) *err = [NSString stringWithFormat:@"DeviceBrand CacheData layout is not verified for build %s.", build];
         return NO;
     }
     id extra = plist[@"CacheExtra"];
     id cacheData = plist[@"CacheData"];
     if (![extra isKindOfClass:[NSDictionary class]] || ![cacheData isKindOfClass:[NSData class]] ||
-        ![plist[@"CacheUUID"] isEqual:@"DB380F61-0014-418D-9799-876666B459E3"] || [cacheData length] != 0x1950) {
+        ![plist[@"CacheUUID"] isEqual:[NSString stringWithUTF8String:layout->cacheUUID]] ||
+        [cacheData length] != layout->dataLength || layout->valueOffset > layout->dataLength - sizeof(uint32_t) ||
+        layout->presentOffset >= layout->dataLength) {
         if (err) *err = @"Unexpected MobileGestalt cache layout; no changes written.";
         return NO;
     }
-    const NSUInteger valueOffset = 105 * 8;
-    const NSUInteger presentOffset = 0x1680 + 105;
+    const NSUInteger valueOffset = layout->valueOffset;
+    const NSUInteger presentOffset = layout->presentOffset;
     NSMutableData *modifiedData = [cacheData mutableCopy];
     uint8_t *bytes = modifiedData.mutableBytes;
     if (bytes[presentOffset] != 1) {
@@ -983,7 +1008,7 @@ BOOL BQEnableHermes(NSString **err) {
     NSMutableDictionary *check = BQLoadGestalt(err);
     NSData *saved = check[@"CacheData"];
     NSDictionary *savedExtra = check[@"CacheExtra"];
-    if (![saved isKindOfClass:[NSData class]] || saved.length != 0x1950 ||
+    if (![saved isKindOfClass:[NSData class]] || saved.length != layout->dataLength ||
         ![savedExtra isKindOfClass:[NSDictionary class]] || savedExtra[@"fuKL2rMywRgQF1wowOA/cg"] != nil ||
         memcmp((const uint8_t *)saved.bytes + valueOffset, one, sizeof(one)) != 0 ||
         ((const uint8_t *)saved.bytes)[presentOffset] != 1) {
