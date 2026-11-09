@@ -3,6 +3,7 @@
 
 
 extern NSString * const BQErrorDomain;
+extern NSString * const BQNoSandboxTokenError;
 
 // ---- logging / paths -------------------------------------------------------
 void BQLog(NSString *fmt, ...);

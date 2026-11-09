@@ -16,6 +16,7 @@
 #import <WatchKit/WatchKit.h>
 
 NSString * const BQErrorDomain = @"BQErrorDomain";
+NSString * const BQNoSandboxTokenError = @"the MCM query returned no sandbox token — send Documents/bqtool.log";
 
 static NSString * const kMGGroup = @"systemgroup.com.apple.mobilegestaltcache";
 static NSString * const kMGCaches = @"/private/var/containers/Shared/SystemGroup/systemgroup.com.apple.mobilegestaltcache/Library/Caches";
@@ -764,7 +765,7 @@ static NSString *bq_escape_error(int64_t h) {
         return NSLocalizedString(@"class-2 fallback could not move Library — this build needs an app group on 27.2", nil);
     }
     if (h == -5) {
-        return NSLocalizedString(@"the MCM query returned no sandbox token — send Documents/bqtool.log", nil);
+        return BQNoSandboxTokenError;
     }
     return [NSString stringWithFormat:NSLocalizedString(@"escape failed (%lld)", nil), (long long)h];
 }

@@ -3,6 +3,7 @@ import SwiftUI
 struct ContentView: View {
     @State private var message = BQBackupExists() ? "Backup ready." : "Back up MobileGestalt before making changes."
     @State private var hasBackup = BQBackupExists()
+    @State private var showAccessAlert = false
     @State private var aodEnabled = false
     @State private var aodSecondsEnabled = false
     @State private var actionButtonEnabled = false
@@ -137,6 +138,11 @@ struct ContentView: View {
             }
         }
         .onAppear(perform: refreshCapabilityStates)
+        .alert("MobileGestalt Access Failed", isPresented: $showAccessAlert) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text("An App Group ID may be missing, or this watchOS version may be incompatible. Check the app's App Group configuration and watchOS version.")
+        }
     }
 
     private enum Action {
@@ -246,6 +252,9 @@ struct ContentView: View {
         }
         hasBackup = BQBackupExists()
         message = result
+        if (error as String?) == BQNoSandboxTokenError {
+            showAccessAlert = true
+        }
         refreshCapabilityStates()
     }
 
