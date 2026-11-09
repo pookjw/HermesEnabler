@@ -56,13 +56,46 @@ void BQRespring(void);
 
 // Writes DeviceBrand into the verified CacheData layout, retaining the original backup.
 BOOL BQEnableHermes(NSString **err);
+BOOL BQSetHermesEnabled(BOOL enabled, NSString **err);
+BOOL BQGetHermesEnabled(BOOL *enabled, NSString **err);
 
-// Adds the verified 27.3 beta 1 AOD capability overrides to CacheExtra.
-BOOL BQEnableAODSupport(NSString **err);
+// Reads whether the respective capability overrides are recorded as enabled.
+BOOL BQGetAODSupport(BOOL *enabled, NSString **err);
+BOOL BQGetAODSecondsSupport(BOOL *enabled, NSString **err);
+BOOL BQGetActionButton(BOOL *enabled, NSString **err);
+BOOL BQGetDoubleTap(BOOL *enabled, NSString **err);
+BOOL BQGetDepthCapability(BOOL *enabled, NSString **err);
+BOOL BQGetAbsoluteAltimeter(BOOL *enabled, NSString **err);
+BOOL BQGetAlwaysOnCompass(BOOL *enabled, NSString **err);
+BOOL BQGetAODVibrancy(BOOL *enabled, NSString **err);
+BOOL BQGetWatchKeyboard(BOOL *enabled, NSString **err);
+BOOL BQGetPeriodicALSUpdates(BOOL *enabled, NSString **err);
+BOOL BQGetRaiseToSpeak(BOOL *enabled, NSString **err);
+BOOL BQGetContinuousHeartRate(BOOL *enabled, NSString **err);
+BOOL BQGetCompassOrienteering(BOOL *enabled, NSString **err);
+BOOL BQGetEnvironmentalDosimetry(BOOL *enabled, NSString **err);
+BOOL BQGetBatteryInformation(BOOL *enabled, NSString **err);
+BOOL BQGetAlwaysListening(BOOL *enabled, NSString **err);
+BOOL BQGetRotateToWake(BOOL *enabled, NSString **err);
+BOOL BQGetSwimmingWorkouts(BOOL *enabled, NSString **err);
 
-// Adds the verified 27.3 beta 1 AOD flipbook capability override to CacheExtra.
-BOOL BQEnableAODSecondsSupport(NSString **err);
-
-// Adds the Action Button capability override to CacheExtra.
-BOOL BQEnableActionButton(NSString **err);
+// Updates the corresponding CacheExtra capability overrides.
+BOOL BQSetAODSupport(BOOL enabled, NSString **err);
+BOOL BQSetAODSecondsSupport(BOOL enabled, NSString **err);
+BOOL BQSetActionButton(BOOL enabled, NSString **err);
+BOOL BQSetDoubleTap(BOOL enabled, NSString **err);
+BOOL BQSetDepthCapability(BOOL enabled, NSString **err);
+BOOL BQSetAbsoluteAltimeter(BOOL enabled, NSString **err);
+BOOL BQSetAlwaysOnCompass(BOOL enabled, NSString **err);
+BOOL BQSetAODVibrancy(BOOL enabled, NSString **err);
+BOOL BQSetWatchKeyboard(BOOL enabled, NSString **err);
+BOOL BQSetPeriodicALSUpdates(BOOL enabled, NSString **err);
+BOOL BQSetRaiseToSpeak(BOOL enabled, NSString **err);
+BOOL BQSetContinuousHeartRate(BOOL enabled, NSString **err);
+BOOL BQSetCompassOrienteering(BOOL enabled, NSString **err);
+BOOL BQSetEnvironmentalDosimetry(BOOL enabled, NSString **err);
+BOOL BQSetBatteryInformation(BOOL enabled, NSString **err);
+BOOL BQSetAlwaysListening(BOOL enabled, NSString **err);
+BOOL BQSetRotateToWake(BOOL enabled, NSString **err);
+BOOL BQSetSwimmingWorkouts(BOOL enabled, NSString **err);
 

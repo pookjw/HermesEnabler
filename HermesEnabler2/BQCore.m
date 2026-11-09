@@ -953,7 +953,7 @@ static const BQDeviceBrandLayout kDeviceBrandLayouts[] = {
     {"24S118", "32B4CA84-FBDA-496C-9B79-2101D597158B", 0x1950, 0x348, 0x16e9},
 };
 
-BOOL BQEnableHermes(NSString **err) {
+BOOL BQSetHermesEnabled(BOOL enabled, NSString **err) {
     if (!BQBackupExists()) {
         if (err) *err = @"Back up MobileGestalt first.";
         return NO;
@@ -985,9 +985,14 @@ BOOL BQEnableHermes(NSString **err) {
     }
     id extra = plist[@"CacheExtra"];
     id cacheData = plist[@"CacheData"];
+    id backupExtra = backupPlist[@"CacheExtra"];
+    id backupCacheData = backupPlist[@"CacheData"];
     if (![extra isKindOfClass:[NSDictionary class]] || ![cacheData isKindOfClass:[NSData class]] ||
+        ![backupExtra isKindOfClass:[NSDictionary class]] || ![backupCacheData isKindOfClass:[NSData class]] ||
         ![plist[@"CacheUUID"] isEqual:[NSString stringWithUTF8String:layout->cacheUUID]] ||
-        [cacheData length] != layout->dataLength || layout->valueOffset > layout->dataLength - sizeof(uint32_t) ||
+        ![backupPlist[@"CacheUUID"] isEqual:[NSString stringWithUTF8String:layout->cacheUUID]] ||
+        [cacheData length] != layout->dataLength || [backupCacheData length] != layout->dataLength ||
+        layout->valueOffset > layout->dataLength - sizeof(uint32_t) ||
         layout->presentOffset >= layout->dataLength) {
         if (err) *err = @"Unexpected MobileGestalt cache layout; no changes written.";
         return NO;
@@ -996,15 +1001,23 @@ BOOL BQEnableHermes(NSString **err) {
     const NSUInteger presentOffset = layout->presentOffset;
     NSMutableData *modifiedData = [cacheData mutableCopy];
     uint8_t *bytes = modifiedData.mutableBytes;
-    if (bytes[presentOffset] != 1) {
+    const uint8_t *backupBytes = (const uint8_t *)[backupCacheData bytes];
+    if (enabled && bytes[presentOffset] != 1) {
         if (err) *err = @"DeviceBrand is not present in CacheData; no changes written.";
         return NO;
     }
     // DeviceBrand is a little-endian signed 32-bit integer, in an 8-byte slot.
     const uint8_t one[] = {1, 0, 0, 0};
-    memcpy(bytes + valueOffset, one, sizeof(one));
+    if (enabled) memcpy(bytes + valueOffset, one, sizeof(one));
+    else {
+        memcpy(bytes + valueOffset, backupBytes + valueOffset, sizeof(uint32_t));
+        bytes[presentOffset] = backupBytes[presentOffset];
+    }
     NSMutableDictionary *changed = [extra mutableCopy];
-    [changed removeObjectForKey:@"fuKL2rMywRgQF1wowOA/cg"];
+    NSString *brandKey = @"fuKL2rMywRgQF1wowOA/cg";
+    id originalBrandOverride = backupExtra[brandKey];
+    if (enabled || !originalBrandOverride) [changed removeObjectForKey:brandKey];
+    else changed[brandKey] = originalBrandOverride;
     plist[@"CacheData"] = modifiedData;
     plist[@"CacheExtra"] = changed;
     if (!BQSaveGestalt(plist, err)) return NO;
@@ -1012,16 +1025,60 @@ BOOL BQEnableHermes(NSString **err) {
     NSData *saved = check[@"CacheData"];
     NSDictionary *savedExtra = check[@"CacheExtra"];
     if (![saved isKindOfClass:[NSData class]] || saved.length != layout->dataLength ||
-        ![savedExtra isKindOfClass:[NSDictionary class]] || savedExtra[@"fuKL2rMywRgQF1wowOA/cg"] != nil ||
-        memcmp((const uint8_t *)saved.bytes + valueOffset, one, sizeof(one)) != 0 ||
-        ((const uint8_t *)saved.bytes)[presentOffset] != 1) {
+        ![savedExtra isKindOfClass:[NSDictionary class]]) {
+        if (err) *err = @"The cache was written, but DeviceBrand could not be verified.";
+        return NO;
+    }
+    const uint8_t *savedBytes = (const uint8_t *)saved.bytes;
+    BOOL dataMatches = enabled
+        ? (memcmp(savedBytes + valueOffset, one, sizeof(one)) == 0 && savedBytes[presentOffset] == 1)
+        : (memcmp(savedBytes + valueOffset, backupBytes + valueOffset, sizeof(uint32_t)) == 0 &&
+           savedBytes[presentOffset] == backupBytes[presentOffset]);
+    BOOL extraMatches = originalBrandOverride ? [savedExtra[brandKey] isEqual:originalBrandOverride]
+                                              : savedExtra[brandKey] == nil;
+    if (!dataMatches || !extraMatches) {
         if (err) *err = @"The cache was written, but DeviceBrand could not be verified.";
         return NO;
     }
     return YES;
 }
 
-static BOOL bq_enableMGCacheExtraKeys(NSArray<NSString *> *keys, NSString **err) {
+BOOL BQEnableHermes(NSString **err) {
+    return BQSetHermesEnabled(YES, err);
+}
+
+BOOL BQGetHermesEnabled(BOOL *enabled, NSString **err) {
+    NSMutableDictionary *plist = BQLoadGestalt(err);
+    if (!plist) return NO;
+    char build[128] = {0};
+    size_t buildLength = sizeof(build);
+    if (sysctlbyname("kern.osversion", build, &buildLength, NULL, 0) != 0) {
+        if (err) *err = @"Could not identify the watchOS build.";
+        return NO;
+    }
+    const BQDeviceBrandLayout *layout = NULL;
+    for (size_t i = 0; i < sizeof(kDeviceBrandLayouts) / sizeof(kDeviceBrandLayouts[0]); i++) {
+        if (strcmp(build, kDeviceBrandLayouts[i].build) == 0) {
+            layout = &kDeviceBrandLayouts[i];
+            break;
+        }
+    }
+    NSData *cacheData = plist[@"CacheData"];
+    if (!layout || ![cacheData isKindOfClass:[NSData class]] ||
+        ![plist[@"CacheUUID"] isEqual:[NSString stringWithUTF8String:layout->cacheUUID]] ||
+        cacheData.length != layout->dataLength || layout->valueOffset > layout->dataLength - sizeof(uint32_t)) {
+        if (err) *err = @"DeviceBrand CacheData layout is unavailable or unverified.";
+        return NO;
+    }
+    const uint8_t *bytes = (const uint8_t *)cacheData.bytes;
+    BOOL isHermes = bytes[layout->presentOffset] == 1 &&
+        bytes[layout->valueOffset] == 1 && bytes[layout->valueOffset + 1] == 0 &&
+        bytes[layout->valueOffset + 2] == 0 && bytes[layout->valueOffset + 3] == 0;
+    if (enabled) *enabled = isHermes;
+    return YES;
+}
+
+static BOOL bq_setMGCacheExtraKeys(NSArray<NSString *> *keys, BOOL enabled, NSString **err) {
     if (!BQBackupExists()) {
         if (err) *err = @"Back up MobileGestalt first.";
         return NO;
@@ -1036,7 +1093,8 @@ static BOOL bq_enableMGCacheExtraKeys(NSArray<NSString *> *keys, NSString **err)
     }
 
     NSMutableDictionary *updated = [cacheExtra mutableCopy];
-    for (NSString *key in keys) updated[key] = @YES;
+    NSNumber *storedValue = @(enabled);
+    for (NSString *key in keys) updated[key] = storedValue;
     plist[@"CacheExtra"] = updated;
     if (!BQSaveGestalt(plist, err)) return NO;
 
@@ -1044,38 +1102,265 @@ static BOOL bq_enableMGCacheExtraKeys(NSArray<NSString *> *keys, NSString **err)
     NSDictionary *savedExtra = check[@"CacheExtra"];
     for (NSString *key in keys) {
         id value = savedExtra[key];
-        if (![value respondsToSelector:@selector(boolValue)] || ![value boolValue]) {
-            if (err) *err = [NSString stringWithFormat:@"MobileGestalt override %@ was not present after writing.", key];
+        if (![value respondsToSelector:@selector(boolValue)] || [value boolValue] != enabled) {
+            if (err) *err = [NSString stringWithFormat:@"MobileGestalt override %@ did not save the requested state.", key];
             return NO;
         }
     }
-    BQLog(@"MG CacheExtra enabled %@", [keys componentsJoinedByString:@", "]);
+    BQLog(@"MG CacheExtra %@ %@", enabled ? @"enabled" : @"disabled", [keys componentsJoinedByString:@", "]);
     return YES;
 }
 
-BOOL BQEnableAODSupport(NSString **err) {
+static BOOL bq_getMGCacheExtraKeys(NSArray<NSString *> *keys, BOOL *enabled, NSString **err) {
+    if (!BQCoreInit()) {
+        if (err) *err = @"MobileGestalt access is unavailable on this device.";
+        return NO;
+    }
+    NSMutableDictionary *plist = BQLoadGestalt(err);
+    if (!plist) return NO;
+    id cacheExtra = plist[@"CacheExtra"];
+    if (![cacheExtra isKindOfClass:[NSDictionary class]]) {
+        if (err) *err = @"MobileGestalt CacheExtra is missing or invalid.";
+        return NO;
+    }
+    BOOL allEnabled = YES;
+    NSDictionary *extra = cacheExtra;
+    for (NSString *key in keys) {
+        id value = extra[key];
+        if (![value respondsToSelector:@selector(boolValue)] || ![value boolValue]) {
+            allEnabled = NO;
+            break;
+        }
+    }
+    if (enabled) *enabled = allEnabled;
+    return YES;
+}
+
+BOOL BQGetAODSupport(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"2OOJf1VhaM7NxfRok3HbWQ",
+        @"j8/Omm6s1lsmTDFsXjsBfA"
+    ], enabled, err);
+}
+
+BOOL BQGetAODSecondsSupport(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"aoJSd/MXk7M40NgXTM6x+g"
+    ], enabled, err);
+}
+
+BOOL BQGetActionButton(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"FBw/2WrPE2supEKosxxoTw"
+    ], enabled, err);
+}
+
+BOOL BQGetDoubleTap(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"l1CWke97nbaAcWDqA6T5LA"
+    ], enabled, err);
+}
+
+BOOL BQGetDepthCapability(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"Ijs+pw5tRyxqSy5kfgZNuQ" // DeviceSupportsAbsoluteDepth
+    ], enabled, err);
+}
+
+BOOL BQGetAbsoluteAltimeter(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"PFnuFyqMMnGUQQnTqS5byg" // DeviceSupportsAbsoluteAltimeter
+    ], enabled, err);
+}
+
+BOOL BQGetAlwaysOnCompass(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"aCQx2Qq/TChnNAq1rr6Egw" // DeviceSupportsAlwaysOnCompass
+    ], enabled, err);
+}
+
+BOOL BQGetAODVibrancy(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"ykpu7qyhqFweVMKtxNylWA" // DeviceSupportsAODVibrancy
+    ], enabled, err);
+}
+
+BOOL BQGetWatchKeyboard(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"MQJ1mlVrhOwaUUVJehJSVA" // WatchKeyboardCapability
+    ], enabled, err);
+}
+
+BOOL BQGetPeriodicALSUpdates(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"Leuy56dCZmAMYoVCQGTfPA" // DeviceSupportsPeriodicALSUpdates
+    ], enabled, err);
+}
+
+BOOL BQGetRaiseToSpeak(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"4D8XW4YwJI7QvyPhv1TEdw" // DeviceSupportsRaiseToSpeak
+    ], enabled, err);
+}
+
+BOOL BQGetContinuousHeartRate(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"W2RPjaqovtsgiRB6ScePGA" // DeviceSupportsContinuousHeartRate
+    ], enabled, err);
+}
+
+BOOL BQGetCompassOrienteering(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"GPIs61LYNpcwZqwlFr7bbg" // DeviceSupportsCompassOrienteering
+    ], enabled, err);
+}
+
+BOOL BQGetEnvironmentalDosimetry(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"SaW+DA+cbiqDHrex8MTABA" // DeviceSupportsEnvironmentalDosimetry
+    ], enabled, err);
+}
+
+BOOL BQGetBatteryInformation(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"Kao6GNYdAy5hwXblxeGYJQ" // DeviceSupportsBatteryInformation
+    ], enabled, err);
+}
+
+BOOL BQGetAlwaysListening(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"U+73bmG4kBGj6kpreQXUTQ" // DeviceSupportsAlwaysListening
+    ], enabled, err);
+}
+
+BOOL BQGetRotateToWake(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"nmOy2K5HzAAs2QNAi8wR+Q" // SupportsRotateToWake
+    ], enabled, err);
+}
+
+BOOL BQGetSwimmingWorkouts(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"cRjPy4Ef+KZwJ+nfPeBV5Q" // DeviceSupportsSwimmingWorkouts
+    ], enabled, err);
+}
+
+BOOL BQSetAODSupport(BOOL enabled, NSString **err) {
     // DeviceSupportsAlwaysOnDisplay is the main capability; ClockKit also
     // reads DeviceSupportsAlwaysOnTime while loading CLKDevice information.
-    return bq_enableMGCacheExtraKeys(@[
+    return bq_setMGCacheExtraKeys(@[
         @"2OOJf1VhaM7NxfRok3HbWQ", // DeviceSupportsAlwaysOnDisplay
         @"j8/Omm6s1lsmTDFsXjsBfA"  // DeviceSupportsAlwaysOnTime
-    ], err);
+    ], enabled, err);
 }
 
-BOOL BQEnableAODSecondsSupport(NSString **err) {
+BOOL BQSetAODSecondsSupport(BOOL enabled, NSString **err) {
     // Enables the AOD flipbook path used by BacklightServices 1 Hz updates.
-    return bq_enableMGCacheExtraKeys(@[
+    return bq_setMGCacheExtraKeys(@[
         @"aoJSd/MXk7M40NgXTM6x+g" // DeviceSupportsAlwaysOnDisplayFlipbook
-    ], err);
+    ], enabled, err);
 }
 
-BOOL BQEnableActionButton(NSString **err) {
+BOOL BQSetActionButton(BOOL enabled, NSString **err) {
     // NanoCompassWaypoints 27.3b1 implements isUltraDevice() by calling
     // MGGetBoolAnswer("WatchAppButtonCapability"). The CacheExtra hash below
     // is the matching MobileGestalt key hash present in this build.
-    return bq_enableMGCacheExtraKeys(@[
+    return bq_setMGCacheExtraKeys(@[
         @"FBw/2WrPE2supEKosxxoTw"
-    ], err);
+    ], enabled, err);
+}
+
+BOOL BQSetDoubleTap(BOOL enabled, NSString **err) {
+    // WatchGestures' WAGDeviceSupportsElton() calls
+    // MGGetBoolAnswer("DeviceSupportsElton"); Double Tap is handled as Elton.
+    return bq_setMGCacheExtraKeys(@[
+        @"l1CWke97nbaAcWDqA6T5LA" // DeviceSupportsElton
+    ], enabled, err);
+}
+
+BOOL BQSetDepthCapability(BOOL enabled, NSString **err) {
+    // Depth sensor capability used by supported Apple Watch models.
+    return bq_setMGCacheExtraKeys(@[
+        @"Ijs+pw5tRyxqSy5kfgZNuQ" // DeviceSupportsAbsoluteDepth
+    ], enabled, err);
+}
+
+BOOL BQSetAbsoluteAltimeter(BOOL enabled, NSString **err) {
+    return bq_setMGCacheExtraKeys(@[
+        @"PFnuFyqMMnGUQQnTqS5byg" // DeviceSupportsAbsoluteAltimeter
+    ], enabled, err);
+}
+
+BOOL BQSetAlwaysOnCompass(BOOL enabled, NSString **err) {
+    return bq_setMGCacheExtraKeys(@[
+        @"aCQx2Qq/TChnNAq1rr6Egw" // DeviceSupportsAlwaysOnCompass
+    ], enabled, err);
+}
+
+BOOL BQSetAODVibrancy(BOOL enabled, NSString **err) {
+    return bq_setMGCacheExtraKeys(@[
+        @"ykpu7qyhqFweVMKtxNylWA" // DeviceSupportsAODVibrancy
+    ], enabled, err);
+}
+
+BOOL BQSetPeriodicALSUpdates(BOOL enabled, NSString **err) {
+    return bq_setMGCacheExtraKeys(@[
+        @"Leuy56dCZmAMYoVCQGTfPA" // DeviceSupportsPeriodicALSUpdates
+    ], enabled, err);
+}
+
+BOOL BQSetWatchKeyboard(BOOL enabled, NSString **err) {
+    return bq_setMGCacheExtraKeys(@[
+        @"MQJ1mlVrhOwaUUVJehJSVA" // WatchKeyboardCapability
+    ], enabled, err);
+}
+
+BOOL BQSetRaiseToSpeak(BOOL enabled, NSString **err) {
+    return bq_setMGCacheExtraKeys(@[
+        @"4D8XW4YwJI7QvyPhv1TEdw" // DeviceSupportsRaiseToSpeak
+    ], enabled, err);
+}
+
+BOOL BQSetContinuousHeartRate(BOOL enabled, NSString **err) {
+    return bq_setMGCacheExtraKeys(@[
+        @"W2RPjaqovtsgiRB6ScePGA" // DeviceSupportsContinuousHeartRate
+    ], enabled, err);
+}
+
+BOOL BQSetCompassOrienteering(BOOL enabled, NSString **err) {
+    return bq_setMGCacheExtraKeys(@[
+        @"GPIs61LYNpcwZqwlFr7bbg" // DeviceSupportsCompassOrienteering
+    ], enabled, err);
+}
+
+BOOL BQSetEnvironmentalDosimetry(BOOL enabled, NSString **err) {
+    return bq_setMGCacheExtraKeys(@[
+        @"SaW+DA+cbiqDHrex8MTABA" // DeviceSupportsEnvironmentalDosimetry
+    ], enabled, err);
+}
+
+BOOL BQSetBatteryInformation(BOOL enabled, NSString **err) {
+    return bq_setMGCacheExtraKeys(@[
+        @"Kao6GNYdAy5hwXblxeGYJQ" // DeviceSupportsBatteryInformation
+    ], enabled, err);
+}
+
+BOOL BQSetAlwaysListening(BOOL enabled, NSString **err) {
+    return bq_setMGCacheExtraKeys(@[
+        @"U+73bmG4kBGj6kpreQXUTQ" // DeviceSupportsAlwaysListening
+    ], enabled, err);
+}
+
+BOOL BQSetRotateToWake(BOOL enabled, NSString **err) {
+    return bq_setMGCacheExtraKeys(@[
+        @"nmOy2K5HzAAs2QNAi8wR+Q" // SupportsRotateToWake
+    ], enabled, err);
+}
+
+BOOL BQSetSwimmingWorkouts(BOOL enabled, NSString **err) {
+    return bq_setMGCacheExtraKeys(@[
+        @"cRjPy4Ef+KZwJ+nfPeBV5Q" // DeviceSupportsSwimmingWorkouts
+    ], enabled, err);
 }
 
 
