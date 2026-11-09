@@ -13,6 +13,10 @@ struct ContentView: View {
                 }
                 Button("Enable Hermès") { perform(.enable) }
                     .disabled(!hasBackup)
+                Button("Enable AOD") { perform(.aod) }
+                    .disabled(!hasBackup)
+                Button("Enable Action Button") { perform(.actionButton) }
+                    .disabled(!hasBackup)
                 Button("Restart Carousel") {
                     message = "Starting respring. View the app log if nothing happens."
                     BQRespring()
@@ -25,7 +29,7 @@ struct ContentView: View {
         }
     }
 
-    private enum Action { case backup, enable, restore }
+    private enum Action { case backup, enable, aod, actionButton, restore }
 
     private func perform(_ action: Action) {
         var error: NSString?
@@ -48,6 +52,14 @@ struct ContentView: View {
                 } else {
                     result = (error as String?) ?? "Could not update DeviceBrand."
                 }
+            case .aod:
+                result = BQEnableAODSupport(&error)
+                    ? "AOD capability overrides saved. Restart Carousel to reload them."
+                    : ((error as String?) ?? "Could not update AOD capabilities.")
+            case .actionButton:
+                result = BQEnableActionButton(&error)
+                    ? "Action Button capability saved. Restart Carousel to reload it."
+                    : ((error as String?) ?? "Could not update Action Button capability.")
             case .restore:
                 result = BQRestoreGestalt(&error) ? "MobileGestalt restored. Restart the watch to reload it." : ((error as String?) ?? "Restore failed.")
             }

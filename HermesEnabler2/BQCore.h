@@ -57,3 +57,9 @@ void BQRespring(void);
 // Writes DeviceBrand into the verified CacheData layout, retaining the original backup.
 BOOL BQEnableHermes(NSString **err);
 
+// Adds the verified 27.3 beta 1 AOD capability overrides to CacheExtra.
+BOOL BQEnableAODSupport(NSString **err);
+
+// Adds the Action Button capability override to CacheExtra.
+BOOL BQEnableActionButton(NSString **err);
+

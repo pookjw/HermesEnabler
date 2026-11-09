@@ -1021,6 +1021,65 @@ BOOL BQEnableHermes(NSString **err) {
     return YES;
 }
 
+static BOOL bq_enableMGCacheExtraKeys(NSArray<NSString *> *keys, NSString **err) {
+    if (!BQBackupExists()) {
+        if (err) *err = @"Back up MobileGestalt first.";
+        return NO;
+    }
+
+    char build[128] = {0};
+    size_t buildLength = sizeof(build);
+    if (sysctlbyname("kern.osversion", build, &buildLength, NULL, 0) != 0 ||
+        strcmp(build, "24S5284h") != 0) {
+        if (err) *err = [NSString stringWithFormat:@"These capability overrides are only configured for watchOS 27.3 beta 1 (24S5284h); current build is %s.",
+                                                   build[0] ? build : "unknown"];
+        return NO;
+    }
+
+    NSMutableDictionary *plist = BQLoadGestalt(err);
+    if (!plist) return NO;
+    id cacheExtra = plist[@"CacheExtra"];
+    if (![cacheExtra isKindOfClass:[NSDictionary class]]) {
+        if (err) *err = @"MobileGestalt CacheExtra is missing or invalid.";
+        return NO;
+    }
+
+    NSMutableDictionary *updated = [cacheExtra mutableCopy];
+    for (NSString *key in keys) updated[key] = @YES;
+    plist[@"CacheExtra"] = updated;
+    if (!BQSaveGestalt(plist, err)) return NO;
+
+    NSMutableDictionary *check = BQLoadGestalt(err);
+    NSDictionary *savedExtra = check[@"CacheExtra"];
+    for (NSString *key in keys) {
+        id value = savedExtra[key];
+        if (![value respondsToSelector:@selector(boolValue)] || ![value boolValue]) {
+            if (err) *err = [NSString stringWithFormat:@"MobileGestalt override %@ was not present after writing.", key];
+            return NO;
+        }
+    }
+    BQLog(@"MG CacheExtra enabled %@", [keys componentsJoinedByString:@", "]);
+    return YES;
+}
+
+BOOL BQEnableAODSupport(NSString **err) {
+    // DeviceSupportsAlwaysOnDisplay is the main capability; ClockKit also
+    // reads DeviceSupportsAlwaysOnTime while loading CLKDevice information.
+    return bq_enableMGCacheExtraKeys(@[
+        @"2OOJf1VhaM7NxfRok3HbWQ", // DeviceSupportsAlwaysOnDisplay
+        @"j8/Omm6s1lsmTDFsXjsBfA"  // DeviceSupportsAlwaysOnTime
+    ], err);
+}
+
+BOOL BQEnableActionButton(NSString **err) {
+    // NanoCompassWaypoints 27.3b1 implements isUltraDevice() by calling
+    // MGGetBoolAnswer("WatchAppButtonCapability"). The CacheExtra hash below
+    // is the matching MobileGestalt key hash present in this build.
+    return bq_enableMGCacheExtraKeys(@[
+        @"FBw/2WrPE2supEKosxxoTw"
+    ], err);
+}
+
 
 // NeoSpring from Gester, with UIKit and WebKit accessed dynamically on watchOS.
 static id gRespringWebView;
