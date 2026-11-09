@@ -1027,15 +1027,6 @@ static BOOL bq_enableMGCacheExtraKeys(NSArray<NSString *> *keys, NSString **err)
         return NO;
     }
 
-    char build[128] = {0};
-    size_t buildLength = sizeof(build);
-    if (sysctlbyname("kern.osversion", build, &buildLength, NULL, 0) != 0 ||
-        strcmp(build, "24S5284h") != 0) {
-        if (err) *err = [NSString stringWithFormat:@"These capability overrides are only configured for watchOS 27.3 beta 1 (24S5284h); current build is %s.",
-                                                   build[0] ? build : "unknown"];
-        return NO;
-    }
-
     NSMutableDictionary *plist = BQLoadGestalt(err);
     if (!plist) return NO;
     id cacheExtra = plist[@"CacheExtra"];
@@ -1068,6 +1059,13 @@ BOOL BQEnableAODSupport(NSString **err) {
     return bq_enableMGCacheExtraKeys(@[
         @"2OOJf1VhaM7NxfRok3HbWQ", // DeviceSupportsAlwaysOnDisplay
         @"j8/Omm6s1lsmTDFsXjsBfA"  // DeviceSupportsAlwaysOnTime
+    ], err);
+}
+
+BOOL BQEnableAODSecondsSupport(NSString **err) {
+    // Enables the AOD flipbook path used by BacklightServices 1 Hz updates.
+    return bq_enableMGCacheExtraKeys(@[
+        @"aoJSd/MXk7M40NgXTM6x+g" // DeviceSupportsAlwaysOnDisplayFlipbook
     ], err);
 }
 

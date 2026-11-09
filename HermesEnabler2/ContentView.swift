@@ -15,6 +15,8 @@ struct ContentView: View {
                     .disabled(!hasBackup)
                 Button("Enable AOD") { perform(.aod) }
                     .disabled(!hasBackup)
+                Button("Enable AOD 1Hz") { perform(.aodSeconds) }
+                    .disabled(!hasBackup)
                 Button("Enable Action Button") { perform(.actionButton) }
                     .disabled(!hasBackup)
                 Button("Restart Carousel") {
@@ -29,7 +31,7 @@ struct ContentView: View {
         }
     }
 
-    private enum Action { case backup, enable, aod, actionButton, restore }
+    private enum Action { case backup, enable, aod, aodSeconds, actionButton, restore }
 
     private func perform(_ action: Action) {
         var error: NSString?
@@ -56,6 +58,10 @@ struct ContentView: View {
                 result = BQEnableAODSupport(&error)
                     ? "AOD capability overrides saved. Restart Carousel to reload them."
                     : ((error as String?) ?? "Could not update AOD capabilities.")
+            case .aodSeconds:
+                result = BQEnableAODSecondsSupport(&error)
+                    ? "AOD 1Hz capability saved. Restart Carousel to reload it. Faces must support seconds in AOD."
+                    : ((error as String?) ?? "Could not update AOD flipbook capability.")
             case .actionButton:
                 result = BQEnableActionButton(&error)
                     ? "Action Button capability saved. Restart Carousel to reload it."
