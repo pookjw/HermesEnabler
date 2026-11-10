@@ -9,7 +9,10 @@ struct WatchFacesView: View {
                 Toggle("Hermès", isOn: Binding(get: { model.hermesEnabled }, set: { model.perform(.hermes($0)) }))
                 Toggle("Ultra Faces", isOn: Binding(get: { model.ultraFacesEnabled }, set: { model.perform(.ultraFaces($0)) }))
             } footer: {
-                Text("Restart Carousel after changing a face capability.")
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("Restart Carousel after changing a face capability.")
+                    Text("If you enable Ultra Faces, you won't be able to use the Hermès Faubourg Party face.")
+                }
             }
         }
         .navigationTitle("Watch Faces")
