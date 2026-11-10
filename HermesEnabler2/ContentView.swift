@@ -13,6 +13,7 @@ struct ContentView: View {
     @State private var alwaysOnCompassEnabled = false
     @State private var aodVibrancyEnabled = false
     @State private var hermesEnabled = false
+    @State private var ultraFacesEnabled = false
     @State private var watchKeyboardEnabled = false
     @State private var periodicALSUpdatesEnabled = false
     @State private var raiseToSpeakEnabled = false
@@ -33,6 +34,11 @@ struct ContentView: View {
                 Toggle("Hermès", isOn: Binding(
                     get: { hermesEnabled },
                     set: { perform(.hermes($0)) }
+                ))
+                    .disabled(!hasBackup)
+                Toggle("Ultra Faces", isOn: Binding(
+                    get: { ultraFacesEnabled },
+                    set: { perform(.ultraFaces($0)) }
                 ))
                     .disabled(!hasBackup)
                 Toggle("AOD", isOn: Binding(
@@ -148,6 +154,7 @@ struct ContentView: View {
     private enum Action {
         case backup, restore
         case hermes(Bool)
+        case ultraFaces(Bool)
         case aod(Bool), aodSeconds(Bool), actionButton(Bool), doubleTap(Bool)
         case depth(Bool), absoluteAltimeter(Bool), alwaysOnCompass(Bool), aodVibrancy(Bool)
         case watchKeyboard(Bool), periodicALSUpdates(Bool), raiseToSpeak(Bool), continuousHeartRate(Bool)
@@ -174,6 +181,10 @@ struct ContentView: View {
                 result = BQSetHermesEnabled(enabled, &error)
                     ? "Hermès turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
                     : ((error as String?) ?? "Could not update DeviceBrand.")
+            case .ultraFaces(let enabled):
+                result = BQSetUltraFacesEnabled(enabled, &error)
+                    ? "Ultra Faces turned \(enabled ? "on" : "off"). Restart the watch to reload it."
+                    : ((error as String?) ?? "Could not update Ultra Faces.")
             case .aod(let enabled):
                 result = BQSetAODSupport(enabled, &error)
                     ? "AOD turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
@@ -262,6 +273,8 @@ struct ContentView: View {
         var error: NSString?
         var value = ObjCBool(false)
         hermesEnabled = BQGetHermesEnabled(&value, &error) && value.boolValue
+        value = ObjCBool(false)
+        ultraFacesEnabled = BQGetUltraFacesEnabled(&value, &error) && value.boolValue
         value = ObjCBool(false)
         aodEnabled = BQGetAODSupport(&value, &error) && value.boolValue
         value = ObjCBool(false)
