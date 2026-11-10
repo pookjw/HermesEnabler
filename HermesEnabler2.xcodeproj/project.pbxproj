@@ -6,8 +6,35 @@
 	objectVersion = 110;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		A10000000000000000000001 /* HermesEnabler2.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = 4F4A2C4B30A2155900A2BFDC /* HermesEnabler2.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A10000000000000000000002 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 741380D47735EC9F73A4976F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F4A2C4A30A2155900A2BFDC;
+			remoteInfo = HermesEnabler2;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A10000000000000000000003 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolder = Product;
+			files = (
+				A10000000000000000000001 /* HermesEnabler2.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		4F4A2C4B30A2155900A2BFDC /* HermesEnabler2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HermesEnabler2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A10000000000000000000004 /* HermesCompanion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HermesCompanion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -16,9 +43,19 @@
 			path = HermesEnabler2;
 			sourceTree = "<group>";
 		};
+		A10000000000000000000005 /* HermesCompanion */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HermesCompanion;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A10000000000000000000008 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			files = (
+			);
+		};
 		AB4A60F2D13894906A6005FD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			files = (
@@ -31,6 +68,7 @@
 			isa = PBXGroup;
 			children = (
 				4F4A2C4B30A2155900A2BFDC /* HermesEnabler2.app */,
+				A10000000000000000000004 /* HermesCompanion.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -39,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				12FD10363A484BBA28409EED /* HermesEnabler2 */,
+				A10000000000000000000005 /* HermesCompanion */,
 				4E43AA7141A2438207DF15DB /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,6 +101,28 @@
 			name = HermesEnabler2;
 			productName = HermesEnabler2;
 			productReference = 4F4A2C4B30A2155900A2BFDC /* HermesEnabler2.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A10000000000000000000006 /* HermesCompanion */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1000000000000000000000A /* Build configuration list for PBXNativeTarget "HermesCompanion" */;
+			buildPhases = (
+				A10000000000000000000007 /* Sources */,
+				A10000000000000000000008 /* Frameworks */,
+				A10000000000000000000009 /* Resources */,
+				A10000000000000000000003 /* Embed Watch Content */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1000000000000000000000B /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A10000000000000000000005 /* HermesCompanion */,
+			);
+			name = HermesCompanion;
+			productName = HermesCompanion;
+			productReference = A10000000000000000000004 /* HermesCompanion.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -89,11 +150,17 @@
 			projectRoot = "";
 			targets = (
 				4F4A2C4A30A2155900A2BFDC /* HermesEnabler2 */,
+				A10000000000000000000006 /* HermesCompanion */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A10000000000000000000009 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			files = (
+			);
+		};
 		BF36C28442D762BA44FD1EF2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			files = (
@@ -107,13 +174,27 @@
 			files = (
 			);
 		};
+		A10000000000000000000007 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			files = (
+			);
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A1000000000000000000000B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F4A2C4A30A2155900A2BFDC /* HermesEnabler2 */;
+			targetProxy = A10000000000000000000002 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		809F7C3A65FB6828B13607BC /* Debug configuration for PBXProject "HermesEnabler2" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMPANION_BUNDLE_IDENTIFIER = com.example.HermesEnabler;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -145,7 +226,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = P53D29U9LJ;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -180,18 +261,18 @@
 				CODE_SIGN_ENTITLEMENTS = HermesEnabler2/HermesEnabler2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = P53D29U9LJ;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = HermesEnabler2;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKWatchOnly = YES;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "$(COMPANION_BUNDLE_IDENTIFIER)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.MyApp.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(COMPANION_BUNDLE_IDENTIFIER).watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -207,6 +288,52 @@
 			};
 			name = Debug;
 		};
+		A1000000000000000000000C /* Debug configuration for PBXNativeTarget "HermesCompanion" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				"INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad" = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_CFBundleDisplayName = HermesEnabler;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(COMPANION_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A1000000000000000000000D /* Release configuration for PBXNativeTarget "HermesCompanion" */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				"INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad" = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_CFBundleDisplayName = HermesEnabler;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(COMPANION_BUNDLE_IDENTIFIER)";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		E62B5FB31607592B4B8C03B9 /* Release configuration for PBXNativeTarget "HermesEnabler2" */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -215,18 +342,18 @@
 				CODE_SIGN_ENTITLEMENTS = HermesEnabler2/HermesEnabler2.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = P53D29U9LJ;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_CFBundleDisplayName = HermesEnabler2;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
-				INFOPLIST_KEY_WKWatchOnly = YES;
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "$(COMPANION_BUNDLE_IDENTIFIER)";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.pookjw.MyApp.watchkitapp;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(COMPANION_BUNDLE_IDENTIFIER).watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -247,6 +374,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				COMPANION_BUNDLE_IDENTIFIER = com.example.HermesEnabler;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -278,7 +406,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = P53D29U9LJ;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_USER_SCRIPT_SANDBOXING = YES;
@@ -305,6 +433,14 @@
 			buildConfigurations = (
 				9A3D30C708CB6BEA6D729878 /* Debug configuration for PBXNativeTarget "HermesEnabler2" */,
 				E62B5FB31607592B4B8C03B9 /* Release configuration for PBXNativeTarget "HermesEnabler2" */,
+			);
+			defaultConfigurationName = Release;
+		};
+		A1000000000000000000000A /* Build configuration list for PBXNativeTarget "HermesCompanion" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1000000000000000000000C /* Debug configuration for PBXNativeTarget "HermesCompanion" */,
+				A1000000000000000000000D /* Release configuration for PBXNativeTarget "HermesCompanion" */,
 			);
 			defaultConfigurationName = Release;
 		};
