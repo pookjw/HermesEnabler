@@ -955,6 +955,64 @@ static const BQDeviceBrandLayout kDeviceBrandLayouts[] = {
     {"24S132", "32B4CA84-FBDA-496C-9B79-2101D597158B", 0x1950, 0x348, 0x16e9},
 };
 
+// Read-only diagnostic: logs everything needed to add a new build to the
+// DeviceBrand / main-screen-class layout tables. Writes nothing to the cache.
+BOOL BQDumpMobileGestalt(NSString **err) {
+    NSMutableDictionary *plist = BQLoadGestalt(err);
+    if (!plist) return NO;
+    char build[128] = {0};
+    size_t buildLength = sizeof(build);
+    if (sysctlbyname("kern.osversion", build, &buildLength, NULL, 0) != 0) {
+        if (err) *err = @"Could not identify the watchOS build.";
+        return NO;
+    }
+    id cacheData = plist[@"CacheData"];
+    id cacheExtra = plist[@"CacheExtra"];
+    id cacheUUID = plist[@"CacheUUID"];
+    BQLog(@"==== MG DUMP BEGIN ====");
+    BQLog(@"build=%s", build);
+    BQLog(@"CacheUUID=%@", cacheUUID);
+    if ([cacheData isKindOfClass:[NSData class]]) {
+        NSData *d = cacheData;
+        BQLog(@"CacheData.length=%lu (0x%lx)", (unsigned long)d.length, (unsigned long)d.length);
+        BQLog(@"CacheData.base64=%@", [d base64EncodedStringWithOptions:0]);
+    } else {
+        BQLog(@"CacheData missing or wrong type");
+    }
+    NSString * const brandKey = @"fuKL2rMywRgQF1wowOA/cg";       // DeviceBrand
+    NSString * const screenKey = @"fdh+s6j3VijuyrK7xLjd7g";      // main-screen-class
+    if ([cacheExtra isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *extra = cacheExtra;
+        BQLog(@"CacheExtra.count=%lu", (unsigned long)extra.count);
+        BQLog(@"CacheExtra[DeviceBrand %@]=%@", brandKey, extra[brandKey]);
+        BQLog(@"CacheExtra[main-screen-class %@]=%@", screenKey, extra[screenKey]);
+        // If CacheData is present, scan it for the override values so the exact
+        // byte offsets can be identified without guessing.
+        if ([cacheData isKindOfClass:[NSData class]]) {
+            const uint8_t *bytes = [(NSData *)cacheData bytes];
+            NSUInteger len = [(NSData *)cacheData length];
+            NSArray *scanKeys = @[@[@"DeviceBrand", brandKey], @[@"main-screen-class", screenKey]];
+            for (NSArray *pair in scanKeys) {
+                id v = extra[pair[1]];
+                if ([v isKindOfClass:[NSNumber class]]) {
+                    uint32_t target = (uint32_t)[v longLongValue];
+                    NSMutableArray *hits = [NSMutableArray array];
+                    for (NSUInteger off = 0; off + 4 <= len; off++) {
+                        uint32_t word;
+                        memcpy(&word, bytes + off, 4);
+                        if (word == target) [hits addObject:@(off)];
+                    }
+                    BQLog(@"scan %@ value=%u (0x%x): offsets=%@", pair[0], target, target, hits);
+                }
+            }
+        }
+    } else {
+        BQLog(@"CacheExtra missing or wrong type");
+    }
+    BQLog(@"==== MG DUMP END ==== (send Documents/bqtool.log)");
+    return YES;
+}
+
 BOOL BQSetHermesEnabled(BOOL enabled, NSString **err) {
     if (!BQBackupExists()) {
         if (err) *err = @"Back up MobileGestalt first.";

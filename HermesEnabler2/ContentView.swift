@@ -139,6 +139,7 @@ struct ContentView: View {
                 }
                 Button("Restore MG") { perform(.restore) }
                     .disabled(!hasBackup)
+                Button("Dump MG") { perform(.dump) }
                 Text(message).font(.footnote).foregroundStyle(.secondary)
                     .frame(maxWidth: .infinity, alignment: .leading)
             }
@@ -152,7 +153,7 @@ struct ContentView: View {
     }
 
     private enum Action {
-        case backup, restore
+        case backup, restore, dump
         case hermes(Bool)
         case ultraFaces(Bool)
         case aod(Bool), aodSeconds(Bool), actionButton(Bool), doubleTap(Bool)
@@ -257,6 +258,10 @@ struct ContentView: View {
                 result = BQSetSwimmingWorkouts(enabled, &error)
                     ? "Swimming Workouts capability turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
                     : ((error as String?) ?? "Could not update Swimming Workouts capability.")
+            case .dump:
+                result = BQDumpMobileGestalt(&error)
+                    ? "MG dumped to Documents/bqtool.log. Send that log."
+                    : ((error as String?) ?? "Could not read MobileGestalt.")
             case .restore:
                 result = BQRestoreGestalt(&error) ? "MobileGestalt restored. Restart the watch to reload it." : ((error as String?) ?? "Restore failed.")
             }

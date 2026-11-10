@@ -55,6 +55,10 @@ NSArray<NSString *> *BQPosterBoardExtensions(void);
 // ---- respring (NeoSpring / WebKit) ----------------------------------------
 void BQRespring(void);
 
+// Read-only diagnostic: logs build, CacheUUID, CacheData (base64), CacheExtra,
+// and candidate DeviceBrand / main-screen-class offsets to Documents/bqtool.log.
+BOOL BQDumpMobileGestalt(NSString **err);
+
 // Writes DeviceBrand into the verified CacheData layout, retaining the original backup.
 BOOL BQEnableHermes(NSString **err);
 BOOL BQSetHermesEnabled(BOOL enabled, NSString **err);
