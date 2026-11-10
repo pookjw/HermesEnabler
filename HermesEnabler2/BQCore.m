@@ -1092,7 +1092,7 @@ static BOOL bq_ultraCache(NSDictionary *plist, NSMutableData **dataOut, NSUInteg
     NSUInteger length = 0, value = 0, present = 0;
     if (strcmp(build, "24S5284h") == 0) uuid = @"DB380F61-0014-418D-9799-876666B459E3";
     else if (strcmp(build, "24S132") == 0 || strcmp(build, "24S118") == 0) uuid = @"32B4CA84-FBDA-496C-9B79-2101D597158B";
-    else if (strcmp(build, "24R364") == 0 || strcmp(build, "24R365") == 0) {
+    else if (strcmp(build, "24R359") == 0 || strcmp(build, "24R364") == 0 || strcmp(build, "24R365") == 0) {
         uuid = @"6F8372B0-1583-4031-A4BC-A54A18B0DD5A";
         length = 0x1947; value = 0xea8; present = 0x184d;
     }
