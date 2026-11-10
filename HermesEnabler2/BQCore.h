@@ -40,6 +40,9 @@ BOOL BQSaveGestalt(NSDictionary *dict, NSString **err);
 BOOL BQRestoreGestalt(NSString **err);
 BOOL BQBackupExists(void);
 NSString *BQBackupPath(void);
+NSString *BQCreateGestaltBackup(BOOL initial, NSString **err);
+NSArray<NSDictionary *> *BQListGestaltBackups(void);
+BOOL BQRestoreGestaltBackup(NSString *identifier, NSString **err);
 BOOL BQInPlaceWrite(void);
 void BQSetInPlaceWrite(BOOL on);
 NSString *BQMobileGestaltPath(void);
@@ -105,4 +108,26 @@ BOOL BQSetBatteryInformation(BOOL enabled, NSString **err);
 BOOL BQSetAlwaysListening(BOOL enabled, NSString **err);
 BOOL BQSetRotateToWake(BOOL enabled, NSString **err);
 BOOL BQSetSwimmingWorkouts(BOOL enabled, NSString **err);
+
+// watchOS Intelligence / regional override fields. These fields are stored in
+// CacheExtra and are intentionally separate from the existing watch hardware
+// capability switches. Their effect depends on the watchOS build and services.
+BOOL BQGetAppleIntelligence(BOOL *enabled, NSString **err);
+BOOL BQGetOnDeviceSiri(BOOL *enabled, NSString **err);
+BOOL BQGetAudioIntelligence(BOOL *enabled, NSString **err);
+BOOL BQSetAppleIntelligence(BOOL enabled, NSString **err);
+BOOL BQSetOnDeviceSiri(BOOL enabled, NSString **err);
+BOOL BQSetAudioIntelligence(BOOL enabled, NSString **err);
+// RegionCode is independent from the sales-region suffix. Passing a supported
+// value updates only that field; sales-region writes update the existing
+// suffix field(s), or create the current suffix field when neither is present.
+NSString *BQGetRegionCode(NSString **err);
+NSString *BQGetSalesRegion(NSString **err);
+BOOL BQSetRegionCode(NSString *code, NSString **err);
+BOOL BQSetSalesRegion(NSString *suffix, NSString **err);
+
+// Reported main-screen pixel dimensions in CacheExtra. Passing zero for both
+// dimensions restores the original values (including absent fields) from backup.
+BOOL BQGetScreenResolution(NSInteger *width, NSInteger *height, BOOL *overridden, NSString **err);
+BOOL BQSetScreenResolution(NSInteger width, NSInteger height, NSString **err);
 
