@@ -20,3 +20,7 @@
 1. 在 Xcode 中打开 `HermesEnabler2.xcodeproj`。
 2. 选择 Apple Watch 作为运行目标，然后点击 **Run**。
 3. 在 Apple Watch 上打开 **HermesEnabler2**，并按照应用中的步骤操作。
+
+## 致谢
+
+本项目包含来自 [Gester](https://github.com/sasobhabha/Gester) 的代码。许可证详情请参阅仓库中的 [`Gester-LICENSE.txt`](HermesEnabler2/Gester-LICENSE.txt)。

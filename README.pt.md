@@ -20,3 +20,7 @@
 1. Abra `HermesEnabler2.xcodeproj` no Xcode.
 2. Selecione o Apple Watch como destino de execução e clique em **Run**.
 3. Abra o **HermesEnabler2** no Apple Watch e siga as etapas exibidas no app.
+
+## Créditos
+
+Este projeto incorpora código do [Gester](https://github.com/sasobhabha/Gester). Consulte [`Gester-LICENSE.txt`](HermesEnabler2/Gester-LICENSE.txt), incluído no repositório, para ver os detalhes da licença.
