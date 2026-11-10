@@ -43,6 +43,7 @@ NSString *BQBackupPath(void);
 NSString *BQCreateGestaltBackup(BOOL initial, NSString **err);
 NSArray<NSDictionary *> *BQListGestaltBackups(void);
 BOOL BQRestoreGestaltBackup(NSString *identifier, NSString **err);
+BOOL BQDeleteGestaltBackup(NSString *identifier, NSString **err);
 BOOL BQInPlaceWrite(void);
 void BQSetInPlaceWrite(BOOL on);
 NSString *BQMobileGestaltPath(void);

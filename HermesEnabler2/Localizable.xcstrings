@@ -1,0 +1,2030 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "AOD 1Hz turned off. Restart Carousel to reload it. Faces must support seconds in AOD.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉AOD 1Hz。請重新啟動 Carousel 以重新載入。錶面必須支援 AOD 顯示秒數。"
+          }
+        }
+      }
+    },
+    "AOD 1Hz turned on. Restart Carousel to reload it. Faces must support seconds in AOD.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟AOD 1Hz。請重新啟動 Carousel 以重新載入。錶面必須支援 AOD 顯示秒數。"
+          }
+        }
+      }
+    },
+    "AOD Vibrancy": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AOD 鮮豔度"
+          }
+        }
+      }
+    },
+    "AOD Vibrancy capability turned off. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉AOD 鮮豔度能力。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "AOD Vibrancy capability turned on. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟AOD 鮮豔度能力。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "AOD turned off. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉AOD。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "AOD turned on. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟AOD。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Absolute Altimeter": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "絕對高度計"
+          }
+        }
+      }
+    },
+    "Absolute Altimeter capability turned off. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉絕對高度計能力。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Absolute Altimeter capability turned on. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟絕對高度計能力。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Action Button": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "動作按鈕"
+          }
+        }
+      }
+    },
+    "Action Button turned off. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉動作按鈕。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Action Button turned on. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟動作按鈕。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Always Listening capability turned off. Restart Carousel to reload it. Siri settings and supported audio hardware still apply.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉持續聆聽能力。請重新啟動 Carousel 以重新載入。仍受 Siri 設定與支援的音訊硬體限制。"
+          }
+        }
+      }
+    },
+    "Always Listening capability turned on. Restart Carousel to reload it. Siri settings and supported audio hardware still apply.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟持續聆聽能力。請重新啟動 Carousel 以重新載入。仍受 Siri 設定與支援的音訊硬體限制。"
+          }
+        }
+      }
+    },
+    "Always-On Compass": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "永遠顯示指南針"
+          }
+        }
+      }
+    },
+    "Always-On Compass capability turned off. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉永遠顯示指南針能力。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Always-On Compass capability turned on. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟永遠顯示指南針能力。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Always-On Display": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "永遠顯示"
+          }
+        }
+      }
+    },
+    "An App Group ID may be missing, or this watchOS version may be incompatible. Check the app's App Group configuration and watchOS version.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "可能缺少 App Group ID，或此 watchOS 版本不相容。請檢查 app 的 App Group 設定與 watchOS 版本。"
+          }
+        }
+      }
+    },
+    "An initial MobileGestalt backup is required before using any feature. It will be kept as the original and cannot be overwritten here.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "使用任何功能前，必須先建立一份初始的 MobileGestalt 備份。它會保留為原始版本，且無法在此覆寫。"
+          }
+        }
+      }
+    },
+    "An initial backup already exists and will not be overwritten.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "初始備份已存在，將不會被覆寫。"
+          }
+        }
+      }
+    },
+    "Apple Intelligence / Siri AI": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple 智慧／Siri AI"
+          }
+        }
+      }
+    },
+    "Apple Intelligence capability turned off. Restart the watch to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉Apple 智慧能力。請重新啟動手錶以重新載入。"
+          }
+        }
+      }
+    },
+    "Apple Intelligence capability turned on. Restart the watch to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟Apple 智慧能力。請重新啟動手錶以重新載入。"
+          }
+        }
+      }
+    },
+    "Audio Intelligence": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "音訊智慧"
+          }
+        }
+      }
+    },
+    "Audio Intelligence capability turned off. Restart the watch to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉音訊智慧能力。請重新啟動手錶以重新載入。"
+          }
+        }
+      }
+    },
+    "Audio Intelligence capability turned on. Restart the watch to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟音訊智慧能力。請重新啟動手錶以重新載入。"
+          }
+        }
+      }
+    },
+    "Automatic Backup": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "自動備份"
+          }
+        }
+      }
+    },
+    "Back Up Current MG": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "備份目前的 MG"
+          }
+        }
+      }
+    },
+    "Back up MobileGestalt before making changes.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "進行變更前請先備份 MobileGestalt。"
+          }
+        }
+      }
+    },
+    "Back up MobileGestalt first.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請先備份 MobileGestalt。"
+          }
+        }
+      }
+    },
+    "Backup Library": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "備份庫"
+          }
+        }
+      }
+    },
+    "Backup cache layout does not match this watch.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "備份的快取配置與此手錶不相符。"
+          }
+        }
+      }
+    },
+    "Backup could not be deleted.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法刪除備份。"
+          }
+        }
+      }
+    },
+    "Backup could not be verified.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法驗證備份。"
+          }
+        }
+      }
+    },
+    "Backup deleted.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已刪除備份。"
+          }
+        }
+      }
+    },
+    "Backup ready.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "備份已就緒。"
+          }
+        }
+      }
+    },
+    "Battery Information": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "電池資訊"
+          }
+        }
+      }
+    },
+    "Battery Information capability turned off. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉電池資訊能力。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Battery Information capability turned on. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟電池資訊能力。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Canada": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "加拿大"
+          }
+        }
+      }
+    },
+    "Capability flags do not add missing sensors or override Health permissions.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "能力旗標不會新增缺少的感測器，也不會覆寫「健康」權限。"
+          }
+        }
+      }
+    },
+    "Changes RegionCode only. It leaves the sales-region suffix unchanged.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "僅變更 RegionCode，不會更動銷售地區後綴。"
+          }
+        }
+      }
+    },
+    "Changes the MobileGestalt reported dimensions, not physical pixels. A different size can clip watchOS content. Restart the watch after applying; restore the original size if the layout worsens.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "變更的是 MobileGestalt 回報的尺寸，而非實際像素。不同的尺寸可能會裁切 watchOS 內容。套用後請重新啟動手錶；若版面變差，請還原原始尺寸。"
+          }
+        }
+      }
+    },
+    "Changes the sales-region suffix only. It may cause factory-information tools to report a mismatch.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "僅變更銷售地區後綴。這可能導致出廠資訊工具回報不相符。"
+          }
+        }
+      }
+    },
+    "China (Mainland)": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "中國（大陸）"
+          }
+        }
+      }
+    },
+    "Choose Region Code": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選擇地區代碼"
+          }
+        }
+      }
+    },
+    "Choose Sales Region": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "選擇銷售地區"
+          }
+        }
+      }
+    },
+    "Compass Orienteering": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "指南針定向越野"
+          }
+        }
+      }
+    },
+    "Compass Orienteering turned off. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉指南針定向越野。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Compass Orienteering turned on. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟指南針定向越野。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Continuous Heart Rate": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "連續心率"
+          }
+        }
+      }
+    },
+    "Continuous Heart Rate turned off. Restart Carousel to reload it. Sensor hardware and Health settings still apply.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉連續心率。請重新啟動 Carousel 以重新載入。仍受感測器硬體與「健康」設定限制。"
+          }
+        }
+      }
+    },
+    "Continuous Heart Rate turned on. Restart Carousel to reload it. Sensor hardware and Health settings still apply.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟連續心率。請重新啟動 Carousel 以重新載入。仍受感測器硬體與「健康」設定限制。"
+          }
+        }
+      }
+    },
+    "Controls": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "控制"
+          }
+        }
+      }
+    },
+    "Could not read dimensions": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法讀取尺寸"
+          }
+        }
+      }
+    },
+    "Could not update AOD Vibrancy capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新 AOD 鮮豔度能力。"
+          }
+        }
+      }
+    },
+    "Could not update AOD capabilities.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新 AOD 能力。"
+          }
+        }
+      }
+    },
+    "Could not update AOD flipbook capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新 AOD 連拍能力。"
+          }
+        }
+      }
+    },
+    "Could not update Absolute Altimeter capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新絕對高度計能力。"
+          }
+        }
+      }
+    },
+    "Could not update Action Button capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新動作按鈕能力。"
+          }
+        }
+      }
+    },
+    "Could not update Always Listening capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新持續聆聽能力。"
+          }
+        }
+      }
+    },
+    "Could not update Always-On Compass capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新永遠顯示指南針能力。"
+          }
+        }
+      }
+    },
+    "Could not update Apple Intelligence capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新 Apple 智慧能力。"
+          }
+        }
+      }
+    },
+    "Could not update Audio Intelligence capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新音訊智慧能力。"
+          }
+        }
+      }
+    },
+    "Could not update Depth Sensor capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新深度感測器能力。"
+          }
+        }
+      }
+    },
+    "Could not update DeviceBrand.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新 DeviceBrand。"
+          }
+        }
+      }
+    },
+    "Could not update Double Tap capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新點兩下手勢能力。"
+          }
+        }
+      }
+    },
+    "Could not update On-Device Siri capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新裝置端 Siri 能力。"
+          }
+        }
+      }
+    },
+    "Could not update Raise Wrist to Wake capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新抬腕喚醒能力。"
+          }
+        }
+      }
+    },
+    "Could not update Raise to Speak capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新抬腕說話能力。"
+          }
+        }
+      }
+    },
+    "Could not update Region Code.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新地區代碼。"
+          }
+        }
+      }
+    },
+    "Could not update Sales Region.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新銷售地區。"
+          }
+        }
+      }
+    },
+    "Could not update Swimming Workouts capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新游泳體能訓練能力。"
+          }
+        }
+      }
+    },
+    "Could not update Ultra Faces.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新 Ultra 錶面。"
+          }
+        }
+      }
+    },
+    "Could not update ambient light capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新環境光能力。"
+          }
+        }
+      }
+    },
+    "Could not update battery information capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新電池資訊能力。"
+          }
+        }
+      }
+    },
+    "Could not update compass capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新指南針能力。"
+          }
+        }
+      }
+    },
+    "Could not update continuous heart rate capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新連續心率能力。"
+          }
+        }
+      }
+    },
+    "Could not update keyboard capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新鍵盤能力。"
+          }
+        }
+      }
+    },
+    "Could not update noise exposure capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新噪音暴露能力。"
+          }
+        }
+      }
+    },
+    "Could not update screen dimensions.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法更新螢幕尺寸。"
+          }
+        }
+      }
+    },
+    "Create Backup": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "建立備份"
+          }
+        }
+      }
+    },
+    "Create Initial Backup": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "建立初始備份"
+          }
+        }
+      }
+    },
+    "Create the initial backup first.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "請先建立初始備份。"
+          }
+        }
+      }
+    },
+    "Current Reported Size": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "目前回報的尺寸"
+          }
+        }
+      }
+    },
+    "Delete": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刪除"
+          }
+        }
+      }
+    },
+    "Delete failed.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "刪除失敗。"
+          }
+        }
+      }
+    },
+    "Depth Sensor": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "深度感測器"
+          }
+        }
+      }
+    },
+    "Depth Sensor capability turned off. Restart Carousel to reload it. Sensor hardware is still required.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉深度感測器能力。請重新啟動 Carousel 以重新載入。仍需具備感測器硬體。"
+          }
+        }
+      }
+    },
+    "Depth Sensor capability turned on. Restart Carousel to reload it. Sensor hardware is still required.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟深度感測器能力。請重新啟動 Carousel 以重新載入。仍需具備感測器硬體。"
+          }
+        }
+      }
+    },
+    "Display": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "顯示"
+          }
+        }
+      }
+    },
+    "Display & Controls": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "顯示與控制"
+          }
+        }
+      }
+    },
+    "Double Tap": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "點兩下手勢"
+          }
+        }
+      }
+    },
+    "Double Tap turned off. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉點兩下手勢。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Double Tap turned on. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟點兩下手勢。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Every MG write and restore also creates an automatic backup first.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "每次寫入或還原 MG 時，也會先自動建立一份備份。"
+          }
+        }
+      }
+    },
+    "Features": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "功能"
+          }
+        }
+      }
+    },
+    "First Launch": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "首次啟動"
+          }
+        }
+      }
+    },
+    "Health & Workouts": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "健康與體能訓練"
+          }
+        }
+      }
+    },
+    "Hermès turned off. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉Hermès。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Hermès turned on. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟Hermès。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Hong Kong": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "香港"
+          }
+        }
+      }
+    },
+    "If you enable Ultra Faces, you won't be able to use the Hermès Faubourg Party face.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "若啟用 Ultra 錶面，將無法使用 Hermès Faubourg Party 錶面。"
+          }
+        }
+      }
+    },
+    "Initial Backup": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "初始備份"
+          }
+        }
+      }
+    },
+    "Initial MobileGestalt backup saved.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已儲存初始 MobileGestalt 備份。"
+          }
+        }
+      }
+    },
+    "Initial backup failed.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "初始備份失敗。"
+          }
+        }
+      }
+    },
+    "Invalid backup identifier.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "備份識別碼無效。"
+          }
+        }
+      }
+    },
+    "Japan": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "日本"
+          }
+        }
+      }
+    },
+    "MG Backups": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MG 備份"
+          }
+        }
+      }
+    },
+    "Manual Backup": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手動備份"
+          }
+        }
+      }
+    },
+    "Manual MobileGestalt backup saved.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已儲存手動 MobileGestalt 備份。"
+          }
+        }
+      }
+    },
+    "Manual backup failed.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手動備份失敗。"
+          }
+        }
+      }
+    },
+    "MobileGestalt Access Failed": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MobileGestalt 存取失敗"
+          }
+        }
+      }
+    },
+    "MobileGestalt access is unavailable on this device.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "此裝置無法存取 MobileGestalt。"
+          }
+        }
+      }
+    },
+    "MobileGestalt or its backup is invalid.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MobileGestalt 或其備份無效。"
+          }
+        }
+      }
+    },
+    "MobileGestalt plist is missing or invalid.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "MobileGestalt plist 遺失或無效。"
+          }
+        }
+      }
+    },
+    "Noise Exposure": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "噪音暴露"
+          }
+        }
+      }
+    },
+    "Noise Exposure capability turned off. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉噪音暴露能力。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Noise Exposure capability turned on. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟噪音暴露能力。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "OK": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "好"
+          }
+        }
+      }
+    },
+    "On-Device Siri": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "裝置端 Siri"
+          }
+        }
+      }
+    },
+    "On-Device Siri capability turned off. Restart the watch to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉裝置端 Siri 能力。請重新啟動手錶以重新載入。"
+          }
+        }
+      }
+    },
+    "On-Device Siri capability turned on. Restart the watch to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟裝置端 Siri 能力。請重新啟動手錶以重新載入。"
+          }
+        }
+      }
+    },
+    "On-Screen Keyboard": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "螢幕鍵盤"
+          }
+        }
+      }
+    },
+    "On-Screen Keyboard capability turned off. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉螢幕鍵盤能力。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "On-Screen Keyboard capability turned on. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟螢幕鍵盤能力。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Original screen dimensions restored. Restart the watch.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已還原原始螢幕尺寸。請重新啟動手錶。"
+          }
+        }
+      }
+    },
+    "Other / unchanged": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "其他／未變更"
+          }
+        }
+      }
+    },
+    "Periodic Ambient Light Updates": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "定期環境光更新"
+          }
+        }
+      }
+    },
+    "Periodic ambient light updates turned off. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉定期環境光更新。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Periodic ambient light updates turned on. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟定期環境光更新。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Presets": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "預設組合"
+          }
+        }
+      }
+    },
+    "Raise Wrist to Wake": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "抬腕喚醒"
+          }
+        }
+      }
+    },
+    "Raise Wrist to Wake capability turned off. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉抬腕喚醒能力。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Raise Wrist to Wake capability turned on. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟抬腕喚醒能力。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Raise to Speak": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "抬腕說話"
+          }
+        }
+      }
+    },
+    "Raise to Speak turned off. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉抬腕說話。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Raise to Speak turned on. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟抬腕說話。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Region": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "地區"
+          }
+        }
+      }
+    },
+    "Region Code": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "地區代碼"
+          }
+        }
+      }
+    },
+    "Restart Carousel": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "重新啟動 Carousel"
+          }
+        }
+      }
+    },
+    "Restart Carousel after changing a face capability.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "變更錶面能力後，請重新啟動 Carousel。"
+          }
+        }
+      }
+    },
+    "Restore MG": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "還原 MG"
+          }
+        }
+      }
+    },
+    "Restore Original Size": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "還原原始尺寸"
+          }
+        }
+      }
+    },
+    "Restore failed.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "還原失敗。"
+          }
+        }
+      }
+    },
+    "Restore this backup?": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "要還原這個備份嗎？"
+          }
+        }
+      }
+    },
+    "S10–S12 · 42 mm": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "S10–S12 · 42 公釐"
+          }
+        }
+      }
+    },
+    "S10–S12 · 46 mm": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "S10–S12 · 46 公釐"
+          }
+        }
+      }
+    },
+    "S7–S9 · 41 mm": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "S7–S9 · 41 公釐"
+          }
+        }
+      }
+    },
+    "S7–S9 · 45 mm": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "S7–S9 · 45 公釐"
+          }
+        }
+      }
+    },
+    "SE · 40 mm": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SE · 40 公釐"
+          }
+        }
+      }
+    },
+    "SE · 44 mm": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "SE · 44 公釐"
+          }
+        }
+      }
+    },
+    "Sales Region": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "銷售地區"
+          }
+        }
+      }
+    },
+    "Screen Resolution": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "螢幕解析度"
+          }
+        }
+      }
+    },
+    "Selected backup is missing or invalid.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所選備份遺失或無效。"
+          }
+        }
+      }
+    },
+    "Selected backup no longer exists.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "所選備份已不存在。"
+          }
+        }
+      }
+    },
+    "Selected backup restored. Restart the watch.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已還原所選備份。請重新啟動手錶。"
+          }
+        }
+      }
+    },
+    "Sensors": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "感測器"
+          }
+        }
+      }
+    },
+    "Sensors & Workouts": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "感測器與體能訓練"
+          }
+        }
+      }
+    },
+    "Siri & Intelligence": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siri 與智慧功能"
+          }
+        }
+      }
+    },
+    "Siri AI needs watchOS 27, a supported watch and a paired Apple Intelligence iPhone. Audio Intelligence is for Series 12 / Ultra 4 hardware. These flags cannot add missing hardware or bypass service eligibility.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siri AI 需要 watchOS 27、支援的手錶，以及一支已配對且支援 Apple 智慧的 iPhone。音訊智慧僅適用於 Series 12／Ultra 4 硬體。這些旗標無法新增缺少的硬體，也無法略過服務資格限制。"
+          }
+        }
+      }
+    },
+    "Siri Listening Capability": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Siri 聆聽能力"
+          }
+        }
+      }
+    },
+    "Some options require matching display, sensor, or audio hardware.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "部分選項需要對應的顯示、感測器或音訊硬體。"
+          }
+        }
+      }
+    },
+    "Starting respring. View the app log if nothing happens.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "正在重新啟動介面。若沒有反應，請查看 app 記錄。"
+          }
+        }
+      }
+    },
+    "Status": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "狀態"
+          }
+        }
+      }
+    },
+    "Swimming Workouts": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "游泳體能訓練"
+          }
+        }
+      }
+    },
+    "Swimming Workouts capability turned off. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉游泳體能訓練能力。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Swimming Workouts capability turned on. Restart Carousel to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟游泳體能訓練能力。請重新啟動 Carousel 以重新載入。"
+          }
+        }
+      }
+    },
+    "Swipe a backup left to delete it. The initial backup is protected.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "向左滑動備份即可刪除。初始備份受到保護。"
+          }
+        }
+      }
+    },
+    "Taiwan": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "台灣"
+          }
+        }
+      }
+    },
+    "The current MG will be backed up automatically first. Restart the watch after restoring.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "系統會先自動備份目前的 MG。還原後請重新啟動手錶。"
+          }
+        }
+      }
+    },
+    "The initial backup is protected and cannot be deleted.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "初始備份受到保護，無法刪除。"
+          }
+        }
+      }
+    },
+    "Ultra Faces": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ultra 錶面"
+          }
+        }
+      }
+    },
+    "Ultra Faces turned off. Restart the watch to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已關閉Ultra 錶面。請重新啟動手錶以重新載入。"
+          }
+        }
+      }
+    },
+    "Ultra Faces turned on. Restart the watch to reload it.": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "已開啟Ultra 錶面。請重新啟動手錶以重新載入。"
+          }
+        }
+      }
+    },
+    "Unavailable": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "無法使用"
+          }
+        }
+      }
+    },
+    "United Kingdom": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "英國"
+          }
+        }
+      }
+    },
+    "United States": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "美國"
+          }
+        }
+      }
+    },
+    "Utilities": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "工具"
+          }
+        }
+      }
+    },
+    "Voice": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "語音"
+          }
+        }
+      }
+    },
+    "Watch Capabilities": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "手錶能力"
+          }
+        }
+      }
+    },
+    "Watch Faces": {
+      "extractionState": "manual",
+      "localizations": {
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "錶面"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

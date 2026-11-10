@@ -34,7 +34,7 @@ struct ContentView: View {
                         }
                     }
                     Section("Status") {
-                        Text(model.message)
+                        Text(LocalizedStringKey(model.message))
                             .font(.footnote)
                             .foregroundStyle(.secondary)
                     }

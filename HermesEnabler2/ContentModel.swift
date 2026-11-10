@@ -96,7 +96,7 @@ final class ContentModel {
     }
 
     enum Action {
-        case backup, manualBackup, restoreBackup(String)
+        case backup, manualBackup, restoreBackup(String), deleteBackup(String)
         case hermes(Bool)
         case ultraFaces(Bool)
         case aod(Bool), aodSeconds(Bool), actionButton(Bool), doubleTap(Bool)
@@ -128,6 +128,10 @@ final class ContentModel {
                 result = BQRestoreGestaltBackup(identifier, &error)
                     ? "Selected backup restored. Restart the watch."
                     : ((error as String?) ?? "Restore failed.")
+            case .deleteBackup(let identifier):
+                result = BQDeleteGestaltBackup(identifier, &error)
+                    ? "Backup deleted."
+                    : ((error as String?) ?? "Delete failed.")
             case .hermes(let enabled):
                 result = BQSetHermesEnabled(enabled, &error)
                     ? "Hermès turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
