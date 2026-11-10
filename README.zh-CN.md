@@ -24,3 +24,5 @@
 ## 致谢
 
 本项目包含来自 [Gester](https://github.com/sasobhabha/Gester) 的代码。
+
+使用风险由您自行承担。

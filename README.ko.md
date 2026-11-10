@@ -24,3 +24,5 @@
 ## 크레딧
 
 이 프로젝트에는 [Gester](https://github.com/sasobhabha/Gester)의 코드가 포함되어 있습니다.
+
+모든 사용은 본인 책임하에 이루어집니다.

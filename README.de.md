@@ -24,3 +24,5 @@
 ## Danksagung
 
 Dieses Projekt enthält Code aus [Gester](https://github.com/sasobhabha/Gester).
+
+Die Nutzung erfolgt auf eigene Gefahr.

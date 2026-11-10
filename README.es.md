@@ -24,3 +24,5 @@
 ## Créditos
 
 Este proyecto incorpora código de [Gester](https://github.com/sasobhabha/Gester).
+
+Úsalo bajo tu propia responsabilidad.

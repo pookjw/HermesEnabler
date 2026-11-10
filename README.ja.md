@@ -24,3 +24,5 @@
 ## クレジット
 
 このプロジェクトには[Gester](https://github.com/sasobhabha/Gester)のコードが含まれています。
+
+ご自身の責任でご使用ください。
