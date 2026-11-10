@@ -23,4 +23,4 @@
 
 ## Danksagung
 
-Dieses Projekt enthält Code aus [Gester](https://github.com/sasobhabha/Gester). Weitere Lizenzinformationen findest du in der enthaltenen Datei [`Gester-LICENSE.txt`](HermesEnabler2/Gester-LICENSE.txt).
+Dieses Projekt enthält Code aus [Gester](https://github.com/sasobhabha/Gester).

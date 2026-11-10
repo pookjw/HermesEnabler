@@ -23,4 +23,4 @@
 
 ## 致谢
 
-本项目包含来自 [Gester](https://github.com/sasobhabha/Gester) 的代码。许可证详情请参阅仓库中的 [`Gester-LICENSE.txt`](HermesEnabler2/Gester-LICENSE.txt)。
+本项目包含来自 [Gester](https://github.com/sasobhabha/Gester) 的代码。

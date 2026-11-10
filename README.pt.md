@@ -23,4 +23,4 @@
 
 ## Créditos
 
-Este projeto incorpora código do [Gester](https://github.com/sasobhabha/Gester). Consulte [`Gester-LICENSE.txt`](HermesEnabler2/Gester-LICENSE.txt), incluído no repositório, para ver os detalhes da licença.
+Este projeto incorpora código do [Gester](https://github.com/sasobhabha/Gester).

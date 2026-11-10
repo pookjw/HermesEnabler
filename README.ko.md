@@ -23,4 +23,4 @@
 
 ## 크레딧
 
-이 프로젝트에는 [Gester](https://github.com/sasobhabha/Gester)의 코드가 포함되어 있습니다. 라이선스 정보는 저장소에 포함된 [`Gester-LICENSE.txt`](HermesEnabler2/Gester-LICENSE.txt)를 확인하세요.
+이 프로젝트에는 [Gester](https://github.com/sasobhabha/Gester)의 코드가 포함되어 있습니다.
