@@ -1,0 +1,110 @@
+{
+  "sourceLanguage": "en",
+  "strings": {
+    "HermesEnabler": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HermesEnabler"
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HermesEnabler"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HermesEnabler"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HermesEnabler"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HermesEnabler"
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HermesEnabler"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HermesEnabler"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HermesEnabler"
+          }
+        }
+      }
+    },
+    "Open HermesEnabler on your Apple Watch. If it is not installed, open the Watch app on your iPhone and install it from Available Apps.": {
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Öffne HermesEnabler auf deiner Apple Watch. Wenn die App nicht installiert ist, öffne auf deinem iPhone die App „Watch“ und installiere sie unter „Verfügbare Apps“."
+          }
+        },
+        "es": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abre HermesEnabler en tu Apple Watch. Si no está instalada, abre la app Watch en el iPhone y, en «Apps disponibles», instálala."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ouvrez HermesEnabler sur votre Apple Watch. S’il n’est pas installé, ouvrez l’app Watch sur votre iPhone, puis installez-le depuis « Apps disponibles »."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple WatchでHermesEnablerを開きます。インストールされていない場合は、iPhoneのWatchアプリを開き、「利用可能なアプリ」からインストールしてください。"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch에서 HermesEnabler를 여세요. 설치되어 있지 않다면 iPhone에서 Watch 앱을 열고 ‘사용 가능한 앱’에서 설치하세요."
+          }
+        },
+        "pt": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abra o HermesEnabler no Apple Watch. Se não estiver instalado, abra a app Watch no iPhone e instale-o em «Apps disponíveis»."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 Apple Watch 上打开 HermesEnabler。若尚未安装，请在 iPhone 上打开 Watch App，并从“可用 App”中安装。"
+          }
+        },
+        "zh-Hant": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "在 Apple Watch 上開啟 HermesEnabler。若尚未安裝，請在 iPhone 上開啟 Watch App，並從「可用 App」中安裝。"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
