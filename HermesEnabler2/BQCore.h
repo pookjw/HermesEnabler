@@ -128,3 +128,8 @@ BOOL BQSetSalesRegion(NSString *suffix, NSString **err);
 BOOL BQGetScreenResolution(NSInteger *width, NSInteger *height, BOOL *overridden, NSString **err);
 BOOL BQSetScreenResolution(NSInteger width, NSInteger height, NSString **err);
 
+
+// Opt-in, read-only compatibility research diagnostics.
+NSString *BQWriteUltraDiagnostics(void);
+NSString *BQWriteCompatibilityReport(void);
+void BQRunSnapshotProbe(void);

@@ -1,5 +1,8 @@
 # HermesEnabler 2
 
+[Series 11 / Readiness research: findings and help wanted](Research/README.md).
+Readiness scoring and black gallery previews remain unresolved.
+
 [English](README.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
 
 ![](image.png)
