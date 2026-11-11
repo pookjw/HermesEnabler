@@ -1069,6 +1069,37 @@ BOOL BQRestoreGestaltBackup(NSString *identifier, NSString **err) {
     return ok;
 }
 
+BOOL BQDeleteGestaltBackup(NSString *identifier, NSString **err) {
+    if ([identifier isEqualToString:@"initial"]) {
+        if (err) *err = @"The initial backup is protected and cannot be deleted.";
+        return NO;
+    }
+    BOOL automatic = [identifier hasPrefix:@"auto-"];
+    BOOL manual = [identifier hasPrefix:@"manual-"];
+    if (!automatic && !manual) {
+        if (err) *err = @"Invalid backup identifier.";
+        return NO;
+    }
+    NSString *uuid = [identifier substringFromIndex:(automatic ? 5 : 7)];
+    if (![[NSUUID alloc] initWithUUIDString:uuid]) {
+        if (err) *err = @"Invalid backup identifier.";
+        return NO;
+    }
+    NSString *path = [bq_backups_directory() stringByAppendingPathComponent:[identifier stringByAppendingPathExtension:@"plist"]];
+    NSFileManager *fm = [NSFileManager defaultManager];
+    if (![fm fileExistsAtPath:path]) {
+        if (err) *err = @"Selected backup no longer exists.";
+        return NO;
+    }
+    NSError *removeError = nil;
+    if (![fm removeItemAtPath:path error:&removeError]) {
+        if (err) *err = removeError.localizedDescription ?: @"Backup could not be deleted.";
+        return NO;
+    }
+    BQLog(@"MG backup deleted: %@", identifier);
+    return YES;
+}
+
 typedef struct {
     const char *build;
     const char *cacheUUID;

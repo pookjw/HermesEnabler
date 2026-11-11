@@ -24,15 +24,28 @@ struct BackupView: View {
                             model.showRestoreConfirmation = true
                         } label: {
                             VStack(alignment: .leading, spacing: 2) {
-                                Text(backup.kind + " Backup")
+                                Text(LocalizedStringKey(backup.kind + " Backup"))
                                 Text(backup.date.formatted(date: .abbreviated, time: .shortened))
                                     .font(.footnote).foregroundStyle(.secondary)
                             }
                         }
+                        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
+                            if backup.id != "initial" {
+                                Button(role: .destructive) {
+                                    model.perform(.deleteBackup(backup.id))
+                                } label: {
+                                    Label("Delete", systemImage: "trash")
+                                }
+                            }
+                        }
+                    }
+                    if model.backups.contains(where: { $0.id != "initial" }) {
+                        Text("Swipe a backup left to delete it. The initial backup is protected.")
+                            .font(.footnote).foregroundStyle(.secondary)
                     }
                 }
             }
-            Section("Status") { Text(model.message).font(.footnote).foregroundStyle(.secondary) }
+            Section("Status") { Text(LocalizedStringKey(model.message)).font(.footnote).foregroundStyle(.secondary) }
         }
         .navigationTitle("MG Backups")
         .onAppear(perform: model.refreshBackups)

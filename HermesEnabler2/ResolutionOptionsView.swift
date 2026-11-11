@@ -6,7 +6,7 @@ struct ResolutionOptionsView: View {
     var body: some View {
         List {
             Section("Current Reported Size") {
-                Text(model.screenWidth > 0 ? "\(model.screenWidth) × \(model.screenHeight) pixels" : "Could not read dimensions")
+                Text(model.screenWidth > 0 ? "\(model.screenWidth) × \(model.screenHeight) pixels" : LocalizedStringKey("Could not read dimensions"))
                 if model.resolutionOverridden {
                     Button("Restore Original Size") { model.perform(.resolution(0, 0)) }
                 }
