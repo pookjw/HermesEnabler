@@ -2,17 +2,17 @@
 //  WatchConnectivityManager.swift
 //  HermesEnabler2
 //
-//  Created by Metalnodeug on 11/11/2026.
 //
 
 import Foundation
 import WatchConnectivity
 import Combine
+import CryptoKit
 
 @MainActor
 final class WatchConnectivityManager: NSObject, ObservableObject {
 
-    // MARK: - Connection status
+    // MARK: - Connection
 
     @Published var isPaired = false
     @Published var isWatchAppInstalled = false
@@ -28,7 +28,15 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
     @Published var buildVersion = "Unknown"
     @Published var lastUpdate: Date?
 
-    // MARK: - Internal session
+    // MARK: - Backup information
+
+    @Published var hasExternalBackup = false
+    @Published var backupFileName = "No backup"
+    @Published var backupSize = "Unknown"
+    @Published var backupSHA256 = "Unknown"
+    @Published var backupDate: Date?
+    @Published var backupDeviceIdentifier = "Unknown"
+    @Published var backupStatus = "No backup received"
 
     private var session: WCSession?
 
@@ -38,20 +46,19 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
         super.init()
 
         guard WCSession.isSupported() else {
-            print("[WC] WatchConnectivity is not supported")
+            print("[WC] WatchConnectivity not supported")
             return
         }
 
         let session = WCSession.default
         self.session = session
-
         session.delegate = self
         session.activate()
 
         print("[WC] iPhone session activation requested")
     }
 
-    // MARK: - Status
+    // MARK: - Connection status
 
     private func updateStatus(_ session: WCSession) {
         isPaired = session.isPaired
@@ -100,35 +107,158 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
             lastUpdate = Date(timeIntervalSince1970: timestamp)
         }
 
-        print("[WC] Device information updated successfully")
+        print("[WC] Device information updated")
     }
 
-    // MARK: - Request information
+    // MARK: - Backup reception
 
-    func requestDeviceInformation() {
-        guard let session,
-              session.activationState == .activated else {
-            print("[WC] Cannot request information: session not activated")
-            return
+    private func updateBackupInformation(
+        fileName: String,
+        size: Int,
+        hash: String,
+        date: Date,
+        deviceIdentifier: String
+    ) {
+        hasExternalBackup = true
+        backupFileName = fileName
+        backupSize = ByteCountFormatter.string(
+            fromByteCount: Int64(size),
+            countStyle: .file
+        )
+        backupSHA256 = hash
+        backupDate = date
+        backupDeviceIdentifier = deviceIdentifier
+        backupStatus = "Backup received and verified"
+
+        print("[WC] Backup successfully stored")
+        print("[WC] File: \(fileName)")
+        print("[WC] Size: \(backupSize)")
+        print("[WC] SHA256: \(hash)")
+    }
+
+    // MARK: - Backup storage
+
+    nonisolated private static func storeBackup(
+        from sourceURL: URL,
+        metadata: [String: Any]?
+    ) throws -> (String, Int, String, Date, String) {
+
+        let fileManager = FileManager.default
+
+        // Read and validate the original plist.
+        let originalData = try Data(contentsOf: sourceURL)
+
+        let plist = try PropertyListSerialization.propertyList(
+            from: originalData,
+            options: [],
+            format: nil
+        )
+
+        guard let dictionary = plist as? [String: Any],
+              dictionary["CacheExtra"] is [String: Any],
+              dictionary["CacheData"] is Data else {
+            throw NSError(
+                domain: "HermesCompanion.Backup",
+                code: 1,
+                userInfo: [
+                    NSLocalizedDescriptionKey:
+                        "Invalid MobileGestalt backup structure."
+                ]
+            )
         }
 
-        guard session.isReachable else {
-            print("[WC] Watch is not currently reachable")
-            return
+        // Calculate SHA-256.
+        let digest = SHA256.hash(data: originalData)
+        let hash = digest.map {
+            String(format: "%02x", $0)
+        }.joined()
+
+        // Independent iPhone storage.
+        let applicationSupport = try fileManager.url(
+            for: .applicationSupportDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        )
+
+        let backupDirectory = applicationSupport
+            .appendingPathComponent("HermesEnabler", isDirectory: true)
+            .appendingPathComponent("Backups", isDirectory: true)
+
+        try fileManager.createDirectory(
+            at: backupDirectory,
+            withIntermediateDirectories: true
+        )
+
+        // Never overwrite an existing backup.
+        let identifier = UUID().uuidString
+
+        let fileName = "OriginalGestalt-\(identifier).plist"
+
+        let destinationURL = backupDirectory
+            .appendingPathComponent(fileName)
+
+        try fileManager.copyItem(
+            at: sourceURL,
+            to: destinationURL
+        )
+
+        // Verify the stored copy.
+        let storedData = try Data(contentsOf: destinationURL)
+
+        guard storedData == originalData else {
+            try? fileManager.removeItem(at: destinationURL)
+
+            throw NSError(
+                domain: "HermesCompanion.Backup",
+                code: 2,
+                userInfo: [
+                    NSLocalizedDescriptionKey:
+                        "Stored backup does not match received file."
+                ]
+            )
         }
 
-        let message: [String: Any] = [
-            "request": "deviceInformation"
-        ]
+        // Verify the SHA-256 of the stored copy.
+        let storedHash = SHA256.hash(data: storedData)
+            .map { String(format: "%02x", $0) }
+            .joined()
 
-        session.sendMessage(
-            message,
-            replyHandler: { reply in
-                print("[WC] Reply received: \(reply)")
-            },
-            errorHandler: { error in
-                print("[WC] Message error: \(error.localizedDescription)")
-            }
+        guard storedHash == hash else {
+            try? fileManager.removeItem(at: destinationURL)
+
+            throw NSError(
+                domain: "HermesCompanion.Backup",
+                code: 3,
+                userInfo: [
+                    NSLocalizedDescriptionKey:
+                        "SHA-256 verification failed."
+                ]
+            )
+        }
+
+        try fileManager.setAttributes(
+            [
+                .protectionKey:
+                    FileProtectionType.completeUntilFirstUserAuthentication
+            ],
+            ofItemAtPath: destinationURL.path
+        )
+
+        let deviceIdentifier =
+            metadata?["hardwareIdentifier"] as? String ?? "Unknown"
+
+        let transferDate =
+            (metadata?["transferDate"] as? TimeInterval)
+            .map { Date(timeIntervalSince1970: $0) }
+            ?? Date()
+
+        return (
+            fileName,
+            storedData.count,
+            hash,
+            transferDate,
+            deviceIdentifier
         )
     }
 }
@@ -160,10 +290,7 @@ extension WatchConnectivityManager: WCSessionDelegate {
             let context = session.receivedApplicationContext
 
             if !context.isEmpty {
-                print("[WC] Existing application context found")
                 self.updateDeviceInformation(context)
-            } else {
-                print("[WC] No application context available yet")
             }
         }
     }
@@ -177,6 +304,40 @@ extension WatchConnectivityManager: WCSessionDelegate {
 
             self.updateDeviceInformation(applicationContext)
             self.updateStatus(session)
+        }
+    }
+
+    // MARK: - Receive transferred file
+
+    nonisolated func session(
+        _ session: WCSession,
+        didReceive file: WCSessionFile
+    ) {
+        print("[WC] Backup file received")
+
+        do {
+            let result = try Self.storeBackup(
+                from: file.fileURL,
+                metadata: file.metadata
+            )
+
+            Task { @MainActor in
+                self.updateBackupInformation(
+                    fileName: result.0,
+                    size: result.1,
+                    hash: result.2,
+                    date: result.3,
+                    deviceIdentifier: result.4
+                )
+            }
+
+        } catch {
+            print("[WC] Backup reception error: \(error.localizedDescription)")
+
+            Task { @MainActor in
+                self.backupStatus =
+                    "Backup rejected: \(error.localizedDescription)"
+            }
         }
     }
 
@@ -198,7 +359,6 @@ extension WatchConnectivityManager: WCSessionDelegate {
         _ session: WCSession
     ) {
         print("[WC] Session deactivated")
-
         session.activate()
     }
 }

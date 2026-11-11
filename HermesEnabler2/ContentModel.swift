@@ -140,9 +140,18 @@ final class ContentModel {
         } else {
             switch action {
             case .backup:
-                result = BQCreateGestaltBackup(true, &error) != nil
-                    ? "Initial MobileGestalt backup saved."
-                    : ((error as String?) ?? "Initial backup failed.")
+                if BQCreateGestaltBackup(true, &error) != nil {
+                       result = "Initial MobileGestalt backup saved."
+
+                       if BQBackupExists() {
+                           print("[WC] Initial backup created, starting transfer")
+                           WatchConnectivityManager.shared.transferOriginalBackup()
+                       } else {
+                           print("[WC] Initial backup creation returned success, but backup is not detected")
+                       }
+                   } else {
+                       result = (error as String?) ?? "Initial backup failed."
+                   }
             case .manualBackup:
                 result = BQCreateGestaltBackup(false, &error) != nil
                     ? "Manual MobileGestalt backup saved."

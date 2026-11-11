@@ -2,13 +2,13 @@
 //  WatchConnectivityManager.swift
 //  HermesEnabler2
 //
-//  Created by Metalnodeug on 11/11/2026.
 //
 
 import Foundation
 import WatchKit
 import WatchConnectivity
 import Darwin
+import CryptoKit
 
 final class WatchConnectivityManager: NSObject, WCSessionDelegate {
 
@@ -125,4 +125,47 @@ final class WatchConnectivityManager: NSObject, WCSessionDelegate {
     ) {
         print("[WC] Message received: \(message)")
     }
+}
+
+extension WatchConnectivityManager {
+    
+    func transferOriginalBackup() {
+        let session = WCSession.default
+
+        guard session.activationState == .activated else {
+            print("[WC] Session not activated")
+            return
+        }
+
+        guard BQBackupExists() else {
+            print("[WC] Original backup does not exist")
+            return
+        }
+
+        let sourceURL = URL(fileURLWithPath: BQBackupPath())
+
+        guard FileManager.default.fileExists(atPath: sourceURL.path) else {
+            print("[WC] Original backup file not found")
+            return
+        }
+
+        let metadata: [String: Any] = [
+            "type": "originalGestalt",
+            "deviceName": WKInterfaceDevice.current().name,
+            "hardwareIdentifier": hardwareIdentifier(),
+            "watchOSVersion": WKInterfaceDevice.current().systemVersion,
+            "build": systemBuild() ?? "Unknown",
+            "transferDate": Date().timeIntervalSince1970
+        ]
+        
+        print("[WC] Backup path: \(sourceURL.path)")
+        print("[WC] Backup exists: \(FileManager.default.fileExists(atPath: sourceURL.path))")
+
+        let transfer = session.transferFile(sourceURL, metadata: metadata)
+
+        print("[WC] Original backup transfer queued")
+        print("[WC] Transfer: \(transfer)")
+        print("[WC] Transfer queued: \(transfer.isTransferring)")
+    }
+    
 }
