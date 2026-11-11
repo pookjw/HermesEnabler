@@ -10,7 +10,7 @@ HermesEnabler는 Apple Watch가 보고하는 MobileGestalt 기능과 기기 속�
 ## Xcode에서 빌드 및 설치
 
 1. iOS 및 watchOS SDK가 포함된 Xcode를 설치합니다. 대상 Apple Watch와 페어링된 iPhone을 연결하고 신뢰한 뒤, Xcode에서 요청하면 개발자 모드를 켭니다.
-2. 저장소를 복제하고 Xcode에서 `HermesEnabler2.xcodeproj`를 엽니다.
+2. 저장소를 복제하고 Xcode에서 [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj)를 엽니다.
 3. **Signing & Capabilities**에서 **HermesCompanion**과 **HermesEnabler2**에 본인의 Apple Development 팀을 선택합니다. `COMPANION_BUNDLE_IDENTIFIER`를 본인이 관리하는 고유한 iPhone Bundle ID로 변경합니다. Watch 앱 ID에는 `.watchkitapp`이 추가됩니다.
 4. 두 타깃과 프로비저닝 프로파일에 일치하는 App Group을 설정합니다. Watch entitlement는 `group.$(COMPANION_BUNDLE_IDENTIFIER)`를 사용합니다. App Group이 없으면 MobileGestalt 접근이나 백업이 실패할 수 있습니다.
 5. **HermesCompanion** 스킴과 페어링된 iPhone을 선택한 뒤 **Product → Run**을 실행합니다. Watch 앱이 자동 설치되지 않으면 iPhone의 Watch 앱에서 **나의 시계 → 앱 / 사용 가능한 앱**을 통해 설치합니다.

@@ -11,7 +11,7 @@ HermesEnabler is an Apple Watch app that changes reported MobileGestalt capabili
 ## Build and run with Xcode
 
 1. Install Xcode with iOS and watchOS SDKs. Connect an iPhone paired with the target Apple Watch, trust both devices, and enable Developer Mode if Xcode requests it.
-2. Clone this repository and open `HermesEnabler2.xcodeproj`.
+2. Clone this repository and open [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj).
 3. In **Signing & Capabilities**, select your Apple Development team for **HermesCompanion** and **HermesEnabler2**. Give `COMPANION_BUNDLE_IDENTIFIER` a unique iPhone bundle ID you control. The Watch app ID is that value plus `.watchkitapp`.
 4. Configure the matching App Group for the targets and provisioning profiles. The Watch entitlements use `group.$(COMPANION_BUNDLE_IDENTIFIER)`; a missing App Group can prevent backup creation and MobileGestalt access.
 5. Select the **HermesCompanion** scheme and the paired iPhone as the run destination, then choose **Product → Run**. If needed, open the iPhone Watch app and install HermesEnabler from **My Watch → Apps / Available Apps**.
