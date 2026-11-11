@@ -17,7 +17,7 @@
 
 > In Sideloadly, disable **Use automatic bundle ID** and use a fixed Bundle Identifier. Keep the same Bundle Identifier and Apple ID for every update so the app can retain its existing data and backup.
 
-> Before deleting the app, always restore your MobileGestalt backup.
+> Before deleting the app, always restore your MobileGestalt backup through the HermesEnabler2 app.
 
 ### Build with Xcode
 

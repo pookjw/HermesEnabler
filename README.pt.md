@@ -17,7 +17,7 @@
 
 > No Sideloadly, desative **Use automatic bundle ID** e use um Bundle Identifier fixo. Use o mesmo Bundle Identifier e o mesmo Apple ID em todas as atualizações para preservar os dados e o backup existentes.
 
-> Antes de apagar o app, restaure sempre o backup do MobileGestalt.
+> Antes de apagar o app, restaure sempre o backup do MobileGestalt pelo app HermesEnabler2.
 
 ### Compilar com o Xcode
 

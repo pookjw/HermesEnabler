@@ -17,7 +17,7 @@
 
 > Dans Sideloadly, désactivez **Use automatic bundle ID** et utilisez un Bundle Identifier fixe. Utilisez le même Bundle Identifier et le même Apple ID à chaque mise à jour pour conserver les données et la sauvegarde existantes.
 
-> Avant de supprimer l’app, restaurez impérativement votre sauvegarde MobileGestalt.
+> Avant de supprimer l’app, restaurez impérativement votre sauvegarde MobileGestalt depuis l’app HermesEnabler2.
 
 ### Compiler avec Xcode
 

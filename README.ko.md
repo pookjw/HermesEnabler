@@ -17,7 +17,7 @@
 
 > Sideloadly에서 **Use automatic bundle ID**를 끄고 고정된 Bundle Identifier를 사용하세요. 기존 앱 데이터와 백업을 유지할 수 있도록 업데이트할 때마다 같은 Bundle Identifier와 Apple ID를 사용하세요.
 
-> 앱을 삭제하기 전에 반드시 MobileGestalt 백업을 복원하세요.
+> 앱을 삭제하기 전에 반드시 HermesEnabler2 앱에서 MobileGestalt 백업을 복원하세요.
 
 ### Xcode로 직접 빌드
 

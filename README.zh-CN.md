@@ -17,7 +17,7 @@
 
 > 在 Sideloadly 中关闭 **Use automatic bundle ID**，并使用固定的 Bundle Identifier。每次更新时都使用相同的 Bundle Identifier 和 Apple ID，以便保留现有应用数据和备份。
 
-> 删除应用前，请务必恢复 MobileGestalt 备份。
+> 删除应用前，请务必通过 HermesEnabler2 应用恢复 MobileGestalt 备份。
 
 ### 使用 Xcode 构建
 
