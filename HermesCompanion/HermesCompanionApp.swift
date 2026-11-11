@@ -569,6 +569,18 @@ struct BackupDetailView: View {
         }
         .navigationTitle("Détails")
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    sendBackupToWatch()
+                } label: {
+                    Image(systemName: "applewatch")
+                        .font(.system(size: 17, weight: .medium))
+                }
+                .accessibilityLabel("Envoyer à l'Apple Watch")
+                .disabled(!manager.isPaired || !manager.isWatchAppInstalled)
+            }
+        }
         .sheet(item: $shareURL) { item in
             ActivityViewController(activityItems: [item.url])
         }
@@ -638,4 +650,40 @@ struct BackupDetailView: View {
 
         shareURL = ShareItem(url: url)
     }
+    
+    // MARK: - Transfer to Apple Watch
+
+    private func sendBackupToWatch() {
+
+        guard let url = manager.exportURL(for: record) else {
+            verificationMessage = "Impossible de trouver le fichier à envoyer."
+            showingVerification = true
+            return
+        }
+
+        guard manager.isPaired && manager.isWatchAppInstalled else {
+            verificationMessage = "Aucune Apple Watch compatible n'est disponible."
+            showingVerification = true
+            return
+        }
+
+        let queued = manager.transferBackupToWatch(at: url)
+
+        if queued {
+            verificationMessage = """
+            Transfert de la sauvegarde mis en attente.
+
+            Fichier : \(record.fileName)
+
+            La sauvegarde sera enregistrée sur l'Apple Watch sans modifier la sauvegarde originale.
+
+            Le transfert est en attente de confirmation de réception par la montre.
+            """
+        } else {
+            verificationMessage = "Impossible de mettre le transfert en attente. Vérifiez la connexion avec votre Apple Watch."
+        }
+
+        showingVerification = true
+    }
+    
 }

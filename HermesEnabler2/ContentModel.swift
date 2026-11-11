@@ -43,6 +43,12 @@ final class ContentModel {
     var backups: [BackupItem] = []
     var selectedBackupID = ""
     var showRestoreConfirmation = false
+    
+    // MARK: - External backup import
+    var pendingExternalBackupData: Data?
+    var pendingExternalBackupName = ""
+    var pendingExternalBackupSHA256 = ""
+    var showExternalImportConfirmation = false
 
     struct BackupItem: Identifiable {
         let id: String
@@ -91,6 +97,65 @@ final class ContentModel {
             guard let id = record["id"] as? String, let date = record["date"] as? Date else { return nil }
             return BackupItem(id: id, date: date, kind: (record["kind"] as? String) ?? "Initial")
         }
+    }
+    
+    func prepareExternalBackupImport(
+        data: Data,
+        fileName: String,
+        sha256: String
+    ) {
+        pendingExternalBackupData = data
+        pendingExternalBackupName = fileName
+        pendingExternalBackupSHA256 = sha256
+        showExternalImportConfirmation = true
+
+        message = "An external backup is waiting for your confirmation."
+    }
+
+    func confirmExternalBackupImport() {
+        guard let data = pendingExternalBackupData else {
+            message = "No external backup is waiting for import."
+            clearPendingExternalBackup()
+            return
+        }
+
+        var identifier: NSString?
+        var error: NSString?
+
+        let success = BQImportGestaltBackup(
+            data,
+            &identifier,
+            &error
+        )
+
+        if success {
+            message = "External backup imported successfully."
+
+            print("[UI] External backup imported: \(identifier ?? "Unknown")")
+            print("[UI] Imported file: \(pendingExternalBackupName)")
+            print("[UI] SHA256: \(pendingExternalBackupSHA256)")
+
+            refreshBackups()
+        } else {
+            message = (error as String?) ?? "External backup import failed."
+            print("[UI] External backup import failed: \(message)")
+        }
+
+        clearPendingExternalBackup()
+    }
+
+    func rejectExternalBackupImport() {
+        message = "External backup rejected."
+        print("[UI] External backup rejected: \(pendingExternalBackupName)")
+
+        clearPendingExternalBackup()
+    }
+
+    private func clearPendingExternalBackup() {
+        pendingExternalBackupData = nil
+        pendingExternalBackupName = ""
+        pendingExternalBackupSHA256 = ""
+        showExternalImportConfirmation = false
     }
 
     var selectedRegionCodeTitle: String {

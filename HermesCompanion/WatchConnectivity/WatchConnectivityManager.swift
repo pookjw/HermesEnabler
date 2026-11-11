@@ -654,5 +654,75 @@ extension WatchConnectivityManager: WCSessionDelegate {
         print("[WC] Session deactivated")
         session.activate()
     }
+    
+    // MARK: - Send external backup to Apple Watch
+
+    func transferBackupToWatch(at fileURL: URL) -> Bool {
+        guard let session else {
+            print("[WC] No WatchConnectivity session")
+            return false
+        }
+
+        guard session.activationState == .activated else {
+            print("[WC] Session is not activated")
+            return false
+        }
+
+        guard session.isPaired, session.isWatchAppInstalled else {
+            print("[WC] Apple Watch is not paired or app is not installed")
+            return false
+        }
+
+        guard FileManager.default.fileExists(atPath: fileURL.path) else {
+            print("[WC] Selected backup file does not exist")
+            return false
+        }
+
+        do {
+            let data = try Data(contentsOf: fileURL)
+
+            let plist = try PropertyListSerialization.propertyList(
+                from: data,
+                options: [],
+                format: nil
+            )
+
+            guard let dictionary = plist as? [String: Any],
+                  dictionary["CacheExtra"] is [String: Any],
+                  dictionary["CacheData"] is Data else {
+                print("[WC] Invalid MobileGestalt backup")
+                return false
+            }
+
+            let hash = SHA256.hash(data: data)
+                .map { String(format: "%02x", $0) }
+                .joined()
+
+            let metadata: [String: Any] = [
+                "type": "externalGestaltRestoreCandidate",
+                "fileName": fileURL.lastPathComponent,
+                "sha256": hash,
+                "transferDate": Date().timeIntervalSince1970,
+                "source": "HermesCompanion"
+            ]
+
+            let transfer = session.transferFile(
+                fileURL,
+                metadata: metadata
+            )
+
+            print("[WC] External backup transfer queued")
+            print("[WC] File: \(fileURL.lastPathComponent)")
+            print("[WC] SHA256: \(hash)")
+            print("[WC] Is transferring: \(transfer.isTransferring)")
+
+            return true
+
+        } catch {
+            print("[WC] Backup transfer preparation failed: \(error.localizedDescription)")
+            return false
+        }
+    }
+    
 }
 

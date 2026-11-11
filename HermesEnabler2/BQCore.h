@@ -41,6 +41,7 @@ BOOL BQRestoreGestalt(NSString **err);
 BOOL BQBackupExists(void);
 NSString *BQBackupPath(void);
 NSString *BQCreateGestaltBackup(BOOL initial, NSString **err);
+BOOL BQImportGestaltBackup(NSData *data, NSString **identifier, NSString **err);
 NSArray<NSDictionary *> *BQListGestaltBackups(void);
 BOOL BQRestoreGestaltBackup(NSString *identifier, NSString **err);
 BOOL BQDeleteGestaltBackup(NSString *identifier, NSString **err);

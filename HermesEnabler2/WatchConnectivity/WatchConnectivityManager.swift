@@ -125,6 +125,90 @@ final class WatchConnectivityManager: NSObject, WCSessionDelegate {
     ) {
         print("[WC] Message received: \(message)")
     }
+    
+    // MARK: - Receive external backup from iPhone
+
+    func session(
+        _ session: WCSession,
+        didReceive file: WCSessionFile
+    ) {
+        let metadata = file.metadata ?? [:]
+
+        guard let type = metadata["type"] as? String,
+              type == "externalGestaltRestoreCandidate" else {
+            print("[WC] Ignoring unrelated incoming file")
+            return
+        }
+
+        print("[WC] External backup received from iPhone")
+
+        do {
+            let data = try Data(contentsOf: file.fileURL)
+
+            guard !data.isEmpty else {
+                print("[WC] Rejected empty backup")
+                return
+            }
+
+            // Verify SHA-256 against the hash sent by the iPhone.
+            guard let expectedHash = metadata["sha256"] as? String else {
+                print("[WC] Missing SHA256 metadata. Backup rejected.")
+                return
+            }
+
+            let actualHash = SHA256.hash(data: data)
+                .map { String(format: "%02x", $0) }
+                .joined()
+
+            guard expectedHash.lowercased() == actualHash.lowercased() else {
+                print("[WC] SHA256 mismatch. Backup rejected.")
+                print("[WC] Expected: \(expectedHash)")
+                print("[WC] Actual: \(actualHash)")
+                return
+            }
+
+            // Validate the MobileGestalt property list structure.
+            let propertyList = try PropertyListSerialization.propertyList(
+                from: data,
+                options: [],
+                format: nil
+            )
+
+            guard let dictionary = propertyList as? [String: Any],
+                  dictionary["CacheExtra"] is [String: Any],
+                  dictionary["CacheData"] is Data else {
+                print("[WC] Invalid MobileGestalt backup structure. Backup rejected.")
+                return
+            }
+
+            let fileName = metadata["fileName"] as? String
+                ?? file.fileURL.lastPathComponent
+
+            print("[WC] External backup received and verified")
+            print("[WC] File: \(fileName)")
+            print("[WC] Size: \(data.count) bytes")
+            print("[WC] SHA256: \(actualHash)")
+            print("[WC] Waiting for user confirmation")
+
+            // Ask ContentModel to display the import confirmation.
+            // No file is stored in MGBackups at this stage.
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(
+                    name: Notification.Name("HermesExternalBackupReceived"),
+                    object: nil,
+                    userInfo: [
+                        "data": data,
+                        "fileName": fileName,
+                        "sha256": actualHash
+                    ]
+                )
+            }
+
+        } catch {
+            print("[WC] Could not process received backup: \(error.localizedDescription)")
+        }
+    }
+
 }
 
 extension WatchConnectivityManager {
