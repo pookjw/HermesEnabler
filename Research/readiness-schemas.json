@@ -1,0 +1,247 @@
+[
+  {
+    "available" : true,
+    "fields" : {
+      "_workoutEffortRelationships" : "HealthKit.CodableBoxArray<__C.HKWorkoutEffortRelationship>",
+      "_workoutTrainingLoads" : "HealthKit.CodableBoxArray<__C.HKWorkoutTrainingLoad>",
+      "activityDaySummaries" : "Swift.Array<HealthBalance.ActivityDaySummary>",
+      "characteristics" : "HealthBalance.ReadinessCharacteristics",
+      "daytimeVitalsQueryResult" : "HealthBalance.DaytimeVitalsDaySummaryQueryResult",
+      "mostRecentSamples" : "Swift.Array<HealthBalance.ReadinessMostRecentSamplesDaySummary>",
+      "overnightVitalsQueryResult" : "HealthBalance.OvernightVitalsDaySummaryQueryResult<HealthBalance.SleepingSampleDaySummary>",
+      "sleepScores" : "Swift.Array<SleepHealth.SleepScoreDaySummary>"
+    },
+    "status" : "decoded placeholders; discarded",
+    "type" : "HealthBalance.ReadinessInputsQueryResult"
+  },
+  {
+    "available" : true,
+    "fields" : {
+      "activityDaySummaryQueryConfiguration" : "HealthBalance.ActivityDaySummaryQueryConfiguration",
+      "characteristicsQueryConfiguration" : "HealthBalance.ReadinessCharacteristicsQueryConfiguration",
+      "daytimeVitalsQueryConfiguration" : "HealthBalance.DaytimeVitalsDaySummaryQueryConfiguration",
+      "mostRecentSamplesQueryConfiguration" : "HealthBalance.ReadinessMostRecentSamplesQueryConfiguration",
+      "overnightVitalsQueryConfiguration" : "HealthBalance.OvernightVitalsDaySummaryQueryConfiguration",
+      "sleepScoreQueryConfiguration" : "HealthBalance.SleepScoreDaySummaryQueryConfiguration",
+      "workoutEffortRelationshipQueryConfiguration" : "HealthBalance.WorkoutEffortRelationshipQueryConfiguration",
+      "workoutTrainingLoadQueryConfiguration" : "HealthBalance.WorkoutTrainingLoadQueryConfiguration"
+    },
+    "status" : "decoded placeholders; discarded",
+    "type" : "HealthBalance.ReadinessInputsQueryConfiguration"
+  },
+  {
+    "available" : true,
+    "fields" : {
+      "baselineRange" : "Swift.Range<HealthKit.DayIndex>",
+      "morningIndex" : "HealthKit.DayIndex",
+      "morningIndex.value" : "Swift.Int"
+    },
+    "status" : "stopped: HermesEnabler2.SchemaDecoder.Failure",
+    "type" : "HealthBalance.SleepingSampleDaySummary"
+  },
+  {
+    "available" : true,
+    "fields" : {
+      "daytimeInterval" : "HealthBalance.DaytimeVitalsDaytimeInterval",
+      "daytimeInterval.dateInterval" : "Foundation.DateInterval",
+      "daytimeInterval.dateInterval.duration" : "Swift.Double",
+      "daytimeInterval.dateInterval.start" : "Swift.Double",
+      "daytimeInterval.dayIndex" : "HealthKit.DayIndex",
+      "daytimeInterval.dayIndex.value" : "Swift.Int",
+      "heartRate" : "HealthBalance.SleepingSampleBaselineComparison",
+      "heartRate.aggregate" : "HealthBalance.SleepingSampleAggregate",
+      "heartRate.aggregate.availability" : "HealthBalance.SleepingSampleAggregate.Availability",
+      "heartRate.aggregate.latestSampleCreationDate" : "Foundation.Date",
+      "heartRate.aggregate.morningIndex" : "HealthKit.DayIndex",
+      "heartRate.aggregate.morningIndex.value" : "Swift.Int",
+      "heartRate.aggregate.sampleDateInterval" : "Foundation.DateInterval",
+      "heartRate.aggregate.unit" : "HKUnit",
+      "heartRate.aggregate.value" : "Swift.Double"
+    },
+    "status" : "stopped: Swift.DecodingError",
+    "type" : "HealthBalance.DaytimeVitalsDaySummary"
+  },
+  {
+    "available" : true,
+    "fields" : {
+      "sleepDaySummary" : "HealthKit.SleepDaySummary",
+      "sleepDaySummary.durations" : "HealthKit.SleepMetrics.Durations",
+      "sleepDaySummary.durations.durationMap" : "Swift.Dictionary<HealthKit.SleepClassification, Swift.Duration>",
+      "sleepDaySummary.sleepDay" : "HealthKit.SleepDay",
+      "sleepDaySummary.sleepDay.morningIndex" : "HealthKit.DayIndex",
+      "sleepDaySummary.sleepDay.morningIndex.value" : "Swift.Int",
+      "sleepDaySummary.sleepSessions" : "Swift.Array<HealthKit.SleepSession>",
+      "sleepDaySummary.userSettings" : "HealthKit.SleepDaySummary.UserSettings",
+      "sleepScoreMetrics" : "SleepHealth.SleepScoreMetricsDaySummary",
+      "sleepScoreMetrics.gregorianCalendar" : "Foundation.Calendar",
+      "sleepScoreMetrics.gregorianCalendar.current" : "Foundation.Calendar.(unknown context at $188737484).Current",
+      "sleepScoreMetrics.gregorianCalendar.identifier" : "Swift.String",
+      "sleepScoreMetrics.morningIndex" : "HealthKit.DayIndex",
+      "sleepScoreMetrics.morningIndex.value" : "Swift.Int"
+    },
+    "status" : "stopped: Swift.DecodingError",
+    "type" : "SleepHealth.SleepScoreDaySummary"
+  },
+  {
+    "available" : true,
+    "fields" : {
+      "activity" : "AppliedSensingFitness.ActivityInputs",
+      "activity.recentDays" : "AppliedSensingFitness.RecentDays<AppliedSensingFitness.DailyActivity>",
+      "activity.recentDays.values" : "Swift.Array<AppliedSensingFitness.DailyActivity>",
+      "additionalContext" : "AppliedSensingFitness.AdditionalContextInputs",
+      "bodyMetrics" : "AppliedSensingFitness.BodyMetrics",
+      "metadata" : "AppliedSensingFitness.InputMetadata",
+      "metadata.completeness" : "Swift.Double",
+      "metadata.frameworkVersion" : "Swift.String",
+      "metadata.quality" : "AppliedSensingFitness.DataQuality",
+      "metadata.quality.activityMetricsAvailable" : "Swift.Int",
+      "metadata.quality.dataSources" : "Swift.Set<AppliedSensingFitness.DataSource>",
+      "metadata.quality.recoveryMetricsAvailable" : "Swift.Int",
+      "metadata.quality.totalPossibleMetrics" : "Swift.Int",
+      "metadata.quality.warnings" : "Swift.Array<Swift.String>",
+      "metadata.sleepTrackingIncomplete" : "Swift.Bool",
+      "metadata.timestamp" : "Swift.Double",
+      "readinessShouldIncludeSpO2" : "Swift.Bool",
+      "recovery" : "AppliedSensingFitness.RecoveryInputs",
+      "recovery.daytimeDynamicMetrics" : "Swift.Array<AppliedSensingFitness.DaytimeDynamicMetrics>",
+      "recovery.morningMetrics" : "Swift.Array<AppliedSensingFitness.MorningMetrics>",
+      "recovery.overnight" : "AppliedSensingFitness.OvernightInputs",
+      "recovery.overnight.recentNights" : "AppliedSensingFitness.RecentDays<AppliedSensingFitness.OvernightMetrics>",
+      "recovery.overnight.recentNights.values" : "Swift.Array<AppliedSensingFitness.OvernightMetrics>",
+      "settings" : "AppliedSensingFitness.AlgorithmSettings",
+      "wearMinutes" : "AppliedSensingFitness.WearMinutes"
+    },
+    "status" : "decoded placeholders; discarded",
+    "type" : "AppliedSensingFitness.ReadinessInputs"
+  },
+  {
+    "available" : true,
+    "fields" : {
+      "daytimeDynamicMetrics" : "Swift.Array<AppliedSensingFitness.DaytimeDynamicMetrics>",
+      "morningMetrics" : "Swift.Array<AppliedSensingFitness.MorningMetrics>",
+      "overnight" : "AppliedSensingFitness.OvernightInputs",
+      "overnight.recentNights" : "AppliedSensingFitness.RecentDays<AppliedSensingFitness.OvernightMetrics>",
+      "overnight.recentNights.values" : "Swift.Array<AppliedSensingFitness.OvernightMetrics>"
+    },
+    "status" : "decoded placeholders; discarded",
+    "type" : "AppliedSensingFitness.RecoveryInputs"
+  },
+  {
+    "available" : true,
+    "fields" : {
+      "recentNights" : "AppliedSensingFitness.RecentDays<AppliedSensingFitness.OvernightMetrics>",
+      "recentNights.values" : "Swift.Array<AppliedSensingFitness.OvernightMetrics>"
+    },
+    "status" : "decoded placeholders; discarded",
+    "type" : "AppliedSensingFitness.OvernightInputs"
+  },
+  {
+    "available" : true,
+    "fields" : {
+      "bloodOxygen" : "Foundation.Measurement<AppliedSensingFitness.UnitPercent>",
+      "dayIndex" : "AppliedSensingFitness.DayIndex",
+      "dayIndex.calendar" : "Foundation.Calendar",
+      "dayIndex.calendar.current" : "Foundation.Calendar.(unknown context at $188737484).Current",
+      "dayIndex.calendar.identifier" : "Swift.String",
+      "dayIndex.date" : "Swift.Double",
+      "heartRateVariability" : "Foundation.Measurement<__C.NSUnitDuration>",
+      "respiratoryRate" : "Foundation.Measurement<AppliedSensingFitness.UnitFrequency>",
+      "restingHeartRate" : "Foundation.Measurement<AppliedSensingFitness.UnitFrequency>",
+      "sleepScore" : "Swift.Double",
+      "totalSleep" : "Foundation.Measurement<__C.NSUnitDuration>",
+      "wristTemperature" : "Foundation.Measurement<__C.NSUnitTemperature>"
+    },
+    "status" : "stopped: Swift.DecodingError",
+    "type" : "AppliedSensingFitness.OvernightMetrics"
+  },
+  {
+    "available" : true,
+    "decodable" : false,
+    "type" : "AppliedSensingFitness.ReadinessConfiguration"
+  },
+  {
+    "available" : true,
+    "fields" : {
+      "activity" : "AppliedSensingFitness.ActivityParameters",
+      "activity.minimumBaselines" : "AppliedSensingFitness.MinimumBaselineParameters",
+      "activity.minimumBaselines.workoutLoad" : "Swift.Double",
+      "activity.multiDayTrends" : "AppliedSensingFitness.MultiDayTrendParameters",
+      "activity.multiDayTrends.countWeightings" : "Swift.Array<Swift.Double>",
+      "activity.multiDayTrends.ratioThresholds" : "Swift.Array<Swift.Double>",
+      "activity.multiDayTrends.scoreBound" : "AppliedSensingFitness.ScoreBound",
+      "activity.multiDayTrends.scoreBound.max" : "Swift.Double",
+      "activity.multiDayTrends.scoreBound.min" : "Swift.Double",
+      "activity.ratioLookupTable" : "AppliedSensingFitness.RatioLookupTable",
+      "activity.ratioLookupTable.ratioThresholds" : "Swift.Array<Swift.Array<Swift.Double>>",
+      "activity.ratioLookupTable.scorePoints" : "Swift.Array<Swift.Double>",
+      "activity.scoreBounds" : "Swift.Array<AppliedSensingFitness.ScoreBound>",
+      "activity.weightings" : "AppliedSensingFitness.WeightingParameters",
+      "activity.weightings.sevenDayWeights" : "Swift.Array<Swift.Double>",
+      "activity.weightings.twentyEightDayWeights" : "Swift.Array<Swift.Double>",
+      "metadata" : "AppliedSensingFitness.ParameterMetadata",
+      "metadata.createdDate" : "Swift.Double",
+      "metadata.description" : "Swift.String",
+      "metadata.version" : "Swift.String",
+      "recovery" : "AppliedSensingFitness.RecoveryParameters",
+      "recovery.daytime" : "AppliedSensingFitness.DaytimeMetricsParameters",
+      "recovery.overnight" : "AppliedSensingFitness.OvernightMetricsParameters",
+      "recovery.overnight.bloodOxygen" : "AppliedSensingFitness.MetricOutlierParameters",
+      "recovery.overnight.bloodOxygen.higherIsBad" : "Swift.Bool",
+      "recovery.overnight.bloodOxygen.iqrMultiplier" : "Swift.Double",
+      "recovery.overnight.bloodOxygen.minimumIQRRange" : "Swift.Double",
+      "recovery.overnight.heartRateVariability" : "AppliedSensingFitness.MetricOutlierParameters",
+      "recovery.overnight.heartRateVariability.higherIsBad" : "Swift.Bool",
+      "recovery.overnight.heartRateVariability.iqrMultiplier" : "Swift.Double",
+      "recovery.overnight.heartRateVariability.minimumIQRRange" : "Swift.Double",
+      "recovery.overnight.respiratoryRate" : "AppliedSensingFitness.MetricOutlierParameters",
+      "recovery.overnight.respiratoryRate.higherIsBad" : "Swift.Bool",
+      "recovery.overnight.respiratoryRate.iqrMultiplier" : "Swift.Double",
+      "recovery.overnight.respiratoryRate.minimumIQRRange" : "Swift.Double",
+      "recovery.overnight.restingHeartRate" : "AppliedSensingFitness.MetricOutlierParameters",
+      "recovery.overnight.restingHeartRate.higherIsBad" : "Swift.Bool",
+      "recovery.overnight.restingHeartRate.iqrMultiplier" : "Swift.Double",
+      "recovery.overnight.restingHeartRate.minimumIQRRange" : "Swift.Double",
+      "recovery.overnight.sleepScore" : "AppliedSensingFitness.SleepScoreParameters",
+      "recovery.overnight.sleepScore.healthyMinimumScore" : "Swift.Double",
+      "recovery.overnight.sleepScore.iqrMultiplier" : "Swift.Double",
+      "recovery.overnight.sleepScore.minimumIQRRange" : "Swift.Double",
+      "recovery.overnight.totalSleep" : "AppliedSensingFitness.SleepMetricParameters",
+      "recovery.overnight.totalSleep.healthyMinimumHours" : "Swift.Double",
+      "recovery.overnight.totalSleep.higherIsBad" : "Swift.Bool",
+      "recovery.overnight.totalSleep.iqrMultiplier" : "Swift.Double",
+      "recovery.overnight.totalSleep.minimumIQRRange" : "Swift.Double",
+      "recovery.overnight.wristTemperature" : "AppliedSensingFitness.MetricOutlierParameters",
+      "recovery.overnight.wristTemperature.higherIsBad" : "Swift.Bool",
+      "recovery.overnight.wristTemperature.iqrMultiplier" : "Swift.Double",
+      "recovery.overnight.wristTemperature.minimumIQRRange" : "Swift.Double",
+      "recovery.scoring" : "AppliedSensingFitness.RecoveryScoringParameters",
+      "recovery.scoring.metricScores" : "Swift.Array<Swift.Array<Swift.Double>>",
+      "recovery.scoring.relativeComparisonThresholds" : "Swift.Array<Swift.Double>",
+      "recovery.scoring.scorePoints" : "Swift.Array<Swift.Double>",
+      "recovery.scoring.sleepScoreThresholds" : "Swift.Array<Swift.Double>"
+    },
+    "status" : "decoded placeholders; discarded",
+    "type" : "AppliedSensingFitness.ReadinessParameters"
+  },
+  {
+    "available" : true,
+    "fields" : {
+      "debugOutput" : "AppliedSensingFitness.ReadinessDebugOutput",
+      "metadata" : "AppliedSensingFitness.ComputeResultMetadata",
+      "metadata.algorithmVersion" : "Swift.String",
+      "metadata.computationTimeMs" : "Swift.Int",
+      "metadata.computationType" : "Swift.String",
+      "metadata.computedForDate" : "Swift.Double",
+      "metadata.debugOutputEnabled" : "Swift.Bool",
+      "metadata.frameworkVersion" : "Swift.String",
+      "metadata.timestamp" : "Swift.Double",
+      "output" : "AppliedSensingFitness.ReadinessOutputFinal",
+      "output.availability" : "Swift.Array<AppliedSensingFitness.ReadinessAvailability>",
+      "output.components" : "AppliedSensingFitness.ReadinessComponents",
+      "output.error" : "AppliedSensingFitness.ReadinessOutputError",
+      "output.value" : "AppliedSensingFitness.ReadinessValue"
+    },
+    "status" : "stopped: Swift.DecodingError",
+    "type" : "AppliedSensingFitness.ReadinessComputeResult"
+  }
+]

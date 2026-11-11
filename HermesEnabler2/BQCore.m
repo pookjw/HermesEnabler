@@ -1886,3 +1886,188 @@ void BQRespring(void) {
         });
     });
 }
+
+#import <mach-o/dyld.h>
+#import <mach-o/loader.h>
+
+NSString *BQWriteUltraDiagnostics(void) {
+    NSMutableArray<NSString *> *lines = [NSMutableArray arrayWithObject:@"Ultra diagnostics (read-only)"];
+    char build[128] = {0}; size_t length = sizeof(build);
+    sysctlbyname("kern.osversion", build, &length, NULL, 0);
+    [lines addObject:[NSString stringWithFormat:@"Build: %s", build]];
+    void *clock = dlopen("/System/Library/Frameworks/ClockKit.framework/ClockKit", RTLD_NOW | RTLD_LOCAL);
+    Class cls = NSClassFromString(@"CLKDevice");
+    SEL current = sel_registerName("currentDevice");
+    id device = clock && [cls respondsToSelector:current]
+        ? ((id (*)(id, SEL))objc_msgSend)(cls, current) : nil;
+    [lines addObject:[NSString stringWithFormat:@"CLKDevice: %@", device ? @"available" : @"unavailable"]];
+    for (NSString *name in @[@"isUltra", @"isLuxo", @"sizeClass", @"deviceCategory"]) {
+        SEL sel = NSSelectorFromString(name);
+        if ([device respondsToSelector:sel]) {
+            NSUInteger value = ((NSUInteger (*)(id, SEL))objc_msgSend)(device, sel);
+            [lines addObject:[NSString stringWithFormat:@"%@: %lu", name, (unsigned long)value]];
+        }
+    }
+    SEL cap = sel_registerName("supportsPDRCapability:");
+    if ([device respondsToSelector:cap]) {
+        BOOL value = ((BOOL (*)(id, SEL, uint32_t))objc_msgSend)(device, cap, 0xe7b1cd81);
+        [lines addObject:[NSString stringWithFormat:@"Modular Ultra capability: %d", value]];
+    }
+    // This address is used only after checking the exact build and ClockKit UUID.
+    // It identifies the existing CFString passed to ClockKit's MG size query.
+    if (!strcmp(build, "24S5284h")) {
+        const uint8_t expected[16] = {0x58,0x6d,0x1b,0xb6,0x08,0x17,0x33,0xde,0xb5,0x20,0x29,0x9d,0xd2,0xff,0x5a,0x7c};
+        for (uint32_t i = 0; i < _dyld_image_count(); i++) {
+            const char *name = _dyld_get_image_name(i);
+            if (!name || !strstr(name, "/ClockKit.framework/ClockKit")) continue;
+            const struct mach_header_64 *header = (const void *)_dyld_get_image_header(i);
+            if (header->magic != MH_MAGIC_64) continue;
+            const struct load_command *cmd = (const void *)(header + 1);
+            BOOL matches = NO;
+            for (uint32_t j = 0; j < header->ncmds; j++) {
+                if (cmd->cmd == LC_UUID) matches = !memcmp(((const struct uuid_command *)cmd)->uuid, expected, 16);
+                cmd = (const void *)((const char *)cmd + cmd->cmdsize);
+            }
+            if (!matches) { [lines addObject:@"ClockKit UUID mismatch; address query skipped."]; break; }
+            intptr_t slide = _dyld_get_image_vmaddr_slide(i);
+            id key = (__bridge id)(const void *)(0x1e6c47440ULL + slide);
+            if ([key isKindOfClass:[NSString class]]) {
+                [lines addObject:[NSString stringWithFormat:@"ClockKit size key: %@", key]];
+                void *mg = dlopen("/usr/lib/libMobileGestalt.dylib", RTLD_NOW | RTLD_LOCAL);
+                int (*answer)(CFStringRef, int) = mg ? dlsym(mg, "MGGetSInt32Answer") : NULL;
+                if (answer) [lines addObject:[NSString stringWithFormat:@"MG size value: %d", answer((__bridge CFStringRef)key, -1)]];
+                CFTypeRef (*copyAnswer)(CFStringRef) = mg ? dlsym(mg, "MGCopyAnswer") : NULL;
+                if (copyAnswer) {
+                    id value = CFBridgingRelease(copyAnswer((__bridge CFStringRef)key));
+                    [lines addObject:[NSString stringWithFormat:@"MG size object: %@ %@", NSStringFromClass([value class]), value]];
+                }
+            }
+            break;
+        }
+    }
+    NSString *report = [lines componentsJoinedByString:@"\n"];
+    [report writeToFile:[BQDocuments() stringByAppendingPathComponent:@"ultra-diagnostics.txt"] atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    BQLog(@"%@", report);
+    return report;
+}
+
+#import <objc/runtime.h>
+
+NSString *BQWriteCompatibilityReport(void) {
+    NSMutableArray<NSString *> *lines = [NSMutableArray arrayWithObject:@"Readiness and face compatibility (read-only; no Health samples accessed)"];
+    void *mg = dlopen("/usr/lib/libMobileGestalt.dylib", RTLD_NOW | RTLD_LOCAL);
+    CFTypeRef (*copy)(CFStringRef) = mg ? dlsym(mg, "MGCopyAnswer") : NULL;
+    if (copy) {
+        for (NSString *key in @[@"ProductType", @"HardwarePlatform", @"DeviceSupportsContinuousHeartRate", @"main-screen-class", @"DeviceBrand"]) {
+            id value = CFBridgingRelease(copy((__bridge CFStringRef)key));
+            [lines addObject:[NSString stringWithFormat:@"MG %@: %@ (%@)", key, value, NSStringFromClass([value class])]];
+        }
+    }
+    void *ntk = dlopen("/System/Library/PrivateFrameworks/NanoTimeKit.framework/NanoTimeKit", RTLD_NOW | RTLD_LOCAL);
+    BOOL (*ready)(void) = ntk ? dlsym(ntk, "NTKIsReadinessSupported") : NULL;
+    if (ready) [lines addObject:[NSString stringWithFormat:@"NTKIsReadinessSupported: %d", ready()]];
+    Class cls = NSClassFromString(@"CLKDevice");
+    SEL current = sel_registerName("currentDevice");
+    id device = [cls respondsToSelector:current] ? ((id (*)(id, SEL))objc_msgSend)(cls, current) : nil;
+    NSString *root = @"/System/Library/NanoTimeKit/FaceBundles";
+    NSError *error = nil;
+    NSArray<NSString *> *bundles = [[[NSFileManager defaultManager] contentsOfDirectoryAtPath:root error:&error] sortedArrayUsingSelector:@selector(compare:)];
+    [lines addObject:[NSString stringWithFormat:@"Face bundles visible: %lu, error: %@", (unsigned long)bundles.count, error ?: @"none"]];
+    Class base = NSClassFromString(@"NTKFace");
+    for (NSString *name in bundles) {
+        if (![name.pathExtension isEqual:@"bundle"]) continue;
+        NSBundle *bundle = [NSBundle bundleWithPath:[root stringByAppendingPathComponent:name]];
+        NSString *path = bundle.executablePath;
+        if (!path || !dlopen(path.fileSystemRepresentation, RTLD_NOW | RTLD_LOCAL)) {
+            [lines addObject:[NSString stringWithFormat:@"%@ | could not load", name]];
+            continue;
+        }
+        unsigned int count = 0;
+        const char **names = objc_copyClassNamesForImage(path.fileSystemRepresentation, &count);
+        for (unsigned int i = 0; i < count; i++) {
+            Class face = objc_getClass(names[i]);
+            Class ancestor = class_getSuperclass(face);
+            while (ancestor && ancestor != base) ancestor = class_getSuperclass(ancestor);
+            SEL restricted = sel_registerName("isRestrictedForDevice:");
+            if (!ancestor || ![face respondsToSelector:restricted] || !device) continue;
+            BOOL value = ((BOOL (*)(id, SEL, id))objc_msgSend)(face, restricted, device);
+            [lines addObject:[NSString stringWithFormat:@"%@ | %s | restricted=%d", name, names[i], value]];
+        }
+        free(names);
+    }
+    // Inspect only system application metadata; never read Health samples.
+    for (NSString *path in @[@"/Applications/Cobalt.app", @"/Applications/Readiness.app"]) {
+        BOOL directory = NO;
+        BOOL exists = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&directory];
+        NSDictionary *info = [NSDictionary dictionaryWithContentsOfFile:[path stringByAppendingPathComponent:@"Info.plist"]];
+        [lines addObject:[NSString stringWithFormat:@"System app %@ exists=%d directory=%d bundle=%@ capabilities=%@", path, exists, directory, info[@"CFBundleIdentifier"], info[@"UIRequiredDeviceCapabilities"]]];
+    }
+    for (NSString *name in @[@"NTKFaceSnapshotCache", @"NTKFaceSnapshotViewController", @"NTKFaceSnapshotter", @"NTKFaceSnapshotCacheRequest", @"NTKFaceSnapshotCacheRequestOptions", @"NTKFace", @"NTKFaceBundle"]) {
+        Class target = NSClassFromString(name);
+        unsigned int count = 0;
+        Method *methods = class_copyMethodList(target, &count);
+        for (unsigned int i = 0; i < count; i++) {
+            NSString *selector = NSStringFromSelector(method_getName(methods[i]));
+            if ([selector localizedCaseInsensitiveContainsString:@"cache"] || [selector localizedCaseInsensitiveContainsString:@"snapshot"] || [selector hasPrefix:@"initWith"] || [selector containsString:@"defaultFace"]) {
+                [lines addObject:[NSString stringWithFormat:@"Snapshot API %@ %@ %s", name, selector, method_getTypeEncoding(methods[i])]];
+            }
+        }
+        free(methods);
+        methods = class_copyMethodList(object_getClass(target), &count);
+        for (unsigned int i = 0; i < count; i++) {
+            NSString *selector = NSStringFromSelector(method_getName(methods[i]));
+            [lines addObject:[NSString stringWithFormat:@"Snapshot class API %@ %@ %s", name, selector, method_getTypeEncoding(methods[i])]];
+        }
+        free(methods);
+    }
+    NSString *report = [lines componentsJoinedByString:@"\n"];
+    [report writeToFile:[BQDocuments() stringByAppendingPathComponent:@"compatibility-report.txt"] atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    BQLog(@"%@", report);
+    return report;
+}
+
+void BQRunSnapshotProbe(void) {
+    BQWriteCompatibilityReport();
+    NSMutableArray *lines = [NSMutableArray arrayWithObject:@"Native snapshot diagnostic; no faces added or removed"];
+    NSString *reportPath = [BQDocuments() stringByAppendingPathComponent:@"snapshot-probe.txt"];
+    void (^record)(NSString *) = ^(NSString *line) {
+        @synchronized (lines) {
+            [lines addObject:line];
+            [[lines componentsJoinedByString:@"\n"] writeToFile:reportPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        }
+    };
+    id device = ((id (*)(id, SEL))objc_msgSend)(NSClassFromString(@"CLKDevice"), sel_registerName("currentDevice"));
+    Class cacheClass = NSClassFromString(@"NTKFaceSnapshotCache");
+    SEL shared = sel_registerName("snapshotCache");
+    if (![cacheClass respondsToSelector:shared]) { record(@"No snapshotCache selector"); return; }
+    id cache = ((id (*)(id, SEL))objc_msgSend)(cacheClass, shared);
+    for (NSString *name in @[@"NTKCollieFaceBundle.bundle", @"NTKFoghornFaceBundle.bundle", @"NTKGlobetrotterFaceBundle.bundle", @"NTKGalleonFaceBundle.bundle"]) {
+        @try {
+            NSBundle *bundle = [NSBundle bundleWithPath:[@"/System/Library/NanoTimeKit/FaceBundles" stringByAppendingPathComponent:name]];
+            NSString *identifier = bundle.bundleIdentifier;
+            record([NSString stringWithFormat:@"%@ identifier=%@", name, identifier]);
+            if (!identifier || !device) continue;
+            SEL factory = sel_registerName("bundledFaceWithIdentifier:forDevice:initCustomization:");
+            id face = ((id (*)(id, SEL, id, id, id))objc_msgSend)(NSClassFromString(@"NTKFace"), factory, identifier, device, nil);
+            if (!face) {
+                Class principal = bundle.principalClass;
+                id faceBundle = [principal new];
+                SEL defaultFace = sel_registerName("defaultFaceForDevice:");
+                if ([faceBundle respondsToSelector:defaultFace]) face = ((id (*)(id, SEL, id))objc_msgSend)(faceBundle, defaultFace, device);
+                record([NSString stringWithFormat:@"%@ principal=%@", name, NSStringFromClass(principal)]);
+            }
+            record([NSString stringWithFormat:@"%@ face=%@", name, NSStringFromClass([face class])]);
+            if (!face) continue;
+            id options = ((id (*)(id, SEL, NSUInteger))objc_msgSend)([NSClassFromString(@"NTKFaceSnapshotCacheRequestOptions") alloc], sel_registerName("initWithPriority:"), 1);
+            void (^completion)(id, id) = ^(id result, id error) {
+                record([NSString stringWithFormat:@"%@ resultClass=%@ result=%@ error=%@", name, NSStringFromClass([result class]), result, error]);
+            };
+            id request = ((id (*)(id, SEL, id, id, id))objc_msgSend)([NSClassFromString(@"NTKFaceSnapshotCacheRequest") alloc], sel_registerName("initWithFace:options:resultHandler:"), face, options, completion);
+            ((void (*)(id, SEL, id))objc_msgSend)(cache, sel_registerName("fetchSnapshotWithRequest:"), request);
+            record([NSString stringWithFormat:@"%@ requested", name]);
+        } @catch (NSException *exception) {
+            record([NSString stringWithFormat:@"%@ exception=%@", name, exception]);
+        }
+    }
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 20 * NSEC_PER_SEC), dispatch_get_main_queue(), ^{ record(@"20-second observation reached"); });
+}
