@@ -17,7 +17,7 @@
 
 ### 使用 Xcode 建置
 
-1. 在 Xcode 中打開 `HermesEnabler2.xcodeproj`。
+1. 在 Xcode 中打開 [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj)。
 2. 選擇 Apple Watch 作為執行目標，然後點擊 **Run**。
 3. 在 Apple Watch 上打開 **HermesEnabler2**，並依照 app 中的步驟操作。
 

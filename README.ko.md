@@ -17,7 +17,7 @@
 
 ### Xcode로 직접 빌드
 
-1. Xcode에서 `HermesEnabler2.xcodeproj`를 엽니다.
+1. Xcode에서 [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj)를 엽니다.
 2. 실행 대상으로 Apple Watch를 선택하고 **Run**을 누릅니다.
 3. Apple Watch에서 **HermesEnabler2**를 열고 앱의 안내를 따릅니다.
 

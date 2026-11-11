@@ -17,7 +17,7 @@
 
 ### Compilar con Xcode
 
-1. Abre `HermesEnabler2.xcodeproj` en Xcode.
+1. Abre [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj) en Xcode.
 2. Selecciona el Apple Watch como destino de ejecución y pulsa **Run**.
 3. Abre **HermesEnabler2** en el Apple Watch y sigue los pasos de la app.
 

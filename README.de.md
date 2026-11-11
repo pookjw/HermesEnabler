@@ -17,7 +17,7 @@
 
 ### Mit Xcode erstellen
 
-1. Öffne `HermesEnabler2.xcodeproj` in Xcode.
+1. Öffne [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj) in Xcode.
 2. Wähle die Apple Watch als Run-Ziel aus und klicke auf **Run**.
 3. Öffne **HermesEnabler2** auf der Apple Watch und folge den Schritten in der App.
 
