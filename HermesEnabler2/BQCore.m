@@ -1063,6 +1063,11 @@ BOOL BQRestoreGestaltBackup(NSString *identifier, NSString **err) {
         NSData *check = [NSData dataWithContentsOfFile:plist];
         ok = [check isEqualToData:backup];
         if (!ok && err) *err = @"Restored file did not match the selected backup.";
+        if (ok) {
+            for (NSString *name in @[@"Hermes-baseline.plist", @"UltraFaces-baseline.plist"]) {
+                [[NSFileManager defaultManager] removeItemAtPath:[BQDocuments() stringByAppendingPathComponent:name] error:nil];
+            }
+        }
         BQLog(@"MG restored from %@: %lu bytes ok=%d", identifier, (unsigned long)backup.length, ok);
     }
     BQEndEscape(h);
@@ -1117,6 +1122,33 @@ static const BQDeviceBrandLayout kDeviceBrandLayouts[] = {
     {"24S132", "32B4CA84-FBDA-496C-9B79-2101D597158B", 0x1950, 0x348, 0x16e9},
 };
 
+// Preserve the state immediately before enabling a face, even if the initial
+// backup was made while that face was already enabled.
+static NSString *bq_face_baseline_path(NSString *name) {
+    return [BQDocuments() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@-baseline.plist", name]];
+}
+
+static BOOL bq_save_face_baseline(NSDictionary *plist, NSString *name, NSString **err) {
+    NSError *serializationError = nil;
+    NSData *data = [NSPropertyListSerialization dataWithPropertyList:plist format:NSPropertyListBinaryFormat_v1_0 options:0 error:&serializationError];
+    NSString *path = bq_face_baseline_path(name);
+    if (!data || ![data writeToFile:path atomically:YES] || ![[NSData dataWithContentsOfFile:path] isEqualToData:data]) {
+        if (err) *err = NSLocalizedString(@"Could not save the previous face setting; no changes were made.", nil);
+        return NO;
+    }
+    return YES;
+}
+
+static NSDictionary *bq_face_baseline(NSString *name, NSDictionary *current, NSDictionary *fallback) {
+    NSDictionary *baseline = [NSDictionary dictionaryWithContentsOfFile:bq_face_baseline_path(name)];
+    if ([baseline isKindOfClass:[NSDictionary class]] &&
+        [baseline[@"CacheUUID"] isEqual:current[@"CacheUUID"]] &&
+        [baseline[@"CacheData"] isKindOfClass:[NSData class]] &&
+        [baseline[@"CacheData"] length] == [current[@"CacheData"] length] &&
+        [baseline[@"CacheExtra"] isKindOfClass:[NSDictionary class]]) return baseline;
+    return fallback;
+}
+
 BOOL BQSetHermesEnabled(BOOL enabled, NSString **err) {
     if (!BQBackupExists()) {
         if (err) *err = NSLocalizedString(@"Back up MobileGestalt first.", nil);
@@ -1130,6 +1162,7 @@ BOOL BQSetHermesEnabled(BOOL enabled, NSString **err) {
     }
     NSMutableDictionary *plist = BQLoadGestalt(err);
     if (!plist) return NO;
+    if (!enabled) backupPlist = bq_face_baseline(@"Hermes", plist, backupPlist);
     char build[128] = {0};
     size_t buildLength = sizeof(build);
     if (sysctlbyname("kern.osversion", build, &buildLength, NULL, 0) != 0) {
@@ -1172,6 +1205,13 @@ BOOL BQSetHermesEnabled(BOOL enabled, NSString **err) {
     }
     // DeviceBrand is a little-endian signed 32-bit integer, in an 8-byte slot.
     const uint8_t one[] = {1, 0, 0, 0};
+    if (enabled && memcmp(bytes + valueOffset, one, sizeof(one)) != 0 &&
+        !bq_save_face_baseline(plist, @"Hermes", err)) return NO;
+    if (!enabled && backupBytes[presentOffset] == 1 &&
+        memcmp(backupBytes + valueOffset, one, sizeof(one)) == 0) {
+        if (err) *err = NSLocalizedString(@"The initial backup already contains this enabled setting. Restore an earlier backup with the original value; the original value cannot be determined automatically.", nil);
+        return NO;
+    }
     if (enabled) memcpy(bytes + valueOffset, one, sizeof(one));
     else {
         memcpy(bytes + valueOffset, backupBytes + valueOffset, sizeof(uint32_t));
@@ -1199,8 +1239,9 @@ BOOL BQSetHermesEnabled(BOOL enabled, NSString **err) {
         ? (memcmp(savedBytes + valueOffset, one, sizeof(one)) == 0 && savedBytes[presentOffset] == 1)
         : (memcmp(savedBytes + valueOffset, backupBytes + valueOffset, sizeof(uint32_t)) == 0 &&
            savedBytes[presentOffset] == backupBytes[presentOffset]);
-    BOOL extraMatches = originalBrandOverride ? [savedExtra[brandKey] isEqual:originalBrandOverride]
-                                              : savedExtra[brandKey] == nil;
+    id expectedBrandOverride = enabled ? nil : originalBrandOverride;
+    BOOL extraMatches = expectedBrandOverride ? [savedExtra[brandKey] isEqual:expectedBrandOverride]
+                                               : savedExtra[brandKey] == nil;
     if (!dataMatches || !extraMatches) {
         if (err) *err = NSLocalizedString(@"The cache was written, but DeviceBrand could not be verified.", nil);
         return NO;
@@ -1292,6 +1333,7 @@ BOOL BQSetUltraFacesEnabled(BOOL enabled, NSString **err) {
     NSMutableDictionary *plist = BQLoadGestalt(err);
     NSMutableData *data = nil, *original = nil;
     NSUInteger valueOffset = 0, presentOffset = 0;
+    if (!enabled && plist) backup = bq_face_baseline(@"UltraFaces", plist, backup);
     if (!plist || !bq_ultraCache(plist, &data, &valueOffset, &presentOffset, err) || !bq_ultraCache(backup, &original, NULL, NULL, err)) return NO;
     uint8_t *bytes = data.mutableBytes;
     const uint8_t *backupBytes = original.bytes;
@@ -1300,6 +1342,15 @@ BOOL BQSetUltraFacesEnabled(BOOL enabled, NSString **err) {
         return NO;
     }
     const uint8_t ultra[] = {29, 0, 0, 0};
+    if (enabled && (memcmp(bytes + valueOffset, ultra, sizeof(ultra)) != 0 ||
+        plist[@"CacheExtra"][@"fdh+s6j3VijuyrK7xLjd7g"] != nil) &&
+        !bq_save_face_baseline(plist, @"UltraFaces", err)) return NO;
+    if (!enabled && backupBytes[presentOffset] == 1 &&
+        memcmp(backupBytes + valueOffset, ultra, sizeof(ultra)) == 0 &&
+        backup[@"CacheExtra"][@"fdh+s6j3VijuyrK7xLjd7g"] == nil) {
+        if (err) *err = NSLocalizedString(@"The initial backup already contains this enabled setting. Restore an earlier backup with the original value; the original value cannot be determined automatically.", nil);
+        return NO;
+    }
     if (enabled) memcpy(bytes + valueOffset, ultra, sizeof(ultra));
     else {
         memcpy(bytes + valueOffset, backupBytes + valueOffset, sizeof(ultra));
