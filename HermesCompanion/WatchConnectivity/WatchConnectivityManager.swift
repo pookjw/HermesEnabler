@@ -332,26 +332,40 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
         metadata: [String: Any]?
     ) throws -> BackupRecord {
 
-        let originalData = try Data(contentsOf: sourceURL)
-        try validateBackup(originalData)
+        print("[WC] Source file URL: \(sourceURL.path)")
+        print("[WC] Source file exists: \(FileManager.default.fileExists(atPath: sourceURL.path))")
 
-        let originalHash = sha256(originalData)
+        // Read the temporary WatchConnectivity file immediately.
+        let receivedData = try Data(contentsOf: sourceURL)
+
+        guard !receivedData.isEmpty else {
+            throw NSError(
+                domain: "HermesCompanion.Backup",
+                code: 1,
+                userInfo: [
+                    NSLocalizedDescriptionKey: "Le fichier reçu est vide."
+                ]
+            )
+        }
+
+        try validateBackup(receivedData)
+
+        let receivedHash = sha256(receivedData)
         let directory = try backupDirectory()
 
         let identifier = UUID()
         let fileName = "OriginalGestalt-\(identifier.uuidString).plist"
-
         let destinationURL = directory.appendingPathComponent(fileName)
 
-        try FileManager.default.copyItem(
-            at: sourceURL,
-            to: destinationURL
-        )
+        // Write the received data directly to the iPhone backup directory.
+        try receivedData.write(to: destinationURL, options: .atomic)
 
+        // Verify the stored copy.
         let storedData = try Data(contentsOf: destinationURL)
 
-        guard storedData == originalData,
-              sha256(storedData) == originalHash else {
+        guard storedData == receivedData,
+              sha256(storedData) == receivedHash else {
+
             try? FileManager.default.removeItem(at: destinationURL)
 
             throw NSError(
@@ -384,7 +398,7 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
             fileName: fileName,
             date: transferDate,
             size: storedData.count,
-            sha256: originalHash,
+            sha256: receivedHash,
             deviceIdentifier: deviceIdentifier,
             hashOrigin: "Watch transfer"
         )
@@ -399,6 +413,11 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
             try? FileManager.default.removeItem(at: destinationURL)
             throw error
         }
+
+        print("[WC] Backup stored successfully")
+        print("[WC] Destination: \(destinationURL.path)")
+        print("[WC] Size: \(storedData.count) bytes")
+        print("[WC] SHA256: \(receivedHash)")
 
         return record
     }

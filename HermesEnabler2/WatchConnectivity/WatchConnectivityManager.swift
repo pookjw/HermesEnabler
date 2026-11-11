@@ -108,6 +108,13 @@ final class WatchConnectivityManager: NSObject, WCSessionDelegate {
 
         if activationState == .activated {
             sendDeviceInformation()
+
+            if BQBackupExists() {
+                print("[WC] Session activated, checking original backup transfer")
+                transferOriginalBackup()
+            } else {
+                print("[WC] No original backup available yet")
+            }
         }
     }
 
