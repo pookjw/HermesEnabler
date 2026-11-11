@@ -217,19 +217,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Absolute Altimeter"
+            "value" : "Absoluter Höhenmesser"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Absolute Altimeter"
+            "value" : "Altímetro absoluto"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Absolute Altimeter"
+            "value" : "Altimètre absolu"
           }
         },
         "ja" : {
@@ -247,7 +247,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Absolute Altimeter"
+            "value" : "Altímetro absoluto"
           }
         },
         "zh-Hans" : {
@@ -270,19 +270,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Absolute Altimeter-Funktion deaktiviert. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Absoluter Höhenmesser: deaktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Absolute Altimeter desactivada. Reinicie Carousel para recargarlo."
+            "value" : "Altímetro absoluto: estado desactivado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Absolute Altimeter désactivée. Redémarrez Carousel pour le recharger."
+            "value" : "Altimètre absolu: état désactivé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -300,7 +300,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Absolute Altimeter desativada. Reinicie Carousel para recarregá-lo."
+            "value" : "Altímetro absoluto: estado desativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -323,19 +323,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Absolute Altimeter-Funktion aktiviert. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Absoluter Höhenmesser: aktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Absolute Altimeter activada. Reinicie Carousel para recargarlo."
+            "value" : "Altímetro absoluto: estado activado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Absolute Altimeter activée. Redémarrez Carousel pour le recharger."
+            "value" : "Altimètre absolu: état activé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -353,7 +353,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Absolute Altimeter ativada. Reinicie Carousel para recarregá-lo."
+            "value" : "Altímetro absoluto: estado ativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -376,19 +376,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Action Button"
+            "value" : "Aktionstaste"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Action Button"
+            "value" : "Botón de acción"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Action Button"
+            "value" : "Bouton Action"
           }
         },
         "ja" : {
@@ -406,7 +406,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Action Button"
+            "value" : "Botão de Ação"
           }
         },
         "zh-Hans" : {
@@ -429,19 +429,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Action Button ausgeschaltet. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Aktionstaste: deaktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Action Button apagado. Reinicie Carousel para recargarlo."
+            "value" : "Botón de acción: estado desactivado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Action Button éteint. Redémarrez Carousel pour le recharger."
+            "value" : "Bouton Action: état désactivé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -459,7 +459,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Action Button desligado. Reinicie Carousel para recarregá-lo."
+            "value" : "Botão de Ação: estado desativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -482,19 +482,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Action Button eingeschaltet. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Aktionstaste: aktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Action Button activado. Reinicie Carousel para recargarlo."
+            "value" : "Botón de acción: estado activado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Action Button activé. Redémarrez Carousel pour le recharger."
+            "value" : "Bouton Action: état activé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -512,7 +512,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Action Button ativado. Reinicie Carousel para recarregá-lo."
+            "value" : "Botão de Ação: estado ativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -535,19 +535,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Always Listening-Funktion deaktiviert. Starten Sie Carousel neu, um es neu zu laden. Siri-Einstellungen und unterstützte Audio-Hardware gelten weiterhin."
+            "value" : "Siri-Hörfunktion: deaktiviert. Carousel neu starten, um die Änderung zu laden. Siri-Einstellungen und unterstützte Audiohardware bleiben erforderlich."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Always Listening desactivada. Reinicie Carousel para recargarlo. La configuración de Siri y el hardware de audio compatible aún se aplican."
+            "value" : "Capacidad de escucha de Siri: estado desactivado. Reinicie Carousel para cargar el cambio. Siguen siendo necesarios los ajustes de Siri y el hardware de audio compatible."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Always Listening désactivée. Redémarrez Carousel pour le recharger. Les paramètres Siri et le matériel audio pris en charge s'appliquent toujours."
+            "value" : "Capacité d’écoute de Siri: état désactivé. Redémarrez Carousel pour charger la modification. Les réglages Siri et le matériel audio compatible restent nécessaires."
           }
         },
         "ja" : {
@@ -565,7 +565,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Always Listening desativada. Reinicie Carousel para recarregá-lo. As configurações de Siri e hardware de áudio compatível ainda se aplicam."
+            "value" : "Capacidade de escuta da Siri: estado desativado. Reinicie o Carousel para carregar a alteração. Os ajustes da Siri e o hardware de áudio compatível ainda são necessários."
           }
         },
         "zh-Hans" : {
@@ -588,19 +588,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Always Listening-Funktion aktiviert. Starten Sie Carousel neu, um es neu zu laden. Siri-Einstellungen und unterstützte Audio-Hardware gelten weiterhin."
+            "value" : "Siri-Hörfunktion: aktiviert. Carousel neu starten, um die Änderung zu laden. Siri-Einstellungen und unterstützte Audiohardware bleiben erforderlich."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Always Listening activada. Reinicie Carousel para recargarlo. La configuración de Siri y el hardware de audio compatible aún se aplican."
+            "value" : "Capacidad de escucha de Siri: estado activado. Reinicie Carousel para cargar el cambio. Siguen siendo necesarios los ajustes de Siri y el hardware de audio compatible."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Always Listening activée. Redémarrez Carousel pour le recharger. Les paramètres Siri et le matériel audio pris en charge s'appliquent toujours."
+            "value" : "Capacité d’écoute de Siri: état activé. Redémarrez Carousel pour charger la modification. Les réglages Siri et le matériel audio compatible restent nécessaires."
           }
         },
         "ja" : {
@@ -618,7 +618,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Always Listening ativada. Reinicie Carousel para recarregá-lo. As configurações de Siri e hardware de áudio compatível ainda se aplicam."
+            "value" : "Capacidade de escuta da Siri: estado ativado. Reinicie o Carousel para carregar a alteração. Os ajustes da Siri e o hardware de áudio compatível ainda são necessários."
           }
         },
         "zh-Hans" : {
@@ -641,19 +641,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Always-On Compass"
+            "value" : "Dauerhaft aktiver Kompass"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Always-On Compass"
+            "value" : "Brújula siempre activa"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Always-On Compass"
+            "value" : "Boussole toujours active"
           }
         },
         "ja" : {
@@ -671,7 +671,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Always-On Compass"
+            "value" : "Bússola sempre ativa"
           }
         },
         "zh-Hans" : {
@@ -694,19 +694,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Always-On Compass-Funktion deaktiviert. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Dauerhaft aktiver Kompass: deaktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Always-On Compass desactivada. Reinicie Carousel para recargarlo."
+            "value" : "Brújula siempre activa: estado desactivado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Always-On Compass désactivée. Redémarrez Carousel pour le recharger."
+            "value" : "Boussole toujours active: état désactivé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -724,7 +724,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Always-On Compass desativada. Reinicie Carousel para recarregá-lo."
+            "value" : "Bússola sempre ativa: estado desativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -747,19 +747,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Always-On Compass-Funktion aktiviert. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Dauerhaft aktiver Kompass: aktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Always-On Compass activada. Reinicie Carousel para recargarlo."
+            "value" : "Brújula siempre activa: estado activado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Always-On Compass activée. Redémarrez Carousel pour le recharger."
+            "value" : "Boussole toujours active: état activé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -777,7 +777,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Always-On Compass ativada. Reinicie Carousel para recarregá-lo."
+            "value" : "Bússola sempre ativa: estado ativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -800,19 +800,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Always-On Display"
+            "value" : "Immer eingeschaltet"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Always-On Display"
+            "value" : "Mostrar siempre"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Always-On Display"
+            "value" : "Toujours activé"
           }
         },
         "ja" : {
@@ -830,7 +830,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Always-On Display"
+            "value" : "Sempre Ativo"
           }
         },
         "zh-Hans" : {
@@ -1011,19 +1011,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD 1 Hz"
+            "value" : "Immer eingeschaltet mit 1 Hz"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD 1 Hz"
+            "value" : "Mostrar siempre a 1 Hz"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD 1 Hz"
+            "value" : "Toujours activé à 1 Hz"
           }
         },
         "ja" : {
@@ -1041,7 +1041,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD 1 Hz"
+            "value" : "Sempre Ativo a 1 Hz"
           }
         },
         "zh-Hans" : {
@@ -1064,19 +1064,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD 1Hz ausgeschaltet. Starten Sie Carousel neu, um es neu zu laden. Zifferblätter müssen Sekunden in AOD unterstützen."
+            "value" : "Immer eingeschaltet mit 1 Hz: deaktiviert. Carousel neu starten, um die Änderung zu laden. Das Zifferblatt muss Sekunden bei dauerhaft eingeschaltetem Display unterstützen."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD 1Hz apagado. Reinicie Carousel para recargarlo. Las caras deben admitir segundos en AOD."
+            "value" : "Mostrar siempre a 1 Hz: estado desactivado. Reinicie Carousel para cargar el cambio. La esfera debe admitir segundos con Mostrar siempre."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD 1 Hz désactivé. Redémarrez Carousel pour le recharger. Les visages doivent prendre en charge les secondes dans AOD."
+            "value" : "Toujours activé à 1 Hz: état désactivé. Redémarrez Carousel pour charger la modification. Le cadran doit permettre l’affichage des secondes avec Toujours activé."
           }
         },
         "ja" : {
@@ -1094,7 +1094,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD 1Hz desligado. Reinicie Carousel para recarregá-lo. As faces devem suportar segundos em AOD."
+            "value" : "Sempre Ativo a 1 Hz: estado desativado. Reinicie o Carousel para carregar a alteração. O mostrador deve permitir a exibição de segundos no modo Sempre Ativo."
           }
         },
         "zh-Hans" : {
@@ -1117,19 +1117,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD 1Hz eingeschaltet. Starten Sie Carousel neu, um es neu zu laden. Zifferblätter müssen Sekunden in AOD unterstützen."
+            "value" : "Immer eingeschaltet mit 1 Hz: aktiviert. Carousel neu starten, um die Änderung zu laden. Das Zifferblatt muss Sekunden bei dauerhaft eingeschaltetem Display unterstützen."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD 1Hz activado. Reinicie Carousel para recargarlo. Las caras deben admitir segundos en AOD."
+            "value" : "Mostrar siempre a 1 Hz: estado activado. Reinicie Carousel para cargar el cambio. La esfera debe admitir segundos con Mostrar siempre."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD 1 Hz activé. Redémarrez Carousel pour le recharger. Les visages doivent prendre en charge les secondes dans AOD."
+            "value" : "Toujours activé à 1 Hz: état activé. Redémarrez Carousel pour charger la modification. Le cadran doit permettre l’affichage des secondes avec Toujours activé."
           }
         },
         "ja" : {
@@ -1147,7 +1147,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD 1Hz ativado. Reinicie Carousel para recarregá-lo. As faces devem suportar segundos em AOD."
+            "value" : "Sempre Ativo a 1 Hz: estado ativado. Reinicie o Carousel para carregar a alteração. O mostrador deve permitir a exibição de segundos no modo Sempre Ativo."
           }
         },
         "zh-Hans" : {
@@ -1170,19 +1170,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD ausgeschaltet. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Immer eingeschaltet: deaktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD apagado. Reinicie Carousel para recargarlo."
+            "value" : "Mostrar siempre: estado desactivado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD éteint. Redémarrez Carousel pour le recharger."
+            "value" : "Toujours activé: état désactivé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -1200,7 +1200,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD desligado. Reinicie Carousel para recarregá-lo."
+            "value" : "Sempre Ativo: estado desativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -1223,19 +1223,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD eingeschaltet. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Immer eingeschaltet: aktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD activado. Reinicie Carousel para recargarlo."
+            "value" : "Mostrar siempre: estado activado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD activé. Redémarrez Carousel pour le recharger."
+            "value" : "Toujours activé: état activé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -1253,7 +1253,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD ativado. Reinicie Carousel para recarregá-lo."
+            "value" : "Sempre Ativo: estado ativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -1276,19 +1276,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD Vibrancy"
+            "value" : "Farbintensität bei „Immer eingeschaltet“"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD Vibrancy"
+            "value" : "Intensidad de color de Mostrar siempre"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD Vibrancy"
+            "value" : "Intensité des couleurs de Toujours activé"
           }
         },
         "ja" : {
@@ -1306,7 +1306,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD Vibrancy"
+            "value" : "Intensidade de cor do Sempre Ativo"
           }
         },
         "zh-Hans" : {
@@ -1329,19 +1329,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD Vibrancy-Funktion deaktiviert. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Farbintensität bei „Immer eingeschaltet“: deaktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad AOD Vibrancy desactivada. Reinicie Carousel para recargarlo."
+            "value" : "Intensidad de color de Mostrar siempre: estado desactivado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité AOD Vibrancy désactivée. Redémarrez Carousel pour le recharger."
+            "value" : "Intensité des couleurs de Toujours activé: état désactivé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -1359,7 +1359,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade AOD Vibrancy desativada. Reinicie Carousel para recarregá-lo."
+            "value" : "Intensidade de cor do Sempre Ativo: estado desativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -1382,19 +1382,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD Vibrancy-Funktion aktiviert. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Farbintensität bei „Immer eingeschaltet“: aktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad AOD Vibrancy activada. Reinicie Carousel para recargarlo."
+            "value" : "Intensidad de color de Mostrar siempre: estado activado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité AOD Vibrancy activée. Redémarrez Carousel pour le recharger."
+            "value" : "Intensité des couleurs de Toujours activé: état activé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -1412,7 +1412,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade AOD Vibrancy ativada. Reinicie Carousel para recarregá-lo."
+            "value" : "Intensidade de cor do Sempre Ativo: estado ativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -1488,19 +1488,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apple Intelligence-Funktion deaktiviert. Starten Sie die Uhr neu, um sie neu zu laden."
+            "value" : "Apple Intelligence: deaktiviert. Apple Watch neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Apple Intelligence desactivada. Reinicie el reloj para recargarlo."
+            "value" : "Apple Intelligence: estado desactivado. Reinicie el Apple Watch para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Apple Intelligence désactivée. Redémarrez la montre pour la recharger."
+            "value" : "Apple Intelligence: état désactivé. Redémarrez l’Apple Watch pour charger la modification."
           }
         },
         "ja" : {
@@ -1518,7 +1518,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Apple Intelligence desativada. Reinicie o relógio para recarregá-lo."
+            "value" : "Apple Intelligence: estado desativado. Reinicie o Apple Watch para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -1541,19 +1541,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apple Intelligence-Funktion aktiviert. Starten Sie die Uhr neu, um sie neu zu laden."
+            "value" : "Apple Intelligence: aktiviert. Apple Watch neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Apple Intelligence activada. Reinicie el reloj para recargarlo."
+            "value" : "Apple Intelligence: estado activado. Reinicie el Apple Watch para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Apple Intelligence activée. Redémarrez la montre pour la recharger."
+            "value" : "Apple Intelligence: état activé. Redémarrez l’Apple Watch pour charger la modification."
           }
         },
         "ja" : {
@@ -1571,7 +1571,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Apple Intelligence ativada. Reinicie o relógio para recarregá-lo."
+            "value" : "Apple Intelligence: estado ativado. Reinicie o Apple Watch para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -1594,19 +1594,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Audio Intelligence"
+            "value" : "Audio-Intelligenz"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Audio Intelligence"
+            "value" : "Inteligencia de audio"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Audio Intelligence"
+            "value" : "Intelligence audio"
           }
         },
         "ja" : {
@@ -1624,7 +1624,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Audio Intelligence"
+            "value" : "Inteligência de áudio"
           }
         },
         "zh-Hans" : {
@@ -1647,19 +1647,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Audio Intelligence-Funktion deaktiviert. Starten Sie die Uhr neu, um sie neu zu laden."
+            "value" : "Audio-Intelligenz: deaktiviert. Apple Watch neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Audio Intelligence desactivada. Reinicie el reloj para recargarlo."
+            "value" : "Inteligencia de audio: estado desactivado. Reinicie el Apple Watch para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Audio Intelligence désactivée. Redémarrez la montre pour la recharger."
+            "value" : "Intelligence audio: état désactivé. Redémarrez l’Apple Watch pour charger la modification."
           }
         },
         "ja" : {
@@ -1677,7 +1677,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Audio Intelligence desativada. Reinicie o relógio para recarregá-lo."
+            "value" : "Inteligência de áudio: estado desativado. Reinicie o Apple Watch para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -1700,19 +1700,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Audio Intelligence-Funktion aktiviert. Starten Sie die Uhr neu, um sie neu zu laden."
+            "value" : "Audio-Intelligenz: aktiviert. Apple Watch neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Audio Intelligence activada. Reinicie el reloj para recargarlo."
+            "value" : "Inteligencia de audio: estado activado. Reinicie el Apple Watch para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Audio Intelligence activée. Redémarrez la montre pour la recharger."
+            "value" : "Intelligence audio: état activé. Redémarrez l’Apple Watch pour charger la modification."
           }
         },
         "ja" : {
@@ -1730,7 +1730,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Audio Intelligence ativada. Reinicie o relógio para recarregá-lo."
+            "value" : "Inteligência de áudio: estado ativado. Reinicie o Apple Watch para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -1753,7 +1753,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Automatische Sicherung"
+            "value" : "Automatisches Backup"
           }
         },
         "es" : {
@@ -1812,7 +1812,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Copia de seguridad actual MG"
+            "value" : "Hacer copia del MG actual"
           }
         },
         "fr" : {
@@ -2283,19 +2283,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Battery Information"
+            "value" : "Batterieinformationen"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Battery Information"
+            "value" : "Información de la batería"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Battery Information"
+            "value" : "Informations sur la batterie"
           }
         },
         "ja" : {
@@ -2313,7 +2313,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Battery Information"
+            "value" : "Informações da bateria"
           }
         },
         "zh-Hans" : {
@@ -2336,19 +2336,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Battery Information-Funktion deaktiviert. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Batterieinformationen: deaktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Battery Information desactivada. Reinicie Carousel para recargarlo."
+            "value" : "Información de la batería: estado desactivado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Battery Information désactivée. Redémarrez Carousel pour le recharger."
+            "value" : "Informations sur la batterie: état désactivé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -2366,7 +2366,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Battery Information desativada. Reinicie Carousel para recarregá-lo."
+            "value" : "Informações da bateria: estado desativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -2389,19 +2389,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Battery Information-Funktion aktiviert. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Batterieinformationen: aktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Battery Information activada. Reinicie Carousel para recargarlo."
+            "value" : "Información de la batería: estado activado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Battery Information activée. Redémarrez Carousel pour le recharger."
+            "value" : "Informations sur la batterie: état activé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -2419,7 +2419,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Battery Information ativada. Reinicie Carousel para recarregá-lo."
+            "value" : "Informações da bateria: estado ativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -2525,7 +2525,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Os sinalizadores de capacidade não adicionam sensores ausentes nem substituem as permissões de integridade."
+            "value" : "Os sinalizadores de capacidade não adicionam sensores ausentes nem alteram as permissões do app Saúde."
           }
         },
         "zh-Hans" : {
@@ -2918,19 +2918,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Compass Orienteering"
+            "value" : "Kompassorientierung"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Compass Orienteering"
+            "value" : "Orientación con brújula"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Compass Orienteering"
+            "value" : "Orientation à la boussole"
           }
         },
         "ja" : {
@@ -2948,7 +2948,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Compass Orienteering"
+            "value" : "Orientação pela bússola"
           }
         },
         "zh-Hans" : {
@@ -2971,19 +2971,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Compass Orienteering ausgeschaltet. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Kompassorientierung: deaktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Compass Orienteering apagado. Reinicie Carousel para recargarlo."
+            "value" : "Orientación con brújula: estado desactivado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Compass Orienteering éteint. Redémarrez Carousel pour le recharger."
+            "value" : "Orientation à la boussole: état désactivé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -3001,7 +3001,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Compass Orienteering desligado. Reinicie Carousel para recarregá-lo."
+            "value" : "Orientação pela bússola: estado desativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -3024,19 +3024,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Compass Orienteering eingeschaltet. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Kompassorientierung: aktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Compass Orienteering activado. Reinicie Carousel para recargarlo."
+            "value" : "Orientación con brújula: estado activado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Compass Orienteering activé. Redémarrez Carousel pour le recharger."
+            "value" : "Orientation à la boussole: état activé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -3054,7 +3054,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Compass Orienteering ativado. Reinicie Carousel para recarregá-lo."
+            "value" : "Orientação pela bússola: estado ativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -3077,19 +3077,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continuous Heart Rate"
+            "value" : "Kontinuierliche Herzfrequenz"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continuous Heart Rate"
+            "value" : "Frecuencia cardiaca continua"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continuous Heart Rate"
+            "value" : "Fréquence cardiaque continue"
           }
         },
         "ja" : {
@@ -3107,7 +3107,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continuous Heart Rate"
+            "value" : "Frequência cardíaca contínua"
           }
         },
         "zh-Hans" : {
@@ -3130,19 +3130,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continuous Heart Rate ausgeschaltet. Starten Sie Carousel neu, um es neu zu laden. Die Einstellungen für Sensorhardware und -zustand gelten weiterhin."
+            "value" : "Kontinuierliche Herzfrequenz: deaktiviert. Carousel neu starten, um die Änderung zu laden. Sensorhardware und Health-Einstellungen bleiben erforderlich."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continuous Heart Rate apagado. Reinicie Carousel para recargarlo. El hardware del sensor y la configuración de salud aún se aplican."
+            "value" : "Frecuencia cardiaca continua: estado desactivado. Reinicie Carousel para cargar el cambio. Siguen siendo necesarios el sensor y los ajustes de Salud."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continuous Heart Rate éteint. Redémarrez Carousel pour le recharger. Le matériel du capteur et les paramètres de santé s'appliquent toujours."
+            "value" : "Fréquence cardiaque continue: état désactivé. Redémarrez Carousel pour charger la modification. Le capteur et les réglages Santé restent nécessaires."
           }
         },
         "ja" : {
@@ -3160,7 +3160,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continuous Heart Rate desligado. Reinicie Carousel para recarregá-lo. As configurações de hardware e integridade do sensor ainda se aplicam."
+            "value" : "Frequência cardíaca contínua: estado desativado. Reinicie o Carousel para carregar a alteração. O sensor e os ajustes do app Saúde ainda são necessários."
           }
         },
         "zh-Hans" : {
@@ -3183,19 +3183,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continuous Heart Rate eingeschaltet. Starten Sie Carousel neu, um es neu zu laden. Die Einstellungen für Sensorhardware und -zustand gelten weiterhin."
+            "value" : "Kontinuierliche Herzfrequenz: aktiviert. Carousel neu starten, um die Änderung zu laden. Sensorhardware und Health-Einstellungen bleiben erforderlich."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continuous Heart Rate activado. Reinicie Carousel para recargarlo. El hardware del sensor y la configuración de salud aún se aplican."
+            "value" : "Frecuencia cardiaca continua: estado activado. Reinicie Carousel para cargar el cambio. Siguen siendo necesarios el sensor y los ajustes de Salud."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continuous Heart Rate activé. Redémarrez Carousel pour le recharger. Le matériel du capteur et les paramètres de santé s'appliquent toujours."
+            "value" : "Fréquence cardiaque continue: état activé. Redémarrez Carousel pour charger la modification. Le capteur et les réglages Santé restent nécessaires."
           }
         },
         "ja" : {
@@ -3213,7 +3213,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Continuous Heart Rate ativado. Reinicie Carousel para recarregá-lo. As configurações de hardware e integridade do sensor ainda se aplicam."
+            "value" : "Frequência cardíaca contínua: estado ativado. Reinicie o Carousel para carregar a alteração. O sensor e os ajustes do app Saúde ainda são necessários."
           }
         },
         "zh-Hans" : {
@@ -3342,19 +3342,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Absolute Altimeter-Funktion konnte nicht aktualisiert werden."
+            "value" : "Die Absoluter Höhenmesser-Funktion konnte nicht aktualisiert werden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudo actualizar la capacidad Absolute Altimeter."
+            "value" : "No se pudo actualizar la capacidad Altímetro absoluto."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de mettre à jour la fonctionnalité Absolute Altimeter."
+            "value" : "Impossible de mettre à jour la fonctionnalité Altimètre absolu."
           }
         },
         "ja" : {
@@ -3372,7 +3372,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível atualizar o recurso Absolute Altimeter."
+            "value" : "Não foi possível atualizar o recurso Altímetro absoluto."
           }
         },
         "zh-Hans" : {
@@ -3395,19 +3395,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Action Button-Funktion konnte nicht aktualisiert werden."
+            "value" : "Die Aktionstaste-Funktion konnte nicht aktualisiert werden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudo actualizar la capacidad Action Button."
+            "value" : "No se pudo actualizar la capacidad Botón de acción."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de mettre à jour la fonctionnalité Action Button."
+            "value" : "Impossible de mettre à jour la fonctionnalité Bouton Action."
           }
         },
         "ja" : {
@@ -3425,7 +3425,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível atualizar o recurso Action Button."
+            "value" : "Não foi possível atualizar o recurso Botão de Ação."
           }
         },
         "zh-Hans" : {
@@ -3448,19 +3448,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Always Listening-Funktion konnte nicht aktualisiert werden."
+            "value" : "Die Ständiges Zuhören-Funktion konnte nicht aktualisiert werden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudo actualizar la capacidad Always Listening."
+            "value" : "No se pudo actualizar la capacidad Escucha continua."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de mettre à jour la fonctionnalité Always Listening."
+            "value" : "Impossible de mettre à jour la fonctionnalité Écoute permanente."
           }
         },
         "ja" : {
@@ -3478,7 +3478,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível atualizar o recurso Always Listening."
+            "value" : "Não foi possível atualizar o recurso Escuta contínua."
           }
         },
         "zh-Hans" : {
@@ -3501,19 +3501,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Always-On Compass-Funktion konnte nicht aktualisiert werden."
+            "value" : "Die Dauerhaft aktiver Kompass-Funktion konnte nicht aktualisiert werden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudo actualizar la capacidad Always-On Compass."
+            "value" : "No se pudo actualizar la capacidad Brújula siempre activa."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de mettre à jour la fonctionnalité Always-On Compass."
+            "value" : "Impossible de mettre à jour la fonctionnalité Boussole toujours active."
           }
         },
         "ja" : {
@@ -3531,7 +3531,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível atualizar o recurso Always-On Compass."
+            "value" : "Não foi possível atualizar o recurso Bússola sempre ativa."
           }
         },
         "zh-Hans" : {
@@ -3713,19 +3713,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die AOD Vibrancy-Funktion konnte nicht aktualisiert werden."
+            "value" : "Die Farbintensität bei „Immer eingeschaltet“-Funktion konnte nicht aktualisiert werden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudo actualizar la capacidad AOD Vibrancy."
+            "value" : "No se pudo actualizar la capacidad Intensidad de color de Mostrar siempre."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de mettre à jour la fonctionnalité AOD Vibrancy."
+            "value" : "Impossible de mettre à jour la fonctionnalité Intensité des couleurs de Toujours activé."
           }
         },
         "ja" : {
@@ -3743,7 +3743,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível atualizar o recurso AOD Vibrancy."
+            "value" : "Não foi possível atualizar o recurso Intensidade de cor do Sempre Ativo."
           }
         },
         "zh-Hans" : {
@@ -3819,19 +3819,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Audio Intelligence-Funktion konnte nicht aktualisiert werden."
+            "value" : "Die Audio-Intelligenz-Funktion konnte nicht aktualisiert werden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudo actualizar la capacidad Audio Intelligence."
+            "value" : "No se pudo actualizar la capacidad Inteligencia de audio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de mettre à jour la fonctionnalité Audio Intelligence."
+            "value" : "Impossible de mettre à jour la fonctionnalité Intelligence audio."
           }
         },
         "ja" : {
@@ -3849,7 +3849,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível atualizar o recurso Audio Intelligence."
+            "value" : "Não foi possível atualizar o recurso Inteligência de áudio."
           }
         },
         "zh-Hans" : {
@@ -4031,19 +4031,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Depth Sensor-Funktion konnte nicht aktualisiert werden."
+            "value" : "Die Tiefensensor-Funktion konnte nicht aktualisiert werden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudo actualizar la capacidad Depth Sensor."
+            "value" : "No se pudo actualizar la capacidad Sensor de profundidad."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de mettre à jour la fonctionnalité Depth Sensor."
+            "value" : "Impossible de mettre à jour la fonctionnalité Capteur de profondeur."
           }
         },
         "ja" : {
@@ -4061,7 +4061,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível atualizar o recurso Depth Sensor."
+            "value" : "Não foi possível atualizar o recurso Sensor de profundidade."
           }
         },
         "zh-Hans" : {
@@ -4137,19 +4137,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Double Tap-Funktion konnte nicht aktualisiert werden."
+            "value" : "Die Doppeltipp-Funktion konnte nicht aktualisiert werden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudo actualizar la capacidad Double Tap."
+            "value" : "No se pudo actualizar la capacidad Doble toque."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de mettre à jour la fonctionnalité Double Tap."
+            "value" : "Impossible de mettre à jour la fonctionnalité Toucher deux fois."
           }
         },
         "ja" : {
@@ -4167,7 +4167,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível atualizar o recurso Double Tap."
+            "value" : "Não foi possível atualizar o recurso Toque duplo."
           }
         },
         "zh-Hans" : {
@@ -4296,19 +4296,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die On-Device Siri-Funktion konnte nicht aktualisiert werden."
+            "value" : "Die Siri auf dem Gerät-Funktion konnte nicht aktualisiert werden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudo actualizar la capacidad On-Device Siri."
+            "value" : "No se pudo actualizar la capacidad Siri en el dispositivo."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de mettre à jour la fonctionnalité On-Device Siri."
+            "value" : "Impossible de mettre à jour la fonctionnalité Siri sur l’appareil."
           }
         },
         "ja" : {
@@ -4326,7 +4326,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível atualizar o recurso On-Device Siri."
+            "value" : "Não foi possível atualizar o recurso Siri no dispositivo."
           }
         },
         "zh-Hans" : {
@@ -4349,19 +4349,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Raise to Speak-Funktion konnte nicht aktualisiert werden."
+            "value" : "Die Zum Sprechen anheben-Funktion konnte nicht aktualisiert werden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudo actualizar la capacidad Raise to Speak."
+            "value" : "No se pudo actualizar la capacidad Levantar para hablar."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de mettre à jour la fonctionnalité Raise to Speak."
+            "value" : "Impossible de mettre à jour la fonctionnalité Lever pour parler."
           }
         },
         "ja" : {
@@ -4379,7 +4379,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível atualizar o recurso Raise to Speak."
+            "value" : "Não foi possível atualizar o recurso Levantar para Falar."
           }
         },
         "zh-Hans" : {
@@ -4402,19 +4402,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Raise Wrist to Wake-Funktion konnte nicht aktualisiert werden."
+            "value" : "Die Beim Anheben aktivieren-Funktion konnte nicht aktualisiert werden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudo actualizar la capacidad Raise Wrist to Wake."
+            "value" : "No se pudo actualizar la capacidad Activar al levantar la muñeca."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de mettre à jour la fonctionnalité Raise Wrist to Wake."
+            "value" : "Impossible de mettre à jour la fonctionnalité Activer au lever du poignet."
           }
         },
         "ja" : {
@@ -4432,7 +4432,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível atualizar o recurso Raise Wrist to Wake."
+            "value" : "Não foi possível atualizar o recurso Despertar ao levantar o pulso."
           }
         },
         "zh-Hans" : {
@@ -4614,19 +4614,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Die Swimming Workouts-Funktion konnte nicht aktualisiert werden."
+            "value" : "Die Schwimmtrainings-Funktion konnte nicht aktualisiert werden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudo actualizar la capacidad Swimming Workouts."
+            "value" : "No se pudo actualizar la capacidad Entrenamientos de natación."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de mettre à jour la fonctionnalité Swimming Workouts."
+            "value" : "Impossible de mettre à jour la fonctionnalité Entraînements de natation."
           }
         },
         "ja" : {
@@ -4644,7 +4644,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível atualizar o recurso Swimming Workouts."
+            "value" : "Não foi possível atualizar o recurso Treinos de natação."
           }
         },
         "zh-Hans" : {
@@ -4667,19 +4667,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra Faces konnte nicht aktualisiert werden."
+            "value" : "Ultra-Zifferblätter konnte nicht aktualisiert werden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudo actualizar Ultra Faces."
+            "value" : "No se pudo actualizar Esferas Ultra."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Impossible de mettre à jour Ultra Faces."
+            "value" : "Impossible de mettre à jour Cadrans Ultra."
           }
         },
         "ja" : {
@@ -4697,7 +4697,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível atualizar Ultra Faces."
+            "value" : "Não foi possível atualizar Mostradores Ultra."
           }
         },
         "zh-Hans" : {
@@ -5038,19 +5038,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Depth Sensor"
+            "value" : "Tiefensensor"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Depth Sensor"
+            "value" : "Sensor de profundidad"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Depth Sensor"
+            "value" : "Capteur de profondeur"
           }
         },
         "ja" : {
@@ -5068,7 +5068,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Depth Sensor"
+            "value" : "Sensor de profundidade"
           }
         },
         "zh-Hans" : {
@@ -5091,19 +5091,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Depth Sensor-Funktion deaktiviert. Starten Sie Carousel neu, um es neu zu laden. Es ist weiterhin Sensorhardware erforderlich."
+            "value" : "Tiefensensor: deaktiviert. Carousel neu starten, um die Änderung zu laden. Die erforderliche Sensorhardware muss vorhanden sein."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Depth Sensor desactivada. Reinicie Carousel para recargarlo. Aún se requiere hardware del sensor."
+            "value" : "Sensor de profundidad: estado desactivado. Reinicie Carousel para cargar el cambio. Sigue siendo necesario el sensor correspondiente."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Depth Sensor désactivée. Redémarrez Carousel pour le recharger. Le matériel de capteur est toujours requis."
+            "value" : "Capteur de profondeur: état désactivé. Redémarrez Carousel pour charger la modification. Le capteur correspondant reste nécessaire."
           }
         },
         "ja" : {
@@ -5121,7 +5121,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Depth Sensor desativada. Reinicie Carousel para recarregá-lo. O hardware do sensor ainda é necessário."
+            "value" : "Sensor de profundidade: estado desativado. Reinicie o Carousel para carregar a alteração. O sensor correspondente ainda é necessário."
           }
         },
         "zh-Hans" : {
@@ -5144,19 +5144,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Depth Sensor-Funktion aktiviert. Starten Sie Carousel neu, um es neu zu laden. Es ist weiterhin Sensorhardware erforderlich."
+            "value" : "Tiefensensor: aktiviert. Carousel neu starten, um die Änderung zu laden. Die erforderliche Sensorhardware muss vorhanden sein."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Depth Sensor activada. Reinicie Carousel para recargarlo. Aún se requiere hardware del sensor."
+            "value" : "Sensor de profundidad: estado activado. Reinicie Carousel para cargar el cambio. Sigue siendo necesario el sensor correspondiente."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Depth Sensor activée. Redémarrez Carousel pour le recharger. Le matériel de capteur est toujours requis."
+            "value" : "Capteur de profondeur: état activé. Redémarrez Carousel pour charger la modification. Le capteur correspondant reste nécessaire."
           }
         },
         "ja" : {
@@ -5174,7 +5174,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Depth Sensor ativada. Reinicie Carousel para recarregá-lo. O hardware do sensor ainda é necessário."
+            "value" : "Sensor de profundidade: estado ativado. Reinicie o Carousel para carregar a alteração. O sensor correspondente ainda é necessário."
           }
         },
         "zh-Hans" : {
@@ -5303,19 +5303,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Double Tap"
+            "value" : "Doppeltipp"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Double Tap"
+            "value" : "Doble toque"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Double Tap"
+            "value" : "Toucher deux fois"
           }
         },
         "ja" : {
@@ -5333,7 +5333,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Double Tap"
+            "value" : "Toque duplo"
           }
         },
         "zh-Hans" : {
@@ -5356,19 +5356,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Double Tap ausgeschaltet. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Doppeltipp: deaktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Double Tap apagado. Reinicie Carousel para recargarlo."
+            "value" : "Doble toque: estado desactivado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Double Tap éteint. Redémarrez Carousel pour le recharger."
+            "value" : "Toucher deux fois: état désactivé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -5386,7 +5386,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Double Tap desligado. Reinicie Carousel para recarregá-lo."
+            "value" : "Toque duplo: estado desativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -5409,19 +5409,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Double Tap eingeschaltet. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Doppeltipp: aktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Double Tap activado. Reinicie Carousel para recargarlo."
+            "value" : "Doble toque: estado activado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Double Tap activé. Redémarrez Carousel pour le recharger."
+            "value" : "Toucher deux fois: état activé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -5439,7 +5439,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Double Tap ativado. Reinicie Carousel para recarregá-lo."
+            "value" : "Toque duplo: estado ativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -5573,13 +5573,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Características"
+            "value" : "Funciones"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Caractéristiques"
+            "value" : "Fonctionnalités"
           }
         },
         "ja" : {
@@ -5778,19 +5778,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hermès ausgeschaltet. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Hermès: deaktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hermès apagado. Reinicie Carousel para recargarlo."
+            "value" : "Hermès: estado desactivado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hermès éteint. Redémarrez Carousel pour le recharger."
+            "value" : "Hermès: état désactivé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -5808,7 +5808,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hermès desligado. Reinicie Carousel para recarregá-lo."
+            "value" : "Hermès: estado desativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -5831,19 +5831,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hermès eingeschaltet. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Hermès: aktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hermès activado. Reinicie Carousel para recargarlo."
+            "value" : "Hermès: estado activado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hermès activé. Redémarrez Carousel pour le recharger."
+            "value" : "Hermès: état activé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -5861,7 +5861,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hermès ativado. Reinicie Carousel para recarregá-lo."
+            "value" : "Hermès: estado ativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -5989,19 +5989,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Wenn Sie Ultra Faces aktivieren, können Sie die Fläche Hermès Faubourg Party nicht verwenden."
+            "value" : "Wenn du Ultra-Zifferblätter aktivierst, kannst du das Hermès-Faubourg-Party-Zifferblatt nicht mehr verwenden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Si habilita Ultra Faces, no podrá usar la cara Hermès Faubourg Party."
+            "value" : "Si activas las esferas Ultra, no podrás usar la esfera Hermès Faubourg Party."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Si vous activez Ultra Faces, vous ne pourrez pas utiliser le visage Hermès Faubourg Party."
+            "value" : "Si vous activez les cadrans Ultra, vous ne pourrez plus utiliser le cadran Hermès Faubourg Party."
           }
         },
         "ja" : {
@@ -6019,7 +6019,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Se você ativar Ultra Faces, não poderá usar a face Hermès Faubourg Party."
+            "value" : "Se você ativar os mostradores Ultra, não poderá mais usar o mostrador Hermès Faubourg Party."
           }
         },
         "zh-Hans" : {
@@ -6042,7 +6042,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Erstes Backup"
+            "value" : "Erstbackup"
           }
         },
         "es" : {
@@ -6307,7 +6307,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Manuelle Sicherung"
+            "value" : "Manuelles Backup"
           }
         },
         "es" : {
@@ -6466,7 +6466,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "MG Backups"
+            "value" : "MG-Backups"
           }
         },
         "es" : {
@@ -6783,19 +6783,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Noise Exposure"
+            "value" : "Lärmbelastung"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Noise Exposure"
+            "value" : "Exposición al ruido"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Noise Exposure"
+            "value" : "Exposition au bruit"
           }
         },
         "ja" : {
@@ -6813,7 +6813,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Noise Exposure"
+            "value" : "Exposição ao ruído"
           }
         },
         "zh-Hans" : {
@@ -6836,19 +6836,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Noise Exposure-Funktion deaktiviert. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Lärmbelastung: deaktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Noise Exposure desactivada. Reinicie Carousel para recargarlo."
+            "value" : "Exposición al ruido: estado desactivado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Noise Exposure désactivée. Redémarrez Carousel pour le recharger."
+            "value" : "Exposition au bruit: état désactivé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -6866,7 +6866,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Noise Exposure desativada. Reinicie Carousel para recarregá-lo."
+            "value" : "Exposição ao ruído: estado desativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -6889,19 +6889,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Noise Exposure-Funktion aktiviert. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Lärmbelastung: aktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Noise Exposure activada. Reinicie Carousel para recargarlo."
+            "value" : "Exposición al ruido: estado activado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Noise Exposure activée. Redémarrez Carousel pour le recharger."
+            "value" : "Exposition au bruit: état activé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -6919,7 +6919,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Noise Exposure ativada. Reinicie Carousel para recarregá-lo."
+            "value" : "Exposição ao ruído: estado ativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -6995,19 +6995,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On-Device Siri"
+            "value" : "Siri auf dem Gerät"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On-Device Siri"
+            "value" : "Siri en el dispositivo"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On-Device Siri"
+            "value" : "Siri sur l’appareil"
           }
         },
         "ja" : {
@@ -7025,7 +7025,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On-Device Siri"
+            "value" : "Siri no dispositivo"
           }
         },
         "zh-Hans" : {
@@ -7048,19 +7048,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On-Device Siri-Funktion deaktiviert. Starten Sie die Uhr neu, um sie neu zu laden."
+            "value" : "Siri auf dem Gerät: deaktiviert. Apple Watch neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad On-Device Siri desactivada. Reinicie el reloj para recargarlo."
+            "value" : "Siri en el dispositivo: estado desactivado. Reinicie el Apple Watch para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité On-Device Siri désactivée. Redémarrez la montre pour la recharger."
+            "value" : "Siri sur l’appareil: état désactivé. Redémarrez l’Apple Watch pour charger la modification."
           }
         },
         "ja" : {
@@ -7078,7 +7078,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade On-Device Siri desativada. Reinicie o relógio para recarregá-lo."
+            "value" : "Siri no dispositivo: estado desativado. Reinicie o Apple Watch para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -7101,19 +7101,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On-Device Siri-Funktion aktiviert. Starten Sie die Uhr neu, um sie neu zu laden."
+            "value" : "Siri auf dem Gerät: aktiviert. Apple Watch neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad On-Device Siri activada. Reinicie el reloj para recargarlo."
+            "value" : "Siri en el dispositivo: estado activado. Reinicie el Apple Watch para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité On-Device Siri activée. Redémarrez la montre pour la recharger."
+            "value" : "Siri sur l’appareil: état activé. Redémarrez l’Apple Watch pour charger la modification."
           }
         },
         "ja" : {
@@ -7131,7 +7131,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade On-Device Siri ativada. Reinicie o relógio para recarregá-lo."
+            "value" : "Siri no dispositivo: estado ativado. Reinicie o Apple Watch para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -7154,19 +7154,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On-Screen Keyboard"
+            "value" : "Bildschirmtastatur"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On-Screen Keyboard"
+            "value" : "Teclado en pantalla"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On-Screen Keyboard"
+            "value" : "Clavier à l’écran"
           }
         },
         "ja" : {
@@ -7184,7 +7184,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On-Screen Keyboard"
+            "value" : "Teclado na tela"
           }
         },
         "zh-Hans" : {
@@ -7207,19 +7207,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On-Screen Keyboard-Funktion deaktiviert. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Bildschirmtastatur: deaktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad On-Screen Keyboard desactivada. Reinicie Carousel para recargarlo."
+            "value" : "Teclado en pantalla: estado desactivado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité On-Screen Keyboard désactivée. Redémarrez Carousel pour le recharger."
+            "value" : "Clavier à l’écran: état désactivé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -7237,7 +7237,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade On-Screen Keyboard desativada. Reinicie Carousel para recarregá-lo."
+            "value" : "Teclado na tela: estado desativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -7260,19 +7260,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "On-Screen Keyboard-Funktion aktiviert. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Bildschirmtastatur: aktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad On-Screen Keyboard activada. Reinicie Carousel para recargarlo."
+            "value" : "Teclado en pantalla: estado activado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité On-Screen Keyboard activée. Redémarrez Carousel pour le recharger."
+            "value" : "Clavier à l’écran: état activé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -7290,7 +7290,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade On-Screen Keyboard ativada. Reinicie Carousel para recarregá-lo."
+            "value" : "Teclado na tela: estado ativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -7419,19 +7419,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Periodic Ambient Light Updates"
+            "value" : "Regelmäßige Umgebungslichtaktualisierung"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Periodic Ambient Light Updates"
+            "value" : "Actualización periódica de luz ambiental"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Periodic Ambient Light Updates"
+            "value" : "Mise à jour périodique de la lumière ambiante"
           }
         },
         "ja" : {
@@ -7449,7 +7449,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Periodic Ambient Light Updates"
+            "value" : "Atualizações periódicas da luz ambiente"
           }
         },
         "zh-Hans" : {
@@ -7472,19 +7472,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regelmäßige Aktualisierungen des Umgebungslichts deaktiviert. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Regelmäßige Umgebungslichtaktualisierung: deaktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Actualizaciones periódicas de luz ambiental desactivadas. Reinicie Carousel para recargarlo."
+            "value" : "Actualización periódica de luz ambiental: estado desactivado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Les mises à jour périodiques de la lumière ambiante sont désactivées. Redémarrez Carousel pour le recharger."
+            "value" : "Mise à jour périodique de la lumière ambiante: état désactivé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -7502,7 +7502,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atualizações periódicas de luz ambiente desativadas. Reinicie Carousel para recarregá-lo."
+            "value" : "Atualizações periódicas da luz ambiente: estado desativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -7525,19 +7525,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Regelmäßige Aktualisierungen des Umgebungslichts aktiviert. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Regelmäßige Umgebungslichtaktualisierung: aktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Actualizaciones periódicas de luz ambiental activadas. Reinicie Carousel para recargarlo."
+            "value" : "Actualización periódica de luz ambiental: estado activado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Mises à jour périodiques de la lumière ambiante activées. Redémarrez Carousel pour le recharger."
+            "value" : "Mise à jour périodique de la lumière ambiante: état activé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -7555,7 +7555,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Atualizações periódicas de luz ambiente ativadas. Reinicie Carousel para recarregá-lo."
+            "value" : "Atualizações periódicas da luz ambiente: estado ativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -7631,19 +7631,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raise to Speak"
+            "value" : "Zum Sprechen anheben"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raise to Speak"
+            "value" : "Levantar para hablar"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raise to Speak"
+            "value" : "Lever pour parler"
           }
         },
         "ja" : {
@@ -7661,7 +7661,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raise to Speak"
+            "value" : "Levantar para Falar"
           }
         },
         "zh-Hans" : {
@@ -7684,19 +7684,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raise to Speak ausgeschaltet. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Zum Sprechen anheben: deaktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raise to Speak apagado. Reinicie Carousel para recargarlo."
+            "value" : "Levantar para hablar: estado desactivado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raise to Speak éteint. Redémarrez Carousel pour le recharger."
+            "value" : "Lever pour parler: état désactivé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -7714,7 +7714,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raise to Speak desligado. Reinicie Carousel para recarregá-lo."
+            "value" : "Levantar para Falar: estado desativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -7737,19 +7737,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raise to Speak eingeschaltet. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Zum Sprechen anheben: aktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raise to Speak activado. Reinicie Carousel para recargarlo."
+            "value" : "Levantar para hablar: estado activado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raise to Speak activé. Redémarrez Carousel pour le recharger."
+            "value" : "Lever pour parler: état activé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -7767,7 +7767,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raise to Speak ativado. Reinicie Carousel para recarregá-lo."
+            "value" : "Levantar para Falar: estado ativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -7790,19 +7790,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raise Wrist to Wake"
+            "value" : "Beim Anheben aktivieren"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raise Wrist to Wake"
+            "value" : "Activar al levantar la muñeca"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raise Wrist to Wake"
+            "value" : "Activer au lever du poignet"
           }
         },
         "ja" : {
@@ -7820,7 +7820,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raise Wrist to Wake"
+            "value" : "Despertar ao levantar o pulso"
           }
         },
         "zh-Hans" : {
@@ -7843,19 +7843,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raise Wrist to Wake-Funktion deaktiviert. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Beim Anheben aktivieren: deaktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Raise Wrist to Wake desactivada. Reinicie Carousel para recargarlo."
+            "value" : "Activar al levantar la muñeca: estado desactivado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Raise Wrist to Wake désactivée. Redémarrez Carousel pour le recharger."
+            "value" : "Activer au lever du poignet: état désactivé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -7873,7 +7873,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Raise Wrist to Wake desativada. Reinicie Carousel para recarregá-lo."
+            "value" : "Despertar ao levantar o pulso: estado desativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -7896,19 +7896,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Raise Wrist to Wake-Funktion aktiviert. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Beim Anheben aktivieren: aktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Raise Wrist to Wake activada. Reinicie Carousel para recargarlo."
+            "value" : "Activar al levantar la muñeca: estado activado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Raise Wrist to Wake activée. Redémarrez Carousel pour le recharger."
+            "value" : "Activer au lever du poignet: état activé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -7926,7 +7926,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Raise Wrist to Wake ativada. Reinicie Carousel para recarregá-lo."
+            "value" : "Despertar ao levantar o pulso: estado ativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -8108,19 +8108,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Starten Sie Carousel neu, nachdem Sie eine Flächenfunktion geändert haben."
+            "value" : "Starte Carousel neu, nachdem du eine Zifferblattfunktion geändert hast."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reinicie Carousel después de cambiar la capacidad de una cara."
+            "value" : "Reinicia Carousel después de cambiar una función de esfera."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Redémarrez Carousel après avoir modifié une fonctionnalité de visage."
+            "value" : "Redémarrez Carousel après avoir modifié une fonction de cadran."
           }
         },
         "ja" : {
@@ -8138,7 +8138,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Reinicie Carousel após alterar a capacidade de uma face."
+            "value" : "Reinicie o Carousel após alterar um recurso de mostrador."
           }
         },
         "zh-Hans" : {
@@ -8214,7 +8214,7 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Stellen Sie MG wieder her"
+            "value" : "MG wiederherstellen"
           }
         },
         "es" : {
@@ -9115,19 +9115,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Siri AI benötigt watchOS 27, eine unterstützte Uhr und ein gekoppeltes Apple Intelligence iPhone. Audio Intelligence ist für Series 12 / Ultra 4-Hardware. Diese Flags können keine fehlende Hardware hinzufügen oder die Dienstberechtigung umgehen."
+            "value" : "Siri AI benötigt watchOS 27, eine unterstützte Apple Watch und ein gekoppeltes iPhone mit Apple Intelligence. Audio-Intelligenz erfordert Hardware der Series 12 oder Ultra 4. Diese Kennzeichen ergänzen keine fehlende Hardware und umgehen keine Dienstbeschränkungen."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Siri AI necesita watchOS 27, un reloj compatible y un iPhone Apple Intelligence emparejado. Audio Intelligence es para hardware Series 12 / Ultra 4. Estas banderas no pueden agregar hardware faltante ni eludir la elegibilidad del servicio."
+            "value" : "Siri AI requiere watchOS 27, un Apple Watch compatible y un iPhone enlazado con Apple Intelligence. Inteligencia de audio requiere hardware Series 12 o Ultra 4. Estos indicadores no añaden hardware ni omiten los requisitos del servicio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Siri AI nécessite watchOS 27, une montre prise en charge et un iPhone Apple Intelligence couplé. Audio Intelligence est destiné au matériel Series 12 / Ultra 4. Ces indicateurs ne peuvent pas ajouter de matériel manquant ni contourner l’éligibilité au service."
+            "value" : "Siri AI nécessite watchOS 27, une Apple Watch compatible et un iPhone jumelé avec Apple Intelligence. L’intelligence audio nécessite un matériel Series 12 ou Ultra 4. Ces indicateurs n’ajoutent pas de matériel et ne contournent pas les conditions d’accès aux services."
           }
         },
         "ja" : {
@@ -9145,7 +9145,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Siri AI precisa do watchOS 27, um relógio compatível e um iPhone Apple Intelligence emparelhado. Audio Intelligence é para hardware Series 12 / Ultra 4. Esses sinalizadores não podem adicionar hardware ausente ou ignorar a elegibilidade do serviço."
+            "value" : "A Siri AI requer watchOS 27, um Apple Watch compatível e um iPhone emparelhado com Apple Intelligence. A inteligência de áudio requer hardware Series 12 ou Ultra 4. Esses sinalizadores não adicionam hardware nem contornam os requisitos dos serviços."
           }
         },
         "zh-Hans" : {
@@ -9168,19 +9168,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Siri Listening Capability"
+            "value" : "Siri-Hörfunktion"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Siri Listening Capability"
+            "value" : "Capacidad de escucha de Siri"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Siri Listening Capability"
+            "value" : "Capacité d’écoute de Siri"
           }
         },
         "ja" : {
@@ -9198,7 +9198,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Siri Listening Capability"
+            "value" : "Capacidade de escuta da Siri"
           }
         },
         "zh-Hans" : {
@@ -9274,19 +9274,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Beginn des Nachschubs. Sehen Sie sich das App-Protokoll an, wenn nichts passiert."
+            "value" : "Die Benutzeroberfläche wird neu gestartet. Falls nichts passiert, prüfe das App-Protokoll."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Iniciando respring. Vea el registro de la aplicación si no sucede nada."
+            "value" : "Se está reiniciando la interfaz. Si no ocurre nada, consulta el registro de la app."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Commencer le ressort. Consultez le journal de l'application si rien ne se passe."
+            "value" : "L’interface redémarre. Si rien ne se passe, consultez le journal de l’app."
           }
         },
         "ja" : {
@@ -9304,7 +9304,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Começando a primavera. Veja o log do aplicativo se nada acontecer."
+            "value" : "A interface está reiniciando. Se nada acontecer, consulte o registro do app."
           }
         },
         "zh-Hans" : {
@@ -9380,19 +9380,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Swimming Workouts"
+            "value" : "Schwimmtrainings"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Swimming Workouts"
+            "value" : "Entrenamientos de natación"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Swimming Workouts"
+            "value" : "Entraînements de natation"
           }
         },
         "ja" : {
@@ -9410,7 +9410,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Swimming Workouts"
+            "value" : "Treinos de natação"
           }
         },
         "zh-Hans" : {
@@ -9433,19 +9433,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Swimming Workouts-Funktion deaktiviert. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Schwimmtrainings: deaktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Swimming Workouts desactivada. Reinicie Carousel para recargarlo."
+            "value" : "Entrenamientos de natación: estado desactivado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Swimming Workouts désactivée. Redémarrez Carousel pour le recharger."
+            "value" : "Entraînements de natation: état désactivé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -9463,7 +9463,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Swimming Workouts desativada. Reinicie Carousel para recarregá-lo."
+            "value" : "Treinos de natação: estado desativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -9486,19 +9486,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Swimming Workouts-Funktion aktiviert. Starten Sie Carousel neu, um es neu zu laden."
+            "value" : "Schwimmtrainings: aktiviert. Carousel neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidad Swimming Workouts activada. Reinicie Carousel para recargarlo."
+            "value" : "Entrenamientos de natación: estado activado. Reinicie Carousel para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacité Swimming Workouts activée. Redémarrez Carousel pour le recharger."
+            "value" : "Entraînements de natation: état activé. Redémarrez Carousel pour charger la modification."
           }
         },
         "ja" : {
@@ -9516,7 +9516,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Capacidade Swimming Workouts ativada. Reinicie Carousel para recarregá-lo."
+            "value" : "Treinos de natação: estado ativado. Reinicie o Carousel para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -9751,19 +9751,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra Faces"
+            "value" : "Ultra-Zifferblätter"
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra Faces"
+            "value" : "Esferas Ultra"
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra Faces"
+            "value" : "Cadrans Ultra"
           }
         },
         "ja" : {
@@ -9781,7 +9781,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra Faces"
+            "value" : "Mostradores Ultra"
           }
         },
         "zh-Hans" : {
@@ -9804,19 +9804,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra Faces ausgeschaltet. Starten Sie die Uhr neu, um sie neu zu laden."
+            "value" : "Ultra-Zifferblätter: deaktiviert. Apple Watch neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra Faces apagado. Reinicie el reloj para recargarlo."
+            "value" : "Esferas Ultra: estado desactivado. Reinicie el Apple Watch para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra Faces éteint. Redémarrez la montre pour la recharger."
+            "value" : "Cadrans Ultra: état désactivé. Redémarrez l’Apple Watch pour charger la modification."
           }
         },
         "ja" : {
@@ -9834,7 +9834,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra Faces desligado. Reinicie o relógio para recarregá-lo."
+            "value" : "Mostradores Ultra: estado desativado. Reinicie o Apple Watch para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -9857,19 +9857,19 @@
         "de" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra Faces eingeschaltet. Starten Sie die Uhr neu, um sie neu zu laden."
+            "value" : "Ultra-Zifferblätter: aktiviert. Apple Watch neu starten, um die Änderung zu laden."
           }
         },
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra Faces activado. Reinicie el reloj para recargarlo."
+            "value" : "Esferas Ultra: estado activado. Reinicie el Apple Watch para cargar el cambio."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra Faces activé. Redémarrez la montre pour la recharger."
+            "value" : "Cadrans Ultra: état activé. Redémarrez l’Apple Watch pour charger la modification."
           }
         },
         "ja" : {
@@ -9887,7 +9887,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra Faces ativado. Reinicie o relógio para recarregá-lo."
+            "value" : "Mostradores Ultra: estado ativado. Reinicie o Apple Watch para carregar a alteração."
           }
         },
         "zh-Hans" : {
@@ -10234,7 +10234,7 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ver caras"
+            "value" : "Esferas"
           }
         },
         "fr" : {
@@ -10764,13 +10764,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "El formato de caché de Ultra Faces no es compatible con esta compilación de watchOS."
+            "value" : "El formato de caché de Esferas Ultra no es compatible con esta compilación de watchOS."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Le format de cache Ultra Faces n’est pas pris en charge par cette version de watchOS."
+            "value" : "Le format de cache Cadrans Ultra n’est pas pris en charge par cette version de watchOS."
           }
         },
         "ja" : {
@@ -10788,7 +10788,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "O formato de cache de Ultra Faces não é compatível com esta compilação do watchOS."
+            "value" : "O formato de cache de Mostradores Ultra não é compatível com esta compilação do watchOS."
           }
         },
         "zh-Hans" : {
@@ -10870,13 +10870,13 @@
         "es" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "No se pudieron verificar los cambios de caché de Ultra Faces."
+            "value" : "No se pudieron verificar los cambios de caché de Esferas Ultra."
           }
         },
         "fr" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Les modifications du cache Ultra Faces n’ont pas pu être vérifiées."
+            "value" : "Les modifications du cache Cadrans Ultra n’ont pas pu être vérifiées."
           }
         },
         "ja" : {
@@ -10894,7 +10894,7 @@
         "pt" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Não foi possível verificar as alterações no cache de Ultra Faces."
+            "value" : "Não foi possível verificar as alterações no cache de Mostradores Ultra."
           }
         },
         "zh-Hans" : {
