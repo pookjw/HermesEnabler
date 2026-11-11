@@ -26,6 +26,8 @@ The `AdditionalIndexes` entries in `MGOffsets.plist` list only stored descriptor
 
 The Swimming Workouts key `cRjPy4Ef+KZwJ+nfPeBV5Q` has index `0xffff` in the analyzed libraries. It has no ordinary stored slot and is deliberately absent from the table. The screen width and height descriptors are also unstored in the analyzed `24S118` library. Their cache-derived answers can depend on other inputs; a preset is not proof of a device's native dimensions.
 
+The Watch Speaker Playback key `rJl1HTk57uav5OTZZAyc6g` (`DeviceSupportsWatchSpeakerPlayback`) is written only as a `CacheExtra` override. Its descriptor index and type have not been extracted from any analyzed library, so it is absent from the table and is not in the recoverable-key list: turning it off writes `false` rather than restoring an initial value. Whether a given watchOS build reads this key, and what it enables, has not been validated on a physical watch.
+
 `24R363` matches the `24R364` / `24R365` column for all 13 keys, including `W2RPjaqovtsgiRB6ScePGA` and `rb2tKZxlj0Gm2tBmUQSLqQ`. `24S5086l` matches the `24S118` / `24S132` / `24S5284h` column for all 13 keys. These are descriptor observations from each build's own physical OTA library; they do not extend the `RecoveryVerified` scope.
 
 Type `5` for the On-Device Siri descriptor must not be treated as evidence that its native value is a Boolean. The app only accepts an existing backup override of numeric 0 or 1 for the Boolean-toggle path; other values are rejected rather than coerced. The OTA descriptor observation does not validate every callback dependency, real-device access, or the original state of a particular watch.

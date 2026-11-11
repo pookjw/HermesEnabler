@@ -85,6 +85,7 @@ BOOL BQGetBatteryInformation(BOOL *enabled, NSString **err);
 BOOL BQGetAlwaysListening(BOOL *enabled, NSString **err);
 BOOL BQGetRotateToWake(BOOL *enabled, NSString **err);
 BOOL BQGetSwimmingWorkouts(BOOL *enabled, NSString **err);
+BOOL BQGetWatchSpeakerPlayback(BOOL *enabled, NSString **err);
 
 // Updates the corresponding CacheExtra capability overrides.
 BOOL BQSetAODSupport(BOOL enabled, NSString **err);
@@ -105,6 +106,7 @@ BOOL BQSetBatteryInformation(BOOL enabled, NSString **err);
 BOOL BQSetAlwaysListening(BOOL enabled, NSString **err);
 BOOL BQSetRotateToWake(BOOL enabled, NSString **err);
 BOOL BQSetSwimmingWorkouts(BOOL enabled, NSString **err);
+BOOL BQSetWatchSpeakerPlayback(BOOL enabled, NSString **err);
 
 // watchOS Intelligence / regional override fields. These fields are stored in
 // CacheExtra and are intentionally separate from the existing watch hardware
