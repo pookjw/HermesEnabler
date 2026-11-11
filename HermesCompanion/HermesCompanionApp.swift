@@ -29,24 +29,32 @@ struct ContentView: View {
     @State private var showingAlert = false
 
     var body: some View {
+
         ScrollView {
+
             VStack(alignment: .leading, spacing: 24) {
 
+                // Header
                 header
 
+                // App Title
                 Text("HermesEnabler")
                     .font(.system(size: 27, weight: .bold))
 
+                // Connected device
                 deviceSection
 
                 Divider()
 
+                // Backup status
                 backupSection
 
                 Divider()
 
+                // Actions
                 actionsSection
 
+                // Footer
                 Text("HermesEnabler Companion")
                     .font(.footnote)
                     .foregroundStyle(.secondary)
@@ -66,17 +74,18 @@ struct ContentView: View {
             .frame(maxWidth: .infinity)
         }
         .background(Color(uiColor: .systemBackground))
+
+        // Backup history
         .sheet(isPresented: $showingHistory) {
-            BackupHistoryView(
-                manager: watchManager,
-                onExport: { record in
-                    exportBackup(record)
-                }
-            )
+            BackupHistoryView(manager: watchManager)
         }
+
+        // Export from main screen
         .sheet(item: $shareURL) { item in
             ActivityViewController(activityItems: [item.url])
         }
+
+        // Main screen alerts only
         .alert("HermesEnabler", isPresented: $showingAlert) {
             Button("OK", role: .cancel) { }
         } message: {
@@ -87,7 +96,9 @@ struct ContentView: View {
     // MARK: - Header
 
     private var header: some View {
+
         HStack {
+
             Button {
                 watchManager.loadBackupHistory()
             } label: {
@@ -97,6 +108,7 @@ struct ContentView: View {
             Spacer()
 
             if watchManager.isReachable {
+
                 Label("Connecté", systemImage: "checkmark.circle.fill")
                     .foregroundStyle(.green)
                     .padding(.horizontal, 12)
@@ -113,6 +125,7 @@ struct ContentView: View {
                     .background(.orange.opacity(0.12), in: Capsule())
 
             } else {
+
                 Label("Non connecté", systemImage: "xmark.circle.fill")
                     .foregroundStyle(.secondary)
                     .padding(.horizontal, 12)
@@ -125,9 +138,11 @@ struct ContentView: View {
     // MARK: - Device
 
     private var deviceSection: some View {
+
         HStack(spacing: 20) {
 
             ZStack {
+
                 RoundedRectangle(cornerRadius: 20)
                     .fill(Color(uiColor: .secondarySystemBackground))
                     .frame(width: 108, height: 108)
@@ -167,6 +182,7 @@ struct ContentView: View {
     // MARK: - Backup Section
 
     private var backupSection: some View {
+
         VStack(alignment: .leading, spacing: 20) {
 
             Text("MobileGestalt Backup")
@@ -191,10 +207,12 @@ struct ContentView: View {
                         .foregroundStyle(.secondary)
                         .textSelection(.enabled)
 
-                    Text(latest.date.formatted(
-                        date: .abbreviated,
-                        time: .shortened
-                    ))
+                    Text(
+                        latest.date.formatted(
+                            date: .abbreviated,
+                            time: .shortened
+                        )
+                    )
                     .font(.system(size: 14))
                     .foregroundStyle(.secondary)
 
@@ -227,6 +245,7 @@ struct ContentView: View {
                 .buttonStyle(.bordered)
 
             } else {
+
                 Text("Aucune sauvegarde enregistrée sur l'iPhone.")
                     .foregroundStyle(.secondary)
             }
@@ -236,6 +255,7 @@ struct ContentView: View {
     // MARK: - Actions
 
     private var actionsSection: some View {
+
         VStack(alignment: .leading, spacing: 22) {
 
             BackupActionRow(
@@ -243,6 +263,7 @@ struct ContentView: View {
                 title: "Exporter la dernière sauvegarde",
                 color: .green
             ) {
+
                 guard let latest = watchManager.latestBackup else {
                     showMessage("Aucune sauvegarde à exporter.")
                     return
@@ -255,6 +276,7 @@ struct ContentView: View {
                 icon: "clock.arrow.circlepath",
                 title: "Historique des sauvegardes"
             ) {
+
                 watchManager.loadBackupHistory()
                 showingHistory = true
             }
@@ -263,6 +285,7 @@ struct ContentView: View {
                 icon: "checkmark.shield",
                 title: "Vérifier toutes les sauvegardes"
             ) {
+
                 verifyAllBackups()
             }
         }
@@ -273,29 +296,39 @@ struct ContentView: View {
     private func verifyBackup(
         _ record: WatchConnectivityManager.BackupRecord
     ) {
+
         switch watchManager.verifyBackup(record) {
 
         case .valid:
+
             showMessage(
                 "Intégrité confirmée.\n\n" +
                 "Le SHA-256 correspond à l'empreinte enregistrée."
             )
 
         case .invalid:
+
             showMessage(
                 "ATTENTION : le SHA-256 ne correspond plus.\n\n" +
                 "Le fichier a peut-être été modifié ou endommagé."
             )
 
         case .missing:
-            showMessage("Le fichier de sauvegarde est introuvable.")
+
+            showMessage(
+                "Le fichier de sauvegarde est introuvable."
+            )
 
         case .error(let message):
-            showMessage("Erreur de vérification : \(message)")
+
+            showMessage(
+                "Erreur de vérification : \(message)"
+            )
         }
     }
 
     private func verifyAllBackups() {
+
         guard !watchManager.backups.isEmpty else {
             showMessage("Aucune sauvegarde à vérifier.")
             return
@@ -307,13 +340,18 @@ struct ContentView: View {
         var errors = 0
 
         for record in watchManager.backups {
+
             switch watchManager.verifyBackup(record) {
+
             case .valid:
                 valid += 1
+
             case .invalid:
                 invalid += 1
+
             case .missing:
                 missing += 1
+
             case .error:
                 errors += 1
             }
@@ -334,6 +372,7 @@ struct ContentView: View {
     private func exportBackup(
         _ record: WatchConnectivityManager.BackupRecord
     ) {
+
         guard let url = watchManager.exportURL(for: record) else {
             showMessage("Impossible de trouver le fichier à exporter.")
             return
@@ -345,6 +384,7 @@ struct ContentView: View {
     // MARK: - Alert
 
     private func showMessage(_ message: String) {
+
         alertMessage = message
         showingAlert = true
     }
@@ -353,6 +393,7 @@ struct ContentView: View {
 // MARK: - Share Item
 
 struct ShareItem: Identifiable {
+
     let id = UUID()
     let url: URL
 }
@@ -389,21 +430,31 @@ struct BackupHistoryView: View {
 
     @ObservedObject var manager: WatchConnectivityManager
 
-    let onExport: (WatchConnectivityManager.BackupRecord) -> Void
-
     @Environment(\.dismiss) private var dismiss
 
-    @State private var selectedRecord:
-        WatchConnectivityManager.BackupRecord?
-
-    @State private var verificationMessage = ""
-    @State private var showingVerification = false
+    @State private var shareURL: ShareItem?
+    @State private var verificationMessage: String?
 
     var body: some View {
+
         NavigationStack {
+
             List {
 
+                // Verification result
+                if let message = verificationMessage {
+
+                    Section {
+                        Text(message)
+                            .font(.footnote)
+                            .foregroundStyle(.secondary)
+                            .textSelection(.enabled)
+                    }
+                }
+
+                // Empty history
                 if manager.backups.isEmpty {
+
                     ContentUnavailableView(
                         "Aucune sauvegarde",
                         systemImage: "externaldrive",
@@ -413,21 +464,26 @@ struct BackupHistoryView: View {
                     )
                 }
 
+                // Backup records
                 ForEach(manager.backups) { record in
+
                     VStack(alignment: .leading, spacing: 10) {
 
                         Text(record.fileName)
                             .font(.system(size: 14, weight: .semibold))
                             .textSelection(.enabled)
 
-                        Text(record.date.formatted(
-                            date: .abbreviated,
-                            time: .shortened
-                        ))
+                        Text(
+                            record.date.formatted(
+                                date: .abbreviated,
+                                time: .shortened
+                            )
+                        )
                         .font(.system(size: 13))
                         .foregroundStyle(.secondary)
 
                         HStack {
+
                             Text(record.formattedSize)
 
                             Spacer()
@@ -451,18 +507,39 @@ struct BackupHistoryView: View {
 
                         HStack {
 
+                            // Verify
                             Button {
                                 verify(record)
                             } label: {
-                                Label("Vérifier", systemImage: "checkmark.shield")
+                                Label(
+                                    "Vérifier",
+                                    systemImage: "checkmark.shield"
+                                )
                             }
 
                             Spacer()
 
+                            // Export
                             Button {
-                                onExport(record)
+
+                                guard let url = manager.exportURL(
+                                    for: record
+                                ) else {
+
+                                    verificationMessage =
+                                        "Impossible de trouver le fichier."
+
+                                    return
+                                }
+
+                                shareURL = ShareItem(url: url)
+
                             } label: {
-                                Label("Exporter", systemImage: "square.and.arrow.up")
+
+                                Label(
+                                    "Exporter",
+                                    systemImage: "square.and.arrow.up"
+                                )
                             }
                         }
                         .font(.system(size: 13, weight: .medium))
@@ -473,45 +550,53 @@ struct BackupHistoryView: View {
             .navigationTitle("Historique")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+
                 ToolbarItem(placement: .topBarTrailing) {
+
                     Button("Fermer") {
                         dismiss()
                     }
                 }
             }
-            .alert(
-                "Vérification SHA-256",
-                isPresented: $showingVerification
-            ) {
-                Button("OK", role: .cancel) { }
-            } message: {
-                Text(verificationMessage)
-            }
+        }
+
+        // Share sheet attached to history
+        .sheet(item: $shareURL) { item in
+
+            ActivityViewController(
+                activityItems: [item.url]
+            )
         }
     }
+
+    // MARK: - Verification
 
     private func verify(
         _ record: WatchConnectivityManager.BackupRecord
     ) {
+
         switch manager.verifyBackup(record) {
 
         case .valid:
+
             verificationMessage =
                 "Intégrité confirmée : le SHA-256 correspond."
 
         case .invalid:
+
             verificationMessage =
                 "ATTENTION : le fichier ne correspond plus à son empreinte."
 
         case .missing:
+
             verificationMessage =
                 "Le fichier est introuvable."
 
         case .error(let message):
-            verificationMessage = message
-        }
 
-        showingVerification = true
+            verificationMessage =
+                "Erreur de vérification : \(message)"
+        }
     }
 }
 
@@ -525,8 +610,11 @@ struct BackupStatusRow: View {
     let color: Color
 
     var body: some View {
+
         HStack {
+
             VStack(alignment: .leading, spacing: 7) {
+
                 Text(title)
                     .font(.system(size: 19, weight: .semibold))
 
@@ -557,8 +645,11 @@ struct BackupActionRow: View {
     let action: () -> Void
 
     var body: some View {
+
         Button(action: action) {
+
             HStack(spacing: 13) {
+
                 Image(systemName: icon)
                     .font(.system(size: 20, weight: .medium))
                     .foregroundStyle(color)
