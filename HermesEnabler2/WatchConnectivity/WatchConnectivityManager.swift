@@ -19,19 +19,29 @@ final class WatchConnectivityManager: NSObject, WCSessionDelegate {
     }
 
     func activate() {
-        guard WCSession.isSupported() else { return }
+        guard WCSession.isSupported() else {
+            print("[WC] WatchConnectivity not supported")
+            return
+        }
 
         let session = WCSession.default
         session.delegate = self
         session.activate()
+
+        print("[WC] Activation requested")
     }
 
     func sendDeviceInformation() {
         let session = WCSession.default
 
-        guard session.activationState == .activated else { return }
+        guard session.activationState == .activated else {
+            print("[WC] Session not activated")
+            return
+        }
 
         let device = WKInterfaceDevice.current()
+        let hardware = hardwareIdentifier()
+        let build = systemBuild()
 
         var information: [String: Any] = [
             "deviceName": device.name,
@@ -39,27 +49,30 @@ final class WatchConnectivityManager: NSObject, WCSessionDelegate {
             "localizedModel": device.localizedModel,
             "systemName": device.systemName,
             "systemVersion": device.systemVersion,
-            "hardwareIdentifier": hardwareIdentifier(),
+            "hardwareIdentifier": hardware,
             "timestamp": Date().timeIntervalSince1970
         ]
 
-        if let build = systemBuild() {
+        if let build {
             information["build"] = build
         }
 
+        print("[WC] Sending information: \(information)")
+
         do {
             try session.updateApplicationContext(information)
+            print("[WC] Application context updated")
         } catch {
-            print("WatchConnectivity error: \(error)")
+            print("[WC] Sending error: \(error.localizedDescription)")
         }
     }
 
     private func hardwareIdentifier() -> String {
-        return sysctlValue("hw.machine") ?? "Unknown"
+        sysctlValue("hw.machine") ?? "Unknown"
     }
 
     private func systemBuild() -> String? {
-        return sysctlValue("kern.osversion")
+        sysctlValue("kern.osversion")
     }
 
     private func sysctlValue(_ key: String) -> String? {
@@ -86,12 +99,21 @@ final class WatchConnectivityManager: NSObject, WCSessionDelegate {
         activationDidCompleteWith activationState: WCSessionActivationState,
         error: Error?
     ) {
+        print("[WC] Activation state: \(activationState.rawValue)")
+
+        if let error {
+            print("[WC] Activation error: \(error.localizedDescription)")
+            return
+        }
+
         if activationState == .activated {
             sendDeviceInformation()
         }
     }
 
     func sessionReachabilityDidChange(_ session: WCSession) {
+        print("[WC] Reachability: \(session.isReachable)")
+
         if session.isReachable {
             sendDeviceInformation()
         }
@@ -101,6 +123,6 @@ final class WatchConnectivityManager: NSObject, WCSessionDelegate {
         _ session: WCSession,
         didReceiveMessage message: [String: Any]
     ) {
-        print("Message received from iPhone: \(message)")
+        print("[WC] Message received: \(message)")
     }
 }

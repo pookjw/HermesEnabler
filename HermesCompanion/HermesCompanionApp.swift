@@ -73,19 +73,19 @@ struct ContentView: View {
             if watchManager.isReachable {
                 Label("Connecté", systemImage: "checkmark.circle.fill")
                     .foregroundStyle(.green)
-                    .padding(.horizontal, 13)
+                    .padding(.horizontal, 12)
                     .padding(.vertical, 8)
                     .background(.green.opacity(0.12), in: Capsule())
             } else if watchManager.isPaired && watchManager.isWatchAppInstalled {
                 Label("Montre associée", systemImage: "applewatch")
                     .foregroundStyle(.orange)
-                    .padding(.horizontal, 13)
+                    .padding(.horizontal, 12)
                     .padding(.vertical, 8)
                     .background(.orange.opacity(0.12), in: Capsule())
             } else {
                 Label("Non connecté", systemImage: "xmark.circle.fill")
                     .foregroundStyle(.secondary)
-                    .padding(.horizontal, 13)
+                    .padding(.horizontal, 12)
                     .padding(.vertical, 8)
                     .background(.secondary.opacity(0.12), in: Capsule())
             }
