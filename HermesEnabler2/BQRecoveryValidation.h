@@ -5,6 +5,13 @@
 #include <stdint.h>
 #include <string.h>
 
+static inline bool BQUltraAlternativeStateIsValid(uint32_t current, uint32_t original, uint32_t enabled,
+                                             uint32_t expectedOriginal, bool currentPresent,
+                                             bool originalPresent, bool hasCurrentOverride, bool hasOriginalOverride) {
+    return currentPresent && originalPresent && !hasCurrentOverride && !hasOriginalOverride &&
+        original == expectedOriginal && (current == expectedOriginal || current == enabled);
+}
+
 static inline bool BQRecoveryParseDeviceBrand(const uint8_t *bytes, size_t length, uint8_t maxBrand, int32_t *brandOut) {
     if (!bytes || length < 4 || !brandOut || maxBrand < 1) return false;
     uint8_t value = bytes[2];

@@ -23,9 +23,9 @@ This is **not** a claim that every MG key requires an offset. Most Boolean featu
 | Logical key | Opaque `CacheExtra` identifier | Activation value | Current treatment |
 | --- | --- | ---: | --- |
 | `DeviceBrand` | `fuKL2rMywRgQF1wowOA/cg` | `1` | Write the four-byte value at `DeviceBrandOffset`; remove this override when enabling. |
-| `main-screen-class` | `fdh+s6j3VijuyrK7xLjd7g` | `29` | Write the four-byte value at `ScreenClassOffset`; remove this override when enabling. |
+| `main-screen-class` | `fdh+s6j3VijuyrK7xLjd7g` | `29` (existing) or `38` (alternative) | Write the selected four-byte value at `ScreenClassOffset`; remove this override when enabling. |
 
-These values are **activation overrides**, not factory defaults. See [`MGDefaults.plist`](../../HermesEnabler2/MGDefaults.plist). Neither a value of `29` nor a visible switch proves that all face bundles, layouts, or compatibility checks are satisfied.
+These values are **activation overrides**, not factory defaults. The `38` alternative is offered only on the five analyzed builds; `24R359` remains limited to the existing `29` because its physical OTA was not verified. See [`MGDefaults.plist`](../../HermesEnabler2/MGDefaults.plist). Neither a value of `29` nor a visible switch proves that all face bundles, layouts, or compatibility checks are satisfied.
 
 ## Layouts recorded in the app
 

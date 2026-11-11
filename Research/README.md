@@ -6,6 +6,7 @@ These notes document the investigation behind HermesEnabler2 as of **2026-11-12*
 - [Recovery and backups](Recovery/README.md) — how recovery candidates are derived, how backups are used, and what remains unverified.
 - [Physical OTA research and reproduction](OTA/README.md) — source material, integrity checks, artifact provenance, and a repeatable analysis workflow.
 - [Watch face availability](WatchFaces/README.md) — the Hermès and Ultra face investigation and its unresolved questions.
+- [HealthKit input probe](HealthKitProbe/README.md) — a separate, read-only research app and its limitations.
 
 The OTA files and generated analysis reports are not part of this repository. Paths in the OTA note describe the original research machine and must be replaced on another machine. Never publish a device's MobileGestalt backup, region, serial number, or other device-specific data as part of a research report.
 
