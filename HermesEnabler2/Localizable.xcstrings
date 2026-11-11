@@ -288,13 +288,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "絶対高度計 機能がオフになりました。 Carousel を再起動してリロードします。"
+            "value" : "絶対高度計機能がオフになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "절대 고도계 기능이 꺼졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "절대 고도계 기능이 꺼졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -306,13 +306,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "绝对高度计 功能已关闭。重启Carousel即可重新加载。"
+            "value" : "绝对高度计功能已关闭。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "絕對高度計 功能已關閉。重啟Carousel即可重新載入。"
+            "value" : "絕對高度計功能已關閉。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -341,13 +341,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "絶対高度計 機能がオンになりました。 Carousel を再起動してリロードします。"
+            "value" : "絶対高度計機能がオンになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "절대 고도계 기능이 켜져 있습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "절대 고도계 기능이 켜져 있습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -359,13 +359,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "绝对高度计 功能已打开。重启Carousel即可重新加载。"
+            "value" : "绝对高度计功能已开启。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "絕對高度計 功能已開啟。重啟Carousel即可重新載入。"
+            "value" : "絕對高度計功能已開啟。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -447,13 +447,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "アクションボタン がオフになりました。 Carousel を再起動してリロードします。"
+            "value" : "アクションボタンがオフになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "동작 버튼가 꺼졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "동작 버튼이 꺼졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -465,13 +465,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "操作按钮 已关闭。重启Carousel即可重新加载。"
+            "value" : "操作按钮已关闭。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "動作按鈕 已關閉。重啟Carousel即可重新載入。"
+            "value" : "動作按鈕已關閉。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -500,13 +500,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "アクションボタン がオンになりました。 Carousel を再起動してリロードします。"
+            "value" : "アクションボタンがオンになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "동작 버튼가 켜져 있습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "동작 버튼이 켜져 있습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -518,13 +518,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "操作按钮 已打开。重启Carousel即可重新加载。"
+            "value" : "操作按钮已开启。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "動作按鈕 已開啟。重啟Carousel即可重新載入。"
+            "value" : "動作按鈕已開啟。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -553,13 +553,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "常時聞き取り 機能がオフになりました。 Carousel を再起動してリロードします。 Siri 設定とサポートされているオーディオ ハードウェアは引き続き適用されます。"
+            "value" : "常時聞き取り機能がオフになりました。 Carouselを再起動してください。 Siri 設定とサポートされているオーディオ ハードウェアは引き続き適用されます。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "항상 듣기 기능이 꺼졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요. Siri 설정 및 지원되는 오디오 하드웨어가 계속 적용됩니다."
+            "value" : "항상 듣기 기능이 꺼졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요. Siri 설정 및 지원되는 오디오 하드웨어가 계속 적용됩니다."
           }
         },
         "pt" : {
@@ -571,13 +571,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "持续聆听 功能已关闭。重启Carousel即可重新加载。 Siri 设置和支持的音频硬件仍然适用。"
+            "value" : "持续聆听功能已关闭。重新启动 Carousel 即可重新加载。Siri 设置和支持的音频硬件仍然适用。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "持續聆聽 功能已關閉。重啟Carousel即可重新載入。 Siri 設定和支援的音訊硬體仍然適用。"
+            "value" : "持續聆聽功能已關閉。重新啟動 Carousel 即可重新載入。Siri 設定和支援的音訊硬體仍然適用。"
           }
         }
       }
@@ -606,13 +606,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "常時聞き取り 機能がオンになりました。 Carousel を再起動してリロードします。 Siri 設定とサポートされているオーディオ ハードウェアは引き続き適用されます。"
+            "value" : "常時聞き取り機能がオンになりました。 Carouselを再起動してください。 Siri 設定とサポートされているオーディオ ハードウェアは引き続き適用されます。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "항상 듣기 기능이 켜져 있습니다. 다시 로드하려면 Carousel를 다시 시작하세요. Siri 설정 및 지원되는 오디오 하드웨어가 계속 적용됩니다."
+            "value" : "항상 듣기 기능이 켜져 있습니다. 다시 로드하려면 Carousel을 다시 시작하세요. Siri 설정 및 지원되는 오디오 하드웨어가 계속 적용됩니다."
           }
         },
         "pt" : {
@@ -624,13 +624,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "持续聆听 功能已打开。重启Carousel即可重新加载。 Siri 设置和支持的音频硬件仍然适用。"
+            "value" : "持续聆听功能已开启。重新启动 Carousel 即可重新加载。Siri 设置和支持的音频硬件仍然适用。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "持續聆聽 功能已開啟。重啟Carousel即可重新載入。 Siri 設定和支援的音訊硬體仍然適用。"
+            "value" : "持續聆聽功能已開啟。重新啟動 Carousel 即可重新載入。Siri 設定和支援的音訊硬體仍然適用。"
           }
         }
       }
@@ -712,13 +712,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "常時表示コンパス 機能がオフになりました。 Carousel を再起動してリロードします。"
+            "value" : "常時表示コンパス機能がオフになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "상시 표시 나침반 기능이 꺼졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "상시 표시 나침반 기능이 꺼졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -730,13 +730,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "常显指南针 功能已关闭。重启Carousel即可重新加载。"
+            "value" : "常显指南针功能已关闭。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "常顯指南針 功能已關閉。重啟Carousel即可重新載入。"
+            "value" : "常顯指南針功能已關閉。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -765,13 +765,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "常時表示コンパス 機能がオンになりました。 Carousel を再起動してリロードします。"
+            "value" : "常時表示コンパス機能がオンになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "상시 표시 나침반 기능이 켜져 있습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "상시 표시 나침반 기능이 켜져 있습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -783,13 +783,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "常显指南针 功能已打开。重启Carousel即可重新加载。"
+            "value" : "常显指南针功能已开启。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "常顯指南針 功能已開啟。重啟Carousel即可重新載入。"
+            "value" : "常顯指南針功能已開啟。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -1153,7 +1153,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "已打开 AOD 1 Hz。请重新启动 Carousel；表盘须支持在全天候显示模式下显示秒数。"
+            "value" : "已开启 AOD 1 Hz。请重新启动 Carousel；表盘须支持在全天候显示模式下显示秒数。"
           }
         },
         "zh-Hant" : {
@@ -1188,13 +1188,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD がオフになりました。 Carousel を再起動してリロードします。"
+            "value" : "AOD がオフになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD가 꺼졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "AOD가 꺼졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -1206,13 +1206,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD 已关闭。重启Carousel即可重新加载。"
+            "value" : "AOD 已关闭。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD 已關閉。重啟Carousel即可重新載入。"
+            "value" : "AOD 已關閉。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -1241,13 +1241,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD がオンになりました。 Carousel を再起動してリロードします。"
+            "value" : "AOD がオンになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD가 켜졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "AOD가 켜졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -1259,13 +1259,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD 已打开。重启Carousel即可重新加载。"
+            "value" : "AOD 已开启。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "AOD 已開啟。重啟Carousel即可重新載入。"
+            "value" : "AOD 已開啟。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -1347,13 +1347,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "常にオンの鮮やかさ 機能がオフになりました。 Carousel を再起動してリロードします。"
+            "value" : "常にオンの鮮やかさ機能がオフになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "화면 상시표시 선명도 기능이 꺼졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "화면 상시표시 선명도 기능이 꺼졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -1365,13 +1365,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "全天候显示色彩鲜艳度 功能已关闭。重启Carousel即可重新加载。"
+            "value" : "全天候显示色彩鲜艳度功能已关闭。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "永遠顯示色彩鮮明度 功能已關閉。重啟Carousel即可重新載入。"
+            "value" : "永遠顯示色彩鮮明度功能已關閉。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -1400,13 +1400,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "常にオンの鮮やかさ 機能がオンになりました。 Carousel を再起動してリロードします。"
+            "value" : "常にオンの鮮やかさ機能がオンになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "화면 상시표시 선명도 기능이 켜져 있습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "화면 상시표시 선명도 기능이 켜져 있습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -1418,13 +1418,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "全天候显示色彩鲜艳度 功能已打开。重启Carousel即可重新加载。"
+            "value" : "全天候显示色彩鲜艳度功能已开启。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "永遠顯示色彩鮮明度 功能已開啟。重啟Carousel即可重新載入。"
+            "value" : "永遠顯示色彩鮮明度功能已開啟。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -1506,7 +1506,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apple Intelligence 機能がオフになりました。時計を再起動してリロードします。"
+            "value" : "Apple Intelligence 機能がオフになりました。Apple Watchを再起動してください。"
           }
         },
         "ko" : {
@@ -1524,13 +1524,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apple Intelligence 功能已关闭。重启手表即可重新加载。"
+            "value" : "Apple Intelligence 功能已关闭。重新启动手表即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apple Intelligence 功能已關閉。重啟手錶即可重新裝填。"
+            "value" : "Apple Intelligence 功能已關閉。重新啟動手錶即可重新載入。"
           }
         }
       }
@@ -1559,7 +1559,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apple Intelligence 機能がオンになりました。時計を再起動してリロードします。"
+            "value" : "Apple Intelligence 機能がオンになりました。Apple Watchを再起動してください。"
           }
         },
         "ko" : {
@@ -1577,13 +1577,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apple Intelligence 功能已打开。重启手表即可重新加载。"
+            "value" : "Apple Intelligence 功能已开启。重新启动手表即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Apple Intelligence 功能已開啟。重啟手錶即可重新裝填。"
+            "value" : "Apple Intelligence 功能已開啟。重新啟動手錶即可重新載入。"
           }
         }
       }
@@ -1665,7 +1665,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "オーディオインテリジェンス 機能がオフになりました。時計を再起動してリロードします。"
+            "value" : "オーディオインテリジェンス機能がオフになりました。Apple Watchを再起動してください。"
           }
         },
         "ko" : {
@@ -1683,13 +1683,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "音频智能 功能已关闭。重启手表即可重新加载。"
+            "value" : "音频智能功能已关闭。重新启动手表即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "音訊智能 功能已關閉。重啟手錶即可重新裝填。"
+            "value" : "音訊智能功能已關閉。重新啟動手錶即可重新載入。"
           }
         }
       }
@@ -1718,7 +1718,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "オーディオインテリジェンス 機能がオンになりました。時計を再起動してリロードします。"
+            "value" : "オーディオインテリジェンス機能がオンになりました。Apple Watchを再起動してください。"
           }
         },
         "ko" : {
@@ -1736,13 +1736,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "音频智能 功能已打开。重启手表即可重新加载。"
+            "value" : "音频智能功能已开启。重新启动手表即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "音訊智能 功能已開啟。重啟手錶即可重新裝填。"
+            "value" : "音訊智能功能已開啟。重新啟動手錶即可重新載入。"
           }
         }
       }
@@ -2354,13 +2354,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "バッテリー情報 機能がオフになりました。 Carousel を再起動してリロードします。"
+            "value" : "バッテリー情報機能がオフになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "배터리 정보 기능이 꺼졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "배터리 정보 기능이 꺼졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -2372,13 +2372,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "电池信息 功能已关闭。重启Carousel即可重新加载。"
+            "value" : "电池信息功能已关闭。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "電池資訊 功能已關閉。重啟Carousel即可重新載入。"
+            "value" : "電池資訊功能已關閉。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -2407,13 +2407,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "バッテリー情報 機能がオンになりました。 Carousel を再起動してリロードします。"
+            "value" : "バッテリー情報機能がオンになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "배터리 정보 기능이 켜져 있습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "배터리 정보 기능이 켜져 있습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -2425,13 +2425,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "电池信息 功能已打开。重启Carousel即可重新加载。"
+            "value" : "电池信息功能已开启。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "電池資訊 功能已開啟。重啟Carousel即可重新載入。"
+            "value" : "電池資訊功能已開啟。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -2989,13 +2989,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "コンパスのオリエンテーリング がオフになりました。 Carousel を再起動してリロードします。"
+            "value" : "コンパスのオリエンテーリングがオフになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "나침반 방향 탐색가 꺼졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "나침반 방향 탐색이 꺼졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -3007,13 +3007,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "指南针定向 已关闭。重启Carousel即可重新加载。"
+            "value" : "指南针定向已关闭。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "指南針定向 已關閉。重啟Carousel即可重新載入。"
+            "value" : "指南針定向已關閉。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -3042,13 +3042,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "コンパスのオリエンテーリング がオンになりました。 Carousel を再起動してリロードします。"
+            "value" : "コンパスのオリエンテーリングがオンになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "나침반 방향 탐색가 켜져 있습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "나침반 방향 탐색이 켜져 있습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -3060,13 +3060,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "指南针定向 已打开。重启Carousel即可重新加载。"
+            "value" : "指南针定向已开启。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "指南針定向 已開啟。重啟Carousel即可重新載入。"
+            "value" : "指南針定向已開啟。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -3148,13 +3148,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "継続的な心拍数測定 がオフになりました。 Carousel を再起動してリロードします。センサーのハードウェアとヘルス設定は引き続き適用されます。"
+            "value" : "継続的な心拍数測定がオフになりました。 Carouselを再起動してください。センサーのハードウェアとヘルス設定は引き続き適用されます。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "연속 심박수 측정가 꺼졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요. 센서 하드웨어 및 상태 설정은 계속 적용됩니다."
+            "value" : "연속 심박수 측정이 꺼졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요. 센서 하드웨어 및 건강 앱 설정은 계속 적용됩니다."
           }
         },
         "pt" : {
@@ -3166,13 +3166,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "连续心率监测 已关闭。重启Carousel即可重新加载。传感器硬件和运行状况设置仍然适用。"
+            "value" : "连续心率监测已关闭。重新启动 Carousel 即可重新加载。传感器硬件和“健康”设置仍然适用。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "連續心率監測 已關閉。重啟Carousel即可重新載入。感測器硬體和運作狀況設定仍然適用。"
+            "value" : "連續心率監測已關閉。重新啟動 Carousel 即可重新載入。感測器硬體和「健康」設定仍然適用。"
           }
         }
       }
@@ -3201,13 +3201,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "継続的な心拍数測定 がオンになりました。 Carousel を再起動してリロードします。センサーのハードウェアとヘルス設定は引き続き適用されます。"
+            "value" : "継続的な心拍数測定がオンになりました。 Carouselを再起動してください。センサーのハードウェアとヘルス設定は引き続き適用されます。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "연속 심박수 측정가 켜져 있습니다. 다시 로드하려면 Carousel를 다시 시작하세요. 센서 하드웨어 및 상태 설정은 계속 적용됩니다."
+            "value" : "연속 심박수 측정이 켜져 있습니다. 다시 로드하려면 Carousel을 다시 시작하세요. 센서 하드웨어 및 건강 앱 설정은 계속 적용됩니다."
           }
         },
         "pt" : {
@@ -3219,13 +3219,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "连续心率监测 已打开。重启Carousel即可重新加载。传感器硬件和运行状况设置仍然适用。"
+            "value" : "连续心率监测已开启。重新启动 Carousel 即可重新加载。传感器硬件和“健康”设置仍然适用。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "連續心率監測 已打开。重啟Carousel即可重新載入。感測器硬體和運作狀況設定仍然適用。"
+            "value" : "連續心率監測已開啟。重新啟動 Carousel 即可重新載入。感測器硬體和「健康」設定仍然適用。"
           }
         }
       }
@@ -3360,7 +3360,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "絶対高度計 機能を更新できませんでした。"
+            "value" : "絶対高度計機能を更新できませんでした。"
           }
         },
         "ko" : {
@@ -3378,13 +3378,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法更新 绝对高度计 功能。"
+            "value" : "无法更新 绝对高度计功能。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法更新 絕對高度計 功能。"
+            "value" : "無法更新 絕對高度計功能。"
           }
         }
       }
@@ -3413,7 +3413,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "アクションボタン 機能を更新できませんでした。"
+            "value" : "アクションボタン機能を更新できませんでした。"
           }
         },
         "ko" : {
@@ -3431,13 +3431,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法更新 操作按钮 功能。"
+            "value" : "无法更新 操作按钮功能。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法更新 動作按鈕 功能。"
+            "value" : "無法更新 動作按鈕功能。"
           }
         }
       }
@@ -3466,7 +3466,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "常時聞き取り 機能を更新できませんでした。"
+            "value" : "常時聞き取り機能を更新できませんでした。"
           }
         },
         "ko" : {
@@ -3484,13 +3484,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法更新 持续聆听 功能。"
+            "value" : "无法更新 持续聆听功能。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法更新 持續聆聽 功能。"
+            "value" : "無法更新 持續聆聽功能。"
           }
         }
       }
@@ -3519,7 +3519,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "常時表示コンパス 機能を更新できませんでした。"
+            "value" : "常時表示コンパス機能を更新できませんでした。"
           }
         },
         "ko" : {
@@ -3537,13 +3537,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法更新 常显指南针 功能。"
+            "value" : "无法更新 常显指南针功能。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法更新 常顯指南針 功能。"
+            "value" : "無法更新 常顯指南針功能。"
           }
         }
       }
@@ -3643,13 +3643,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法更新 AOD 功能。"
+            "value" : "无法更新AOD功能。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法更新 AOD 功能。"
+            "value" : "無法更新AOD功能。"
           }
         }
       }
@@ -3731,7 +3731,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "常にオンの鮮やかさ 機能を更新できませんでした。"
+            "value" : "常にオンの鮮やかさ機能を更新できませんでした。"
           }
         },
         "ko" : {
@@ -3749,13 +3749,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法更新 全天候显示色彩鲜艳度 功能。"
+            "value" : "无法更新 全天候显示色彩鲜艳度功能。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法更新 永遠顯示色彩鮮明度 功能。"
+            "value" : "無法更新 永遠顯示色彩鮮明度功能。"
           }
         }
       }
@@ -3802,13 +3802,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法更新 Apple Intelligence 功能。"
+            "value" : "无法更新Apple Intelligence功能。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法更新 Apple Intelligence 功能。"
+            "value" : "無法更新Apple Intelligence功能。"
           }
         }
       }
@@ -3837,7 +3837,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "オーディオインテリジェンス 機能を更新できませんでした。"
+            "value" : "オーディオインテリジェンス機能を更新できませんでした。"
           }
         },
         "ko" : {
@@ -3855,13 +3855,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法更新 音频智能 功能。"
+            "value" : "无法更新 音频智能功能。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法更新 音訊智能 功能。"
+            "value" : "無法更新 音訊智能功能。"
           }
         }
       }
@@ -4049,7 +4049,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "水深センサー 機能を更新できませんでした。"
+            "value" : "水深センサー機能を更新できませんでした。"
           }
         },
         "ko" : {
@@ -4067,13 +4067,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法更新 深度计 功能。"
+            "value" : "无法更新 深度计功能。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法更新 水深感測器 功能。"
+            "value" : "無法更新 水深感測器功能。"
           }
         }
       }
@@ -4155,7 +4155,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ダブルタップ 機能を更新できませんでした。"
+            "value" : "ダブルタップ機能を更新できませんでした。"
           }
         },
         "ko" : {
@@ -4173,13 +4173,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法更新 互点两下 功能。"
+            "value" : "无法更新 互点两下功能。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法更新 互點兩下 功能。"
+            "value" : "無法更新 互點兩下功能。"
           }
         }
       }
@@ -4332,13 +4332,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法更新 设备端 Siri 功能。"
+            "value" : "无法更新设备端 Siri功能。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法更新 裝置端 Siri 功能。"
+            "value" : "無法更新裝置端 Siri功能。"
           }
         }
       }
@@ -4367,7 +4367,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "手首を上げて話す 機能を更新できませんでした。"
+            "value" : "手首を上げて話す機能を更新できませんでした。"
           }
         },
         "ko" : {
@@ -4385,13 +4385,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法更新 抬腕对话 功能。"
+            "value" : "无法更新 抬腕对话功能。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法更新 抬起手腕說話 功能。"
+            "value" : "無法更新 抬起手腕說話功能。"
           }
         }
       }
@@ -4420,7 +4420,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "手首を上げてスリープ解除 機能を更新できませんでした。"
+            "value" : "手首を上げてスリープ解除機能を更新できませんでした。"
           }
         },
         "ko" : {
@@ -4438,13 +4438,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法更新 抬腕时唤醒 功能。"
+            "value" : "无法更新 抬腕时唤醒功能。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法更新 抬腕喚醒 功能。"
+            "value" : "無法更新 抬腕喚醒功能。"
           }
         }
       }
@@ -4632,7 +4632,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "スイミングワークアウト 機能を更新できませんでした。"
+            "value" : "スイミングワークアウト機能を更新できませんでした。"
           }
         },
         "ko" : {
@@ -4650,13 +4650,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法更新 游泳体能训练 功能。"
+            "value" : "无法更新 游泳体能训练功能。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法更新 游泳體能訓練 功能。"
+            "value" : "無法更新 游泳體能訓練功能。"
           }
         }
       }
@@ -5109,13 +5109,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "水深センサー 機能がオフになりました。 Carousel を再起動してリロードします。センサーハードウェアは引き続き必要です。"
+            "value" : "水深センサー機能がオフになりました。 Carouselを再起動してください。センサーハードウェアは引き続き必要です。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "수심 센서 기능이 꺼졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요. 센서 하드웨어는 여전히 필요합니다."
+            "value" : "수심 센서 기능이 꺼졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요. 센서 하드웨어는 여전히 필요합니다."
           }
         },
         "pt" : {
@@ -5127,13 +5127,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "深度计 功能已关闭。重启Carousel即可重新加载。仍然需要传感器硬件。"
+            "value" : "深度计功能已关闭。重新启动 Carousel 即可重新加载。仍然需要传感器硬件。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "水深感測器 功能已關閉。重啟Carousel即可重新載入。仍然需要感測器硬體。"
+            "value" : "水深感測器功能已關閉。重新啟動 Carousel 即可重新載入。仍然需要感測器硬體。"
           }
         }
       }
@@ -5162,13 +5162,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "水深センサー 機能がオンになりました。 Carousel を再起動してリロードします。センサーハードウェアは引き続き必要です。"
+            "value" : "水深センサー機能がオンになりました。 Carouselを再起動してください。センサーハードウェアは引き続き必要です。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "수심 센서 기능이 켜져 있습니다. 다시 로드하려면 Carousel를 다시 시작하세요. 센서 하드웨어는 여전히 필요합니다."
+            "value" : "수심 센서 기능이 켜져 있습니다. 다시 로드하려면 Carousel을 다시 시작하세요. 센서 하드웨어는 여전히 필요합니다."
           }
         },
         "pt" : {
@@ -5180,13 +5180,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "深度计 功能已打开。重启Carousel即可重新加载。仍然需要传感器硬件。"
+            "value" : "深度计功能已开启。重新启动 Carousel 即可重新加载。仍然需要传感器硬件。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "水深感測器 功能已開啟。重啟Carousel即可重新載入。仍然需要感測器硬體。"
+            "value" : "水深感測器功能已開啟。重新啟動 Carousel 即可重新載入。仍然需要感測器硬體。"
           }
         }
       }
@@ -5374,13 +5374,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ダブルタップ がオフになりました。 Carousel を再起動してリロードします。"
+            "value" : "ダブルタップがオフになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "두 번 탭가 꺼졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "두 번 탭이 꺼졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -5392,13 +5392,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "互点两下 已关闭。重启Carousel即可重新加载。"
+            "value" : "互点两下已关闭。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "互點兩下 已關閉。重啟Carousel即可重新載入。"
+            "value" : "互點兩下已關閉。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -5427,13 +5427,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "ダブルタップ がオンになりました。 Carousel を再起動してリロードします。"
+            "value" : "ダブルタップがオンになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "두 번 탭가 켜져 있습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "두 번 탭이 켜져 있습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -5445,13 +5445,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "互点两下 已打开。重启Carousel即可重新加载。"
+            "value" : "互点两下已开启。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "互點兩下 已開啟。重啟Carousel即可重新載入。"
+            "value" : "互點兩下已開啟。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -5796,13 +5796,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hermès がオフになりました。 Carousel を再起動してリロードします。"
+            "value" : "Hermès がオフになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hermès가 꺼졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "Hermès가 꺼졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -5814,13 +5814,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hermès 已关闭。重启Carousel即可重新加载。"
+            "value" : "Hermès 已关闭。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hermès 已關閉。重啟Carousel即可重新載入。"
+            "value" : "Hermès 已關閉。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -5849,13 +5849,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hermès がオンになりました。 Carousel を再起動してリロードします。"
+            "value" : "Hermès がオンになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hermès가 켜졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "Hermès가 켜졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -5867,13 +5867,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hermès 已打开。重启Carousel即可重新加载。"
+            "value" : "Hermès 已开启。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Hermès 已開啟。重啟Carousel即可重新載入。"
+            "value" : "Hermès 已開啟。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -6007,13 +6007,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra文字盤 を有効にすると、Hermès Faubourg Party フェイスは使用できなくなります。"
+            "value" : "Ultra文字盤を有効にすると、Hermès Faubourg Party文字盤は使用できなくなります。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra 시계 페이스를 활성화하면 Hermès Faubourg Party 얼굴을 사용할 수 없습니다."
+            "value" : "Ultra 시계 페이스를 활성화하면 Hermès Faubourg Party 시계 페이스을 사용할 수 없습니다."
           }
         },
         "pt" : {
@@ -6025,13 +6025,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如果启用 Ultra 表盘，您将无法使用 Hermès Faubourg Party 面孔。"
+            "value" : "如果启用 Ultra 表盘，您将无法使用 Hermès Faubourg Party 表盘。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "如果啟用 Ultra 錶面，您將無法使用 Hermès Faubourg Party 臉孔。"
+            "value" : "如果啟用 Ultra 錶面，您將無法使用 Hermès Faubourg Party 錶面。"
           }
         }
       }
@@ -6854,13 +6854,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "騒音への曝露 機能がオフになりました。 Carousel を再起動してリロードします。"
+            "value" : "騒音への曝露機能がオフになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "소음 노출 기능이 꺼졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "소음 노출 기능이 꺼졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -6872,13 +6872,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "噪声暴露 功能已关闭。重启Carousel即可重新加载。"
+            "value" : "噪声暴露功能已关闭。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "噪音暴露 功能已關閉。重啟Carousel即可重新載入。"
+            "value" : "噪音暴露功能已關閉。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -6907,13 +6907,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "騒音への曝露 機能がオンになりました。 Carousel を再起動してリロードします。"
+            "value" : "騒音への曝露機能がオンになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "소음 노출 기능이 켜져 있습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "소음 노출 기능이 켜져 있습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -6925,13 +6925,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "噪声暴露 功能已打开。重启Carousel即可重新加载。"
+            "value" : "噪声暴露功能已开启。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "噪音暴露 功能已開啟。重啟Carousel即可重新載入。"
+            "value" : "噪音暴露功能已開啟。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -7066,7 +7066,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "オンデバイスSiri 機能がオフになりました。時計を再起動してリロードします。"
+            "value" : "オンデバイスSiri 機能がオフになりました。Apple Watchを再起動してください。"
           }
         },
         "ko" : {
@@ -7084,13 +7084,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "设备端 Siri 功能已关闭。重启手表即可重新加载。"
+            "value" : "设备端 Siri 功能已关闭。重新启动手表即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "裝置端 Siri 功能已關閉。重啟手錶即可重新裝填。"
+            "value" : "裝置端 Siri 功能已關閉。重新啟動手錶即可重新載入。"
           }
         }
       }
@@ -7119,7 +7119,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "オンデバイスSiri 機能がオンになりました。時計を再起動してリロードします。"
+            "value" : "オンデバイスSiri 機能がオンになりました。Apple Watchを再起動してください。"
           }
         },
         "ko" : {
@@ -7137,13 +7137,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "设备端 Siri 功能已打开。重启手表即可重新加载。"
+            "value" : "设备端 Siri 功能已开启。重新启动手表即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "裝置端 Siri 功能已開啟。重啟手錶即可重新裝填。"
+            "value" : "裝置端 Siri 功能已開啟。重新啟動手錶即可重新載入。"
           }
         }
       }
@@ -7225,13 +7225,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "オンスクリーンキーボード 機能がオフになりました。 Carousel を再起動してリロードします。"
+            "value" : "オンスクリーンキーボード機能がオフになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "화면 키보드 기능이 꺼졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "화면 키보드 기능이 꺼졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -7243,13 +7243,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "屏幕键盘 功能已关闭。重启Carousel即可重新加载。"
+            "value" : "屏幕键盘功能已关闭。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "螢幕鍵盤 功能已關閉。重啟Carousel即可重新載入。"
+            "value" : "螢幕鍵盤功能已關閉。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -7278,13 +7278,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "オンスクリーンキーボード 機能がオンになりました。 Carousel を再起動してリロードします。"
+            "value" : "オンスクリーンキーボード機能がオンになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "화면 키보드 기능이 켜져 있습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "화면 키보드 기능이 켜져 있습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -7296,13 +7296,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "屏幕键盘 功能已打开。重启Carousel即可重新加载。"
+            "value" : "屏幕键盘功能已开启。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "螢幕鍵盤 功能已開啟。重啟Carousel即可重新載入。"
+            "value" : "螢幕鍵盤功能已開啟。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -7490,13 +7490,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "定期的な環境光の更新がオフになりました。 Carousel を再起動してリロードします。"
+            "value" : "定期的な環境光の更新がオフになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "주기적인 주변광 업데이트가 꺼졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "주기적인 주변광 업데이트가 꺼졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -7508,7 +7508,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "定期环境光更新已关闭。重启Carousel即可重新加载。"
+            "value" : "定期环境光更新已关闭。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
@@ -7543,13 +7543,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "周囲光の定期的な更新がオンになりました。 Carousel を再起動してリロードします。"
+            "value" : "周囲光の定期的な更新がオンになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "주기적인 주변광 업데이트가 켜져 있습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "주기적인 주변광 업데이트가 켜져 있습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -7561,7 +7561,7 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "打开定期环境光更新。重启Carousel即可重新加载。"
+            "value" : "打开定期环境光更新。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
@@ -7702,13 +7702,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "手首を上げて話す がオフになりました。 Carousel を再起動してリロードします。"
+            "value" : "手首を上げて話すがオフになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "들어서 말하기가 꺼졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "들어서 말하기가 꺼졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -7720,13 +7720,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "抬腕对话 已关闭。重启Carousel即可重新加载。"
+            "value" : "抬腕对话已关闭。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "抬起手腕說話 已關閉。重啟Carousel即可重新載入。"
+            "value" : "抬起手腕說話已關閉。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -7755,13 +7755,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "手首を上げて話す がオンになりました。 Carousel を再起動してリロードします。"
+            "value" : "手首を上げて話すがオンになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "들어서 말하기가 켜져 있습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "들어서 말하기가 켜져 있습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -7773,13 +7773,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "抬腕对话 已打开。重启Carousel即可重新加载。"
+            "value" : "抬腕对话已开启。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "抬起手腕說話 已開啟。重啟Carousel即可重新載入。"
+            "value" : "抬起手腕說話已開啟。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -7861,13 +7861,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "手首を上げてスリープ解除 機能がオフになりました。 Carousel を再起動してリロードします。"
+            "value" : "手首を上げてスリープ解除機能がオフになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "손목 올려 깨우기 기능이 꺼졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "손목 올려 깨우기 기능이 꺼졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -7879,13 +7879,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "抬腕时唤醒 功能已关闭。重启Carousel即可重新加载。"
+            "value" : "抬腕时唤醒功能已关闭。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "抬腕喚醒 功能已關閉。重啟Carousel即可重新載入。"
+            "value" : "抬腕喚醒功能已關閉。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -7914,13 +7914,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "手首を上げてスリープ解除 機能がオンになりました。 Carousel を再起動してリロードします。"
+            "value" : "手首を上げてスリープ解除機能がオンになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "손목 올려 깨우기 기능이 켜져 있습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "손목 올려 깨우기 기능이 켜져 있습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -7932,13 +7932,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "抬腕时唤醒 功能已打开。重启Carousel即可重新加载。"
+            "value" : "抬腕时唤醒功能已开启。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "抬腕喚醒 功能已開啟。重啟Carousel即可重新載入。"
+            "value" : "抬腕喚醒功能已開啟。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -8079,7 +8079,7 @@
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Carousel를 다시 시작하세요."
+            "value" : "Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -9133,13 +9133,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Siri AI には、watchOS 27、サポートされている時計、およびペアリングされた Apple Intelligence iPhone が必要です。 オーディオインテリジェンス は、Series 12 / Ultra 4 ハードウェア用です。これらのフラグでは、不足しているハードウェアを追加したり、サービスの適格性をバイパスしたりすることはできません。"
+            "value" : "Siri AI には、watchOS 27、サポートされている時計、およびペアリングされた Apple Intelligence iPhone が必要です。 オーディオインテリジェンスは、Series 12 / Ultra 4 ハードウェア用です。これらのフラグでは、不足しているハードウェアを追加したり、サービスの適格性をバイパスしたりすることはできません。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Siri AI에는 watchOS 27, 지원되는 시계 및 페어링된 Apple Intelligence iPhone이 필요합니다. 오디오 지능는 Series 12 / Ultra 4 하드웨어용입니다. 이러한 플래그는 누락된 하드웨어를 추가하거나 서비스 자격을 우회할 수 없습니다."
+            "value" : "Siri AI에는 watchOS 27, 지원되는 시계 및 페어링된 Apple Intelligence iPhone이 필요합니다. 오디오 지능은 Series 12 / Ultra 4 하드웨어용입니다. 이러한 플래그는 누락된 하드웨어를 추가하거나 서비스 자격을 우회할 수 없습니다."
           }
         },
         "pt" : {
@@ -9151,13 +9151,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Siri AI 需要 watchOS 27、受支持的手表和配对的 Apple Intelligence iPhone。 音频智能 适用于 Series 12 / Ultra 4 硬件。这些标志不能添加缺失的硬件或绕过服务资格。"
+            "value" : "Siri AI 需要 watchOS 27、受支持的手表和配对的 Apple Intelligence iPhone。 音频智能适用于 Series 12 / Ultra 4 硬件。这些标志不能添加缺失的硬件或绕过服务资格。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Siri AI 需要 watchOS 27、支援的手錶和配對的 Apple Intelligence iPhone。 音訊智能 適用於 Series 12 / Ultra 4 硬體。這些標誌不能添加缺少的硬體或繞過服務資格。"
+            "value" : "Siri AI 需要 watchOS 27、支援的手錶和配對的 Apple Intelligence iPhone。 音訊智能適用於 Series 12 / Ultra 4 硬體。這些標誌不能添加缺少的硬體或繞過服務資格。"
           }
         }
       }
@@ -9451,13 +9451,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "スイミングワークアウト 機能がオフになりました。 Carousel を再起動してリロードします。"
+            "value" : "スイミングワークアウト機能がオフになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "수영 운동 기능이 꺼졌습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "수영 운동 기능이 꺼졌습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -9469,13 +9469,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "游泳体能训练 功能已关闭。重启Carousel即可重新加载。"
+            "value" : "游泳体能训练功能已关闭。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "游泳體能訓練 功能已關閉。重啟Carousel即可重新載入。"
+            "value" : "游泳體能訓練功能已關閉。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -9504,13 +9504,13 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "スイミングワークアウト 機能がオンになりました。 Carousel を再起動してリロードします。"
+            "value" : "スイミングワークアウト機能がオンになりました。 Carouselを再起動してください。"
           }
         },
         "ko" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "수영 운동 기능이 켜져 있습니다. 다시 로드하려면 Carousel를 다시 시작하세요."
+            "value" : "수영 운동 기능이 켜져 있습니다. 다시 로드하려면 Carousel을 다시 시작하세요."
           }
         },
         "pt" : {
@@ -9522,13 +9522,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "游泳体能训练 功能已打开。重启Carousel即可重新加载。"
+            "value" : "游泳体能训练功能已开启。重新启动 Carousel 即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "游泳體能訓練 功能已開啟。重啟Carousel即可重新載入。"
+            "value" : "游泳體能訓練功能已開啟。重新啟動 Carousel 即可重新載入。"
           }
         }
       }
@@ -9822,7 +9822,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra文字盤 がオフになりました。時計を再起動してリロードします。"
+            "value" : "Ultra文字盤がオフになりました。Apple Watchを再起動してください。"
           }
         },
         "ko" : {
@@ -9840,13 +9840,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra 表盘 已关闭。重启手表即可重新加载。"
+            "value" : "Ultra 表盘已关闭。重新启动手表即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra 錶面 已關閉。重啟手錶即可重新裝填。"
+            "value" : "Ultra 錶面已關閉。重新啟動手錶即可重新載入。"
           }
         }
       }
@@ -9875,7 +9875,7 @@
         "ja" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra文字盤 がオンになりました。時計を再起動してリロードします。"
+            "value" : "Ultra文字盤がオンになりました。Apple Watchを再起動してください。"
           }
         },
         "ko" : {
@@ -9893,13 +9893,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra 表盘 已打开。重启手表即可重新加载。"
+            "value" : "Ultra 表盘已开启。重新启动手表即可重新加载。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Ultra 錶面 已開啟。重啟手錶即可重新裝填。"
+            "value" : "Ultra 錶面已開啟。重新啟動手錶即可重新載入。"
           }
         }
       }
@@ -10794,13 +10794,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此 watchOS 版本不支持 Ultra 表盘 缓存布局。"
+            "value" : "此 watchOS 版本不支持 Ultra 表盘缓存布局。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "此 watchOS 版本不支援 Ultra 錶面 快取佈局。"
+            "value" : "此 watchOS 版本不支援 Ultra 錶面快取佈局。"
           }
         }
       }
@@ -10900,13 +10900,13 @@
         "zh-Hans" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "无法验证 Ultra 表盘 缓存更改。"
+            "value" : "无法验证 Ultra 表盘缓存更改。"
           }
         },
         "zh-Hant" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "無法驗證 Ultra 錶面 快取變更。"
+            "value" : "無法驗證 Ultra 錶面快取變更。"
           }
         }
       }
