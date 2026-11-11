@@ -49,6 +49,11 @@
 			<key>UltraEnabledScreenClass</key>
 			<integer>29</integer>
 		</dict>
+		<key>24S5112a</key>
+		<dict>
+			<key>HermesEnabledDeviceBrand</key>
+			<integer>1</integer>
+		</dict>
 		<key>24S5284h</key>
 		<dict>
 			<key>MaxDeviceBrand</key>
