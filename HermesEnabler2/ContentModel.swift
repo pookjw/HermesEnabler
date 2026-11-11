@@ -6,6 +6,12 @@ final class ContentModel {
     var message = BQBackupExists() ? "Backup ready." : "Back up MobileGestalt before making changes."
     var hasBackup = BQBackupExists()
     var showAccessAlert = false
+    var toggleError: ToggleError?
+
+    struct ToggleError: Identifiable {
+        let id = UUID()
+        let message: String
+    }
     var aodEnabled = false
     var aodSecondsEnabled = false
     var actionButtonEnabled = false
@@ -111,8 +117,25 @@ final class ContentModel {
 
     func perform(_ action: Action) {
         var error: NSString?
-        let result: String
+        var result: String
+        var toggleFailed = false
+        let isToggle: Bool
+        switch action {
+        case .hermes, .ultraFaces, .aod, .aodSeconds, .actionButton, .doubleTap,
+             .depth, .absoluteAltimeter, .alwaysOnCompass, .aodVibrancy, .watchKeyboard,
+             .periodicALSUpdates, .raiseToSpeak, .continuousHeartRate, .compassOrienteering,
+             .environmentalDosimetry, .batteryInformation, .alwaysListening, .rotateToWake,
+             .swimmingWorkouts, .appleIntelligence, .onDeviceSiri, .audioIntelligence:
+            isToggle = true
+        default:
+            isToggle = false
+        }
+        func checked(_ success: Bool) -> Bool {
+            if !success { toggleFailed = true }
+            return success
+        }
         if !BQCoreInit() {
+            toggleFailed = isToggle
             result = "MobileGestalt access is unavailable on this device."
         } else {
             switch action {
@@ -133,83 +156,83 @@ final class ContentModel {
                     ? "Backup deleted."
                     : ((error as String?) ?? "Delete failed.")
             case .hermes(let enabled):
-                result = BQSetHermesEnabled(enabled, &error)
+                result = checked(BQSetHermesEnabled(enabled, &error))
                     ? "Hermès turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
                     : ((error as String?) ?? "Could not update DeviceBrand.")
             case .ultraFaces(let enabled):
-                result = BQSetUltraFacesEnabled(enabled, &error)
+                result = checked(BQSetUltraFacesEnabled(enabled, &error))
                     ? "Ultra Faces turned \(enabled ? "on" : "off"). Restart the watch to reload it."
                     : ((error as String?) ?? "Could not update Ultra Faces.")
             case .aod(let enabled):
-                result = BQSetAODSupport(enabled, &error)
+                result = checked(BQSetAODSupport(enabled, &error))
                     ? "AOD turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
                     : ((error as String?) ?? "Could not update AOD capabilities.")
             case .aodSeconds(let enabled):
-                result = BQSetAODSecondsSupport(enabled, &error)
+                result = checked(BQSetAODSecondsSupport(enabled, &error))
                     ? "AOD 1Hz turned \(enabled ? "on" : "off"). Restart Carousel to reload it. Faces must support seconds in AOD."
                     : ((error as String?) ?? "Could not update AOD flipbook capability.")
             case .actionButton(let enabled):
-                result = BQSetActionButton(enabled, &error)
+                result = checked(BQSetActionButton(enabled, &error))
                     ? "Action Button turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
                     : ((error as String?) ?? "Could not update Action Button capability.")
             case .doubleTap(let enabled):
-                result = BQSetDoubleTap(enabled, &error)
+                result = checked(BQSetDoubleTap(enabled, &error))
                     ? "Double Tap turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
                     : ((error as String?) ?? "Could not update Double Tap capability.")
             case .depth(let enabled):
-                result = BQSetDepthCapability(enabled, &error)
+                result = checked(BQSetDepthCapability(enabled, &error))
                     ? "Depth Sensor capability turned \(enabled ? "on" : "off"). Restart Carousel to reload it. Sensor hardware is still required."
                     : ((error as String?) ?? "Could not update Depth Sensor capability.")
             case .absoluteAltimeter(let enabled):
-                result = BQSetAbsoluteAltimeter(enabled, &error)
+                result = checked(BQSetAbsoluteAltimeter(enabled, &error))
                     ? "Absolute Altimeter capability turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
                     : ((error as String?) ?? "Could not update Absolute Altimeter capability.")
             case .alwaysOnCompass(let enabled):
-                result = BQSetAlwaysOnCompass(enabled, &error)
+                result = checked(BQSetAlwaysOnCompass(enabled, &error))
                     ? "Always-On Compass capability turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
                     : ((error as String?) ?? "Could not update Always-On Compass capability.")
             case .aodVibrancy(let enabled):
-                result = BQSetAODVibrancy(enabled, &error)
+                result = checked(BQSetAODVibrancy(enabled, &error))
                     ? "AOD Vibrancy capability turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
                     : ((error as String?) ?? "Could not update AOD Vibrancy capability.")
             case .watchKeyboard(let enabled):
-                result = BQSetWatchKeyboard(enabled, &error)
+                result = checked(BQSetWatchKeyboard(enabled, &error))
                     ? "On-Screen Keyboard capability turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
                     : ((error as String?) ?? "Could not update keyboard capability.")
             case .periodicALSUpdates(let enabled):
-                result = BQSetPeriodicALSUpdates(enabled, &error)
+                result = checked(BQSetPeriodicALSUpdates(enabled, &error))
                     ? "Periodic ambient light updates turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
                     : ((error as String?) ?? "Could not update ambient light capability.")
             case .raiseToSpeak(let enabled):
-                result = BQSetRaiseToSpeak(enabled, &error)
+                result = checked(BQSetRaiseToSpeak(enabled, &error))
                     ? "Raise to Speak turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
                     : ((error as String?) ?? "Could not update Raise to Speak capability.")
             case .continuousHeartRate(let enabled):
-                result = BQSetContinuousHeartRate(enabled, &error)
+                result = checked(BQSetContinuousHeartRate(enabled, &error))
                     ? "Continuous Heart Rate turned \(enabled ? "on" : "off"). Restart Carousel to reload it. Sensor hardware and Health settings still apply."
                     : ((error as String?) ?? "Could not update continuous heart rate capability.")
             case .compassOrienteering(let enabled):
-                result = BQSetCompassOrienteering(enabled, &error)
+                result = checked(BQSetCompassOrienteering(enabled, &error))
                     ? "Compass Orienteering turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
                     : ((error as String?) ?? "Could not update compass capability.")
             case .environmentalDosimetry(let enabled):
-                result = BQSetEnvironmentalDosimetry(enabled, &error)
+                result = checked(BQSetEnvironmentalDosimetry(enabled, &error))
                     ? "Noise Exposure capability turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
                     : ((error as String?) ?? "Could not update noise exposure capability.")
             case .batteryInformation(let enabled):
-                result = BQSetBatteryInformation(enabled, &error)
+                result = checked(BQSetBatteryInformation(enabled, &error))
                     ? "Battery Information capability turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
                     : ((error as String?) ?? "Could not update battery information capability.")
             case .alwaysListening(let enabled):
-                result = BQSetAlwaysListening(enabled, &error)
+                result = checked(BQSetAlwaysListening(enabled, &error))
                     ? "Always Listening capability turned \(enabled ? "on" : "off"). Restart Carousel to reload it. Siri settings and supported audio hardware still apply."
                     : ((error as String?) ?? "Could not update Always Listening capability.")
             case .rotateToWake(let enabled):
-                result = BQSetRotateToWake(enabled, &error)
+                result = checked(BQSetRotateToWake(enabled, &error))
                     ? "Raise Wrist to Wake capability turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
                     : ((error as String?) ?? "Could not update Raise Wrist to Wake capability.")
             case .swimmingWorkouts(let enabled):
-                result = BQSetSwimmingWorkouts(enabled, &error)
+                result = checked(BQSetSwimmingWorkouts(enabled, &error))
                     ? "Swimming Workouts capability turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
                     : ((error as String?) ?? "Could not update Swimming Workouts capability.")
             case .regionCode(let code):
@@ -231,15 +254,15 @@ final class ContentModel {
                     ? "Sales Region set to \(title). Restart the watch to reload it."
                     : ((error as String?) ?? "Could not update Sales Region.")
             case .appleIntelligence(let enabled):
-                result = BQSetAppleIntelligence(enabled, &error)
+                result = checked(BQSetAppleIntelligence(enabled, &error))
                     ? "Apple Intelligence capability turned \(enabled ? "on" : "off"). Restart the watch to reload it."
                     : ((error as String?) ?? "Could not update Apple Intelligence capability.")
             case .onDeviceSiri(let enabled):
-                result = BQSetOnDeviceSiri(enabled, &error)
+                result = checked(BQSetOnDeviceSiri(enabled, &error))
                     ? "On-Device Siri capability turned \(enabled ? "on" : "off"). Restart the watch to reload it."
                     : ((error as String?) ?? "Could not update On-Device Siri capability.")
             case .audioIntelligence(let enabled):
-                result = BQSetAudioIntelligence(enabled, &error)
+                result = checked(BQSetAudioIntelligence(enabled, &error))
                     ? "Audio Intelligence capability turned \(enabled ? "on" : "off"). Restart the watch to reload it."
                     : ((error as String?) ?? "Could not update Audio Intelligence capability.")
             case .resolution(let width, let height):
@@ -248,9 +271,34 @@ final class ContentModel {
                     : ((error as String?) ?? "Could not update screen dimensions.")
             }
         }
+        if !toggleFailed {
+            var current = ObjCBool(false)
+            var readError: NSString?
+            switch action {
+            case .hermes(true):
+                if !BQGetHermesEnabled(&current, &readError) || !current.boolValue {
+                    toggleFailed = true
+                }
+            case .ultraFaces(true):
+                if !BQGetUltraFacesEnabled(&current, &readError) || !current.boolValue {
+                    toggleFailed = true
+                }
+            default:
+                break
+            }
+            if toggleFailed {
+                error = readError ?? String(localized: "The setting was written, but its enabled state could not be verified.") as NSString
+                result = error! as String
+            }
+        }
         refreshBackups()
         message = result
-        if (error as String?) == BQNoSandboxTokenError {
+        if toggleFailed {
+            let reason = (error as String?) == BQNoSandboxTokenError
+                ? String(localized: "An App Group ID may be missing, or this watchOS version may be incompatible. Check the app's App Group configuration and watchOS version.")
+                : (error as String?) ?? String(localized: String.LocalizationValue(result))
+            toggleError = ToggleError(message: reason)
+        } else if (error as String?) == BQNoSandboxTokenError {
             showAccessAlert = true
         }
         if hasBackup { refreshCapabilityStates() }

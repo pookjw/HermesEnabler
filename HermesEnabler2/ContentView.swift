@@ -58,5 +58,13 @@ struct ContentView: View {
         } message: {
             Text("An App Group ID may be missing, or this watchOS version may be incompatible. Check the app's App Group configuration and watchOS version.")
         }
+        .alert("Could Not Change Setting", isPresented: Binding(
+            get: { model.toggleError != nil },
+            set: { if !$0 { model.toggleError = nil } }
+        ), presenting: model.toggleError) { _ in
+            Button("OK", role: .cancel) { }
+        } message: { error in
+            Text(error.message)
+        }
     }
 }
