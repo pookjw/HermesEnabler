@@ -15,6 +15,10 @@
 3. Öffne auf dem iPhone die **Watch-App → Meine Watch → Apps** und installiere **HermesEnabler2**.
 4. Öffne **HermesEnabler2** auf der Apple Watch und folge den Schritten in der App.
 
+> Deaktiviere in Sideloadly **Use automatic bundle ID** und verwende einen festen Bundle Identifier. Verwende bei jedem Update denselben Bundle Identifier und dieselbe Apple ID, damit vorhandene App-Daten und Backups erhalten bleiben.
+
+> Stelle vor dem Löschen der App unbedingt dein MobileGestalt-Backup wieder her.
+
 ### Mit Xcode erstellen
 
 1. Öffne [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj) in Xcode.
