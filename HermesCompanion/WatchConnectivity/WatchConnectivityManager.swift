@@ -743,5 +743,22 @@ extension WatchConnectivityManager: WCSessionDelegate {
         }
     }
     
+    func refreshConnectionStatus() {
+        guard let session else {
+            print("[WC] No active WatchConnectivity session")
+            return
+        }
+
+        guard session.activationState == .activated else {
+            print("[WC] Session not activated, requesting activation")
+            session.activate()
+            return
+        }
+
+        updateStatus(session)
+
+        print("[WC] Connection status refreshed")
+    }
+    
 }
 

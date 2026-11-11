@@ -23,6 +23,7 @@ struct HermesCompanionApp: App {
 struct ContentView: View {
 
     @StateObject private var watchManager = WatchConnectivityManager()
+    @Environment(\.scenePhase) private var scenePhase
 
     @State private var showingHistory = false
     @State private var showingImporter = false
@@ -39,6 +40,8 @@ struct ContentView: View {
                 VStack(spacing: 22) {
 
                     watchCard
+                    
+                    installationCard
 
                     backupCard
 
@@ -80,13 +83,19 @@ struct ContentView: View {
         } message: {
             Text(alertMessage)
         }
+        .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                watchManager.refreshConnectionStatus()
+                watchManager.loadBackupHistory()
+            }
+        }
     }
 
     // MARK: - Watch card
 
     private var watchCard: some View {
 
-        VStack(alignment: .leading, spacing: 16) {
+        VStack(alignment: .leading, spacing: 12) {
 
             HStack(spacing: 14) {
 
@@ -103,16 +112,12 @@ struct ContentView: View {
                     Text(watchManager.deviceName)
                         .font(.headline)
 
-                    Text(watchStatusText)
+                    Text(watchManager.model)
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
                 }
 
                 Spacer()
-
-                Circle()
-                    .fill(watchStatusColor)
-                    .frame(width: 10, height: 10)
             }
 
             if watchManager.watchOSVersion != "Unknown" {
@@ -130,21 +135,147 @@ struct ContentView: View {
             in: RoundedRectangle(cornerRadius: 20)
         )
     }
+    
+    // MARK: - Watch installation status
+
+    private var installationCard: some View {
+        VStack(alignment: .leading, spacing: 12) {
+
+            HStack(spacing: 10) {
+                Image(systemName: installationIcon)
+                    .font(.title2)
+                    .foregroundStyle(installationColor)
+
+                Text(installationTitle)
+                    .font(.headline)
+
+                Spacer()
+
+                Circle()
+                    .fill(installationColor)
+                    .frame(width: 9, height: 9)
+            }
+
+            Text(installationMessage)
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+
+            if watchManager.isPaired && !watchManager.isWatchAppInstalled {
+                Divider()
+
+                Label(
+                    "Comment installer HermesEnabler",
+                    systemImage: "applewatch"
+                )
+                .font(.subheadline.weight(.semibold))
+
+                VStack(alignment: .leading, spacing: 8) {
+                    Label("Ouvrez l'application Watch sur votre iPhone.", systemImage: "1.circle")
+                    Label("Recherchez HermesEnabler dans la liste des apps.", systemImage: "2.circle")
+                    Label("Appuyez sur Installer.", systemImage: "3.circle")
+                    Label("Une fois installée, ouvrez l'application sur votre Apple Watch.", systemImage: "4.circle")
+                }
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+
+            } else if watchManager.isPaired && watchManager.isWatchAppInstalled && !watchManager.isReachable {
+                Divider()
+
+                Label(
+                    "Ouvrez HermesEnabler directement sur votre Apple Watch.",
+                    systemImage: "hand.tap"
+                )
+                .font(.footnote)
+                .foregroundStyle(.secondary)
+            }
+        }
+        .padding(18)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            Color(uiColor: .secondarySystemGroupedBackground),
+            in: RoundedRectangle(cornerRadius: 20)
+        )
+    }
+
+    private var installationTitle: String {
+        if !watchManager.isPaired {
+            return "Apple Watch non jumelée"
+        }
+
+        if !watchManager.isWatchAppInstalled {
+            return "Installation nécessaire"
+        }
+
+        if watchManager.isReachable {
+            return "HermesEnabler est opérationnelle"
+        }
+
+        return "Application installée"
+    }
+
+    private var installationMessage: String {
+        if !watchManager.isPaired {
+            return "Jumelez votre Apple Watch avec cet iPhone pour pouvoir utiliser HermesEnabler."
+        }
+
+        if !watchManager.isWatchAppInstalled {
+            return "HermesEnabler est installée sur l'iPhone, mais son application compagnon n'est pas encore installée sur l'Apple Watch."
+        }
+
+        if watchManager.isReachable {
+            return "Votre Apple Watch communique actuellement avec HermesCompanion."
+        }
+
+        return "L'application est installée, mais votre Apple Watch ne communique pas actuellement avec HermesCompanion. Ouvrez HermesEnabler sur la montre."
+    }
+
+    private var installationIcon: String {
+        if !watchManager.isPaired {
+            return "applewatch.slash"
+        }
+
+        if !watchManager.isWatchAppInstalled {
+            return "arrow.down.app"
+        }
+
+        if watchManager.isReachable {
+            return "checkmark.circle.fill"
+        }
+
+        return "applewatch"
+    }
+
+    private var installationColor: Color {
+        if !watchManager.isPaired {
+            return .secondary
+        }
+
+        if !watchManager.isWatchAppInstalled {
+            return .orange
+        }
+
+        if watchManager.isReachable {
+            return .green
+        }
+
+        return .orange
+    }
 
     private var watchStatusText: String {
+        if !watchManager.isPaired {
+            return "Aucune montre associée"
+        }
+
+        if !watchManager.isWatchAppInstalled {
+            return "Application à installer"
+        }
+
         if watchManager.isReachable {
             return "Connectée"
         }
 
-        if watchManager.isPaired && watchManager.isWatchAppInstalled {
-            return "Associée, non joignable"
-        }
-
-        if watchManager.isPaired {
-            return "Montre associée"
-        }
-
-        return "Aucune montre associée"
+        return "Installée, non joignable"
     }
 
     private var watchStatusColor: Color {
