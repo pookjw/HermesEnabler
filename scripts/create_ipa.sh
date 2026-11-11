@@ -3,7 +3,7 @@ set -euo pipefail
 
 usage() {
     cat <<'EOF'
-Usage: scripts/build-unsigned-ipa.sh [--bundle-id IDENTIFIER] [--output PATH]
+Usage: scripts/create_ipa.sh [--bundle-id IDENTIFIER] [--output PATH]
 
 Builds an unsigned iOS IPA containing the iPhone companion app and its embedded
 Apple Watch app. Requires macOS, Xcode, and xcodebuild; no signing certificate
@@ -11,14 +11,14 @@ or provisioning profile is used.
 
 Options:
   --bundle-id IDENTIFIER  iOS app bundle ID (watch ID becomes IDENTIFIER.watchkitapp)
-  --output PATH           IPA output path (default: build/unsigned/HermesEnabler-unsigned.ipa)
+  --output PATH           IPA output path (default: build/ipa/HermesEnabler.ipa)
   -h, --help              Show this help
 EOF
 }
 
 repo_root="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 bundle_id="com.example.HermesEnabler"
-output_path="$repo_root/build/unsigned/HermesEnabler-unsigned.ipa"
+output_path="$repo_root/build/ipa/HermesEnabler.ipa"
 
 while (($#)); do
     case "$1" in
