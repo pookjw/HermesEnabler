@@ -6,6 +6,7 @@
 
 import SwiftUI
 import UIKit
+import UniformTypeIdentifiers
 
 @main
 struct HermesCompanionApp: App {
@@ -24,68 +25,56 @@ struct ContentView: View {
     @StateObject private var watchManager = WatchConnectivityManager()
 
     @State private var showingHistory = false
+    @State private var showingImporter = false
     @State private var shareURL: ShareItem?
     @State private var alertMessage = ""
     @State private var showingAlert = false
 
     var body: some View {
 
-        ScrollView {
+        NavigationStack {
 
-            VStack(alignment: .leading, spacing: 24) {
+            ScrollView {
 
-                // Header
-                header
+                VStack(spacing: 22) {
 
-                // App Title
-                Text("HermesEnabler")
-                    .font(.system(size: 27, weight: .bold))
+                    watchCard
 
-                // Connected device
-                deviceSection
+                    backupCard
 
-                Divider()
-
-                // Backup status
-                backupSection
-
-                Divider()
-
-                // Actions
-                actionsSection
-
-                // Footer
-                Text("HermesEnabler Companion")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-                    .frame(maxWidth: .infinity, alignment: .leading)
+                    actionButtons
+                }
+                .padding()
+                .frame(maxWidth: 600)
+                .frame(maxWidth: .infinity)
             }
-            .padding(24)
-            .frame(maxWidth: 760)
-            .background(Color(uiColor: .systemBackground))
-            .overlay {
-                RoundedRectangle(cornerRadius: 24)
-                    .stroke(
-                        Color(uiColor: .separator).opacity(0.35),
-                        lineWidth: 1
-                    )
+            .background(Color(uiColor: .systemGroupedBackground))
+            .navigationTitle("HermesEnabler")
+            .navigationBarTitleDisplayMode(.large)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button {
+                        watchManager.loadBackupHistory()
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                    .accessibilityLabel("Actualiser")
+                }
             }
-            .padding()
-            .frame(maxWidth: .infinity)
         }
-        .background(Color(uiColor: .systemBackground))
-
-        // Backup history
         .sheet(isPresented: $showingHistory) {
             BackupHistoryView(manager: watchManager)
         }
-
-        // Export from main screen
         .sheet(item: $shareURL) { item in
             ActivityViewController(activityItems: [item.url])
         }
-
-        // Main screen alerts only
+        .fileImporter(
+            isPresented: $showingImporter,
+            allowedContentTypes: [.propertyList],
+            allowsMultipleSelection: false
+        ) { result in
+            handleImport(result)
+        }
         .alert("HermesEnabler", isPresented: $showingAlert) {
             Button("OK", role: .cancel) { }
         } message: {
@@ -93,278 +82,257 @@ struct ContentView: View {
         }
     }
 
-    // MARK: - Header
+    // MARK: - Watch card
 
-    private var header: some View {
+    private var watchCard: some View {
 
-        HStack {
+        VStack(alignment: .leading, spacing: 16) {
 
-            Button {
-                watchManager.loadBackupHistory()
-            } label: {
-                Image(systemName: "arrow.clockwise")
-            }
-
-            Spacer()
-
-            if watchManager.isReachable {
-
-                Label("Connecté", systemImage: "checkmark.circle.fill")
-                    .foregroundStyle(.green)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(.green.opacity(0.12), in: Capsule())
-
-            } else if watchManager.isPaired &&
-                        watchManager.isWatchAppInstalled {
-
-                Label("Montre associée", systemImage: "applewatch")
-                    .foregroundStyle(.orange)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(.orange.opacity(0.12), in: Capsule())
-
-            } else {
-
-                Label("Non connecté", systemImage: "xmark.circle.fill")
-                    .foregroundStyle(.secondary)
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 8)
-                    .background(.secondary.opacity(0.12), in: Capsule())
-            }
-        }
-    }
-
-    // MARK: - Device
-
-    private var deviceSection: some View {
-
-        HStack(spacing: 20) {
-
-            ZStack {
-
-                RoundedRectangle(cornerRadius: 20)
-                    .fill(Color(uiColor: .secondarySystemBackground))
-                    .frame(width: 108, height: 108)
+            HStack(spacing: 14) {
 
                 Image(systemName: "applewatch")
-                    .font(.system(size: 53, weight: .light))
-                    .foregroundStyle(.primary)
+                    .font(.system(size: 34, weight: .light))
+                    .frame(width: 58, height: 58)
+                    .background(
+                        Color(uiColor: .secondarySystemGroupedBackground),
+                        in: RoundedRectangle(cornerRadius: 16)
+                    )
+
+                VStack(alignment: .leading, spacing: 5) {
+
+                    Text(watchManager.deviceName)
+                        .font(.headline)
+
+                    Text(watchStatusText)
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                }
+
+                Spacer()
+
+                Circle()
+                    .fill(watchStatusColor)
+                    .frame(width: 10, height: 10)
             }
 
-            VStack(alignment: .leading, spacing: 7) {
-
-                Text(watchManager.deviceName)
-                    .font(.system(size: 20, weight: .semibold))
-
+            if watchManager.watchOSVersion != "Unknown" {
                 Text(
-                    "watchOS \(watchManager.watchOSVersion) · " +
-                    watchManager.buildVersion
+                    "watchOS \(watchManager.watchOSVersion) · \(watchManager.buildVersion)"
                 )
-                .font(.system(size: 16))
+                .font(.caption)
                 .foregroundStyle(.secondary)
-
-                Text(
-                    watchManager.isPaired
-                    ? "Apple Watch associée"
-                    : "Aucune montre associée"
-                )
-                .font(.system(size: 15, weight: .medium))
-                .foregroundStyle(
-                    watchManager.isPaired ? .green : .secondary
-                )
             }
-
-            Spacer(minLength: 0)
         }
+        .padding(18)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            Color(uiColor: .secondarySystemGroupedBackground),
+            in: RoundedRectangle(cornerRadius: 20)
+        )
     }
 
-    // MARK: - Backup Section
+    private var watchStatusText: String {
+        if watchManager.isReachable {
+            return "Connectée"
+        }
 
-    private var backupSection: some View {
+        if watchManager.isPaired && watchManager.isWatchAppInstalled {
+            return "Associée, non joignable"
+        }
 
-        VStack(alignment: .leading, spacing: 20) {
+        if watchManager.isPaired {
+            return "Montre associée"
+        }
 
-            Text("MobileGestalt Backup")
-                .font(.system(size: 21, weight: .bold))
+        return "Aucune montre associée"
+    }
 
-            BackupStatusRow(
-                title: "iPhone Backup",
-                subtitle: "Copies indépendantes enregistrées",
-                status: "\(watchManager.backups.count)",
-                color: watchManager.backups.isEmpty ? .secondary : .green
-            )
+    private var watchStatusColor: Color {
+        if watchManager.isReachable {
+            return .green
+        }
+
+        if watchManager.isPaired {
+            return .orange
+        }
+
+        return .secondary
+    }
+
+    // MARK: - Backup card
+
+    private var backupCard: some View {
+
+        VStack(alignment: .leading, spacing: 14) {
+
+            HStack {
+
+                Text("MobileGestalt")
+                    .font(.headline)
+
+                Spacer()
+
+                Text("\(watchManager.backups.count)")
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(.secondary)
+            }
+
+            Divider()
 
             if let latest = watchManager.latestBackup {
 
-                VStack(alignment: .leading, spacing: 8) {
+                VStack(alignment: .leading, spacing: 7) {
 
-                    Text("Dernière sauvegarde")
-                        .font(.system(size: 16, weight: .semibold))
-
-                    Text(latest.fileName)
-                        .font(.system(size: 13))
-                        .foregroundStyle(.secondary)
-                        .textSelection(.enabled)
-
-                    Text(
-                        latest.date.formatted(
-                            date: .abbreviated,
-                            time: .shortened
-                        )
-                    )
-                    .font(.system(size: 14))
-                    .foregroundStyle(.secondary)
-
-                    Text(latest.formattedSize)
-                        .font(.system(size: 14))
-                        .foregroundStyle(.secondary)
-
-                    Text("SHA-256")
-                        .font(.system(size: 13, weight: .semibold))
-
-                    Text(latest.sha256)
-                        .font(.system(size: 11, design: .monospaced))
-                        .foregroundStyle(.secondary)
-                        .textSelection(.enabled)
-
-                    Text(latest.hashOrigin)
-                        .font(.system(size: 12))
-                        .foregroundStyle(.secondary)
-                }
-
-                Button {
-                    verifyBackup(latest)
-                } label: {
                     Label(
-                        "Vérifier l'intégrité",
-                        systemImage: "checkmark.shield"
+                        "Dernière sauvegarde",
+                        systemImage: "externaldrive.fill"
                     )
-                    .frame(maxWidth: .infinity)
+                    .font(.subheadline.weight(.medium))
+
+                    Text(latest.date.formatted(
+                        date: .abbreviated,
+                        time: .shortened
+                    ))
+                    .font(.title3.weight(.semibold))
+
+                    HStack {
+
+                        Text(latest.formattedSize)
+
+                        Spacer()
+
+                        Text(latest.hashOrigin)
+                    }
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
                 }
-                .buttonStyle(.bordered)
 
             } else {
 
-                Text("Aucune sauvegarde enregistrée sur l'iPhone.")
-                    .foregroundStyle(.secondary)
+                ContentUnavailableView(
+                    "Aucune sauvegarde",
+                    systemImage: "externaldrive",
+                    description: Text(
+                        "Importez un fichier ou recevez une sauvegarde depuis votre Apple Watch."
+                    )
+                )
+                .frame(minHeight: 150)
             }
         }
+        .padding(18)
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .background(
+            Color(uiColor: .secondarySystemGroupedBackground),
+            in: RoundedRectangle(cornerRadius: 20)
+        )
     }
 
-    // MARK: - Actions
+    // MARK: - Main actions
 
-    private var actionsSection: some View {
+    private var actionButtons: some View {
 
-        VStack(alignment: .leading, spacing: 22) {
+        VStack(spacing: 12) {
 
-            BackupActionRow(
-                icon: "square.and.arrow.up",
-                title: "Exporter la dernière sauvegarde",
-                color: .green
-            ) {
+            Button {
+                showingImporter = true
+            } label: {
+                Label(
+                    "Importer une sauvegarde",
+                    systemImage: "square.and.arrow.down"
+                )
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 5)
+            }
+            .buttonStyle(.borderedProminent)
 
+            Button {
                 guard let latest = watchManager.latestBackup else {
                     showMessage("Aucune sauvegarde à exporter.")
                     return
                 }
 
                 exportBackup(latest)
+
+            } label: {
+                Label(
+                    "Exporter la dernière sauvegarde",
+                    systemImage: "square.and.arrow.up"
+                )
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 5)
             }
+            .buttonStyle(.bordered)
 
-            BackupActionRow(
-                icon: "clock.arrow.circlepath",
-                title: "Historique des sauvegardes"
-            ) {
-
+            Button {
                 watchManager.loadBackupHistory()
                 showingHistory = true
+            } label: {
+                Label(
+                    "Historique des sauvegardes",
+                    systemImage: "clock.arrow.circlepath"
+                )
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 5)
             }
-
-            BackupActionRow(
-                icon: "checkmark.shield",
-                title: "Vérifier toutes les sauvegardes"
-            ) {
-
-                verifyAllBackups()
-            }
+            .buttonStyle(.bordered)
         }
     }
 
-    // MARK: - Verification
+    // MARK: - Import
 
-    private func verifyBackup(
-        _ record: WatchConnectivityManager.BackupRecord
+    private func handleImport(
+        _ result: Result<[URL], Error>
     ) {
 
-        switch watchManager.verifyBackup(record) {
+        switch result {
 
-        case .valid:
+        case .success(let urls):
 
-            showMessage(
-                "Intégrité confirmée.\n\n" +
-                "Le SHA-256 correspond à l'empreinte enregistrée."
-            )
-
-        case .invalid:
-
-            showMessage(
-                "ATTENTION : le SHA-256 ne correspond plus.\n\n" +
-                "Le fichier a peut-être été modifié ou endommagé."
-            )
-
-        case .missing:
-
-            showMessage(
-                "Le fichier de sauvegarde est introuvable."
-            )
-
-        case .error(let message):
-
-            showMessage(
-                "Erreur de vérification : \(message)"
-            )
-        }
-    }
-
-    private func verifyAllBackups() {
-
-        guard !watchManager.backups.isEmpty else {
-            showMessage("Aucune sauvegarde à vérifier.")
-            return
-        }
-
-        var valid = 0
-        var invalid = 0
-        var missing = 0
-        var errors = 0
-
-        for record in watchManager.backups {
-
-            switch watchManager.verifyBackup(record) {
-
-            case .valid:
-                valid += 1
-
-            case .invalid:
-                invalid += 1
-
-            case .missing:
-                missing += 1
-
-            case .error:
-                errors += 1
+            guard let url = urls.first else {
+                return
             }
+
+            do {
+                switch try watchManager.importBackup(from: url) {
+
+                case .imported(let record):
+
+                    showMessage(
+                        """
+                        Sauvegarde importée avec succès.
+
+                        Taille : \(record.formattedSize)
+
+                        SHA-256 vérifié.
+                        """
+                    )
+
+                case .duplicate:
+
+                    showMessage(
+                        """
+                        Import refusé.
+
+                        Une sauvegarde identique est déjà présente dans l'historique.
+
+                        Aucun fichier supplémentaire n'a été créé.
+                        """
+                    )
+                }
+
+            } catch {
+
+                showMessage(
+                    "Impossible d'importer la sauvegarde :\n\(error.localizedDescription)"
+                )
+            }
+
+        case .failure(let error):
+
+            showMessage(
+                "Erreur lors de la sélection du fichier :\n\(error.localizedDescription)"
+            )
         }
-
-        showMessage("""
-        Vérification terminée.
-
-        Intègres : \(valid)
-        Modifiées : \(invalid)
-        Introuvables : \(missing)
-        Erreurs : \(errors)
-        """)
     }
 
     // MARK: - Export
@@ -384,7 +352,6 @@ struct ContentView: View {
     // MARK: - Alert
 
     private func showMessage(_ message: String) {
-
         alertMessage = message
         showingAlert = true
     }
@@ -393,7 +360,6 @@ struct ContentView: View {
 // MARK: - Share Item
 
 struct ShareItem: Identifiable {
-
     let id = UUID()
     let url: URL
 }
@@ -403,10 +369,6 @@ struct ShareItem: Identifiable {
 struct ActivityViewController: UIViewControllerRepresentable {
 
     let activityItems: [Any]
-
-    init(activityItems: [Any]) {
-        self.activityItems = activityItems
-    }
 
     func makeUIViewController(
         context: Context
@@ -433,7 +395,9 @@ struct BackupHistoryView: View {
     @Environment(\.dismiss) private var dismiss
 
     @State private var shareURL: ShareItem?
+    @State private var selectedBackup: WatchConnectivityManager.BackupRecord?
     @State private var verificationMessage: String?
+    @State private var showingVerification = false
 
     var body: some View {
 
@@ -441,228 +405,237 @@ struct BackupHistoryView: View {
 
             List {
 
-                // Verification result
-                if let message = verificationMessage {
-
-                    Section {
-                        Text(message)
-                            .font(.footnote)
-                            .foregroundStyle(.secondary)
-                            .textSelection(.enabled)
-                    }
-                }
-
-                // Empty history
                 if manager.backups.isEmpty {
 
                     ContentUnavailableView(
                         "Aucune sauvegarde",
                         systemImage: "externaldrive",
                         description: Text(
-                            "Les sauvegardes reçues apparaîtront ici."
+                            "Les sauvegardes apparaîtront ici."
                         )
                     )
                 }
 
-                // Backup records
                 ForEach(manager.backups) { record in
 
-                    VStack(alignment: .leading, spacing: 10) {
-
-                        Text(record.fileName)
-                            .font(.system(size: 14, weight: .semibold))
-                            .textSelection(.enabled)
-
-                        Text(
-                            record.date.formatted(
-                                date: .abbreviated,
-                                time: .shortened
-                            )
+                    NavigationLink {
+                        BackupDetailView(
+                            manager: manager,
+                            record: record
                         )
-                        .font(.system(size: 13))
-                        .foregroundStyle(.secondary)
+                    } label: {
 
-                        HStack {
-
-                            Text(record.formattedSize)
-
-                            Spacer()
-
-                            Text(record.deviceIdentifier)
-                        }
-                        .font(.system(size: 12))
-                        .foregroundStyle(.secondary)
-
-                        Text("SHA-256")
-                            .font(.system(size: 12, weight: .semibold))
-
-                        Text(record.sha256)
-                            .font(.system(size: 10, design: .monospaced))
-                            .textSelection(.enabled)
-                            .foregroundStyle(.secondary)
-
-                        Text(record.hashOrigin)
-                            .font(.system(size: 11))
-                            .foregroundStyle(.secondary)
-
-                        HStack {
-
-                            // Verify
-                            Button {
-                                verify(record)
-                            } label: {
-                                Label(
-                                    "Vérifier",
-                                    systemImage: "checkmark.shield"
-                                )
-                            }
-
-                            Spacer()
-
-                            // Export
-                            Button {
-
-                                guard let url = manager.exportURL(
-                                    for: record
-                                ) else {
-
-                                    verificationMessage =
-                                        "Impossible de trouver le fichier."
-
-                                    return
-                                }
-
-                                shareURL = ShareItem(url: url)
-
-                            } label: {
-
-                                Label(
-                                    "Exporter",
-                                    systemImage: "square.and.arrow.up"
-                                )
-                            }
-                        }
-                        .font(.system(size: 13, weight: .medium))
+                        BackupHistoryRow(record: record)
                     }
-                    .padding(.vertical, 8)
                 }
             }
             .navigationTitle("Historique")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
 
-                ToolbarItem(placement: .topBarTrailing) {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        manager.loadBackupHistory()
+                    } label: {
+                        Image(systemName: "arrow.clockwise")
+                    }
+                }
 
+                ToolbarItem(placement: .topBarTrailing) {
                     Button("Fermer") {
                         dismiss()
                     }
                 }
             }
         }
-
-        // Share sheet attached to history
-        .sheet(item: $shareURL) { item in
-
-            ActivityViewController(
-                activityItems: [item.url]
-            )
-        }
-    }
-
-    // MARK: - Verification
-
-    private func verify(
-        _ record: WatchConnectivityManager.BackupRecord
-    ) {
-
-        switch manager.verifyBackup(record) {
-
-        case .valid:
-
-            verificationMessage =
-                "Intégrité confirmée : le SHA-256 correspond."
-
-        case .invalid:
-
-            verificationMessage =
-                "ATTENTION : le fichier ne correspond plus à son empreinte."
-
-        case .missing:
-
-            verificationMessage =
-                "Le fichier est introuvable."
-
-        case .error(let message):
-
-            verificationMessage =
-                "Erreur de vérification : \(message)"
-        }
     }
 }
 
-// MARK: - Backup Status Row
+// MARK: - Backup History Row
 
-struct BackupStatusRow: View {
+struct BackupHistoryRow: View {
 
-    let title: String
-    let subtitle: String
-    let status: String
-    let color: Color
+    let record: WatchConnectivityManager.BackupRecord
 
     var body: some View {
 
-        HStack {
+        HStack(spacing: 13) {
 
-            VStack(alignment: .leading, spacing: 7) {
+            Image(systemName: "doc.zipper")
+                .font(.title2)
+                .foregroundStyle(.secondary)
+                .frame(width: 42, height: 42)
+                .background(
+                    Color(uiColor: .secondarySystemGroupedBackground),
+                    in: RoundedRectangle(cornerRadius: 12)
+                )
 
-                Text(title)
-                    .font(.system(size: 19, weight: .semibold))
+            VStack(alignment: .leading, spacing: 5) {
 
-                Text(subtitle)
-                    .font(.system(size: 15))
+                Text(record.date.formatted(
+                    date: .abbreviated,
+                    time: .shortened
+                ))
+                .font(.subheadline.weight(.semibold))
+
+                Text(record.hashOrigin)
+                    .font(.caption)
                     .foregroundStyle(.secondary)
             }
 
             Spacer()
 
-            Text(status)
-                .font(.system(size: 14, weight: .medium))
-                .foregroundStyle(color)
-                .padding(.horizontal, 12)
-                .padding(.vertical, 7)
-                .background(color.opacity(0.12), in: Capsule())
+            Text(record.formattedSize)
+                .font(.caption)
+                .foregroundStyle(.secondary)
         }
+        .padding(.vertical, 5)
     }
 }
 
-// MARK: - Backup Action Row
+// MARK: - Backup Detail
 
-struct BackupActionRow: View {
+struct BackupDetailView: View {
 
-    let icon: String
-    let title: String
-    var color: Color = .primary
-    let action: () -> Void
+    @ObservedObject var manager: WatchConnectivityManager
+
+    let record: WatchConnectivityManager.BackupRecord
+
+    @State private var shareURL: ShareItem?
+    @State private var verificationMessage: String?
+    @State private var showingVerification = false
 
     var body: some View {
 
-        Button(action: action) {
+        List {
 
-            HStack(spacing: 13) {
+            Section("Sauvegarde") {
 
-                Image(systemName: icon)
-                    .font(.system(size: 20, weight: .medium))
-                    .foregroundStyle(color)
-                    .frame(width: 24)
-
-                Text(title)
-                    .font(.system(size: 18, weight: .semibold))
-                    .foregroundStyle(.primary)
-
-                Spacer()
+                detailRow("Date", value: record.formattedDate)
+                detailRow("Taille", value: record.formattedSize)
+                detailRow("Origine", value: record.hashOrigin)
+                detailRow("Appareil", value: record.deviceIdentifier)
             }
-            .contentShape(Rectangle())
+
+            Section("Intégrité") {
+
+                VStack(alignment: .leading, spacing: 8) {
+
+                    Text("SHA-256")
+                        .font(.caption.weight(.semibold))
+                        .foregroundStyle(.secondary)
+
+                    Text(record.sha256)
+                        .font(.system(.caption, design: .monospaced))
+                        .textSelection(.enabled)
+                }
+                .padding(.vertical, 5)
+
+                Button {
+                    verifyBackup()
+                } label: {
+                    Label(
+                        "Vérifier l'intégrité",
+                        systemImage: "checkmark.shield"
+                    )
+                }
+            }
+
+            Section("Fichier") {
+
+                Text(record.fileName)
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .textSelection(.enabled)
+
+                Button {
+                    exportBackup()
+                } label: {
+                    Label(
+                        "Exporter cette sauvegarde",
+                        systemImage: "square.and.arrow.up"
+                    )
+                }
+            }
+
+            if let message = verificationMessage {
+
+                Section("Résultat") {
+                    Text(message)
+                        .font(.footnote)
+                        .textSelection(.enabled)
+                }
+            }
         }
-        .buttonStyle(.plain)
+        .navigationTitle("Détails")
+        .navigationBarTitleDisplayMode(.inline)
+        .sheet(item: $shareURL) { item in
+            ActivityViewController(activityItems: [item.url])
+        }
+        .alert(
+            "Vérification",
+            isPresented: $showingVerification
+        ) {
+            Button("OK", role: .cancel) { }
+        } message: {
+            Text(verificationMessage ?? "")
+        }
+    }
+
+    private func detailRow(
+        _ title: String,
+        value: String
+    ) -> some View {
+
+        HStack {
+
+            Text(title)
+
+            Spacer()
+
+            Text(value)
+                .foregroundStyle(.secondary)
+                .multilineTextAlignment(.trailing)
+        }
+    }
+
+    // MARK: - Verification
+
+    private func verifyBackup() {
+
+        switch manager.verifyBackup(record) {
+
+        case .valid:
+            verificationMessage =
+                "Intégrité confirmée. Le SHA-256 correspond."
+
+        case .invalid:
+            verificationMessage =
+                "Attention : le fichier ne correspond plus à son empreinte."
+
+        case .missing:
+            verificationMessage =
+                "Le fichier est introuvable."
+
+        case .error(let message):
+            verificationMessage =
+                "Erreur de vérification : \(message)"
+        }
+
+        showingVerification = true
+    }
+
+    // MARK: - Export
+
+    private func exportBackup() {
+
+        guard let url = manager.exportURL(for: record) else {
+            verificationMessage =
+                "Impossible de trouver le fichier à exporter."
+            showingVerification = true
+            return
+        }
+
+        shareURL = ShareItem(url: url)
     }
 }

@@ -31,7 +31,7 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
     // MARK: - Backup information
 
     @Published var backups: [BackupRecord] = []
-    @Published var backupStatus = "No backup received"
+    @Published var backupStatus = "Aucune sauvegarde"
     @Published var lastVerificationMessage = ""
 
     private var session: WCSession?
@@ -53,6 +53,13 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
                 countStyle: .file
             )
         }
+
+        var formattedDate: String {
+            date.formatted(
+                date: .long,
+                time: .shortened
+            )
+        }
     }
 
     private struct BackupManifest: Codable {
@@ -64,6 +71,11 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
         case invalid
         case missing
         case error(String)
+    }
+
+    enum ImportResult {
+        case imported(BackupRecord)
+        case duplicate
     }
 
     // MARK: - Paths
@@ -167,12 +179,11 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
         print("[WC] iPhone session activation requested")
     }
 
-    // MARK: - History loading and migration
+    // MARK: - History
 
     func loadBackupHistory() {
         do {
             var records = try Self.loadManifest()
-
             let directory = try Self.backupDirectory()
 
             let files = try FileManager.default.contentsOfDirectory(
@@ -195,15 +206,13 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
 
                 do {
                     let data = try Data(contentsOf: file)
-
                     try Self.validateBackup(data)
 
                     let attributes = try FileManager.default.attributesOfItem(
                         atPath: file.path
                     )
 
-                    let date =
-                        attributes[.creationDate] as? Date ?? Date()
+                    let date = attributes[.creationDate] as? Date ?? Date()
 
                     let record = BackupRecord(
                         id: UUID(),
@@ -217,14 +226,10 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
 
                     records.append(record)
 
-                    print(
-                        "[WC] Initial baseline created for \(record.fileName)"
-                    )
+                    print("[WC] Baseline created: \(record.fileName)")
 
                 } catch {
-                    print(
-                        "[WC] Existing backup migration failed: \(error)"
-                    )
+                    print("[WC] Migration failed: \(error)")
                 }
             }
 
@@ -235,14 +240,14 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
             backups = records
 
             backupStatus = records.isEmpty
-                ? "No backup received"
-                : "\(records.count) backup(s) stored"
+                ? "Aucune sauvegarde"
+                : "\(records.count) sauvegarde(s)"
 
             print("[WC] Backup history loaded: \(records.count)")
 
         } catch {
             print("[WC] History loading error: \(error.localizedDescription)")
-            backupStatus = "History loading failed"
+            backupStatus = "Erreur de chargement"
         }
     }
 
@@ -265,7 +270,7 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
                 code: 1,
                 userInfo: [
                     NSLocalizedDescriptionKey:
-                        "Invalid MobileGestalt backup structure."
+                        "Structure MobileGestalt invalide."
                 ]
             )
         }
@@ -289,8 +294,6 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
     // MARK: - Device information
 
     private func updateDeviceInformation(_ info: [String: Any]) {
-        print("[WC] Received device information: \(info)")
-
         if let value = info["deviceName"] as? String {
             deviceName = value
         }
@@ -330,20 +333,16 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
     ) throws -> BackupRecord {
 
         let originalData = try Data(contentsOf: sourceURL)
-
         try validateBackup(originalData)
 
         let originalHash = sha256(originalData)
-
         let directory = try backupDirectory()
 
         let identifier = UUID()
         let fileName = "OriginalGestalt-\(identifier.uuidString).plist"
 
-        let destinationURL = directory
-            .appendingPathComponent(fileName)
+        let destinationURL = directory.appendingPathComponent(fileName)
 
-        // Create an independent copy. Never overwrite.
         try FileManager.default.copyItem(
             at: sourceURL,
             to: destinationURL
@@ -351,7 +350,8 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
 
         let storedData = try Data(contentsOf: destinationURL)
 
-        guard storedData == originalData else {
+        guard storedData == originalData,
+              sha256(storedData) == originalHash else {
             try? FileManager.default.removeItem(at: destinationURL)
 
             throw NSError(
@@ -359,22 +359,7 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
                 code: 2,
                 userInfo: [
                     NSLocalizedDescriptionKey:
-                        "Stored backup does not match received file."
-                ]
-            )
-        }
-
-        let storedHash = sha256(storedData)
-
-        guard storedHash == originalHash else {
-            try? FileManager.default.removeItem(at: destinationURL)
-
-            throw NSError(
-                domain: "HermesCompanion.Backup",
-                code: 3,
-                userInfo: [
-                    NSLocalizedDescriptionKey:
-                        "SHA-256 verification failed."
+                        "La sauvegarde copiée ne correspond pas au fichier reçu."
                 ]
             )
         }
@@ -392,36 +377,131 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
 
         let transferDate =
             (metadata?["transferDate"] as? TimeInterval)
-            .map { Date(timeIntervalSince1970: $0) }
-            ?? Date()
+            .map { Date(timeIntervalSince1970: $0) } ?? Date()
 
         let record = BackupRecord(
             id: identifier,
             fileName: fileName,
             date: transferDate,
             size: storedData.count,
-            sha256: storedHash,
+            sha256: originalHash,
             deviceIdentifier: deviceIdentifier,
-            hashOrigin: "Received and verified"
+            hashOrigin: "Watch transfer"
         )
 
-        // Persist manifest without overwriting existing records.
         var records = try loadManifest()
-
         records.append(record)
         records.sort { $0.date > $1.date }
 
-        try saveManifest(records)
+        do {
+            try saveManifest(records)
+        } catch {
+            try? FileManager.default.removeItem(at: destinationURL)
+            throw error
+        }
 
         return record
+    }
+
+    // MARK: - External import
+
+    func importBackup(from sourceURL: URL) throws -> ImportResult {
+        let didAccess = sourceURL.startAccessingSecurityScopedResource()
+        defer {
+            if didAccess {
+                sourceURL.stopAccessingSecurityScopedResource()
+            }
+        }
+
+        guard sourceURL.pathExtension.lowercased() == "plist" else {
+            throw NSError(
+                domain: "HermesCompanion.Import",
+                code: 10,
+                userInfo: [
+                    NSLocalizedDescriptionKey:
+                        "Le fichier doit être au format .plist."
+                ]
+            )
+        }
+
+        let data = try Data(contentsOf: sourceURL)
+        try Self.validateBackup(data)
+
+        let importedHash = Self.sha256(data)
+        let records = try Self.loadManifest()
+
+        // Reject any backup already present in the history.
+        guard !records.contains(where: {
+            $0.sha256.caseInsensitiveCompare(importedHash) == .orderedSame
+        }) else {
+            return .duplicate
+        }
+
+        let directory = try Self.backupDirectory()
+        let identifier = UUID()
+        let fileName = "OriginalGestalt-\(identifier.uuidString).plist"
+        let destinationURL = directory.appendingPathComponent(fileName)
+
+        try data.write(to: destinationURL, options: .atomic)
+
+        let storedData = try Data(contentsOf: destinationURL)
+
+        guard storedData == data,
+              Self.sha256(storedData) == importedHash else {
+            try? FileManager.default.removeItem(at: destinationURL)
+
+            throw NSError(
+                domain: "HermesCompanion.Import",
+                code: 11,
+                userInfo: [
+                    NSLocalizedDescriptionKey:
+                        "La vérification de la copie a échoué."
+                ]
+            )
+        }
+
+        try FileManager.default.setAttributes(
+            [
+                .protectionKey:
+                    FileProtectionType.completeUntilFirstUserAuthentication
+            ],
+            ofItemAtPath: destinationURL.path
+        )
+
+        let record = BackupRecord(
+            id: identifier,
+            fileName: fileName,
+            date: Date(),
+            size: storedData.count,
+            sha256: importedHash,
+            deviceIdentifier: "Import externe",
+            hashOrigin: "External import"
+        )
+
+        var updatedRecords = records
+        updatedRecords.append(record)
+        updatedRecords.sort { $0.date > $1.date }
+
+        do {
+            try Self.saveManifest(updatedRecords)
+        } catch {
+            try? FileManager.default.removeItem(at: destinationURL)
+            throw error
+        }
+
+        loadBackupHistory()
+
+        print("[IMPORT] Backup imported: \(fileName)")
+        print("[IMPORT] SHA256: \(importedHash)")
+
+        return .imported(record)
     }
 
     // MARK: - Backup reception UI
 
     private func updateBackupInformation(_ record: BackupRecord) {
         loadBackupHistory()
-
-        backupStatus = "Backup received and verified"
+        backupStatus = "Sauvegarde reçue et vérifiée"
 
         print("[WC] Backup successfully stored")
         print("[WC] File: \(record.fileName)")
@@ -440,20 +520,19 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
             }
 
             let data = try Data(contentsOf: url)
-
             try Self.validateBackup(data)
 
             let currentHash = Self.sha256(data)
 
             guard currentHash == record.sha256 else {
                 lastVerificationMessage =
-                    "SHA-256 mismatch: file has changed."
+                    "SHA-256 différent : le fichier a été modifié."
 
                 return .invalid
             }
 
             lastVerificationMessage =
-                "Integrity verified: SHA-256 matches."
+                "Intégrité confirmée : SHA-256 identique."
 
             return .valid
 
@@ -525,7 +604,6 @@ extension WatchConnectivityManager: WCSessionDelegate {
     ) {
         Task { @MainActor in
             print("[WC] New application context received")
-
             self.updateDeviceInformation(applicationContext)
             self.updateStatus(session)
         }
@@ -549,12 +627,9 @@ extension WatchConnectivityManager: WCSessionDelegate {
                 self.updateBackupInformation(record)
 
             } catch {
-                print(
-                    "[WC] Backup reception error: \(error.localizedDescription)"
-                )
-
+                print("[WC] Backup reception error: \(error.localizedDescription)")
                 self.backupStatus =
-                    "Backup rejected: \(error.localizedDescription)"
+                    "Sauvegarde refusée : \(error.localizedDescription)"
             }
         }
     }
@@ -580,3 +655,4 @@ extension WatchConnectivityManager: WCSessionDelegate {
         session.activate()
     }
 }
+
