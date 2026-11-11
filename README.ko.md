@@ -15,15 +15,16 @@
 3. iPhone의 **Watch 앱 → 나의 시계 → 앱**에서 **HermesEnabler2**를 설치합니다.
 4. Apple Watch에서 **HermesEnabler2**를 열고 앱의 안내를 따릅니다.
 
-> Sideloadly에서 **Use automatic bundle ID**를 끄고 고정된 Bundle Identifier를 사용하세요. 기존 앱 데이터와 백업을 유지할 수 있도록 업데이트할 때마다 같은 Bundle Identifier와 Apple ID를 사용하세요.
-
-> 앱을 삭제하기 전에 반드시 HermesEnabler2 앱에서 MobileGestalt 백업을 복원하세요.
-
 ### Xcode로 직접 빌드
 
 1. Xcode에서 [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj)를 엽니다.
 2. 실행 대상으로 Apple Watch를 선택하고 **Run**을 누릅니다.
 3. Apple Watch에서 **HermesEnabler2**를 열고 앱의 안내를 따릅니다.
+
+## 주의사항
+
+- Sideloadly에서 **Use automatic bundle ID**를 끄고 고정된 Bundle Identifier를 사용하세요. 기존 앱 데이터와 백업을 유지할 수 있도록 업데이트할 때마다 같은 Bundle Identifier와 Apple ID를 사용하세요.
+- 앱을 삭제하기 전에 반드시 HermesEnabler2 앱에서 MobileGestalt 백업을 복원하세요.
 
 ## 크레딧
 
