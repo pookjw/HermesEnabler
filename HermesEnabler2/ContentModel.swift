@@ -184,23 +184,23 @@ final class ContentModel {
         var error: NSString?
         var result: String
         var toggleFailed = false
-        let isToggle: Bool
+        let shouldAlertOnFailure: Bool
         switch action {
         case .hermes, .ultraFaces, .aod, .aodSeconds, .actionButton, .doubleTap,
-                .depth, .absoluteAltimeter, .alwaysOnCompass, .aodVibrancy, .watchKeyboard,
-                .periodicALSUpdates, .raiseToSpeak, .continuousHeartRate, .compassOrienteering,
-                .environmentalDosimetry, .batteryInformation, .alwaysListening, .rotateToWake,
-                .swimmingWorkouts, .appleIntelligence, .onDeviceSiri, .audioIntelligence:
-            isToggle = true
+             .depth, .absoluteAltimeter, .alwaysOnCompass, .aodVibrancy, .watchKeyboard,
+             .periodicALSUpdates, .raiseToSpeak, .continuousHeartRate, .compassOrienteering,
+             .environmentalDosimetry, .batteryInformation, .alwaysListening, .rotateToWake,
+             .swimmingWorkouts, .appleIntelligence, .onDeviceSiri, .audioIntelligence:
+            shouldAlertOnFailure = true
         default:
-            isToggle = false
+            shouldAlertOnFailure = false
         }
         func checked(_ success: Bool) -> Bool {
             if !success { toggleFailed = true }
             return success
         }
         if !BQCoreInit() {
-            toggleFailed = isToggle
+            toggleFailed = shouldAlertOnFailure
             result = "MobileGestalt access is unavailable on this device."
         } else {
             switch action {
@@ -378,7 +378,7 @@ final class ContentModel {
         } else if (error as String?) == BQNoSandboxTokenError {
             showAccessAlert = true
         }
-        if hasBackup { refreshCapabilityStates() }
+        refreshCapabilityStates()
     }
     
     func refreshCapabilityStates() {

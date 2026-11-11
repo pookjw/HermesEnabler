@@ -29,6 +29,5 @@ struct DisplayAndControlsView: View {
                 .foregroundStyle(.secondary)
         }
         .navigationTitle("Display & Controls")
-        .disabled(!model.hasBackup)
     }
 }

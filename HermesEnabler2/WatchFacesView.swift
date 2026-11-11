@@ -16,6 +16,5 @@ struct WatchFacesView: View {
             }
         }
         .navigationTitle("Watch Faces")
-        .disabled(!model.hasBackup)
     }
 }

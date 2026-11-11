@@ -104,12 +104,25 @@ struct BackupView: View {
                 }
             }
 
-            Section("Status") {
-
-                Text(LocalizedStringKey(model.message))
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
+            if !model.hasBackup && !model.backups.isEmpty {
+                Section("Backup Library") {
+                    ForEach(model.backups) { backup in
+                        Button {
+                            model.selectedBackupID = backup.id
+                            model.showRestoreConfirmation = true
+                        } label: {
+                            VStack(alignment: .leading, spacing: 2) {
+                                Text(LocalizedStringKey(backup.kind + " Backup"))
+                                Text(backup.date.formatted(date: .abbreviated, time: .shortened))
+                                    .font(.footnote).foregroundStyle(.secondary)
+                            }
+                        }
+                    }
+                }
             }
+            Section("Status") { Text(LocalizedStringKey(model.message))
+                .font(.footnote)
+                .foregroundStyle(.secondary) }
         }
         .navigationTitle("MG Backups")
         .onAppear {

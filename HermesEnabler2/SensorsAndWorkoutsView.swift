@@ -22,6 +22,5 @@ struct SensorsAndWorkoutsView: View {
                 .foregroundStyle(.secondary)
         }
         .navigationTitle("Sensors & Workouts")
-        .disabled(!model.hasBackup)
     }
 }

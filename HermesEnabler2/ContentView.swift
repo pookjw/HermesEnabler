@@ -45,7 +45,7 @@ struct ContentView: View {
         .onChange(of: scenePhase, initial: true) { _, phase in
             if phase == .active {
                 model.refreshBackups()
-                if model.hasBackup { model.refreshCapabilityStates() }
+                model.refreshCapabilityStates()
             }
         }
         .confirmationDialog("Restore this backup?", isPresented: $model.showRestoreConfirmation) {

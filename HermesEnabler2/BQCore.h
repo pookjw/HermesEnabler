@@ -12,8 +12,6 @@ NSString *BQDocuments(void);
 NSString *BQGroupRoot(void);
 NSString *BQGroupID(void);
 NSArray<NSString *> *BQGroupIDs(void);
-NSDictionary *BQProbeEscapeClasses(NSString *target);
-NSDictionary *BQProbeClass2Parts(NSString *target);
 dispatch_queue_t BQWorkQueue(void);
 
 // ---- init ------------------------------------------------------------------
@@ -61,7 +59,6 @@ NSArray<NSString *> *BQPosterBoardExtensions(void);
 void BQRespring(void);
 
 // Writes DeviceBrand into the verified CacheData layout, retaining the original backup.
-BOOL BQEnableHermes(NSString **err);
 BOOL BQSetHermesEnabled(BOOL enabled, NSString **err);
 BOOL BQGetHermesEnabled(BOOL *enabled, NSString **err);
 BOOL BQSetUltraFacesEnabled(BOOL enabled, NSString **err);
