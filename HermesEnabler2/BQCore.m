@@ -1,4 +1,5 @@
 #import "BQCore.h"
+#import "BQRecoveryValidation.h"
 #import <dlfcn.h>
 #import <zlib.h>
 #import <CoreFoundation/CoreFoundation.h>
@@ -307,35 +308,6 @@ static void bq_restore_path(NSString *path, NSString *bak) {
             [fm createDirectoryAtPath:path withIntermediateDirectories:YES attributes:nil error:nil];
         }
     }
-}
-
-// bad_query_list-style inode enumeration.
-static char *bq_list(const char *path, int64_t max_inode) {
-    struct statfs sfs;
-    if (statfs(path, &sfs) != 0) return NULL;
-    fsid_t fsid = sfs.f_fsid;
-    size_t cap = 65536, length = 0, path_length = strlen(path);
-    char *out = malloc(cap);
-    if (!out) return NULL;
-    out[0] = '\0';
-    char buf[1200];
-    for (uint64_t ino = 1; ino <= (uint64_t)max_inode; ino++) {
-        ssize_t n = fsgetpath(buf, sizeof(buf), &fsid, ino);
-        if (n <= 0) continue;
-        const char *p = buf;
-        if (strncmp(p, "/private/var/", 13) == 0) p += 8;
-        if (strncmp(p, path, path_length) != 0 || p[path_length] != '/') continue;
-        if (strchr(p + path_length + 1, '/')) continue;
-        size_t need = strlen(p) + 2;
-        if (length + need > cap) {
-            cap *= 2;
-            char *t = realloc(out, cap);
-            if (!t) break;
-            out = t;
-        }
-        length += snprintf(out + length, cap - length, "%s\n", p);
-    }
-    return out;
 }
 
 // ------------------------------------------------------------------ init ---
@@ -814,7 +786,7 @@ static NSString *bq_create_gestalt_backup(NSString *kind, NSString **err) {
         if (err) *err = @"An initial backup already exists and will not be overwritten.";
         return nil;
     }
-    if (!initial && !BQBackupExists()) {
+    if ([kind isEqualToString:@"manual"] && !BQBackupExists()) {
         if (err) *err = @"Create the initial backup first.";
         return nil;
     }
@@ -1101,23 +1073,81 @@ BOOL BQDeleteGestaltBackup(NSString *identifier, NSString **err) {
 }
 
 typedef struct {
-    const char *build;
-    const char *cacheUUID;
-    NSUInteger dataLength;
-    NSUInteger valueOffset;
-    NSUInteger presentOffset;
+    const char *build, *cacheUUID;
+    NSUInteger dataLength, valueOffset, presentOffset, screenOffset, screenPresentOffset, presenceBase;
+    NSUInteger aodIndex, aodTimeIndex, hzIndex, actionIndex, gestureIndex, keyboardIndex, vibrancyIndex, noiseIndex;
+    BOOL recoveryVerified;
 } BQDeviceBrandLayout;
 
-static const BQDeviceBrandLayout kDeviceBrandLayouts[] = {
-    {"24S5284h", "DB380F61-0014-418D-9799-876666B459E3", 0x1950, 0x348, 0x16e9},
-    {"24R359", "6F8372B0-1583-4031-A4BC-A54A18B0DD5A", 0x1947, 0x348, 0x16e1},
-    {"24R364", "6F8372B0-1583-4031-A4BC-A54A18B0DD5A", 0x1947, 0x348, 0x16e1},
-    {"24R365", "6F8372B0-1583-4031-A4BC-A54A18B0DD5A", 0x1947, 0x348, 0x16e1},
-    {"24S118", "32B4CA84-FBDA-496C-9B79-2101D597158B", 0x1950, 0x348, 0x16e9},
-    {"24S132", "32B4CA84-FBDA-496C-9B79-2101D597158B", 0x1950, 0x348, 0x16e9},
-};
+// Refuse missing or malformed bundled data rather than writing an assumed layout.
+static NSDictionary *bq_buildData(NSString *resource, NSString *build) {
+    NSString *path = [[NSBundle mainBundle] pathForResource:resource ofType:@"plist"];
+    id root = path ? [NSDictionary dictionaryWithContentsOfFile:path] : nil;
+    if (![root isKindOfClass:[NSDictionary class]]) return nil;
+    id builds = root[@"Builds"];
+    id entry = [builds isKindOfClass:[NSDictionary class]] ? builds[build] : nil;
+    return [entry isKindOfClass:[NSDictionary class]] ? entry : nil;
+}
+
+static const BQDeviceBrandLayout *bq_layoutForBuild(const char *build) {
+    if (!build) return NULL;
+    static NSDictionary<NSString *, NSValue *> *layouts;
+    static dispatch_once_t once;
+    dispatch_once(&once, ^{
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"MGOffsets" ofType:@"plist"];
+        id root = path ? [NSDictionary dictionaryWithContentsOfFile:path] : nil;
+        NSDictionary *builds = [root isKindOfClass:[NSDictionary class]] && [root[@"Builds"] isKindOfClass:[NSDictionary class]] ? root[@"Builds"] : @{};
+        NSMutableDictionary *parsed = [NSMutableDictionary dictionary];
+        for (id name in builds) {
+            NSDictionary *entry = [builds[name] isKindOfClass:[NSDictionary class]] ? builds[name] : nil;
+            NSDictionary *indexes = [entry[@"Indexes"] isKindOfClass:[NSDictionary class]] ? entry[@"Indexes"] : nil;
+            NSString *uuid = entry[@"CacheUUID"];
+            NSArray *fields = @[@"CacheDataLength", @"DeviceBrandOffset", @"DeviceBrandPresentOffset", @"ScreenClassOffset", @"ScreenClassPresentOffset", @"PresenceBase"];
+            NSArray *indexKeys = @[@"AlwaysOnDisplay", @"AlwaysOnTime", @"AlwaysOnDisplayFlipbook", @"ActionButton", @"DoubleTap", @"Keyboard", @"AODVibrancy", @"EnvironmentalDosimetry"];
+            if (![name isKindOfClass:[NSString class]] || ![uuid isKindOfClass:[NSString class]] || ![[NSUUID alloc] initWithUUIDString:uuid] || ![entry[@"RecoveryVerified"] isKindOfClass:[NSNumber class]]) continue;
+            BOOL valid = YES;
+            for (NSString *field in fields) if (![entry[field] isKindOfClass:[NSNumber class]] || [entry[field] longLongValue] < 0) valid = NO;
+            for (NSString *key in indexKeys) if (![indexes[key] isKindOfClass:[NSNumber class]] || [indexes[key] longLongValue] < 0) valid = NO;
+            if (!valid) continue;
+            NSUInteger length = [entry[@"CacheDataLength"] unsignedIntegerValue], base = [entry[@"PresenceBase"] unsignedIntegerValue];
+            if (length < 8 || length > 1024 * 1024 || base >= length || [entry[@"DeviceBrandOffset"] unsignedIntegerValue] > length - 4 || [entry[@"ScreenClassOffset"] unsignedIntegerValue] > length - 4 || [entry[@"DeviceBrandPresentOffset"] unsignedIntegerValue] >= length || [entry[@"ScreenClassPresentOffset"] unsignedIntegerValue] >= length) continue;
+            for (NSString *key in indexKeys) { NSUInteger n = [indexes[key] unsignedIntegerValue]; if (n >= length - base || n > (length - 8) / 8) valid = NO; }
+            if (!valid) continue;
+            BQDeviceBrandLayout *item = calloc(1, sizeof(*item));
+            if (!item) continue;
+            item->build = strdup([name UTF8String]); item->cacheUUID = strdup(uuid.UTF8String);
+            item->dataLength = length; item->valueOffset = [entry[@"DeviceBrandOffset"] unsignedIntegerValue]; item->presentOffset = [entry[@"DeviceBrandPresentOffset"] unsignedIntegerValue];
+            item->screenOffset = [entry[@"ScreenClassOffset"] unsignedIntegerValue]; item->screenPresentOffset = [entry[@"ScreenClassPresentOffset"] unsignedIntegerValue]; item->presenceBase = base;
+            item->aodIndex = [indexes[@"AlwaysOnDisplay"] unsignedIntegerValue]; item->aodTimeIndex = [indexes[@"AlwaysOnTime"] unsignedIntegerValue]; item->hzIndex = [indexes[@"AlwaysOnDisplayFlipbook"] unsignedIntegerValue];
+            item->actionIndex = [indexes[@"ActionButton"] unsignedIntegerValue]; item->gestureIndex = [indexes[@"DoubleTap"] unsignedIntegerValue]; item->keyboardIndex = [indexes[@"Keyboard"] unsignedIntegerValue];
+            item->vibrancyIndex = [indexes[@"AODVibrancy"] unsignedIntegerValue]; item->noiseIndex = [indexes[@"EnvironmentalDosimetry"] unsignedIntegerValue]; item->recoveryVerified = [entry[@"RecoveryVerified"] boolValue];
+            parsed[name] = [NSValue valueWithPointer:item];
+        }
+        layouts = [parsed copy];
+    });
+    return [layouts[[NSString stringWithUTF8String:build]] pointerValue];
+}
+
+static const BQDeviceBrandLayout *bq_currentLayout(void) {
+    char build[128] = {0}; size_t length = sizeof(build);
+    return sysctlbyname("kern.osversion", build, &length, NULL, 0) == 0 ? bq_layoutForBuild(build) : NULL;
+}
+
+static BOOL bq_buildDefault(const char *build, NSString *key, uint32_t *value) {
+    NSDictionary *entry = bq_buildData(@"MGDefaults", [NSString stringWithUTF8String:build]);
+    id number = entry[key];
+    if (![number isKindOfClass:[NSNumber class]] || [number longLongValue] < 0 || [number unsignedLongLongValue] > UINT32_MAX) return NO;
+    if (value) *value = [number unsignedIntValue];
+    return YES;
+}
+
+static BOOL bq_recoverNativeFace(BOOL recoverBrand, NSString **err);
+static BOOL bq_recoverNativeControl(NSString *key, NSString **err);
+static BOOL bq_recoverNativeAdditional(NSString *key, NSString **err);
+static BOOL bq_recoverNativeAOD(BOOL secondsOnly, NSString **err);
 
 BOOL BQSetHermesEnabled(BOOL enabled, NSString **err) {
+    if (!enabled && !BQBackupExists()) return bq_recoverNativeFace(YES, err);
     if (!BQBackupExists()) {
         if (err) *err = NSLocalizedString(@"Back up MobileGestalt first.", nil);
         return NO;
@@ -1136,13 +1166,7 @@ BOOL BQSetHermesEnabled(BOOL enabled, NSString **err) {
         if (err) *err = NSLocalizedString(@"Could not identify the watchOS build.", nil);
         return NO;
     }
-    const BQDeviceBrandLayout *layout = NULL;
-    for (size_t i = 0; i < sizeof(kDeviceBrandLayouts) / sizeof(kDeviceBrandLayouts[0]); i++) {
-        if (strcmp(build, kDeviceBrandLayouts[i].build) == 0) {
-            layout = &kDeviceBrandLayouts[i];
-            break;
-        }
-    }
+    const BQDeviceBrandLayout *layout = bq_layoutForBuild(build);
     if (!layout) {
         if (err) *err = [NSString stringWithFormat:NSLocalizedString(@"DeviceBrand CacheData layout is not verified for build %@.", nil), [NSString stringWithUTF8String:build]];
         return NO;
@@ -1151,6 +1175,13 @@ BOOL BQSetHermesEnabled(BOOL enabled, NSString **err) {
     id cacheData = plist[@"CacheData"];
     id backupExtra = backupPlist[@"CacheExtra"];
     id backupCacheData = backupPlist[@"CacheData"];
+    if (!enabled && (![backupExtra isKindOfClass:[NSDictionary class]] ||
+        ![backupCacheData isKindOfClass:[NSData class]] ||
+        ![backupPlist[@"CacheUUID"] isEqual:[NSString stringWithUTF8String:layout->cacheUUID]] ||
+        [backupCacheData length] != layout->dataLength ||
+        ((const uint8_t *)[backupCacheData bytes])[layout->presentOffset] != 1)) {
+        return bq_recoverNativeFace(YES, err);
+    }
     if (![extra isKindOfClass:[NSDictionary class]] || ![cacheData isKindOfClass:[NSData class]] ||
         ![backupExtra isKindOfClass:[NSDictionary class]] || ![backupCacheData isKindOfClass:[NSData class]] ||
         ![plist[@"CacheUUID"] isEqual:[NSString stringWithUTF8String:layout->cacheUUID]] ||
@@ -1171,7 +1202,12 @@ BOOL BQSetHermesEnabled(BOOL enabled, NSString **err) {
         return NO;
     }
     // DeviceBrand is a little-endian signed 32-bit integer, in an 8-byte slot.
-    const uint8_t one[] = {1, 0, 0, 0};
+    uint32_t enabledBrand = 0;
+    if (!bq_buildDefault(build, @"HermesEnabledDeviceBrand", &enabledBrand)) {
+        if (err) *err = NSLocalizedString(@"DeviceBrand CacheData layout is unavailable or unverified.", nil);
+        return NO;
+    }
+    uint8_t one[] = {enabledBrand & 0xff, (enabledBrand >> 8) & 0xff, (enabledBrand >> 16) & 0xff, (enabledBrand >> 24) & 0xff};
     if (enabled) memcpy(bytes + valueOffset, one, sizeof(one));
     else {
         memcpy(bytes + valueOffset, backupBytes + valueOffset, sizeof(uint32_t));
@@ -1209,10 +1245,6 @@ BOOL BQSetHermesEnabled(BOOL enabled, NSString **err) {
     return YES;
 }
 
-BOOL BQEnableHermes(NSString **err) {
-    return BQSetHermesEnabled(YES, err);
-}
-
 BOOL BQGetHermesEnabled(BOOL *enabled, NSString **err) {
     NSMutableDictionary *plist = BQLoadGestalt(err);
     if (!plist) return NO;
@@ -1222,13 +1254,7 @@ BOOL BQGetHermesEnabled(BOOL *enabled, NSString **err) {
         if (err) *err = NSLocalizedString(@"Could not identify the watchOS build.", nil);
         return NO;
     }
-    const BQDeviceBrandLayout *layout = NULL;
-    for (size_t i = 0; i < sizeof(kDeviceBrandLayouts) / sizeof(kDeviceBrandLayouts[0]); i++) {
-        if (strcmp(build, kDeviceBrandLayouts[i].build) == 0) {
-            layout = &kDeviceBrandLayouts[i];
-            break;
-        }
-    }
+    const BQDeviceBrandLayout *layout = bq_layoutForBuild(build);
     NSData *cacheData = plist[@"CacheData"];
     if (!layout || ![cacheData isKindOfClass:[NSData class]] ||
         ![plist[@"CacheUUID"] isEqual:[NSString stringWithUTF8String:layout->cacheUUID]] ||
@@ -1237,9 +1263,13 @@ BOOL BQGetHermesEnabled(BOOL *enabled, NSString **err) {
         return NO;
     }
     const uint8_t *bytes = (const uint8_t *)cacheData.bytes;
-    BOOL isHermes = bytes[layout->presentOffset] == 1 &&
-        bytes[layout->valueOffset] == 1 && bytes[layout->valueOffset + 1] == 0 &&
-        bytes[layout->valueOffset + 2] == 0 && bytes[layout->valueOffset + 3] == 0;
+    uint32_t expected = 0, actual = 0;
+    if (!bq_buildDefault(build, @"HermesEnabledDeviceBrand", &expected)) {
+        if (err) *err = NSLocalizedString(@"DeviceBrand CacheData layout is unavailable or unverified.", nil);
+        return NO;
+    }
+    memcpy(&actual, bytes + layout->valueOffset, sizeof(actual));
+    BOOL isHermes = bytes[layout->presentOffset] == 1 && actual == expected;
     if (enabled) *enabled = isHermes;
     return YES;
 }
@@ -1252,15 +1282,11 @@ static BOOL bq_ultraCache(NSDictionary *plist, NSMutableData **dataOut, NSUInteg
         if (err) *err = NSLocalizedString(@"Could not identify the watchOS build.", nil);
         return NO;
     }
-    NSString *uuid = nil;
-    NSUInteger length = 0, value = 0, present = 0;
-    if (strcmp(build, "24S5284h") == 0) uuid = @"DB380F61-0014-418D-9799-876666B459E3";
-    else if (strcmp(build, "24S132") == 0 || strcmp(build, "24S118") == 0) uuid = @"32B4CA84-FBDA-496C-9B79-2101D597158B";
-    else if (strcmp(build, "24R359") == 0 || strcmp(build, "24R364") == 0 || strcmp(build, "24R365") == 0) {
-        uuid = @"6F8372B0-1583-4031-A4BC-A54A18B0DD5A";
-        length = 0x1947; value = 0xea8; present = 0x184d;
-    }
-    if (uuid && length == 0) { length = 0x1950; value = 0xeb0; present = 0x1856; }
+    const BQDeviceBrandLayout *layout = bq_layoutForBuild(build);
+    NSString *uuid = layout ? [NSString stringWithUTF8String:layout->cacheUUID] : nil;
+    NSUInteger length = layout ? layout->dataLength : 0;
+    NSUInteger value = layout ? layout->screenOffset : 0;
+    NSUInteger present = layout ? layout->screenPresentOffset : 0;
     NSData *data = plist[@"CacheData"];
     if (!uuid || ![plist[@"CacheUUID"] isEqual:uuid] || ![data isKindOfClass:[NSData class]] || data.length != length || ![plist[@"CacheExtra"] isKindOfClass:[NSDictionary class]]) {
         if (err) *err = NSLocalizedString(@"Ultra Faces cache layout is not supported on this watchOS build.", nil);
@@ -1272,18 +1298,393 @@ static BOOL bq_ultraCache(NSDictionary *plist, NSMutableData **dataOut, NSUInteg
     return YES;
 }
 
+static void bq_native_libraries(void **mgOut, void **ioOut) {
+    static void *mg, *io;
+    static dispatch_once_t loadOnce;
+    dispatch_once(&loadOnce, ^{
+        mg = dlopen("/usr/lib/libMobileGestalt.dylib", RTLD_LAZY);
+        io = dlopen("/System/Library/Frameworks/IOKit.framework/IOKit", RTLD_LAZY);
+        if (!io) io = dlopen("/System/Library/Frameworks/IOKit.framework/Versions/A/IOKit", RTLD_LAZY);
+    });
+    if (mgOut) *mgOut = mg;
+    if (ioOut) *ioOut = io;
+}
+
+// Query face handlers in a separate empty in-memory cache. A cache miss does not
+// make every answer independent of the global cache: main-screen-class reads
+// the global MainScreenStaticInfo. Recompute that dependency in the empty cache
+// and compare it, and verify DeviceBrand against its device-tree source.
+// These private APIs may be unavailable or restricted; then nothing is written.
+static BOOL bq_recoverNativeFace(BOOL recoverBrand, NSString **err) {
+    NSMutableDictionary *plist = BQLoadGestalt(err);
+    NSMutableData *data = nil;
+    NSUInteger screenOffset = 0, screenPresent = 0;
+    if (!plist || !bq_ultraCache(plist, &data, &screenOffset, &screenPresent, err)) return NO;
+
+    char build[128] = {0}; size_t buildLength = sizeof(build);
+    const BQDeviceBrandLayout *layout = sysctlbyname("kern.osversion", build, &buildLength, NULL, 0) == 0 ? bq_layoutForBuild(build) : NULL;
+    if (!layout || !layout->recoveryVerified || ![plist[@"CacheUUID"] isEqual:[NSString stringWithUTF8String:layout->cacheUUID]] ||
+        data.length != layout->dataLength || layout->valueOffset > data.length - sizeof(int32_t) ||
+        layout->presentOffset >= data.length || screenOffset > data.length - sizeof(int32_t) || screenPresent >= data.length) {
+        if (err) *err = NSLocalizedString(@"Native face recovery is unavailable for this watchOS build.", nil);
+        return NO;
+    }
+    uint8_t *bytes = data.mutableBytes;
+    if (bytes[layout->presentOffset] != 1 && bytes[screenPresent] != 1) {
+        if (err) *err = NSLocalizedString(@"The required face values are missing from the cache; no changes were made.", nil);
+        return NO;
+    }
+
+    void *mg = NULL, *io = NULL;
+    bq_native_libraries(&mg, &io);
+    void *(*createCache)(void *, const void **, const void **, long, void *) = mg ? dlsym(mg, "MGCreateInMemoryCache") : NULL;
+    CFTypeRef (*copyAnswer)(CFStringRef, void *, void *, int *) = mg ? dlsym(mg, "MGCopyAnswerWithCache") : NULL;
+    void (*destroyCache)(void *) = mg ? dlsym(mg, "MGCacheDestroy") : NULL;
+    uint32_t (*entryFromPath)(uint32_t, const char *) = io ? dlsym(io, "IORegistryEntryFromPath") : NULL;
+    CFTypeRef (*copyProperty)(uint32_t, CFStringRef, CFAllocatorRef, uint32_t) = io ? dlsym(io, "IORegistryEntryCreateCFProperty") : NULL;
+    int (*releaseObject)(uint32_t) = io ? dlsym(io, "IOObjectRelease") : NULL;
+    if (!createCache || !copyAnswer || !destroyCache) {
+        if (err) *err = NSLocalizedString(@"Could not read the watch's original face values; no changes were made.", nil);
+        return NO;
+    }
+    uint32_t entry = entryFromPath && copyProperty && releaseObject ? entryFromPath(0, "IODeviceTree:/chosen") : 0;
+    CFTypeRef property = entry ? copyProperty(entry, CFSTR("marketing-software-behavior"), kCFAllocatorDefault, 0) : NULL;
+    if (entry) releaseObject(entry);
+    int32_t expectedBrand = -1;
+    BOOL validProperty = NO;
+    if (property && CFGetTypeID(property) == CFDataGetTypeID()) {
+        uint32_t maxBrand = 0;
+        BOOL hasMaximum = bq_buildDefault(build, @"MaxDeviceBrand", &maxBrand) && maxBrand <= UINT8_MAX && maxBrand > 0;
+        CFIndex length = CFDataGetLength(property);
+        if (hasMaximum && length >= 0) validProperty = BQRecoveryParseDeviceBrand(CFDataGetBytePtr(property), (size_t)length, maxBrand, &expectedBrand);
+    }
+    if (property) CFRelease(property);
+    void *cache = createCache(NULL, NULL, NULL, 0, NULL);
+    if (!cache) {
+        if (err) *err = NSLocalizedString(@"Could not read the watch's original face values; no changes were made.", nil);
+        return NO;
+    }
+    int brandError = 0, screenError = 0, screenInfoError = 0;
+    CFTypeRef brand = copyAnswer(CFSTR("DeviceBrand"), NULL, cache, &brandError);
+    CFTypeRef screen = copyAnswer(CFSTR("main-screen-class"), NULL, cache, &screenError);
+    CFTypeRef screenInfo = copyAnswer(CFSTR("MainScreenStaticInfo"), NULL, cache, &screenInfoError);
+    int32_t nativeBrand = -1, nativeScreen = -1;
+    int32_t screenInfoClass = -1;
+    BOOL validScreenInfo = screenInfo && !screenInfoError && CFGetTypeID(screenInfo) == CFDataGetTypeID() && CFDataGetLength(screenInfo) == 24;
+    if (validScreenInfo) memcpy(&screenInfoClass, CFDataGetBytePtr(screenInfo) + 20, sizeof(screenInfoClass));
+    BOOL validBrand = bytes[layout->presentOffset] == 1 && validProperty && brand && !brandError &&
+        CFGetTypeID(brand) == CFNumberGetTypeID() &&
+        CFNumberGetValue((CFNumberRef)brand, kCFNumberSInt32Type, &nativeBrand) && nativeBrand == expectedBrand;
+    BOOL validScreen = bytes[screenPresent] == 1 && screen && !screenError &&
+        CFGetTypeID(screen) == CFNumberGetTypeID() &&
+        CFNumberGetValue((CFNumberRef)screen, kCFNumberSInt32Type, &nativeScreen) &&
+        validScreenInfo && nativeScreen == screenInfoClass && nativeScreen >= 0 && nativeScreen < 256;
+    if (brand) CFRelease(brand);
+    if (screen) CFRelease(screen);
+    if (screenInfo) CFRelease(screenInfo);
+    destroyCache(cache);
+    if (recoverBrand ? !validBrand : !validScreen) {
+        if (err) *err = NSLocalizedString(@"Could not read the watch's original face values; no changes were made.", nil);
+        return NO;
+    }
+    if (recoverBrand) memcpy(bytes + layout->valueOffset, &nativeBrand, sizeof(nativeBrand));
+    else memcpy(bytes + screenOffset, &nativeScreen, sizeof(nativeScreen));
+    NSMutableDictionary *extra = [plist[@"CacheExtra"] mutableCopy];
+    if (recoverBrand) [extra removeObjectForKey:@"fuKL2rMywRgQF1wowOA/cg"];
+    else [extra removeObjectForKey:@"fdh+s6j3VijuyrK7xLjd7g"];
+    plist[@"CacheData"] = data;
+    plist[@"CacheExtra"] = extra;
+    if (!BQSaveGestalt(plist, err)) return NO;
+    NSDictionary *saved = BQLoadGestalt(err);
+    NSData *savedData = saved[@"CacheData"];
+    if (![savedData isEqual:data] || ![saved[@"CacheExtra"] isEqual:extra]) {
+        if (err) *err = NSLocalizedString(@"The face values were written but could not be verified.", nil);
+        return NO;
+    }
+    return YES;
+}
+
+static BOOL bq_recoverNativeControl(NSString *key, NSString **err) {
+    NSMutableDictionary *plist = BQLoadGestalt(err);
+    NSMutableData *data = nil;
+    if (!plist) return NO;
+    if (!bq_ultraCache(plist, &data, NULL, NULL, NULL)) {
+        if (err) *err = NSLocalizedString(@"Native control recovery is unavailable for this watchOS build.", nil);
+        return NO;
+    }
+    char build[128] = {0};
+    size_t buildLength = sizeof(build);
+    if (sysctlbyname("kern.osversion", build, &buildLength, NULL, 0) != 0 || (!bq_layoutForBuild(build) || !bq_layoutForBuild(build)->recoveryVerified)) {
+        if (err) *err = NSLocalizedString(@"Native control recovery is unavailable for this watchOS build.", nil);
+        return NO;
+    }
+    const BQDeviceBrandLayout *layout = bq_layoutForBuild(build);
+    NSUInteger actionIndex = layout->actionIndex, gestureIndex = layout->gestureIndex;
+    NSUInteger keyboardIndex = layout->keyboardIndex, presenceBase = layout->presenceBase;
+    if (presenceBase + actionIndex >= data.length || presenceBase + gestureIndex >= data.length || presenceBase + keyboardIndex >= data.length ||
+        actionIndex * 8 >= data.length || gestureIndex * 8 >= data.length || keyboardIndex * 8 >= data.length) {
+        if (err) *err = NSLocalizedString(@"Native control recovery is unavailable for this watchOS build.", nil);
+        return NO;
+    }
+    void *mg = NULL, *io = NULL;
+    bq_native_libraries(&mg, &io);
+    void *(*createCache)(void *, const void **, const void **, long, void *) = mg ? dlsym(mg, "MGCreateInMemoryCache") : NULL;
+    CFTypeRef (*copyAnswer)(CFStringRef, void *, void *, int *) = mg ? dlsym(mg, "MGCopyAnswerWithCache") : NULL;
+    void (*destroyCache)(void *) = mg ? dlsym(mg, "MGCacheDestroy") : NULL;
+    uint32_t (*entryFromPath)(uint32_t, const char *) = io ? dlsym(io, "IORegistryEntryFromPath") : NULL;
+    CFTypeRef (*copyProperty)(uint32_t, CFStringRef, CFAllocatorRef, uint32_t) = io ? dlsym(io, "IORegistryEntryCreateCFProperty") : NULL;
+    int (*releaseObject)(uint32_t) = io ? dlsym(io, "IOObjectRelease") : NULL;
+    if (!createCache || !copyAnswer || !destroyCache || !entryFromPath || !copyProperty || !releaseObject) {
+        if (err) *err = NSLocalizedString(@"Could not read the watch's original control values; no changes were made.", nil);
+        return NO;
+    }
+    uint32_t buttonsEntry = entryFromPath(0, "IODeviceTree:/buttons");
+    CFTypeRef buttonNames = buttonsEntry ? copyProperty(buttonsEntry, CFSTR("button-names"), kCFAllocatorDefault, 0) : NULL;
+    if (buttonsEntry) releaseObject(buttonsEntry);
+    bool hasApp = false;
+    BOOL validButtonNames = NO;
+    if (buttonNames && CFGetTypeID(buttonNames) == CFDataGetTypeID()) {
+        const uint8_t *names = CFDataGetBytePtr(buttonNames);
+        CFIndex length = CFDataGetLength(buttonNames);
+        if (length > 0) validButtonNames = BQRecoveryParseButtonNames(names, (size_t)length, &hasApp);
+    }
+    if (buttonNames) CFRelease(buttonNames);
+    uint32_t productEntry = entryFromPath(0, "IODeviceTree:/product");
+    CFTypeRef gestureProperty = productEntry ? copyProperty(productEntry, CFSTR("watch-gestures"), kCFAllocatorDefault, 0) : NULL;
+    CFTypeRef keyboardProperty = productEntry ? copyProperty(productEntry, CFSTR("watch-keyboard"), kCFAllocatorDefault, 0) : NULL;
+    if (productEntry) releaseObject(productEntry);
+    BOOL gesturePropertyPresent = gestureProperty != NULL;
+    if (gestureProperty) CFRelease(gestureProperty);
+    BOOL keyboardPropertyPresent = keyboardProperty != NULL;
+    if (keyboardProperty) CFRelease(keyboardProperty);
+    void *cache = createCache(NULL, NULL, NULL, 0, NULL);
+    if (!cache) {
+        if (err) *err = NSLocalizedString(@"Could not read the watch's original control values; no changes were made.", nil);
+        return NO;
+    }
+    int actionError = 0, gestureError = 0, keyboardError = 0;
+    CFTypeRef action = copyAnswer(CFSTR("WatchAppButtonCapability"), NULL, cache, &actionError);
+    CFTypeRef gesture = copyAnswer(CFSTR("DeviceSupportsElton"), NULL, cache, &gestureError);
+    CFTypeRef keyboard = copyAnswer(CFSTR("WatchKeyboardCapability"), NULL, cache, &keyboardError);
+    uint8_t *bytes = data.mutableBytes;
+    BOOL validAction = bytes[presenceBase + actionIndex] == 1 && validButtonNames &&
+        action && !actionError && CFGetTypeID(action) == CFBooleanGetTypeID() && CFBooleanGetValue((CFBooleanRef)action) == hasApp;
+    // An absent property can also indicate restricted IORegistry access, so only restore gestures when its presence is confirmed.
+    BOOL validGesture = bytes[presenceBase + gestureIndex] == 1 && gesturePropertyPresent &&
+        gesture && !gestureError && CFGetTypeID(gesture) == CFBooleanGetTypeID() && CFBooleanGetValue((CFBooleanRef)gesture);
+    BOOL validKeyboard = bytes[presenceBase + keyboardIndex] == 1 && keyboardPropertyPresent &&
+        keyboard && !keyboardError && CFGetTypeID(keyboard) == CFBooleanGetTypeID() && CFBooleanGetValue((CFBooleanRef)keyboard);
+    if (action) CFRelease(action);
+    if (gesture) CFRelease(gesture);
+    if (keyboard) CFRelease(keyboard);
+    destroyCache(cache);
+    BOOL restoreAction = [key isEqualToString:@"FBw/2WrPE2supEKosxxoTw"];
+    BOOL restoreGesture = [key isEqualToString:@"l1CWke97nbaAcWDqA6T5LA"];
+    BOOL restoreKeyboard = [key isEqualToString:@"MQJ1mlVrhOwaUUVJehJSVA"];
+    if (!(restoreAction && validAction) && !(restoreGesture && validGesture) && !(restoreKeyboard && validKeyboard)) {
+        if (err) *err = NSLocalizedString(@"Could not read the watch's original control values; no changes were made.", nil);
+        return NO;
+    }
+    NSMutableDictionary *extra = [plist[@"CacheExtra"] mutableCopy];
+    if (restoreAction) {
+        bytes[actionIndex * 8] = hasApp ? 1 : 0;
+        extra[@"FBw/2WrPE2supEKosxxoTw"] = @(hasApp);
+    }
+    if (restoreGesture) {
+        bytes[gestureIndex * 8] = 1;
+        extra[@"l1CWke97nbaAcWDqA6T5LA"] = @YES;
+    }
+    if (restoreKeyboard) {
+        bytes[keyboardIndex * 8] = 1;
+        extra[@"MQJ1mlVrhOwaUUVJehJSVA"] = @YES;
+    }
+    plist[@"CacheData"] = data;
+    plist[@"CacheExtra"] = extra;
+    if (!BQSaveGestalt(plist, err)) return NO;
+    NSDictionary *saved = BQLoadGestalt(err);
+    if (![saved[@"CacheData"] isEqual:data] || ![saved[@"CacheExtra"] isEqual:extra]) {
+        if (err) *err = NSLocalizedString(@"The control values were written but could not be verified.", nil);
+        return NO;
+    }
+    return YES;
+}
+
+// These handlers return true when the corresponding product property exists.
+// An unreadable or absent property is ambiguous, so it is never treated as false.
+static BOOL bq_recoverNativeAdditional(NSString *key, NSString **err) {
+    NSMutableDictionary *plist = BQLoadGestalt(err);
+    NSMutableData *data = nil;
+    if (!plist) return NO;
+    char build[128] = {0};
+    size_t buildLength = sizeof(build);
+    if (!bq_ultraCache(plist, &data, NULL, NULL, NULL) ||
+        sysctlbyname("kern.osversion", build, &buildLength, NULL, 0) != 0 || (!bq_layoutForBuild(build) || !bq_layoutForBuild(build)->recoveryVerified)) {
+        if (err) *err = NSLocalizedString(@"Native additional recovery is unavailable for this watchOS build.", nil);
+        return NO;
+    }
+    void *mg = NULL, *io = NULL;
+    bq_native_libraries(&mg, &io);
+    void *(*createCache)(void *, const void **, const void **, long, void *) = mg ? dlsym(mg, "MGCreateInMemoryCache") : NULL;
+    CFTypeRef (*copyAnswer)(CFStringRef, void *, void *, int *) = mg ? dlsym(mg, "MGCopyAnswerWithCache") : NULL;
+    void (*destroyCache)(void *) = mg ? dlsym(mg, "MGCacheDestroy") : NULL;
+    uint32_t (*entryFromPath)(uint32_t, const char *) = io ? dlsym(io, "IORegistryEntryFromPath") : NULL;
+    CFTypeRef (*copyProperty)(uint32_t, CFStringRef, CFAllocatorRef, uint32_t) = io ? dlsym(io, "IORegistryEntryCreateCFProperty") : NULL;
+    int (*releaseObject)(uint32_t) = io ? dlsym(io, "IOObjectRelease") : NULL;
+    if (!createCache || !copyAnswer || !destroyCache || !entryFromPath || !copyProperty || !releaseObject) {
+        if (err) *err = NSLocalizedString(@"Could not verify the watch's original additional values; no changes were made.", nil);
+        return NO;
+    }
+    uint32_t product = entryFromPath(0, "IODeviceTree:/product");
+    void *cache = createCache(NULL, NULL, NULL, 0, NULL);
+    if (!product || !cache) {
+        if (product) releaseObject(product);
+        if (cache) destroyCache(cache);
+        if (err) *err = NSLocalizedString(@"Could not verify the watch's original additional values; no changes were made.", nil);
+        return NO;
+    }
+    const CFStringRef properties[] = {CFSTR("supports-aod-vibrancy"), CFSTR("env-audio-exp-capable")};
+    const CFStringRef answers[] = {CFSTR("DeviceSupportsAODVibrancy"), CFSTR("DeviceSupportsEnvironmentalDosimetry")};
+    NSArray<NSString *> *keys = @[@"ykpu7qyhqFweVMKtxNylWA", @"SaW+DA+cbiqDHrex8MTABA"];
+    const BQDeviceBrandLayout *layout = bq_layoutForBuild(build);
+    NSUInteger indexes[] = {layout->vibrancyIndex, layout->noiseIndex};
+    NSUInteger presenceBase = layout->presenceBase;
+    uint8_t *bytes = data.mutableBytes;
+    NSMutableDictionary *extra = [plist[@"CacheExtra"] mutableCopy];
+    NSUInteger restored = 0;
+    for (NSUInteger i = 0; i < 2; i++) {
+        if (![key isEqualToString:keys[i]]) continue;
+        if (presenceBase + indexes[i] >= data.length || indexes[i] * 8 >= data.length || bytes[presenceBase + indexes[i]] != 1) continue;
+        CFTypeRef property = copyProperty(product, properties[i], kCFAllocatorDefault, 0);
+        int answerError = 0;
+        CFTypeRef answer = property ? copyAnswer(answers[i], NULL, cache, &answerError) : NULL;
+        BOOL valid = answer && !answerError && CFGetTypeID(answer) == CFBooleanGetTypeID() && CFBooleanGetValue((CFBooleanRef)answer);
+        if (property) CFRelease(property);
+        if (answer) CFRelease(answer);
+        if (!valid) continue;
+        bytes[indexes[i] * 8] = 1;
+        extra[keys[i]] = @YES;
+        restored++;
+    }
+    releaseObject(product);
+    destroyCache(cache);
+    if (!restored) {
+        if (err) *err = NSLocalizedString(@"Could not verify the watch's original additional values; no changes were made.", nil);
+        return NO;
+    }
+    plist[@"CacheData"] = data;
+    plist[@"CacheExtra"] = extra;
+    if (!BQSaveGestalt(plist, err)) return NO;
+    NSDictionary *saved = BQLoadGestalt(err);
+    if (![saved[@"CacheData"] isEqual:data] || ![saved[@"CacheExtra"] isEqual:extra]) {
+        if (err) *err = NSLocalizedString(@"The additional values were written but could not be verified.", nil);
+        return NO;
+    }
+    return YES;
+}
+
+static BOOL bq_recoverNativeAOD(BOOL secondsOnly, NSString **err) {
+    NSMutableDictionary *plist = BQLoadGestalt(err);
+    NSMutableData *data = nil;
+    if (!plist) return NO;
+    if (!bq_ultraCache(plist, &data, NULL, NULL, NULL)) {
+        if (err) *err = NSLocalizedString(@"Native AOD recovery is unavailable for this watchOS build.", nil);
+        return NO;
+    }
+    char build[128] = {0};
+    size_t buildLength = sizeof(build);
+    if (sysctlbyname("kern.osversion", build, &buildLength, NULL, 0) != 0 || (!bq_layoutForBuild(build) || !bq_layoutForBuild(build)->recoveryVerified)) {
+        if (err) *err = NSLocalizedString(@"Native AOD recovery is unavailable for this watchOS build.", nil);
+        return NO;
+    }
+    const BQDeviceBrandLayout *layout = bq_layoutForBuild(build);
+    NSUInteger aodIndex = layout->aodIndex, hzIndex = layout->hzIndex, timeIndex = layout->aodTimeIndex;
+    NSUInteger presenceBase = layout->presenceBase;
+    if (presenceBase + timeIndex >= data.length || timeIndex * 8 >= data.length) {
+        if (err) *err = NSLocalizedString(@"Native AOD recovery is unavailable for this watchOS build.", nil);
+        return NO;
+    }
+    uint8_t *bytes = data.mutableBytes;
+    if (secondsOnly ? bytes[presenceBase + hzIndex] != 1 :
+        (bytes[presenceBase + aodIndex] != 1 || bytes[presenceBase + timeIndex] != 1)) {
+        if (err) *err = NSLocalizedString(@"The required AOD values are missing from the cache; no changes were made.", nil);
+        return NO;
+    }
+    void *mg = NULL, *io = NULL;
+    bq_native_libraries(&mg, &io);
+    void *(*createCache)(void *, const void **, const void **, long, void *) = mg ? dlsym(mg, "MGCreateInMemoryCache") : NULL;
+    CFTypeRef (*copyAnswer)(CFStringRef, void *, void *, int *) = mg ? dlsym(mg, "MGCopyAnswerWithCache") : NULL;
+    void (*destroyCache)(void *) = mg ? dlsym(mg, "MGCacheDestroy") : NULL;
+    uint32_t (*entryFromPath)(uint32_t, const char *) = io ? dlsym(io, "IORegistryEntryFromPath") : NULL;
+    CFTypeRef (*copyProperty)(uint32_t, CFStringRef, CFAllocatorRef, uint32_t) = io ? dlsym(io, "IORegistryEntryCreateCFProperty") : NULL;
+    int (*releaseObject)(uint32_t) = io ? dlsym(io, "IOObjectRelease") : NULL;
+    if (!createCache || !copyAnswer || !destroyCache || !entryFromPath || !copyProperty || !releaseObject) {
+        if (err) *err = NSLocalizedString(@"Could not verify the watch's original AOD values; no changes were made.", nil);
+        return NO;
+    }
+    uint32_t display = entryFromPath(0, "IODeviceTree:/arm-io/disp0");
+    CFTypeRef alwaysOnTime = display ? copyProperty(display, CFSTR("always-on-time"), kCFAllocatorDefault, 0) : NULL;
+    if (display) releaseObject(display);
+    BOOL propertyPresent = alwaysOnTime != NULL;
+    if (alwaysOnTime) CFRelease(alwaysOnTime);
+    if (!propertyPresent) {
+        if (err) *err = NSLocalizedString(@"Could not verify the watch's original AOD values; no changes were made.", nil);
+        return NO;
+    }
+    void *cache = createCache(NULL, NULL, NULL, 0, NULL);
+    if (!cache) {
+        if (err) *err = NSLocalizedString(@"Could not verify the watch's original AOD values; no changes were made.", nil);
+        return NO;
+    }
+    int answerError = 0;
+    CFTypeRef answer = copyAnswer(CFSTR("DeviceSupportsAlwaysOnTime"), NULL, cache, &answerError);
+    BOOL verified = answer && !answerError && CFGetTypeID(answer) == CFBooleanGetTypeID() && CFBooleanGetValue((CFBooleanRef)answer);
+    if (answer) CFRelease(answer);
+    destroyCache(cache);
+    if (!verified) {
+        if (err) *err = NSLocalizedString(@"Could not verify the watch's original AOD values; no changes were made.", nil);
+        return NO;
+    }
+    // On these builds, the presence of always-on-time makes all three handlers return true.
+    NSMutableDictionary *extra = [plist[@"CacheExtra"] mutableCopy];
+    if (secondsOnly) {
+        bytes[hzIndex * 8] = 1;
+        extra[@"aoJSd/MXk7M40NgXTM6x+g"] = @YES;
+    } else {
+        bytes[aodIndex * 8] = 1;
+        bytes[timeIndex * 8] = 1;
+        extra[@"2OOJf1VhaM7NxfRok3HbWQ"] = @YES;
+        extra[@"j8/Omm6s1lsmTDFsXjsBfA"] = @YES;
+    }
+    plist[@"CacheData"] = data;
+    plist[@"CacheExtra"] = extra;
+    if (!BQSaveGestalt(plist, err)) return NO;
+    NSDictionary *saved = BQLoadGestalt(err);
+    if (![saved[@"CacheData"] isEqual:data] || ![saved[@"CacheExtra"] isEqual:extra]) {
+        if (err) *err = NSLocalizedString(@"The AOD values were written but could not be verified.", nil);
+        return NO;
+    }
+    return YES;
+}
+
 BOOL BQGetUltraFacesEnabled(BOOL *enabled, NSString **err) {
     NSDictionary *plist = BQLoadGestalt(err);
     NSMutableData *data = nil;
     NSUInteger valueOffset = 0, presentOffset = 0;
     if (!plist || !bq_ultraCache(plist, &data, &valueOffset, &presentOffset, err)) return NO;
     const uint8_t *bytes = data.bytes;
-    const uint8_t ultra[] = {29, 0, 0, 0};
+    const BQDeviceBrandLayout *layout = bq_currentLayout();
+    uint32_t ultraValue = 0;
+    if (!layout || !bq_buildDefault(layout->build, @"UltraEnabledScreenClass", &ultraValue)) {
+        if (err) *err = NSLocalizedString(@"Ultra Faces cache layout is not supported on this watchOS build.", nil);
+        return NO;
+    }
+    uint8_t ultra[] = {ultraValue & 0xff, (ultraValue >> 8) & 0xff, (ultraValue >> 16) & 0xff, (ultraValue >> 24) & 0xff};
     if (enabled) *enabled = plist[@"CacheExtra"][@"fdh+s6j3VijuyrK7xLjd7g"] == nil && bytes[presentOffset] == 1 && memcmp(bytes + valueOffset, ultra, sizeof(ultra)) == 0;
     return YES;
 }
 
 BOOL BQSetUltraFacesEnabled(BOOL enabled, NSString **err) {
+    if (!enabled && !BQBackupExists()) return bq_recoverNativeFace(NO, err);
     NSData *backupFile = [NSData dataWithContentsOfFile:BQBackupPath()];
     NSDictionary *backup = backupFile ? [NSPropertyListSerialization propertyListWithData:backupFile options:0 format:NULL error:NULL] : nil;
     if (![backup isKindOfClass:[NSDictionary class]]) {
@@ -1293,14 +1694,24 @@ BOOL BQSetUltraFacesEnabled(BOOL enabled, NSString **err) {
     NSMutableDictionary *plist = BQLoadGestalt(err);
     NSMutableData *data = nil, *original = nil;
     NSUInteger valueOffset = 0, presentOffset = 0;
-    if (!plist || !bq_ultraCache(plist, &data, &valueOffset, &presentOffset, err) || !bq_ultraCache(backup, &original, NULL, NULL, err)) return NO;
+    if (!plist || !bq_ultraCache(plist, &data, &valueOffset, &presentOffset, err)) return NO;
+    if (!bq_ultraCache(backup, &original, NULL, NULL, enabled ? err : NULL) ||
+        (!enabled && ((const uint8_t *)original.bytes)[presentOffset] != 1)) {
+        return enabled ? NO : bq_recoverNativeFace(NO, err);
+    }
     uint8_t *bytes = data.mutableBytes;
     const uint8_t *backupBytes = original.bytes;
     if (enabled && bytes[presentOffset] != 1) {
         if (err) *err = NSLocalizedString(@"main-screen-class is not present in CacheData.", nil);
         return NO;
     }
-    const uint8_t ultra[] = {29, 0, 0, 0};
+    const BQDeviceBrandLayout *layout = bq_currentLayout();
+    uint32_t ultraValue = 0;
+    if (!layout || !bq_buildDefault(layout->build, @"UltraEnabledScreenClass", &ultraValue)) {
+        if (err) *err = NSLocalizedString(@"Ultra Faces cache layout is not supported on this watchOS build.", nil);
+        return NO;
+    }
+    uint8_t ultra[] = {ultraValue & 0xff, (ultraValue >> 8) & 0xff, (ultraValue >> 16) & 0xff, (ultraValue >> 24) & 0xff};
     if (enabled) memcpy(bytes + valueOffset, ultra, sizeof(ultra));
     else {
         memcpy(bytes + valueOffset, backupBytes + valueOffset, sizeof(ultra));
@@ -1328,6 +1739,67 @@ BOOL BQSetUltraFacesEnabled(BOOL enabled, NSString **err) {
 }
 
 static BOOL bq_setMGCacheExtraKeys(NSArray<NSString *> *keys, BOOL enabled, NSString **err) {
+    NSArray<NSString *> *recoverableKeys = @[@"2OOJf1VhaM7NxfRok3HbWQ", @"j8/Omm6s1lsmTDFsXjsBfA", @"aoJSd/MXk7M40NgXTM6x+g", @"FBw/2WrPE2supEKosxxoTw", @"l1CWke97nbaAcWDqA6T5LA", @"MQJ1mlVrhOwaUUVJehJSVA", @"ykpu7qyhqFweVMKtxNylWA", @"SaW+DA+cbiqDHrex8MTABA"];
+    BOOL recoverable = keys.count > 0;
+    for (NSString *key in keys) if (![recoverableKeys containsObject:key]) recoverable = NO;
+    if (!enabled && recoverable && BQBackupExists()) {
+        NSDictionary *backup = [NSDictionary dictionaryWithContentsOfFile:BQBackupPath()];
+        NSMutableDictionary *current = BQLoadGestalt(err);
+        if (!current) return NO;
+        NSMutableData *currentData = nil, *originalData = nil;
+        if (bq_ultraCache(current, &currentData, NULL, NULL, NULL) &&
+            bq_ultraCache(backup, &originalData, NULL, NULL, NULL)) {
+            const BQDeviceBrandLayout *layout = bq_currentLayout();
+            if (!layout) return NO;
+            NSUInteger indexes[] = {layout->aodIndex, layout->aodTimeIndex, layout->hzIndex,
+                layout->actionIndex, layout->gestureIndex, layout->keyboardIndex, layout->vibrancyIndex, layout->noiseIndex};
+            NSUInteger presenceBase = layout->presenceBase;
+            const uint8_t *original = originalData.bytes;
+            NSUInteger usableCount = 0;
+            for (NSString *key in keys) {
+                NSUInteger index = indexes[[recoverableKeys indexOfObject:key]];
+                id override = backup[@"CacheExtra"][key];
+                BOOL overrideValid = [override isKindOfClass:[NSNumber class]] &&
+                    ([override integerValue] == 0 || [override integerValue] == 1);
+                BOOL slotValid = BQRecoveryBoolSlotIsUsable(original, originalData.length, presenceBase, index);
+                if ((override && overrideValid) || (!override && slotValid)) usableCount++;
+            }
+            if (usableCount > 0 && usableCount != keys.count) {
+                if (err) *err = NSLocalizedString(@"The MobileGestalt backup is invalid.", nil);
+                return NO;
+            }
+            if (usableCount == keys.count) {
+                uint8_t *bytes = currentData.mutableBytes;
+                NSMutableDictionary *extra = [current[@"CacheExtra"] mutableCopy];
+                NSDictionary *originalExtra = backup[@"CacheExtra"];
+                for (NSString *key in keys) {
+                    NSUInteger index = indexes[[recoverableKeys indexOfObject:key]];
+                    if (BQRecoveryBoolSlotIsUsable(original, originalData.length, presenceBase, index)) {
+                        memcpy(bytes + index * 8, original + index * 8, 8);
+                        bytes[presenceBase + index] = original[presenceBase + index];
+                    }
+                    id override = originalExtra[key];
+                    if (override) extra[key] = override; else [extra removeObjectForKey:key];
+                }
+                current[@"CacheData"] = currentData;
+                current[@"CacheExtra"] = extra;
+                if (!BQSaveGestalt(current, err)) return NO;
+                NSDictionary *saved = BQLoadGestalt(err);
+                if (![saved[@"CacheData"] isEqual:currentData] || ![saved[@"CacheExtra"] isEqual:extra]) {
+                    if (err) *err = NSLocalizedString(@"The cache was written, but the original values could not be verified.", nil);
+                    return NO;
+                }
+                return YES;
+            }
+        }
+    }
+    if (!enabled && recoverable) {
+        if ([keys isEqualToArray:@[@"2OOJf1VhaM7NxfRok3HbWQ", @"j8/Omm6s1lsmTDFsXjsBfA"]]) return bq_recoverNativeAOD(NO, err);
+        if ([keys isEqualToArray:@[@"aoJSd/MXk7M40NgXTM6x+g"]]) return bq_recoverNativeAOD(YES, err);
+        NSString *key = keys.count == 1 ? keys.firstObject : nil;
+        if ([key isEqualToString:@"FBw/2WrPE2supEKosxxoTw"] || [key isEqualToString:@"l1CWke97nbaAcWDqA6T5LA"] || [key isEqualToString:@"MQJ1mlVrhOwaUUVJehJSVA"]) return bq_recoverNativeControl(key, err);
+        if ([key isEqualToString:@"ykpu7qyhqFweVMKtxNylWA"] || [key isEqualToString:@"SaW+DA+cbiqDHrex8MTABA"]) return bq_recoverNativeAdditional(key, err);
+    }
     if (!BQBackupExists()) {
         if (err) *err = NSLocalizedString(@"Back up MobileGestalt first.", nil);
         return NO;
