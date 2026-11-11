@@ -11,12 +11,8 @@ struct HermesCompanionApp: App {
 }
 
 struct ContentView: View {
-
+    @StateObject private var watchManager = WatchConnectivityManager()
     @State private var selectedAction: BackupAction?
-
-    private let deviceName = "Apple Watch Ultra 2"
-    private let watchOSVersion = "watchOS 27.3"
-    private let buildVersion = "24S5284h"
 
     var body: some View {
         ScrollView {
@@ -24,6 +20,10 @@ struct ContentView: View {
 
                 // Header
                 header
+                
+                // App Title
+                Text("HermesEnabler")
+                    .font(.system(size: 27, weight: .bold))
 
                 // Connected device
                 deviceSection
@@ -68,23 +68,27 @@ struct ContentView: View {
 
     private var header: some View {
         HStack(alignment: .center) {
-            Text("HermesEnabler")
-                .font(.system(size: 27, weight: .bold))
-
             Spacer()
 
-            HStack(spacing: 6) {
-                Circle()
-                    .fill(.green)
-                    .frame(width: 8, height: 8)
-
-                Text("Connecté")
-                    .font(.system(size: 14, weight: .medium))
+            if watchManager.isReachable {
+                Label("Connecté", systemImage: "checkmark.circle.fill")
                     .foregroundStyle(.green)
+                    .padding(.horizontal, 13)
+                    .padding(.vertical, 8)
+                    .background(.green.opacity(0.12), in: Capsule())
+            } else if watchManager.isPaired && watchManager.isWatchAppInstalled {
+                Label("Montre associée", systemImage: "applewatch")
+                    .foregroundStyle(.orange)
+                    .padding(.horizontal, 13)
+                    .padding(.vertical, 8)
+                    .background(.orange.opacity(0.12), in: Capsule())
+            } else {
+                Label("Non connecté", systemImage: "xmark.circle.fill")
+                    .foregroundStyle(.secondary)
+                    .padding(.horizontal, 13)
+                    .padding(.vertical, 8)
+                    .background(.secondary.opacity(0.12), in: Capsule())
             }
-            .padding(.horizontal, 13)
-            .padding(.vertical, 8)
-            .background(.green.opacity(0.12), in: Capsule())
         }
     }
 
@@ -105,10 +109,10 @@ struct ContentView: View {
 
             VStack(alignment: .leading, spacing: 7) {
 
-                Text(deviceName)
+                Text(watchManager.deviceName)
                     .font(.system(size: 20, weight: .semibold))
 
-                Text("\(watchOSVersion) · \(buildVersion)")
+                Text("watchOS \(watchManager.watchOSVersion) · " + watchManager.buildVersion)
                     .font(.system(size: 16))
                     .foregroundStyle(.secondary)
 
