@@ -30,20 +30,129 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
 
     // MARK: - Backup information
 
-    @Published var hasExternalBackup = false
-    @Published var backupFileName = "No backup"
-    @Published var backupSize = "Unknown"
-    @Published var backupSHA256 = "Unknown"
-    @Published var backupDate: Date?
-    @Published var backupDeviceIdentifier = "Unknown"
+    @Published var backups: [BackupRecord] = []
     @Published var backupStatus = "No backup received"
+    @Published var lastVerificationMessage = ""
 
     private var session: WCSession?
+
+    // MARK: - Backup model
+
+    struct BackupRecord: Identifiable, Codable {
+        let id: UUID
+        let fileName: String
+        let date: Date
+        let size: Int
+        let sha256: String
+        let deviceIdentifier: String
+        let hashOrigin: String
+
+        var formattedSize: String {
+            ByteCountFormatter.string(
+                fromByteCount: Int64(size),
+                countStyle: .file
+            )
+        }
+    }
+
+    private struct BackupManifest: Codable {
+        var backups: [BackupRecord]
+    }
+
+    enum VerificationResult {
+        case valid
+        case invalid
+        case missing
+        case error(String)
+    }
+
+    // MARK: - Paths
+
+    private static func backupDirectory() throws -> URL {
+        let support = try FileManager.default.url(
+            for: .applicationSupportDirectory,
+            in: .userDomainMask,
+            appropriateFor: nil,
+            create: true
+        )
+
+        let directory = support
+            .appendingPathComponent(
+                "HermesEnabler",
+                isDirectory: true
+            )
+            .appendingPathComponent(
+                "Backups",
+                isDirectory: true
+            )
+
+        try FileManager.default.createDirectory(
+            at: directory,
+            withIntermediateDirectories: true
+        )
+
+        return directory
+    }
+
+    private static func manifestURL() throws -> URL {
+        try backupDirectory()
+            .appendingPathComponent("BackupManifest.json")
+    }
+
+    private static func backupURL(for fileName: String) throws -> URL {
+        try backupDirectory()
+            .appendingPathComponent(fileName)
+    }
+
+    // MARK: - SHA-256
+
+    private nonisolated static func sha256(_ data: Data) -> String {
+        SHA256.hash(data: data)
+            .map { String(format: "%02x", $0) }
+            .joined()
+    }
+
+    // MARK: - Manifest
+
+    private static func saveManifest(
+        _ records: [BackupRecord]
+    ) throws {
+        let manifest = BackupManifest(backups: records)
+
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        encoder.dateEncodingStrategy = .iso8601
+
+        let data = try encoder.encode(manifest)
+        let url = try manifestURL()
+
+        try data.write(to: url, options: .atomic)
+    }
+
+    private static func loadManifest() throws -> [BackupRecord] {
+        let url = try manifestURL()
+
+        guard FileManager.default.fileExists(atPath: url.path) else {
+            return []
+        }
+
+        let data = try Data(contentsOf: url)
+
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .iso8601
+
+        return try decoder.decode(
+            BackupManifest.self,
+            from: data
+        ).backups
+    }
 
     // MARK: - Initialization
 
     override init() {
         super.init()
+
+        loadBackupHistory()
 
         guard WCSession.isSupported() else {
             print("[WC] WatchConnectivity not supported")
@@ -56,6 +165,110 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
         session.activate()
 
         print("[WC] iPhone session activation requested")
+    }
+
+    // MARK: - History loading and migration
+
+    func loadBackupHistory() {
+        do {
+            var records = try Self.loadManifest()
+
+            let directory = try Self.backupDirectory()
+
+            let files = try FileManager.default.contentsOfDirectory(
+                at: directory,
+                includingPropertiesForKeys: [
+                    .fileSizeKey,
+                    .creationDateKey
+                ],
+                options: [.skipsHiddenFiles]
+            )
+
+            let knownFiles = Set(records.map(\.fileName))
+
+            for file in files {
+                guard file.pathExtension == "plist",
+                      file.lastPathComponent.hasPrefix("OriginalGestalt-"),
+                      !knownFiles.contains(file.lastPathComponent) else {
+                    continue
+                }
+
+                do {
+                    let data = try Data(contentsOf: file)
+
+                    try Self.validateBackup(data)
+
+                    let attributes = try FileManager.default.attributesOfItem(
+                        atPath: file.path
+                    )
+
+                    let date =
+                        attributes[.creationDate] as? Date ?? Date()
+
+                    let record = BackupRecord(
+                        id: UUID(),
+                        fileName: file.lastPathComponent,
+                        date: date,
+                        size: data.count,
+                        sha256: Self.sha256(data),
+                        deviceIdentifier: "Unknown",
+                        hashOrigin: "Initial iPhone baseline"
+                    )
+
+                    records.append(record)
+
+                    print(
+                        "[WC] Initial baseline created for \(record.fileName)"
+                    )
+
+                } catch {
+                    print(
+                        "[WC] Existing backup migration failed: \(error)"
+                    )
+                }
+            }
+
+            records.sort { $0.date > $1.date }
+
+            try Self.saveManifest(records)
+
+            backups = records
+
+            backupStatus = records.isEmpty
+                ? "No backup received"
+                : "\(records.count) backup(s) stored"
+
+            print("[WC] Backup history loaded: \(records.count)")
+
+        } catch {
+            print("[WC] History loading error: \(error.localizedDescription)")
+            backupStatus = "History loading failed"
+        }
+    }
+
+    // MARK: - Backup validation
+
+    private nonisolated static func validateBackup(
+        _ data: Data
+    ) throws {
+        let plist = try PropertyListSerialization.propertyList(
+            from: data,
+            options: [],
+            format: nil
+        )
+
+        guard let dictionary = plist as? [String: Any],
+              dictionary["CacheExtra"] is [String: Any],
+              dictionary["CacheData"] is Data else {
+            throw NSError(
+                domain: "HermesCompanion.Backup",
+                code: 1,
+                userInfo: [
+                    NSLocalizedDescriptionKey:
+                        "Invalid MobileGestalt backup structure."
+                ]
+            )
+        }
     }
 
     // MARK: - Connection status
@@ -76,7 +289,6 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
     // MARK: - Device information
 
     private func updateDeviceInformation(_ info: [String: Any]) {
-
         print("[WC] Received device information: \(info)")
 
         if let value = info["deviceName"] as? String {
@@ -110,104 +322,37 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
         print("[WC] Device information updated")
     }
 
-    // MARK: - Backup reception
+    // MARK: - Store received backup
 
-    private func updateBackupInformation(
-        fileName: String,
-        size: Int,
-        hash: String,
-        date: Date,
-        deviceIdentifier: String
-    ) {
-        hasExternalBackup = true
-        backupFileName = fileName
-        backupSize = ByteCountFormatter.string(
-            fromByteCount: Int64(size),
-            countStyle: .file
-        )
-        backupSHA256 = hash
-        backupDate = date
-        backupDeviceIdentifier = deviceIdentifier
-        backupStatus = "Backup received and verified"
-
-        print("[WC] Backup successfully stored")
-        print("[WC] File: \(fileName)")
-        print("[WC] Size: \(backupSize)")
-        print("[WC] SHA256: \(hash)")
-    }
-
-    // MARK: - Backup storage
-
-    nonisolated private static func storeBackup(
+    private static func storeBackup(
         from sourceURL: URL,
         metadata: [String: Any]?
-    ) throws -> (String, Int, String, Date, String) {
+    ) throws -> BackupRecord {
 
-        let fileManager = FileManager.default
-
-        // Read and validate the original plist.
         let originalData = try Data(contentsOf: sourceURL)
 
-        let plist = try PropertyListSerialization.propertyList(
-            from: originalData,
-            options: [],
-            format: nil
-        )
+        try validateBackup(originalData)
 
-        guard let dictionary = plist as? [String: Any],
-              dictionary["CacheExtra"] is [String: Any],
-              dictionary["CacheData"] is Data else {
-            throw NSError(
-                domain: "HermesCompanion.Backup",
-                code: 1,
-                userInfo: [
-                    NSLocalizedDescriptionKey:
-                        "Invalid MobileGestalt backup structure."
-                ]
-            )
-        }
+        let originalHash = sha256(originalData)
 
-        // Calculate SHA-256.
-        let digest = SHA256.hash(data: originalData)
-        let hash = digest.map {
-            String(format: "%02x", $0)
-        }.joined()
+        let directory = try backupDirectory()
 
-        // Independent iPhone storage.
-        let applicationSupport = try fileManager.url(
-            for: .applicationSupportDirectory,
-            in: .userDomainMask,
-            appropriateFor: nil,
-            create: true
-        )
+        let identifier = UUID()
+        let fileName = "OriginalGestalt-\(identifier.uuidString).plist"
 
-        let backupDirectory = applicationSupport
-            .appendingPathComponent("HermesEnabler", isDirectory: true)
-            .appendingPathComponent("Backups", isDirectory: true)
-
-        try fileManager.createDirectory(
-            at: backupDirectory,
-            withIntermediateDirectories: true
-        )
-
-        // Never overwrite an existing backup.
-        let identifier = UUID().uuidString
-
-        let fileName = "OriginalGestalt-\(identifier).plist"
-
-        let destinationURL = backupDirectory
+        let destinationURL = directory
             .appendingPathComponent(fileName)
 
-        try fileManager.copyItem(
+        // Create an independent copy. Never overwrite.
+        try FileManager.default.copyItem(
             at: sourceURL,
             to: destinationURL
         )
 
-        // Verify the stored copy.
         let storedData = try Data(contentsOf: destinationURL)
 
         guard storedData == originalData else {
-            try? fileManager.removeItem(at: destinationURL)
+            try? FileManager.default.removeItem(at: destinationURL)
 
             throw NSError(
                 domain: "HermesCompanion.Backup",
@@ -219,13 +364,10 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
             )
         }
 
-        // Verify the SHA-256 of the stored copy.
-        let storedHash = SHA256.hash(data: storedData)
-            .map { String(format: "%02x", $0) }
-            .joined()
+        let storedHash = sha256(storedData)
 
-        guard storedHash == hash else {
-            try? fileManager.removeItem(at: destinationURL)
+        guard storedHash == originalHash else {
+            try? FileManager.default.removeItem(at: destinationURL)
 
             throw NSError(
                 domain: "HermesCompanion.Backup",
@@ -237,7 +379,7 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
             )
         }
 
-        try fileManager.setAttributes(
+        try FileManager.default.setAttributes(
             [
                 .protectionKey:
                     FileProtectionType.completeUntilFirstUserAuthentication
@@ -253,13 +395,96 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
             .map { Date(timeIntervalSince1970: $0) }
             ?? Date()
 
-        return (
-            fileName,
-            storedData.count,
-            hash,
-            transferDate,
-            deviceIdentifier
+        let record = BackupRecord(
+            id: identifier,
+            fileName: fileName,
+            date: transferDate,
+            size: storedData.count,
+            sha256: storedHash,
+            deviceIdentifier: deviceIdentifier,
+            hashOrigin: "Received and verified"
         )
+
+        // Persist manifest without overwriting existing records.
+        var records = try loadManifest()
+
+        records.append(record)
+        records.sort { $0.date > $1.date }
+
+        try saveManifest(records)
+
+        return record
+    }
+
+    // MARK: - Backup reception UI
+
+    private func updateBackupInformation(_ record: BackupRecord) {
+        loadBackupHistory()
+
+        backupStatus = "Backup received and verified"
+
+        print("[WC] Backup successfully stored")
+        print("[WC] File: \(record.fileName)")
+        print("[WC] Size: \(record.formattedSize)")
+        print("[WC] SHA256: \(record.sha256)")
+    }
+
+    // MARK: - Verification
+
+    func verifyBackup(_ record: BackupRecord) -> VerificationResult {
+        do {
+            let url = try Self.backupURL(for: record.fileName)
+
+            guard FileManager.default.fileExists(atPath: url.path) else {
+                return .missing
+            }
+
+            let data = try Data(contentsOf: url)
+
+            try Self.validateBackup(data)
+
+            let currentHash = Self.sha256(data)
+
+            guard currentHash == record.sha256 else {
+                lastVerificationMessage =
+                    "SHA-256 mismatch: file has changed."
+
+                return .invalid
+            }
+
+            lastVerificationMessage =
+                "Integrity verified: SHA-256 matches."
+
+            return .valid
+
+        } catch {
+            lastVerificationMessage = error.localizedDescription
+            return .error(error.localizedDescription)
+        }
+    }
+
+    // MARK: - Export
+
+    func exportURL(for record: BackupRecord) -> URL? {
+        do {
+            let url = try Self.backupURL(for: record.fileName)
+
+            guard FileManager.default.fileExists(atPath: url.path) else {
+                return nil
+            }
+
+            return url
+
+        } catch {
+            print("[WC] Export URL error: \(error)")
+            return nil
+        }
+    }
+
+    // MARK: - Latest backup
+
+    var latestBackup: BackupRecord? {
+        backups.sorted { $0.date > $1.date }.first
     }
 }
 
@@ -273,7 +498,6 @@ extension WatchConnectivityManager: WCSessionDelegate {
         error: Error?
     ) {
         Task { @MainActor in
-
             print("[WC] iPhone activation state: \(activationState.rawValue)")
 
             if let error {
@@ -315,26 +539,20 @@ extension WatchConnectivityManager: WCSessionDelegate {
     ) {
         print("[WC] Backup file received")
 
-        do {
-            let result = try Self.storeBackup(
-                from: file.fileURL,
-                metadata: file.metadata
-            )
-
-            Task { @MainActor in
-                self.updateBackupInformation(
-                    fileName: result.0,
-                    size: result.1,
-                    hash: result.2,
-                    date: result.3,
-                    deviceIdentifier: result.4
+        Task { @MainActor in
+            do {
+                let record = try Self.storeBackup(
+                    from: file.fileURL,
+                    metadata: file.metadata
                 )
-            }
 
-        } catch {
-            print("[WC] Backup reception error: \(error.localizedDescription)")
+                self.updateBackupInformation(record)
 
-            Task { @MainActor in
+            } catch {
+                print(
+                    "[WC] Backup reception error: \(error.localizedDescription)"
+                )
+
                 self.backupStatus =
                     "Backup rejected: \(error.localizedDescription)"
             }
