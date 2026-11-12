@@ -15,7 +15,7 @@
 3. On your iPhone, open the **Watch** app and install **HermesEnabler2** from **My Watch → Apps**.
 4. Open **HermesEnabler2** on your Apple Watch and follow the steps in the app.
 
-On Windows, you can also use [WatchBridge](https://github.com/AdminZachary/iloader-for-windows/tags) to quickly install the IPA.
+On Windows, you can also use [WatchBridge](https://github.com/AdminZachary/iloader-for-windows/tags) to quickly enable Developer Mode on your Apple Watch and install the IPA.
 
 ### Build with Xcode
 
