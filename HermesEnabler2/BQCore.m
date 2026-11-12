@@ -829,6 +829,56 @@ NSString *BQCreateGestaltBackup(BOOL initial, NSString **err) {
     return bq_create_gestalt_backup(initial ? @"initial" : @"manual", err);
 }
 
+BOOL BQImportGestaltBackup(NSData *data, NSString **identifier, NSString **err) {
+    if (identifier) *identifier = nil;
+
+    if (!bq_valid_gestalt_data(data)) {
+        if (err) *err = @"Imported backup is missing or has an invalid MobileGestalt structure.";
+        return NO;
+    }
+
+    NSFileManager *fm = [NSFileManager defaultManager];
+    NSString *directory = bq_backups_directory();
+
+    NSError *directoryError = nil;
+    if (![fm createDirectoryAtPath:directory
+       withIntermediateDirectories:YES
+                        attributes:nil
+                             error:&directoryError]) {
+        if (err) *err = directoryError.localizedDescription ?: @"Could not create backup directory.";
+        return NO;
+    }
+
+    NSString *backupID = [NSString stringWithFormat:@"external-%@", [NSUUID UUID].UUIDString];
+    NSString *path = [directory stringByAppendingPathComponent:
+                      [backupID stringByAppendingPathExtension:@"plist"]];
+
+    // Create a new file only. Never replace an existing backup.
+    NSError *writeError = nil;
+    BOOL written = [data writeToFile:path options:NSDataWritingAtomic error:&writeError];
+
+    if (!written) {
+        if (err) *err = writeError.localizedDescription ?: @"Could not write imported backup.";
+        return NO;
+    }
+
+    NSData *storedData = [NSData dataWithContentsOfFile:path];
+
+    if (!storedData || ![storedData isEqualToData:data] ||
+        !bq_valid_gestalt_data(storedData)) {
+        [fm removeItemAtPath:path error:nil];
+        if (err) *err = @"Imported backup failed verification and was removed.";
+        return NO;
+    }
+
+    if (identifier) *identifier = backupID;
+
+    BQLog(@"External MG backup imported: %@ (%lu bytes)",
+          backupID, (unsigned long)storedData.length);
+
+    return YES;
+}
+
 static BOOL bq_auto_backup(NSString **err) {
     return bq_create_gestalt_backup(@"auto", err) != nil;
 }
@@ -844,14 +894,35 @@ NSArray<NSDictionary *> *BQListGestaltBackups(void) {
         NSString *identifier = name.stringByDeletingPathExtension;
         BOOL automatic = [identifier hasPrefix:@"auto-"];
         BOOL manual = [identifier hasPrefix:@"manual-"];
-        NSString *uuid = (automatic ? [identifier substringFromIndex:5] :
-                          manual ? [identifier substringFromIndex:7] : identifier);
-        if (![name.pathExtension isEqualToString:@"plist"] || ![[NSUUID alloc] initWithUUIDString:uuid]) continue;
+        BOOL external = [identifier hasPrefix:@"external-"];
+
+        NSString *uuid = automatic ? [identifier substringFromIndex:5] :
+                         manual ? [identifier substringFromIndex:7] :
+                         external ? [identifier substringFromIndex:9] :
+                         identifier;
+
+        if (![name.pathExtension isEqualToString:@"plist"] ||
+            ![[NSUUID alloc] initWithUUIDString:uuid]) {
+            continue;
+        }
+
         NSString *path = [bq_backups_directory() stringByAppendingPathComponent:name];
-        if (!bq_valid_gestalt_data([NSData dataWithContentsOfFile:path])) continue;
+
+        if (!bq_valid_gestalt_data([NSData dataWithContentsOfFile:path])) {
+            continue;
+        }
+
         NSDictionary *attributes = [fm attributesOfItemAtPath:path error:nil];
-        [result addObject:@{ @"id": identifier, @"date": attributes[NSFileCreationDate] ?: [NSDate distantPast],
-                             @"initial": @NO, @"kind": automatic ? @"Automatic" : @"Manual" }];
+
+        NSString *kind = external ? @"External" :
+                         automatic ? @"Automatic" : @"Manual";
+
+        [result addObject:@{
+            @"id": identifier,
+            @"date": attributes[NSFileCreationDate] ?: [NSDate distantPast],
+            @"initial": @NO,
+            @"kind": kind
+        }];
     }
     [result sortUsingComparator:^NSComparisonResult(NSDictionary *a, NSDictionary *b) {
         if ([a[@"initial"] boolValue] != [b[@"initial"] boolValue]) return [a[@"initial"] boolValue] ? NSOrderedAscending : NSOrderedDescending;
@@ -985,10 +1056,14 @@ BOOL BQRestoreGestalt(NSString **err) {
 BOOL BQRestoreGestaltBackup(NSString *identifier, NSString **err) {
     NSString *path = nil;
     if ([identifier isEqualToString:@"initial"]) path = BQBackupPath();
-    else if ([identifier hasPrefix:@"auto-"] || [identifier hasPrefix:@"manual-"] ||
+    else if ([identifier hasPrefix:@"auto-"] ||
+             [identifier hasPrefix:@"manual-"] ||
+             [identifier hasPrefix:@"external-"] ||
              [[NSUUID alloc] initWithUUIDString:identifier]) {
         NSString *uuid = [identifier hasPrefix:@"auto-"] ? [identifier substringFromIndex:5] :
-                         [identifier hasPrefix:@"manual-"] ? [identifier substringFromIndex:7] : identifier;
+                         [identifier hasPrefix:@"manual-"] ? [identifier substringFromIndex:7] :
+                         [identifier hasPrefix:@"external-"] ? [identifier substringFromIndex:9] :
+                         identifier;
         if (![[NSUUID alloc] initWithUUIDString:uuid]) {
             if (err) *err = @"Invalid backup identifier.";
             return NO;
@@ -1046,28 +1121,43 @@ BOOL BQDeleteGestaltBackup(NSString *identifier, NSString **err) {
         if (err) *err = @"The initial backup is protected and cannot be deleted.";
         return NO;
     }
+
     BOOL automatic = [identifier hasPrefix:@"auto-"];
     BOOL manual = [identifier hasPrefix:@"manual-"];
-    if (!automatic && !manual) {
+    BOOL external = [identifier hasPrefix:@"external-"];
+
+    if (!automatic && !manual && !external) {
         if (err) *err = @"Invalid backup identifier.";
         return NO;
     }
-    NSString *uuid = [identifier substringFromIndex:(automatic ? 5 : 7)];
+
+    NSString *uuid = automatic ? [identifier substringFromIndex:5] :
+                     manual ? [identifier substringFromIndex:7] :
+                     [identifier substringFromIndex:9];
+
     if (![[NSUUID alloc] initWithUUIDString:uuid]) {
         if (err) *err = @"Invalid backup identifier.";
         return NO;
     }
-    NSString *path = [bq_backups_directory() stringByAppendingPathComponent:[identifier stringByAppendingPathExtension:@"plist"]];
+
+    NSString *path = [bq_backups_directory()
+        stringByAppendingPathComponent:
+            [identifier stringByAppendingPathExtension:@"plist"]];
+
     NSFileManager *fm = [NSFileManager defaultManager];
+
     if (![fm fileExistsAtPath:path]) {
         if (err) *err = @"Selected backup no longer exists.";
         return NO;
     }
+
     NSError *removeError = nil;
+
     if (![fm removeItemAtPath:path error:&removeError]) {
         if (err) *err = removeError.localizedDescription ?: @"Backup could not be deleted.";
         return NO;
     }
+
     BQLog(@"MG backup deleted: %@", identifier);
     return YES;
 }
