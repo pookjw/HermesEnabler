@@ -44,3 +44,5 @@ The `38` path is based on [PR #48](https://github.com/pookjw/HermesEnabler/pull/
 - Can the original `main-screen-class` be independently verified on physical devices across screen sizes and runtime display variants?
 
 Do not treat an unverified model mapping, a simulator result, or an unchanged cache UUID as proof of a specific physical watch's original state.
+
+For `24R5315i` / `Watch7,9`, physical OTA ClockKit static analysis likewise maps 29 to size 6 and 38 to size 9; the category table maps them to 4 and 6, and `(category & ~2) == 4` accepts both. This does not establish face availability or working layouts on a watch. See [OTA research](../OTA/README.md).

@@ -21,12 +21,20 @@ assert defaults["24S5112a"]["UltraEnabledScreenClass"] == 29
 assert defaults["24S5112a"]["UltraScreenClassOptions"] == [29, 38]
 assert offsets["24S5112a"]["CacheUUID"] == "830A9A56-15CC-4BB4-A1C3-F5F6FDB79819"
 assert not offsets["24S5112a"]["RecoveryVerified"]
+assert offsets["24R5315i"]["CacheUUID"] == "A4A7B9EC-7C2A-4E22-B1D2-179C9F27F6F1"
+assert offsets["24R5315i"]["CacheDataLength"] == 0x1947
+assert offsets["24R5315i"]["DeviceBrandOffset"] == 0x348
+assert offsets["24R5315i"]["DeviceBrandPresentOffset"] == 0x16e1
+assert offsets["24R5315i"]["ScreenClassOffset"] == 0xea8
+assert offsets["24R5315i"]["ScreenClassPresentOffset"] == 0x184d
+assert not offsets["24R5315i"]["RecoveryVerified"]
+assert defaults["24R5315i"]["UltraScreenClassOptions"] == [29, 38]
 # Descriptor indexes were extracted from physical-device OTA libraries.
 # The unstored swimming-workout descriptor (0xffff) must never become an offset.
-for build in ("24R364", "24R365", "24S118", "24S132", "24S5112a", "24S5284h"):
+for build in ("24R364", "24R365", "24R5315i", "24S118", "24S132", "24S5112a", "24S5284h"):
     layout = offsets[build]
     additional = layout["AdditionalIndexes"]
-    assert len(additional) == 13
+    assert len(additional) == (11 if build == "24R5315i" else 13)
     assert "cRjPy4Ef+KZwJ+nfPeBV5Q" not in additional
     assert len(set(additional.values())) == len(additional)
     assert not set(additional.values()) & set(layout["Indexes"].values())

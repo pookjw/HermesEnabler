@@ -444,6 +444,69 @@
 			<key>RecoveryVerified</key>
 			<true/>
 		</dict>
+		<key>24R5315i</key>
+		<dict>
+			<key>CacheUUID</key>
+			<string>A4A7B9EC-7C2A-4E22-B1D2-179C9F27F6F1</string>
+			<key>CacheDataLength</key>
+			<integer>6471</integer>
+			<key>DeviceBrandOffset</key>
+			<integer>840</integer>
+			<key>DeviceBrandPresentOffset</key>
+			<integer>5857</integer>
+			<key>ScreenClassOffset</key>
+			<integer>3752</integer>
+			<key>ScreenClassPresentOffset</key>
+			<integer>6221</integer>
+			<key>PresenceBase</key>
+			<integer>5752</integer>
+			<key>Indexes</key>
+			<dict>
+				<key>AlwaysOnDisplay</key>
+				<integer>173</integer>
+				<key>AlwaysOnTime</key>
+				<integer>175</integer>
+				<key>AlwaysOnDisplayFlipbook</key>
+				<integer>174</integer>
+				<key>ActionButton</key>
+				<integer>696</integer>
+				<key>DoubleTap</key>
+				<integer>217</integer>
+				<key>Keyboard</key>
+				<integer>698</integer>
+				<key>AODVibrancy</key>
+				<integer>156</integer>
+				<key>EnvironmentalDosimetry</key>
+				<integer>220</integer>
+			</dict>
+			<key>AdditionalIndexes</key>
+			<dict>
+				<key>Ijs+pw5tRyxqSy5kfgZNuQ</key>
+				<integer>162</integer>
+				<key>PFnuFyqMMnGUQQnTqS5byg</key>
+				<integer>161</integer>
+				<key>aCQx2Qq/TChnNAq1rr6Egw</key>
+				<integer>172</integer>
+				<key>Leuy56dCZmAMYoVCQGTfPA</key>
+				<integer>265</integer>
+				<key>4D8XW4YwJI7QvyPhv1TEdw</key>
+				<integer>273</integer>
+				<key>GPIs61LYNpcwZqwlFr7bbg</key>
+				<integer>201</integer>
+				<key>Kao6GNYdAy5hwXblxeGYJQ</key>
+				<integer>183</integer>
+				<key>U+73bmG4kBGj6kpreQXUTQ</key>
+				<integer>170</integer>
+				<key>nmOy2K5HzAAs2QNAi8wR+Q</key>
+				<integer>642</integer>
+				<key>A62OafQ85EJAiiqKn4agtg</key>
+				<integer>228</integer>
+				<key>K/R1GfGfCkXvEhaPS2Vrng</key>
+				<integer>291</integer>
+			</dict>
+			<key>RecoveryVerified</key>
+			<false/>
+		</dict>
 	</dict>
 </dict>
 </plist>

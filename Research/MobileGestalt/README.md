@@ -25,7 +25,7 @@ This is **not** a claim that every MG key requires an offset. Most Boolean featu
 | `DeviceBrand` | `fuKL2rMywRgQF1wowOA/cg` | `1` | Write the four-byte value at `DeviceBrandOffset`; remove this override when enabling. |
 | `main-screen-class` | `fdh+s6j3VijuyrK7xLjd7g` | `29` (existing) or `38` (alternative) | Write the selected four-byte value at `ScreenClassOffset`; remove this override when enabling. |
 
-These values are **activation overrides**, not factory defaults. The `38` alternative is offered only on the five analyzed builds; `24R359` remains limited to the existing `29` because its physical OTA was not verified. See [`MGDefaults.plist`](../../HermesEnabler2/MGDefaults.plist). Neither a value of `29` nor a visible switch proves that all face bundles, layouts, or compatibility checks are satisfied.
+These values are **activation overrides**, not factory defaults. The `38` alternative is offered only on analyzed builds; `24R359` remains limited to the existing `29` because its physical OTA was not verified. See [`MGDefaults.plist`](../../HermesEnabler2/MGDefaults.plist). Neither a value of `29` nor a visible switch proves that all face bundles, layouts, or compatibility checks are satisfied.
 
 ## Layouts recorded in the app
 
@@ -33,6 +33,7 @@ The canonical machine-readable table is [`MGOffsets.plist`](../../HermesEnabler2
 
 | Builds | UUID | Length | Brand value / presence | Screen value / presence | Presence base |
 | --- | --- | ---: | --- | --- | ---: |
+| `24R5315i` | `A4A7B9EC-7C2A-4E22-B1D2-179C9F27F6F1` | `0x1947` | `0x348` / `0x16e1` | `0xea8` / `0x184d` | `0x1678` |
 | `24R364`, `24R365` | `6F8372B0-1583-4031-A4BC-A54A18B0DD5A` | `0x1947` | `0x348` / `0x16e1` | `0xea8` / `0x184d` | `0x1678` |
 | `24S118`, `24S132` | `32B4CA84-FBDA-496C-9B79-2101D597158B` | `0x1950` | `0x348` / `0x16e9` | `0xeb0` / `0x1856` | `0x1680` |
 | `24S5284h` | `DB380F61-0014-418D-9799-876666B459E3` | `0x1950` | `0x348` / `0x16e9` | `0xeb0` / `0x1856` | `0x1680` |
@@ -63,3 +64,5 @@ The `24S5112a` OTA descriptor indices match the `24S118` / `24S132` / `24S5284h`
 ## Adding a build
 
 Follow the [physical OTA workflow](../OTA/README.md). Do not copy offsets just because the marketing version looks similar or the cache length matches. Identify the physical build, extract its own library and descriptor records, compare all relevant indices and callback semantics, and verify the actual cache's UUID and length. Set `RecoveryVerified` to true only when the evidence supports the recovery paths as well as the offsets. Record which architecture and models were actually examined; device-tree coverage is not the same as extracting a library for every model.
+
+For `24R5315i`, the cache layout and descriptor indices were analyzed from a physical `Watch7,9` Full OTA. Device runtime behavior and native recovery callbacks have not been verified; its `RecoveryVerified` flag is false. Two additional descriptors found in later builds were absent from the extracted binary. See [OTA research](../OTA/README.md).
