@@ -16,13 +16,16 @@ struct WatchFacesView: View {
             }
             if BQSupportsLargerUltraFaceLayout() {
                 Section {
-                    Picker("Ultra Face Layout", selection: Binding(
-                        get: { model.ultraFaceClass },
-                        set: { if $0 != model.ultraFaceClass { model.perform(.ultraFaceClass($0)) } }
-                    )) {
-                        Text("Not Active").tag(0).disabled(true)
-                        Text("Class 29").tag(29)
-                        Text("Class 38").tag(38)
+                    if model.ultraFacesEnabled {
+                        Picker("Ultra Face Layout", selection: Binding(
+                            get: { model.ultraFaceClass },
+                            set: { if $0 != model.ultraFaceClass { model.perform(.ultraFaceClass($0)) } }
+                        )) {
+                            Text("Class 29").tag(29)
+                            Text("Class 38").tag(38)
+                        }
+                    } else {
+                        LabeledContent("Ultra Face Layout", value: "Not Active")
                     }
                 } footer: {
                     Text("A larger layout may not fit your screen and may affect other faces and complications. Changes apply immediately; restart the watch to reload them.")

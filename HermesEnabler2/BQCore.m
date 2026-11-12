@@ -1225,6 +1225,7 @@ static BOOL bq_buildDefault(const char *build, NSString *key, uint32_t *value) {
 }
 
 static BOOL bq_recoverNativeFace(BOOL recoverBrand, NSString **err);
+static NSArray<NSNumber *> *bq_ultraOptions(const BQDeviceBrandLayout *layout);
 static BOOL bq_recoverNativeControl(NSString *key, NSString **err);
 static BOOL bq_recoverNativeAdditional(NSString *key, NSString **err);
 static BOOL bq_recoverNativeAOD(BOOL secondsOnly, NSString **err);
@@ -1468,6 +1469,10 @@ static BOOL bq_recoverNativeFace(BOOL recoverBrand, NSString **err) {
     destroyCache(cache);
     if (recoverBrand ? !validBrand : !validScreen) {
         if (err) *err = NSLocalizedString(@"Could not read the watch's original face values; no changes were made.", nil);
+        return NO;
+    }
+    if (!recoverBrand && [bq_ultraOptions(layout) containsObject:@(nativeScreen)]) {
+        if (err) *err = NSLocalizedString(@"The original screen class is an Ultra layout. An earlier backup may be needed to disable Ultra Faces.", nil);
         return NO;
     }
     if (recoverBrand) memcpy(bytes + layout->valueOffset, &nativeBrand, sizeof(nativeBrand));
@@ -1827,6 +1832,16 @@ static BOOL bq_setUltraFaces(BOOL enabled, NSInteger requestedClass, NSString **
     if (!options) {
         if (err) *err = NSLocalizedString(@"Ultra Faces cache layout is not supported on this watchOS build.", nil);
         return NO;
+    }
+    if (!enabled) {
+        uint32_t originalValue = 0;
+        memcpy(&originalValue, backupBytes + valueOffset, sizeof(originalValue));
+        id override = backup[@"CacheExtra"][@"fdh+s6j3VijuyrK7xLjd7g"];
+        NSNumber *effectiveValue = [override isKindOfClass:[NSNumber class]] ? override : @(originalValue);
+        if ([options containsObject:effectiveValue]) {
+            if (err) *err = NSLocalizedString(@"The original screen class is an Ultra layout. An earlier backup may be needed to disable Ultra Faces.", nil);
+            return NO;
+        }
     }
     BOOL useAlternative = NO;
     if (enabled && requestedClass != 0) {
