@@ -1,6 +1,58 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "The watch's confirmed original DeviceBrand is already Hermès; disabling it would not restore a non-Hermès value." : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "확인된 원래 DeviceBrand가 이미 Hermès입니다. 이 기능을 꺼도 일반 워치 값으로 복원되지 않습니다."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "確認された元のDeviceBrandはすでにHermèsです。無効にしてもHermès以外の値には戻りません。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "确认的原始 DeviceBrand 已是 Hermès；关闭功能不会恢复为非 Hermès 值。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "確認的原始 DeviceBrand 已是 Hermès；關閉功能不會還原為非 Hermès 值。"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die bestätigte ursprüngliche DeviceBrand ist bereits Hermès; das Deaktivieren stellt keinen anderen Wert wieder her."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "El DeviceBrand original confirmado ya es Hermès; desactivarlo no restauraría un valor distinto."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Le DeviceBrand d’origine confirmé est déjà Hermès ; le désactiver ne restaurerait pas une autre valeur."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "O DeviceBrand original confirmado já é Hermès; desativá-lo não irá restaurar outro valor."
+          }
+        }
+      }
+    },
     "The original screen class is an Ultra layout. An earlier backup may be needed to disable Ultra Faces." : {
       "localizations" : {
         "ko" : {

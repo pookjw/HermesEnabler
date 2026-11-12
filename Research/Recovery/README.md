@@ -15,7 +15,9 @@ An initial backup created after an earlier modification can look structurally va
 3. If a multi-key Boolean setting has only a *partially* usable backup, the current code stops with an error rather than mixing that partial backup with a native fallback.
 4. If recovery succeeds, `BQSaveGestalt` first saves an automatic backup of the current cache, writes the selected change, and performs a read-back check. If a source or validation step fails, the operation reports an error instead of intentionally guessing a value.
 
-This is not a universal factory-reset mechanism. Boolean keys outside the explicitly recoverable set still use the ordinary `CacheExtra` setter when an initial backup exists. The UI's initial-backup gate prevents navigation to toggles when no valid initial backup is present; consequently, a no-backup fallback is not normally reachable from the initial screen. More importantly, making a new initial backup after data loss can preserve already-modified values, preventing the fallback from being selected.
+This is not a universal factory-reset mechanism. Other Boolean keys now restore the initial backup's `CacheExtra` override instead of writing `false`. Before restoring, the app requires matching raw cache data or, for an independently analyzed stored descriptor on a `RecoveryVerified` build, an unchanged present raw slot for each requested key. Unverified builds, unstored descriptors, and screen-dimension overrides require the complete raw cache to match. These comparisons detect changes to the underlying cache; they do not prove that the initial backup itself predates every modification. See [additional key analysis](AdditionalKeys.md).
+
+The UI's initial-backup gate still prevents navigation to toggles when no valid initial backup is present. The app does not yet search other snapshots for automatic restoration: their age, layout, or agreement with each other does not independently establish factory provenance. In particular, a new backup created after data loss can still contain modified values. Hermès and Ultra values matching the app's enabled state now try native recovery, but those values may also genuinely be native to a Hermès or Ultra device. If that system check fails, no historical value is guessed.
 
 ## Why a separate MG cache helps — and why it is not enough
 
@@ -43,7 +45,7 @@ These are static-analysis conclusions for the five analyzed physical builds. Run
 | AOD Vibrancy | `IODeviceTree:/product` → `supports-aod-vibrancy`; compare with `DeviceSupportsAODVibrancy` | Restore true only when both checks pass. |
 | Noise Exposure | `IODeviceTree:/product` → `env-audio-exp-capable`; compare with `DeviceSupportsEnvironmentalDosimetry` | Restore true only when both checks pass. |
 
-For property-presence checks, an absent result may reflect restricted IORegistry access. The code therefore does not conclude that the native value is false solely from a missing property. Action Button is different: its false case requires a readable, well-formed list with known standard buttons and a matching MG answer. `24R359` is excluded from all system-derived recovery because its physical OTA layout has not been verified.
+For property-presence checks, an absent result may reflect restricted IORegistry access. The code therefore does not conclude that the native value is false solely from a missing property. Action Button is different: its false case requires a readable, well-formed list with known standard buttons and a matching MG answer. `24R359` and `24S5112a` are excluded from system-derived recovery because the required physical runtime and callback checks have not been completed for those entries.
 
 ## Cannot be reconstructed from this evidence
 

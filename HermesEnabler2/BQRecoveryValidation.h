@@ -5,6 +5,16 @@
 #include <stdint.h>
 #include <string.h>
 
+// For a verified descriptor, equality of a present cached slot allows
+// unrelated MobileGestalt fields to change without trusting an unknown value.
+static inline bool BQRecoveryCachedSlotMatches(const uint8_t *current, const uint8_t *baseline,
+                                               size_t length, size_t presenceBase, size_t index) {
+    if (!current || !baseline || presenceBase > length || index >= length - presenceBase ||
+        index > length / 8 || length - index * 8 < 8) return false;
+    return current[presenceBase + index] == 1 && baseline[presenceBase + index] == 1 &&
+        memcmp(current + index * 8, baseline + index * 8, 8) == 0;
+}
+
 static inline bool BQUltraAlternativeStateIsValid(uint32_t current, uint32_t original, uint32_t enabled,
                                              uint32_t expectedOriginal, bool currentPresent,
                                              bool originalPresent, bool hasCurrentOverride, bool hasOriginalOverride,

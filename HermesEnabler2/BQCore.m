@@ -1291,6 +1291,14 @@ BOOL BQSetHermesEnabled(BOOL enabled, NSString **err) {
         if (err) *err = NSLocalizedString(@"DeviceBrand CacheData layout is unavailable or unverified.", nil);
         return NO;
     }
+    uint32_t backupBrand = 0;
+    memcpy(&backupBrand, backupBytes + valueOffset, sizeof(backupBrand));
+    if (!enabled && backupBrand == enabledBrand) {
+        // The backup may have been taken after enabling Hermès, but a real
+        // Hermès watch may also have this value. Only native cross-checks can
+        // distinguish a recoverable non-Hermès original from that case.
+        return bq_recoverNativeFace(YES, err);
+    }
     uint8_t one[] = {enabledBrand & 0xff, (enabledBrand >> 8) & 0xff, (enabledBrand >> 16) & 0xff, (enabledBrand >> 24) & 0xff};
     if (enabled) memcpy(bytes + valueOffset, one, sizeof(one));
     else {
@@ -1469,6 +1477,12 @@ static BOOL bq_recoverNativeFace(BOOL recoverBrand, NSString **err) {
     destroyCache(cache);
     if (recoverBrand ? !validBrand : !validScreen) {
         if (err) *err = NSLocalizedString(@"Could not read the watch's original face values; no changes were made.", nil);
+        return NO;
+    }
+    uint32_t enabledBrand = 0;
+    if (recoverBrand && bq_buildDefault(build, @"HermesEnabledDeviceBrand", &enabledBrand) &&
+        nativeBrand == (int32_t)enabledBrand) {
+        if (err) *err = NSLocalizedString(@"The watch's confirmed original DeviceBrand is already Hermès; disabling it would not restore a non-Hermès value.", nil);
         return NO;
     }
     if (!recoverBrand && [bq_ultraOptions(layout) containsObject:@(nativeScreen)]) {
@@ -1839,8 +1853,9 @@ static BOOL bq_setUltraFaces(BOOL enabled, NSInteger requestedClass, NSString **
         id override = backup[@"CacheExtra"][@"fdh+s6j3VijuyrK7xLjd7g"];
         NSNumber *effectiveValue = [override isKindOfClass:[NSNumber class]] ? override : @(originalValue);
         if ([options containsObject:effectiveValue]) {
-            if (err) *err = NSLocalizedString(@"The original screen class is an Ultra layout. An earlier backup may be needed to disable Ultra Faces.", nil);
-            return NO;
+            // The value may be native to a real Ultra or may have been changed
+            // before the backup. Do not infer an original from the number.
+            return bq_recoverNativeFace(NO, err);
         }
     }
     BOOL useAlternative = NO;
@@ -1934,6 +1949,73 @@ BOOL BQSetUltraFaceClass(NSInteger screenClass, NSString **err) {
     return bq_setUltraFaces(YES, screenClass, err);
 }
 
+// The keys in this path are changed only through CacheExtra. If the raw
+// cache changed for any other reason, an absent old override is not enough
+// evidence that deleting today's override will restore the same answer.
+static BOOL bq_restoreInitialExtraKeys(NSDictionary *backup, NSMutableDictionary *current,
+                                       NSArray<NSString *> *keys, BOOL allowManagedDifferences,
+                                       BOOL booleanValues, NSString **err) {
+    NSMutableData *currentData = nil, *backupData = nil;
+    const BQDeviceBrandLayout *layout = bq_currentLayout();
+    if (!layout || !bq_ultraCache(current, &currentData, NULL, NULL, NULL) ||
+        !bq_ultraCache(backup, &backupData, NULL, NULL, NULL)) {
+        if (err) *err = NSLocalizedString(@"Could not verify the watch's original additional values; no changes were made.", nil);
+        return NO;
+    }
+    BOOL matching = [currentData isEqualToData:backupData];
+    if (!matching && allowManagedDifferences && layout->recoveryVerified) {
+        // Only use per-key comparisons where this build's physical OTA
+        // supplied a stored descriptor. Unstored/unknown keys fall back to
+        // requiring the entire raw cache to match.
+        NSDictionary *entry = bq_buildData(@"MGOffsets", [NSString stringWithUTF8String:layout->build]);
+        NSDictionary *indexes = [entry[@"AdditionalIndexes"] isKindOfClass:[NSDictionary class]] ? entry[@"AdditionalIndexes"] : nil;
+        matching = keys.count > 0;
+        for (NSString *key in keys) {
+            id number = indexes[key];
+            if (![number isKindOfClass:[NSNumber class]] || [number longLongValue] < 0 ||
+                [number unsignedLongLongValue] >= UINT16_MAX ||
+                !BQRecoveryCachedSlotMatches(currentData.bytes, backupData.bytes, currentData.length,
+                                             layout->presenceBase, [number unsignedIntegerValue])) {
+                matching = NO;
+                break;
+            }
+        }
+    }
+    if (!matching) {
+        if (err) *err = NSLocalizedString(@"Could not verify the watch's original additional values; no changes were made.", nil);
+        return NO;
+    }
+    NSDictionary *originalExtra = backup[@"CacheExtra"];
+    NSMutableDictionary *extra = [current[@"CacheExtra"] mutableCopy];
+    for (NSString *key in keys) {
+        id value = originalExtra[key];
+        if (value) {
+            if (![value isKindOfClass:[NSNumber class]]) {
+                if (err) *err = NSLocalizedString(@"The MobileGestalt backup is invalid.", nil);
+                return NO;
+            }
+            double number = [value doubleValue];
+            BOOL valid = isfinite(number) && floor(number) == number &&
+                (booleanValues ? (number == 0 || number == 1) : (number > 0 && number <= 4096));
+            if (!valid) {
+                if (err) *err = NSLocalizedString(@"The MobileGestalt backup is invalid.", nil);
+                return NO;
+            }
+            extra[key] = value;
+        } else {
+            [extra removeObjectForKey:key];
+        }
+    }
+    current[@"CacheExtra"] = extra;
+    if (!BQSaveGestalt(current, err)) return NO;
+    NSDictionary *saved = BQLoadGestalt(err);
+    if (![saved[@"CacheData"] isEqual:currentData] || ![saved[@"CacheExtra"] isEqual:extra]) {
+        if (err) *err = NSLocalizedString(@"The cache was written, but the original values could not be verified.", nil);
+        return NO;
+    }
+    return YES;
+}
+
 static BOOL bq_setMGCacheExtraKeys(NSArray<NSString *> *keys, BOOL enabled, NSString **err) {
     NSArray<NSString *> *recoverableKeys = @[@"2OOJf1VhaM7NxfRok3HbWQ", @"j8/Omm6s1lsmTDFsXjsBfA", @"aoJSd/MXk7M40NgXTM6x+g", @"FBw/2WrPE2supEKosxxoTw", @"l1CWke97nbaAcWDqA6T5LA", @"MQJ1mlVrhOwaUUVJehJSVA", @"ykpu7qyhqFweVMKtxNylWA", @"SaW+DA+cbiqDHrex8MTABA"];
     BOOL recoverable = keys.count > 0;
@@ -1947,6 +2029,10 @@ static BOOL bq_setMGCacheExtraKeys(NSArray<NSString *> *keys, BOOL enabled, NSSt
             bq_ultraCache(backup, &originalData, NULL, NULL, NULL)) {
             const BQDeviceBrandLayout *layout = bq_currentLayout();
             if (!layout) return NO;
+            if (!layout->recoveryVerified) {
+                // Never copy slot indices that were not independently verified.
+                return bq_restoreInitialExtraKeys(backup, current, keys, NO, YES, err);
+            }
             NSUInteger indexes[] = {layout->aodIndex, layout->aodTimeIndex, layout->hzIndex,
                 layout->actionIndex, layout->gestureIndex, layout->keyboardIndex, layout->vibrancyIndex, layout->noiseIndex};
             NSUInteger presenceBase = layout->presenceBase;
@@ -1995,6 +2081,12 @@ static BOOL bq_setMGCacheExtraKeys(NSArray<NSString *> *keys, BOOL enabled, NSSt
         NSString *key = keys.count == 1 ? keys.firstObject : nil;
         if ([key isEqualToString:@"FBw/2WrPE2supEKosxxoTw"] || [key isEqualToString:@"l1CWke97nbaAcWDqA6T5LA"] || [key isEqualToString:@"MQJ1mlVrhOwaUUVJehJSVA"]) return bq_recoverNativeControl(key, err);
         if ([key isEqualToString:@"ykpu7qyhqFweVMKtxNylWA"] || [key isEqualToString:@"SaW+DA+cbiqDHrex8MTABA"]) return bq_recoverNativeAdditional(key, err);
+    }
+    if (!enabled && !recoverable) {
+        NSDictionary *backup = [NSDictionary dictionaryWithContentsOfFile:BQBackupPath()];
+        NSMutableDictionary *current = BQLoadGestalt(err);
+        if (!current) return NO;
+        return bq_restoreInitialExtraKeys(backup, current, keys, YES, YES, err);
     }
     if (!BQBackupExists()) {
         if (err) *err = NSLocalizedString(@"Back up MobileGestalt first.", nil);
@@ -2207,17 +2299,12 @@ BOOL BQSetScreenResolution(NSInteger width, NSInteger height, NSString **err) {
         if (err) *err = NSLocalizedString(@"MobileGestalt or its backup is invalid.", nil);
         return NO;
     }
-    NSMutableDictionary *updated = [extra mutableCopy];
     if (restore) {
-        for (NSString *key in @[kMGScreenWidthKey, kMGScreenHeightKey]) {
-            id value = original[key];
-            if (value) updated[key] = value;
-            else [updated removeObjectForKey:key];
-        }
-    } else {
-        updated[kMGScreenWidthKey] = @(width);
-        updated[kMGScreenHeightKey] = @(height);
+        return bq_restoreInitialExtraKeys(backup, plist, @[kMGScreenWidthKey, kMGScreenHeightKey], NO, NO, err);
     }
+    NSMutableDictionary *updated = [extra mutableCopy];
+    updated[kMGScreenWidthKey] = @(width);
+    updated[kMGScreenHeightKey] = @(height);
     plist[@"CacheExtra"] = updated;
     if (!BQSaveGestalt(plist, err)) return NO;
     NSDictionary *saved = BQLoadGestalt(err)[@"CacheExtra"];

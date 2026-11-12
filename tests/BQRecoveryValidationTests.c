@@ -15,6 +15,18 @@ int main(void) {
     assert(BQUltraAlternativeStateIsValid(29, 35, 38, 35, true, true, false, false, true));
     assert(BQUltraAlternativeStateIsValid(38, 35, 29, 35, true, true, false, false, true));
     assert(!BQUltraAlternativeStateIsValid(38, 35, 29, 35, true, true, true, false, true));
+    uint8_t originalCache[48] = {0}, currentCache[48] = {0};
+    originalCache[8] = currentCache[8] = 7;
+    originalCache[33] = currentCache[33] = 1;
+    assert(BQRecoveryCachedSlotMatches(currentCache, originalCache, sizeof(originalCache), 32, 1));
+    currentCache[0] = 9; // An unrelated slot can change.
+    assert(BQRecoveryCachedSlotMatches(currentCache, originalCache, sizeof(originalCache), 32, 1));
+    currentCache[8] = 8;
+    assert(!BQRecoveryCachedSlotMatches(currentCache, originalCache, sizeof(originalCache), 32, 1));
+    currentCache[8] = 7; currentCache[33] = 0;
+    assert(!BQRecoveryCachedSlotMatches(currentCache, originalCache, sizeof(originalCache), 32, 1));
+    assert(!BQRecoveryCachedSlotMatches(currentCache, originalCache, sizeof(originalCache), 47, 2));
+    assert(!BQRecoveryCachedSlotMatches(NULL, originalCache, sizeof(originalCache), 32, 1));
     const uint8_t brandData[] = {0, 0, 3, 0};
     int32_t brand = -1;
     assert(BQRecoveryParseDeviceBrand(brandData, sizeof(brandData), 3, &brand) && brand == 3);
