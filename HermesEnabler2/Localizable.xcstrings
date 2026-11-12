@@ -9637,59 +9637,6 @@
         }
       }
     },
-    "Swipe a backup left to delete it. The initial backup is protected." : {
-      "extractionState" : "manual",
-      "localizations" : {
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Wischen Sie ein Backup nach links, um es zu löschen. Das anfängliche Backup ist geschützt."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Desliza una copia de seguridad hacia la izquierda para eliminarla. La copia de seguridad inicial está protegida."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Faites glisser une sauvegarde vers la gauche pour la supprimer. La sauvegarde initiale est protégée."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "バックアップを左にスワイプして削除します。初期バックアップは保護されています。"
-          }
-        },
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "삭제하려면 백업을 왼쪽으로 스와이프하세요. 초기 백업이 보호됩니다."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Deslize um backup para a esquerda para excluí-lo. O backup inicial está protegido."
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "向左滑动备份即可将其删除。初始备份受到保护。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "向左滑動備份即可刪除。初始備份受到保護。"
-          }
-        }
-      }
-    },
     "Taiwan" : {
       "extractionState" : "manual",
       "localizations" : {

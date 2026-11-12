@@ -82,25 +82,7 @@ struct BackupView: View {
                                 .foregroundStyle(.secondary)
                             }
                         }
-                        .swipeActions(edge: .trailing, allowsFullSwipe: false) {
-
-                            if backup.id != "initial" {
-
-                                Button(role: .destructive) {
-
-                                    model.perform(.deleteBackup(backup.id))
-
-                                } label: {
-
-                                    Label("Delete", systemImage: "trash")
-                                }
-                            }
-                        }
                     }
-
-                    Text("Swipe a backup left to delete it. The initial backup is protected.")
-                        .font(.footnote)
-                        .foregroundStyle(.secondary)
                 }
             }
 
