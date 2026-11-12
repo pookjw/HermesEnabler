@@ -335,7 +335,7 @@ final class ContentModel {
                 }
                 let title = Self.regionOptions.first(where: { $0.regionCode == code })?.title ?? code
                 result = BQSetRegionCode(code, &error)
-                ? "Region Code set to \(title). Restart the watch to reload it."
+                ? String(localized: "Region Code set to \(NSLocalizedString(title, comment: "Region name")). Restart the watch to reload it.")
                 : ((error as String?) ?? "Could not update Region Code.")
             case .salesRegion(let suffix):
                 guard !suffix.isEmpty else {
@@ -344,7 +344,7 @@ final class ContentModel {
                 }
                 let title = Self.regionOptions.first(where: { $0.salesSuffix == suffix })?.title ?? suffix
                 result = BQSetSalesRegion(suffix, &error)
-                ? "Sales Region set to \(title). Restart the watch to reload it."
+                ? String(localized: "Sales Region set to \(NSLocalizedString(title, comment: "Region name")). Restart the watch to reload it.")
                 : ((error as String?) ?? "Could not update Sales Region.")
             case .appleIntelligence(let enabled):
                 result = checked(BQSetAppleIntelligence(enabled, &error))
@@ -360,7 +360,7 @@ final class ContentModel {
                 : ((error as String?) ?? "Could not update Audio Intelligence capability.")
             case .resolution(let width, let height):
                 result = BQSetScreenResolution(width, height, &error)
-                ? (width == 0 ? "Original screen dimensions restored. Restart the watch." : "Reported screen size set to \(width) × \(height). Restart the watch.")
+                ? (width == 0 ? String(localized: "Original screen dimensions restored. Restart the watch.") : String(localized: "Reported screen size set to \(width) × \(height). Restart the watch."))
                 : ((error as String?) ?? "Could not update screen dimensions.")
             }
         }
