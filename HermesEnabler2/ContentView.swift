@@ -28,10 +28,6 @@ struct ContentView: View {
                         NavigationLink { BackupView(model: model) } label: {
                             Label("MG Backups", systemImage: "archivebox")
                         }
-                        Button("Restart Carousel") {
-                            model.message = "Starting respring. View the app log if nothing happens."
-                            BQRespring()
-                        }
                     }
                     Section("Status") {
                         Text(LocalizedStringKey(model.message))
@@ -40,6 +36,17 @@ struct ContentView: View {
                     }
                 }
                 .navigationTitle("HermesEnabler")
+                .toolbar {
+                    ToolbarItem(placement: .topBarTrailing) {
+                        Button {
+                            model.message = "Starting respring. View the app log if nothing happens."
+                            BQRespring()
+                        } label: {
+                            Image(systemName: "checkmark")
+                        }
+                        .accessibilityLabel("Restart Carousel")
+                    }
+                }
             }
         }
         .onChange(of: scenePhase, initial: true) { _, phase in
