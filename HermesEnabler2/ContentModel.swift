@@ -51,6 +51,7 @@ final class ContentModel {
     var pendingExternalBackupName = ""
     var pendingExternalBackupSHA256 = ""
     var showExternalImportConfirmation = false
+    var advanceExternalBackupQueue = false
     
     struct BackupItem: Identifiable {
         let id: String
@@ -161,6 +162,7 @@ final class ContentModel {
     }
     
     private func clearPendingExternalBackup(removeStored: Bool = false) {
+        advanceExternalBackupQueue = removeStored
         if removeStored, let id = pendingExternalBackupID {
             WatchConnectivityManager.shared.removePendingBackup(id: id)
         }

@@ -117,9 +117,14 @@ struct BackupView: View {
             NotificationCenter.default.publisher(
                 for: Notification.Name("HermesExternalBackupReceived")
             )
-        ) { notification in
-
+        ) { _ in
             model.showNextExternalBackup()
+        }
+        .onChange(of: model.showExternalImportConfirmation) { _, presented in
+            if !presented && model.advanceExternalBackupQueue {
+                model.advanceExternalBackupQueue = false
+                model.showNextExternalBackup()
+            }
         }
         .alert(
             "New External Backup",

@@ -721,6 +721,11 @@ extension WatchConnectivityManager: WCSessionDelegate {
             let hash = SHA256.hash(data: data)
                 .map { String(format: "%02x", $0) }
                 .joined()
+            guard let record = backups.first(where: { $0.fileName == fileURL.lastPathComponent }),
+                  record.sha256.caseInsensitiveCompare(hash) == .orderedSame else {
+                print("[WC] Backup differs from its saved checksum; transfer refused")
+                return false
+            }
 
             let metadata: [String: Any] = [
                 "type": "externalGestaltRestoreCandidate",
