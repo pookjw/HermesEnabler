@@ -186,6 +186,7 @@ final class ContentModel {
         case hermes(Bool)
         case ultraFaces(Bool)
         case ultraFaceClass(Int)
+        case restoreFaceValues
         case aod(Bool), aodSeconds(Bool), actionButton(Bool), doubleTap(Bool)
         case depth(Bool), absoluteAltimeter(Bool), alwaysOnCompass(Bool), aodVibrancy(Bool)
         case watchKeyboard(Bool), periodicALSUpdates(Bool), raiseToSpeak(Bool), continuousHeartRate(Bool)
@@ -202,7 +203,7 @@ final class ContentModel {
         var toggleFailed = false
         let shouldAlertOnFailure: Bool
         switch action {
-        case .hermes, .ultraFaces, .ultraFaceClass, .aod, .aodSeconds, .actionButton, .doubleTap,
+        case .hermes, .ultraFaces, .ultraFaceClass, .restoreFaceValues, .aod, .aodSeconds, .actionButton, .doubleTap,
              .depth, .absoluteAltimeter, .alwaysOnCompass, .aodVibrancy, .watchKeyboard,
              .periodicALSUpdates, .raiseToSpeak, .continuousHeartRate, .compassOrienteering,
              .environmentalDosimetry, .batteryInformation, .alwaysListening, .rotateToWake,
@@ -256,6 +257,10 @@ final class ContentModel {
                 result = checked(BQSetUltraFaceClass(screenClass, &error))
                 ? "Ultra face layout updated. Restart the watch to reload it."
                 : ((error as String?) ?? "Could not update Ultra Faces.")
+            case .restoreFaceValues:
+                result = checked(BQRestoreOriginalFaceValues(&error))
+                ? "Original face values restored. Restart the watch."
+                : ((error as String?) ?? "Could not restore the original face values.")
             case .aod(let enabled):
                 result = checked(BQSetAODSupport(enabled, &error))
                 ? "AOD turned \(enabled ? "on" : "off"). Restart Carousel to reload it."

@@ -66,6 +66,10 @@ BOOL BQGetUltraFaceClass(NSInteger *screenClass, NSString **err);
 BOOL BQSetUltraFaceClass(NSInteger screenClass, NSString **err);
 BOOL BQSupportsLargerUltraFaceLayout(void);
 
+// Restores DeviceBrand and main-screen-class together, using local backups
+// first and verified native values when needed.
+BOOL BQRestoreOriginalFaceValues(NSString **err);
+
 // Reads whether the respective capability overrides are recorded as enabled.
 BOOL BQGetAODSupport(BOOL *enabled, NSString **err);
 BOOL BQGetAODSecondsSupport(BOOL *enabled, NSString **err);

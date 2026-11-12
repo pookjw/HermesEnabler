@@ -31,6 +31,13 @@ struct WatchFacesView: View {
                     Text("A larger layout may not fit your screen and may affect other faces and complications. Changes apply immediately; restart the watch to reload them.")
                 }
             }
+            Section {
+                Button("Restore Original Face Values") {
+                    model.perform(.restoreFaceValues)
+                }
+            } footer: {
+                Text("Restores the original Hermès and Ultra Faces values. Restart the watch after restoring.")
+            }
         }
         .navigationTitle("Watch Faces")
     }

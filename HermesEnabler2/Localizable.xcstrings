@@ -4121,6 +4121,23 @@
         }
       }
     },
+    "Could not restore the original face values." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法恢复原始表盘值。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法還原原始錶面值。"
+          }
+        }
+      }
+    },
     "Could not update Absolute Altimeter capability." : {
       "extractionState" : "manual",
       "localizations" : {
@@ -8195,6 +8212,23 @@
         }
       }
     },
+    "MobileGestalt changed during face recovery. Try again." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "恢复表盘值时 MobileGestalt 发生了变化。请重试。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "還原錶面值時 MobileGestalt 發生了變更。請再試一次。"
+          }
+        }
+      }
+    },
     "MobileGestalt layout changed before restore; no data was written." : {
       "localizations" : {
         "de" : {
@@ -9509,6 +9543,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "On-Screen Keyboard 功能已開啟。重啟Carousel即可重新載入。"
+          }
+        }
+      }
+    },
+    "Original face values restored. Restart the watch." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已恢复原始表盘值。请重启手表。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "已還原原始錶面值。請重新啟動手錶。"
           }
         }
       }
@@ -10886,6 +10937,23 @@
         }
       }
     },
+    "Restore Original Face Values" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "恢复原始表盘值"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "還原原始錶面值"
+          }
+        }
+      }
+    },
     "Restore Original Size" : {
       "extractionState" : "manual",
       "localizations" : {
@@ -11146,6 +11214,23 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "S7–S9 · 45 公釐"
+          }
+        }
+      }
+    },
+    "Restores the original Hermès and Ultra Faces values. Restart the watch after restoring." : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "恢复 Hermès 和 Ultra 表盘的原始值。恢复后请重启手表。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "還原 Hermès 和 Ultra 錶面的原始值。還原後請重新啟動手錶。"
           }
         }
       }

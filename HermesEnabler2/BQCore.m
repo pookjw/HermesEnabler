@@ -1028,7 +1028,7 @@ NSMutableDictionary *BQLoadGestalt(NSString **err) {
     return dict;
 }
 
-BOOL BQSaveGestalt(NSDictionary *dict, NSString **err) {
+static BOOL bq_save_gestalt(NSDictionary *dict, NSDictionary *expected, NSString **err) {
     if (![dict isKindOfClass:[NSDictionary class]]) {
         if (err) *err = NSLocalizedString(@"invalid dictionary", nil);
         return NO;
@@ -1055,6 +1055,11 @@ BOOL BQSaveGestalt(NSDictionary *dict, NSString **err) {
         if (err) *err = NSLocalizedString(@"MobileGestalt plist missing or invalid", nil);
         return NO;
     }
+    if (expected && ![expected isEqual:[NSPropertyListSerialization propertyListWithData:beforeWrite options:0 format:NULL error:NULL]]) {
+        BQEndEscape(h);
+        if (err) *err = NSLocalizedString(@"MobileGestalt changed during face recovery. Try again.", nil);
+        return NO;
+    }
     BOOL ok = bq_write_data(plist, data, err);
     if (ok) {
         NSData *check = [NSData dataWithContentsOfFile:plist];
@@ -1076,6 +1081,10 @@ BOOL BQSaveGestalt(NSDictionary *dict, NSString **err) {
     }
     BQEndEscape(h);
     return ok;
+}
+
+BOOL BQSaveGestalt(NSDictionary *dict, NSString **err) {
+    return bq_save_gestalt(dict, nil, err);
 }
 
 BOOL BQRestoreGestalt(NSString **err) {
@@ -1399,6 +1408,71 @@ static void bq_native_libraries(void **mgOut, void **ioOut) {
 // the global MainScreenStaticInfo. Recompute that dependency in the empty cache
 // and compare it, and verify DeviceBrand against its device-tree source.
 // These private APIs may be unavailable or restricted; then nothing is written.
+static BOOL bq_readNativeFaceValue(const BQDeviceBrandLayout *layout, BOOL recoverBrand, uint32_t *value, NSString **err) {
+    if (!layout->recoveryVerified) {
+        if (err) *err = NSLocalizedString(@"Native face recovery is unavailable for this watchOS build.", nil);
+        return NO;
+    }
+    void *mg = NULL, *io = NULL;
+    bq_native_libraries(&mg, recoverBrand ? &io : NULL);
+    void *(*createCache)(void *, const void **, const void **, long, void *) = mg ? dlsym(mg, "MGCreateInMemoryCache") : NULL;
+    CFTypeRef (*copyAnswer)(CFStringRef, void *, void *, int *) = mg ? dlsym(mg, "MGCopyAnswerWithCache") : NULL;
+    void (*destroyCache)(void *) = mg ? dlsym(mg, "MGCacheDestroy") : NULL;
+    uint32_t (*entryFromPath)(uint32_t, const char *) = io ? dlsym(io, "IORegistryEntryFromPath") : NULL;
+    CFTypeRef (*copyProperty)(uint32_t, CFStringRef, CFAllocatorRef, uint32_t) = io ? dlsym(io, "IORegistryEntryCreateCFProperty") : NULL;
+    int (*releaseObject)(uint32_t) = io ? dlsym(io, "IOObjectRelease") : NULL;
+    if (!createCache || !copyAnswer || !destroyCache) {
+        if (err) *err = NSLocalizedString(@"Could not read the watch's original face values; no changes were made.", nil);
+        return NO;
+    }
+    uint32_t entry = entryFromPath && copyProperty && releaseObject ? entryFromPath(0, "IODeviceTree:/chosen") : 0;
+    CFTypeRef property = entry ? copyProperty(entry, CFSTR("marketing-software-behavior"), kCFAllocatorDefault, 0) : NULL;
+    if (entry) releaseObject(entry);
+    int32_t expectedBrand = -1;
+    BOOL validProperty = NO;
+    if (property && CFGetTypeID(property) == CFDataGetTypeID()) {
+        uint32_t maxBrand = 0;
+        BOOL hasMaximum = bq_buildDefault(layout->build, @"MaxDeviceBrand", &maxBrand) && maxBrand <= UINT8_MAX && maxBrand > 0;
+        CFIndex length = CFDataGetLength(property);
+        if (hasMaximum && length >= 0) validProperty = BQRecoveryParseDeviceBrand(CFDataGetBytePtr(property), (size_t)length, maxBrand, &expectedBrand);
+    }
+    if (property) CFRelease(property);
+    void *cache = createCache(NULL, NULL, NULL, 0, NULL);
+    if (!cache) {
+        if (err) *err = NSLocalizedString(@"Could not read the watch's original face values; no changes were made.", nil);
+        return NO;
+    }
+    int brandError = 0, screenError = 0, screenInfoError = 0;
+    CFTypeRef brand = recoverBrand ? copyAnswer(CFSTR("DeviceBrand"), NULL, cache, &brandError) : NULL;
+    CFTypeRef screen = recoverBrand ? NULL : copyAnswer(CFSTR("main-screen-class"), NULL, cache, &screenError);
+    CFTypeRef screenInfo = recoverBrand ? NULL : copyAnswer(CFSTR("MainScreenStaticInfo"), NULL, cache, &screenInfoError);
+    int32_t nativeBrand = -1, nativeScreen = -1;
+    int32_t screenInfoClass = -1;
+    BOOL validScreenInfo = screenInfo && !screenInfoError && CFGetTypeID(screenInfo) == CFDataGetTypeID() && CFDataGetLength(screenInfo) == 24;
+    if (validScreenInfo) memcpy(&screenInfoClass, CFDataGetBytePtr(screenInfo) + 20, sizeof(screenInfoClass));
+    BOOL validBrand = validProperty && brand && !brandError &&
+        CFGetTypeID(brand) == CFNumberGetTypeID() &&
+        CFNumberGetValue((CFNumberRef)brand, kCFNumberSInt32Type, &nativeBrand) && nativeBrand == expectedBrand;
+    BOOL validScreen = screen && !screenError &&
+        CFGetTypeID(screen) == CFNumberGetTypeID() &&
+        CFNumberGetValue((CFNumberRef)screen, kCFNumberSInt32Type, &nativeScreen) &&
+        validScreenInfo && nativeScreen == screenInfoClass && nativeScreen >= 0 && nativeScreen < 256;
+    if (brand) CFRelease(brand);
+    if (screen) CFRelease(screen);
+    if (screenInfo) CFRelease(screenInfo);
+    destroyCache(cache);
+    if (recoverBrand ? !validBrand : !validScreen) {
+        if (err) *err = NSLocalizedString(@"Could not read the watch's original face values; no changes were made.", nil);
+        return NO;
+    }
+    if (!recoverBrand && [bq_ultraOptions(layout) containsObject:@(nativeScreen)]) {
+        if (err) *err = NSLocalizedString(@"The original screen class is an Ultra layout. An earlier backup may be needed to disable Ultra Faces.", nil);
+        return NO;
+    }
+    *value = recoverBrand ? (uint32_t)nativeBrand : (uint32_t)nativeScreen;
+    return YES;
+}
+
 static BOOL bq_recoverNativeFace(BOOL recoverBrand, NSString **err) {
     NSMutableDictionary *plist = BQLoadGestalt(err);
     NSMutableData *data = nil;
@@ -1419,64 +1493,13 @@ static BOOL bq_recoverNativeFace(BOOL recoverBrand, NSString **err) {
         return NO;
     }
 
-    void *mg = NULL, *io = NULL;
-    bq_native_libraries(&mg, &io);
-    void *(*createCache)(void *, const void **, const void **, long, void *) = mg ? dlsym(mg, "MGCreateInMemoryCache") : NULL;
-    CFTypeRef (*copyAnswer)(CFStringRef, void *, void *, int *) = mg ? dlsym(mg, "MGCopyAnswerWithCache") : NULL;
-    void (*destroyCache)(void *) = mg ? dlsym(mg, "MGCacheDestroy") : NULL;
-    uint32_t (*entryFromPath)(uint32_t, const char *) = io ? dlsym(io, "IORegistryEntryFromPath") : NULL;
-    CFTypeRef (*copyProperty)(uint32_t, CFStringRef, CFAllocatorRef, uint32_t) = io ? dlsym(io, "IORegistryEntryCreateCFProperty") : NULL;
-    int (*releaseObject)(uint32_t) = io ? dlsym(io, "IOObjectRelease") : NULL;
-    if (!createCache || !copyAnswer || !destroyCache) {
+    if (bytes[recoverBrand ? layout->presentOffset : screenPresent] != 1) {
         if (err) *err = NSLocalizedString(@"Could not read the watch's original face values; no changes were made.", nil);
         return NO;
     }
-    uint32_t entry = entryFromPath && copyProperty && releaseObject ? entryFromPath(0, "IODeviceTree:/chosen") : 0;
-    CFTypeRef property = entry ? copyProperty(entry, CFSTR("marketing-software-behavior"), kCFAllocatorDefault, 0) : NULL;
-    if (entry) releaseObject(entry);
-    int32_t expectedBrand = -1;
-    BOOL validProperty = NO;
-    if (property && CFGetTypeID(property) == CFDataGetTypeID()) {
-        uint32_t maxBrand = 0;
-        BOOL hasMaximum = bq_buildDefault(build, @"MaxDeviceBrand", &maxBrand) && maxBrand <= UINT8_MAX && maxBrand > 0;
-        CFIndex length = CFDataGetLength(property);
-        if (hasMaximum && length >= 0) validProperty = BQRecoveryParseDeviceBrand(CFDataGetBytePtr(property), (size_t)length, maxBrand, &expectedBrand);
-    }
-    if (property) CFRelease(property);
-    void *cache = createCache(NULL, NULL, NULL, 0, NULL);
-    if (!cache) {
-        if (err) *err = NSLocalizedString(@"Could not read the watch's original face values; no changes were made.", nil);
-        return NO;
-    }
-    int brandError = 0, screenError = 0, screenInfoError = 0;
-    CFTypeRef brand = copyAnswer(CFSTR("DeviceBrand"), NULL, cache, &brandError);
-    CFTypeRef screen = copyAnswer(CFSTR("main-screen-class"), NULL, cache, &screenError);
-    CFTypeRef screenInfo = copyAnswer(CFSTR("MainScreenStaticInfo"), NULL, cache, &screenInfoError);
-    int32_t nativeBrand = -1, nativeScreen = -1;
-    int32_t screenInfoClass = -1;
-    BOOL validScreenInfo = screenInfo && !screenInfoError && CFGetTypeID(screenInfo) == CFDataGetTypeID() && CFDataGetLength(screenInfo) == 24;
-    if (validScreenInfo) memcpy(&screenInfoClass, CFDataGetBytePtr(screenInfo) + 20, sizeof(screenInfoClass));
-    BOOL validBrand = bytes[layout->presentOffset] == 1 && validProperty && brand && !brandError &&
-        CFGetTypeID(brand) == CFNumberGetTypeID() &&
-        CFNumberGetValue((CFNumberRef)brand, kCFNumberSInt32Type, &nativeBrand) && nativeBrand == expectedBrand;
-    BOOL validScreen = bytes[screenPresent] == 1 && screen && !screenError &&
-        CFGetTypeID(screen) == CFNumberGetTypeID() &&
-        CFNumberGetValue((CFNumberRef)screen, kCFNumberSInt32Type, &nativeScreen) &&
-        validScreenInfo && nativeScreen == screenInfoClass && nativeScreen >= 0 && nativeScreen < 256;
-    if (brand) CFRelease(brand);
-    if (screen) CFRelease(screen);
-    if (screenInfo) CFRelease(screenInfo);
-    destroyCache(cache);
-    if (recoverBrand ? !validBrand : !validScreen) {
-        if (err) *err = NSLocalizedString(@"Could not read the watch's original face values; no changes were made.", nil);
-        return NO;
-    }
-    if (!recoverBrand && [bq_ultraOptions(layout) containsObject:@(nativeScreen)]) {
-        if (err) *err = NSLocalizedString(@"The original screen class is an Ultra layout. An earlier backup may be needed to disable Ultra Faces.", nil);
-        return NO;
-    }
-    if (recoverBrand) memcpy(bytes + layout->valueOffset, &nativeBrand, sizeof(nativeBrand));
-    else memcpy(bytes + screenOffset, &nativeScreen, sizeof(nativeScreen));
+    uint32_t value = 0;
+    if (!bq_readNativeFaceValue(layout, recoverBrand, &value, err)) return NO;
+    memcpy(bytes + (recoverBrand ? layout->valueOffset : screenOffset), &value, sizeof(value));
     NSMutableDictionary *extra = [plist[@"CacheExtra"] mutableCopy];
     if (recoverBrand) [extra removeObjectForKey:@"fuKL2rMywRgQF1wowOA/cg"];
     else [extra removeObjectForKey:@"fdh+s6j3VijuyrK7xLjd7g"];
@@ -1490,6 +1513,100 @@ static BOOL bq_recoverNativeFace(BOOL recoverBrand, NSString **err) {
         return NO;
     }
     return YES;
+}
+
+static BOOL bq_readFaceBackupValue(NSData *data, NSUInteger valueOffset, NSUInteger presentOffset,
+                                   NSDictionary *extra, NSString *key, uint32_t maximum,
+                                   NSArray<NSNumber *> *activationValues, uint32_t *valueOut, NSNumber **overrideOut) {
+    const uint8_t *bytes = data.bytes;
+    if (bytes[presentOffset] != 1) return NO;
+
+    uint32_t value;
+    memcpy(&value, bytes + valueOffset, sizeof(value));
+    if (value > maximum || [activationValues containsObject:@(value)]) return NO;
+
+    id override = extra[key];
+    if (override) {
+        if (![override isKindOfClass:[NSNumber class]]) return NO;
+        double number = [override doubleValue];
+        if (!isfinite(number) || number < 0 || number > maximum || number != floor(number) ||
+            [activationValues containsObject:@((uint32_t)number)]) return NO;
+    }
+    *valueOut = value;
+    *overrideOut = override;
+    return YES;
+}
+
+BOOL BQRestoreOriginalFaceValues(NSString **err) {
+    NSMutableDictionary *plist = BQLoadGestalt(err);
+    NSMutableData *data = nil;
+    if (!plist || !bq_ultraCache(plist, &data, NULL, NULL, err)) return NO;
+
+    const BQDeviceBrandLayout *layout = bq_currentLayout();
+    NSArray<NSNumber *> *ultraClasses = bq_ultraOptions(layout);
+    uint32_t hermesBrand = 0;
+    if (!layout || !ultraClasses || !bq_buildDefault(layout->build, @"HermesEnabledDeviceBrand", &hermesBrand)) {
+        if (err) *err = NSLocalizedString(@"Native face recovery is unavailable for this watchOS build.", nil);
+        return NO;
+    }
+    uint32_t maxBrand = UINT8_MAX;
+    bq_buildDefault(layout->build, @"MaxDeviceBrand", &maxBrand);
+    NSArray<NSNumber *> *hermesBrands = @[@(hermesBrand)];
+    NSString *brandKey = @"fuKL2rMywRgQF1wowOA/cg";
+    NSString *screenKey = @"fdh+s6j3VijuyrK7xLjd7g";
+    NSString *cacheUUID = plist[@"CacheUUID"];
+
+    // Prefer the initial snapshot, then the oldest locally created snapshots.
+    // Imported snapshots with the same layout may belong to another watch.
+    NSMutableArray<NSString *> *paths = [NSMutableArray arrayWithObject:BQBackupPath()];
+    for (NSDictionary *record in [BQListGestaltBackups() reverseObjectEnumerator]) {
+        NSString *identifier = record[@"id"];
+        if ([identifier isEqualToString:@"initial"] || [identifier hasPrefix:@"external-"]) continue;
+        [paths addObject:[bq_backups_directory() stringByAppendingPathComponent:[identifier stringByAppendingPathExtension:@"plist"]]];
+    }
+
+    uint32_t brand = 0, screen = 0;
+    NSNumber *brandOverride = nil, *screenOverride = nil;
+    BOOL hasBrand = NO, hasScreen = NO;
+    for (NSString *path in paths) {
+        NSDictionary *backup = [NSDictionary dictionaryWithContentsOfFile:path];
+        NSData *backupData = backup[@"CacheData"];
+        NSDictionary *backupExtra = backup[@"CacheExtra"];
+        if (![cacheUUID isEqual:backup[@"CacheUUID"]] || ![backupData isKindOfClass:[NSData class]] ||
+            backupData.length != layout->dataLength || ![backupExtra isKindOfClass:[NSDictionary class]]) continue;
+
+        if (!hasBrand) {
+            hasBrand = bq_readFaceBackupValue(backupData, layout->valueOffset, layout->presentOffset,
+                                             backupExtra, brandKey, maxBrand, hermesBrands, &brand, &brandOverride);
+        }
+        if (!hasScreen) {
+            hasScreen = bq_readFaceBackupValue(backupData, layout->screenOffset, layout->screenPresentOffset,
+                                              backupExtra, screenKey, UINT8_MAX, ultraClasses, &screen, &screenOverride);
+        }
+        if (hasBrand && hasScreen) break;
+    }
+
+    uint8_t *bytes = data.mutableBytes;
+    if ((!hasBrand && bytes[layout->presentOffset] != 1) ||
+        (!hasScreen && bytes[layout->screenPresentOffset] != 1)) {
+        if (err) *err = NSLocalizedString(@"The required face values are missing from the cache; no changes were made.", nil);
+        return NO;
+    }
+    if (!hasBrand && !bq_readNativeFaceValue(layout, YES, &brand, err)) return NO;
+    if (!hasScreen && !bq_readNativeFaceValue(layout, NO, &screen, err)) return NO;
+
+    NSDictionary *original = [plist copy];
+    memcpy(bytes + layout->valueOffset, &brand, sizeof(brand));
+    memcpy(bytes + layout->screenOffset, &screen, sizeof(screen));
+    bytes[layout->presentOffset] = 1;
+    bytes[layout->screenPresentOffset] = 1;
+    NSMutableDictionary *extra = [plist[@"CacheExtra"] mutableCopy];
+    extra[brandKey] = brandOverride;
+    extra[screenKey] = screenOverride;
+    plist[@"CacheData"] = data;
+    plist[@"CacheExtra"] = extra;
+    if ([plist isEqual:original]) return YES;
+    return bq_save_gestalt(plist, original, err);
 }
 
 static BOOL bq_recoverNativeControl(NSString *key, NSString **err) {
