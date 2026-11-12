@@ -194,6 +194,44 @@
 			<key>RecoveryVerified</key>
 			<true/>
 		</dict>
+		<key>24S5112a</key>
+		<dict>
+			<key>CacheUUID</key>
+			<string>830A9A56-15CC-4BB4-A1C3-F5F6FDB79819</string>
+			<key>CacheDataLength</key>
+			<integer>6480</integer>
+			<key>DeviceBrandOffset</key>
+			<integer>840</integer>
+			<key>DeviceBrandPresentOffset</key>
+			<integer>5865</integer>
+			<key>ScreenClassOffset</key>
+			<integer>3760</integer>
+			<key>ScreenClassPresentOffset</key>
+			<integer>6230</integer>
+			<key>PresenceBase</key>
+			<integer>5760</integer>
+			<key>Indexes</key>
+			<dict>
+				<key>AlwaysOnDisplay</key>
+				<integer>174</integer>
+				<key>AlwaysOnTime</key>
+				<integer>176</integer>
+				<key>AlwaysOnDisplayFlipbook</key>
+				<integer>175</integer>
+				<key>ActionButton</key>
+				<integer>697</integer>
+				<key>DoubleTap</key>
+				<integer>218</integer>
+				<key>Keyboard</key>
+				<integer>699</integer>
+				<key>AODVibrancy</key>
+				<integer>157</integer>
+				<key>EnvironmentalDosimetry</key>
+				<integer>221</integer>
+			</dict>
+			<key>RecoveryVerified</key>
+			<false/>
+		</dict>
 		<key>24S5284h</key>
 		<dict>
 			<key>CacheUUID</key>
