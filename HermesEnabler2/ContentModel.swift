@@ -46,6 +46,7 @@ final class ContentModel {
     var showRestoreConfirmation = false
     
     // MARK: - External backup import
+    var pendingExternalBackupID: String?
     var pendingExternalBackupData: Data?
     var pendingExternalBackupName = ""
     var pendingExternalBackupSHA256 = ""
@@ -100,6 +101,13 @@ final class ContentModel {
         }
     }
     
+    func showNextExternalBackup() {
+        guard !showExternalImportConfirmation,
+              let pending = WatchConnectivityManager.shared.nextPendingBackup() else { return }
+        pendingExternalBackupID = pending.id
+        prepareExternalBackupImport(data: pending.data, fileName: pending.fileName, sha256: pending.sha256)
+    }
+
     func prepareExternalBackupImport(
         data: Data,
         fileName: String,
@@ -142,17 +150,21 @@ final class ContentModel {
             print("[UI] External backup import failed: \(message)")
         }
         
-        clearPendingExternalBackup()
+        if success { clearPendingExternalBackup(removeStored: true) }
     }
     
     func rejectExternalBackupImport() {
         message = "External backup rejected."
         print("[UI] External backup rejected: \(pendingExternalBackupName)")
         
-        clearPendingExternalBackup()
+        clearPendingExternalBackup(removeStored: true)
     }
     
-    private func clearPendingExternalBackup() {
+    private func clearPendingExternalBackup(removeStored: Bool = false) {
+        if removeStored, let id = pendingExternalBackupID {
+            WatchConnectivityManager.shared.removePendingBackup(id: id)
+        }
+        pendingExternalBackupID = nil
         pendingExternalBackupData = nil
         pendingExternalBackupName = ""
         pendingExternalBackupSHA256 = ""

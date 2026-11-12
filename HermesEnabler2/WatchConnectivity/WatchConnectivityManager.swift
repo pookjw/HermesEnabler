@@ -133,6 +133,48 @@ final class WatchConnectivityManager: NSObject, WCSessionDelegate {
         print("[WC] Message received: \(message)")
     }
     
+    struct PendingBackup {
+        let id: String
+        let data: Data
+        let fileName: String
+        let sha256: String
+    }
+
+    private var pendingDirectory: URL {
+        FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask)[0]
+            .appendingPathComponent("PendingMGBackups", isDirectory: true)
+    }
+
+    private func storePendingBackup(data: Data, fileName: String, sha256: String) throws {
+        try FileManager.default.createDirectory(at: pendingDirectory, withIntermediateDirectories: true)
+        let record: [String: Any] = ["data": data, "fileName": fileName, "sha256": sha256]
+        let encoded = try PropertyListSerialization.data(fromPropertyList: record, format: .binary, options: 0)
+        try encoded.write(to: pendingDirectory.appendingPathComponent(UUID().uuidString + ".plist"), options: .atomic)
+    }
+
+    func nextPendingBackup() -> PendingBackup? {
+        guard let files = try? FileManager.default.contentsOfDirectory(at: pendingDirectory, includingPropertiesForKeys: [.creationDateKey]) else { return nil }
+        let sorted = files.filter { $0.pathExtension == "plist" }.sorted {
+            let a = (try? $0.resourceValues(forKeys: [.creationDateKey]).creationDate) ?? .distantPast
+            let b = (try? $1.resourceValues(forKeys: [.creationDateKey]).creationDate) ?? .distantPast
+            return a < b
+        }
+        for file in sorted {
+            guard let encoded = try? Data(contentsOf: file),
+                  let record = (try? PropertyListSerialization.propertyList(from: encoded, options: [], format: nil)) as? [String: Any],
+                  let data = record["data"] as? Data, let name = record["fileName"] as? String,
+                  let hash = record["sha256"] as? String else { continue }
+            return PendingBackup(id: file.lastPathComponent, data: data, fileName: name, sha256: hash)
+        }
+        return nil
+    }
+
+    func removePendingBackup(id: String) {
+        guard id == URL(fileURLWithPath: id).lastPathComponent else { return }
+        do { try FileManager.default.removeItem(at: pendingDirectory.appendingPathComponent(id)) }
+        catch { print("[WC] Could not remove pending backup: \(error.localizedDescription)") }
+    }
+
     // MARK: - Receive external backup from iPhone
 
     func session(
@@ -197,18 +239,9 @@ final class WatchConnectivityManager: NSObject, WCSessionDelegate {
             print("[WC] SHA256: \(actualHash)")
             print("[WC] Waiting for user confirmation")
 
-            // Ask ContentModel to display the import confirmation.
-            // No file is stored in MGBackups at this stage.
+            try storePendingBackup(data: data, fileName: fileName, sha256: actualHash)
             DispatchQueue.main.async {
-                NotificationCenter.default.post(
-                    name: Notification.Name("HermesExternalBackupReceived"),
-                    object: nil,
-                    userInfo: [
-                        "data": data,
-                        "fileName": fileName,
-                        "sha256": actualHash
-                    ]
-                )
+                NotificationCenter.default.post(name: Notification.Name("HermesExternalBackupReceived"), object: nil)
             }
 
         } catch {
@@ -240,7 +273,10 @@ extension WatchConnectivityManager {
             return
         }
 
+        guard let data = try? Data(contentsOf: sourceURL) else { return }
+        let hash = SHA256.hash(data: data).map { String(format: "%02x", $0) }.joined()
         let metadata: [String: Any] = [
+            "sha256": hash,
             "type": "originalGestalt",
             "deviceName": WKInterfaceDevice.current().name,
             "hardwareIdentifier": hardwareIdentifier(),

@@ -802,6 +802,16 @@ static NSString *bq_create_gestalt_backup(NSString *kind, NSString **err) {
         if (err) *err = @"MobileGestalt plist is missing or invalid.";
         return nil;
     }
+    // Reuse the latest identical automatic snapshot without deleting history.
+    if ([kind isEqualToString:@"auto"]) {
+        for (NSDictionary *entry in BQListGestaltBackups()) {
+            NSString *previousID = entry[@"id"];
+            if (![previousID hasPrefix:@"auto-"]) continue;
+            NSString *previousPath = [bq_backups_directory() stringByAppendingPathComponent:[previousID stringByAppendingPathExtension:@"plist"]];
+            if ([[NSData dataWithContentsOfFile:previousPath] isEqualToData:data]) return previousID;
+            break;
+        }
+    }
     NSString *identifier = initial ? @"initial" : [NSString stringWithFormat:@"%@-%@", kind, [NSUUID UUID].UUIDString];
     NSString *path;
     if (initial) {
@@ -1074,6 +1084,16 @@ BOOL BQRestoreGestaltBackup(NSString *identifier, NSString **err) {
     if (!bq_valid_gestalt_data(backup)) {
         if (err) *err = @"Selected backup is missing or invalid.";
         return NO;
+    }
+    // A shared cache layout does not identify an individual watch. External
+    // backups are safe to restore only when identical to this installation's
+    // initial backup; unverified imports remain available in the library.
+    if ([identifier hasPrefix:@"external-"]) {
+        NSData *initial = [NSData dataWithContentsOfFile:BQBackupPath()];
+        if (!initial || ![initial isEqualToData:backup]) {
+            if (err) *err = NSLocalizedString(@"Cannot verify that this external backup belongs to this watch. No data was written.", nil);
+            return NO;
+        }
     }
     NSDictionary *backupPlist = [NSPropertyListSerialization propertyListWithData:backup options:0 format:NULL error:NULL];
     NSString *link = nil;

@@ -104,22 +104,6 @@ struct BackupView: View {
                 }
             }
 
-            if !model.hasBackup && !model.backups.isEmpty {
-                Section("Backup Library") {
-                    ForEach(model.backups) { backup in
-                        Button {
-                            model.selectedBackupID = backup.id
-                            model.showRestoreConfirmation = true
-                        } label: {
-                            VStack(alignment: .leading, spacing: 2) {
-                                Text(LocalizedStringKey(backup.kind + " Backup"))
-                                Text(backup.date.formatted(date: .abbreviated, time: .shortened))
-                                    .font(.footnote).foregroundStyle(.secondary)
-                            }
-                        }
-                    }
-                }
-            }
             Section("Status") { Text(LocalizedStringKey(model.message))
                 .font(.footnote)
                 .foregroundStyle(.secondary) }
@@ -127,6 +111,7 @@ struct BackupView: View {
         .navigationTitle("MG Backups")
         .onAppear {
             model.refreshBackups()
+            model.showNextExternalBackup()
         }
         .onReceive(
             NotificationCenter.default.publisher(
@@ -134,22 +119,7 @@ struct BackupView: View {
             )
         ) { notification in
 
-            guard
-                let data = notification.userInfo?["data"] as? Data,
-                let fileName = notification.userInfo?["fileName"] as? String,
-                let sha256 = notification.userInfo?["sha256"] as? String
-            else {
-                print("[UI] Invalid external backup notification")
-                return
-            }
-
-            print("[UI] External backup waiting for user confirmation")
-
-            model.prepareExternalBackupImport(
-                data: data,
-                fileName: fileName,
-                sha256: sha256
-            )
+            model.showNextExternalBackup()
         }
         .alert(
             "New External Backup",

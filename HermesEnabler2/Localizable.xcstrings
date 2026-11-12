@@ -1,6 +1,58 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Cannot verify that this external backup belongs to this watch. No data was written." : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "이 외부 백업이 현재 워치의 백업인지 확인할 수 없습니다. 데이터는 변경되지 않았습니다."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "この外部バックアップがこのウォッチのものか確認できません。データは変更されていません。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "无法确认此外部备份属于此手表。未写入任何数据。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無法確認此外部備份屬於此手錶。未寫入任何資料。"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Es kann nicht überprüft werden, ob dieses externe Backup zu dieser Watch gehört. Es wurden keine Daten geschrieben."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "No se puede verificar que esta copia externa pertenezca a este reloj. No se ha escrito ningún dato."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Impossible de vérifier que cette sauvegarde externe appartient à cette montre. Aucune donnée n’a été écrite."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Não é possível verificar se esta cópia externa pertence a este relógio. Nenhum dado foi escrito."
+          }
+        }
+      }
+    },
     "%1$lld × %2$lld pixels" : {
       "extractionState" : "stale",
       "localizations" : {

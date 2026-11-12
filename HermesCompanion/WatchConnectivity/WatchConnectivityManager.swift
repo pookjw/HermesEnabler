@@ -328,15 +328,9 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
     // MARK: - Store received backup
 
     private static func storeBackup(
-        from sourceURL: URL,
+        data receivedData: Data,
         metadata: [String: Any]?
     ) throws -> BackupRecord {
-
-        print("[WC] Source file URL: \(sourceURL.path)")
-        print("[WC] Source file exists: \(FileManager.default.fileExists(atPath: sourceURL.path))")
-
-        // Read the temporary WatchConnectivity file immediately.
-        let receivedData = try Data(contentsOf: sourceURL)
 
         guard !receivedData.isEmpty else {
             throw NSError(
@@ -351,6 +345,17 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
         try validateBackup(receivedData)
 
         let receivedHash = sha256(receivedData)
+        if let expectedHash = metadata?["sha256"] as? String,
+           expectedHash.lowercased() != receivedHash {
+            throw NSError(domain: "HermesCompanion.Backup", code: 3,
+                          userInfo: [NSLocalizedDescriptionKey: "The received backup does not match the watch's checksum."])
+        }
+        // Session activation can resend the same original backup. Reuse an
+        // existing record only after confirming the stored bytes still match.
+        for record in try loadManifest() where record.sha256 == receivedHash {
+            let existingURL = try backupURL(for: record.fileName)
+            if (try? Data(contentsOf: existingURL)) == receivedData { return record }
+        }
         let directory = try backupDirectory()
 
         let identifier = UUID()
@@ -400,7 +405,7 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
             size: storedData.count,
             sha256: receivedHash,
             deviceIdentifier: deviceIdentifier,
-            hashOrigin: "Watch transfer"
+            hashOrigin: metadata?["sha256"] == nil ? "iPhone baseline (legacy transfer)" : "Verified watch transfer"
         )
 
         var records = try loadManifest()
@@ -636,20 +641,20 @@ extension WatchConnectivityManager: WCSessionDelegate {
     ) {
         print("[WC] Backup file received")
 
-        Task { @MainActor in
-            do {
-                let record = try Self.storeBackup(
-                    from: file.fileURL,
-                    metadata: file.metadata
-                )
-
-                self.updateBackupInformation(record)
-
-            } catch {
-                print("[WC] Backup reception error: \(error.localizedDescription)")
-                self.backupStatus =
-                    "Sauvegarde refusée : \(error.localizedDescription)"
+        // WCSession removes its temporary file after this delegate returns.
+        do {
+            let data = try Data(contentsOf: file.fileURL)
+            let metadata = file.metadata
+            Task { @MainActor in
+                do {
+                    let record = try Self.storeBackup(data: data, metadata: metadata)
+                    self.updateBackupInformation(record)
+                } catch {
+                    self.backupStatus = "Backup rejected: \(error.localizedDescription)"
+                }
             }
+        } catch {
+            print("[WC] Could not read transferred backup: \(error.localizedDescription)")
         }
     }
 
