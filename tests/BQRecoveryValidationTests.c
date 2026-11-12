@@ -3,6 +3,18 @@
 #include <assert.h>
 
 int main(void) {
+    assert(BQUltraAlternativeStateIsValid(35, 35, 38, 35, true, true, false, false, false));
+    assert(BQUltraAlternativeStateIsValid(38, 35, 38, 35, true, true, false, false, false));
+    assert(BQUltraAlternativeStateIsValid(36, 36, 38, 36, true, true, false, false, false));
+    assert(!BQUltraAlternativeStateIsValid(37, 36, 38, 36, true, true, false, false, false));
+    assert(!BQUltraAlternativeStateIsValid(29, 35, 38, 35, true, true, false, false, false));
+    assert(!BQUltraAlternativeStateIsValid(35, 38, 38, 35, true, true, false, false, false));
+    assert(!BQUltraAlternativeStateIsValid(35, 35, 38, 35, false, true, false, false, false));
+    assert(!BQUltraAlternativeStateIsValid(35, 35, 38, 35, true, true, true, false, false));
+    assert(!BQUltraAlternativeStateIsValid(35, 35, 38, 35, true, true, false, true, false));
+    assert(BQUltraAlternativeStateIsValid(29, 35, 38, 35, true, true, false, false, true));
+    assert(BQUltraAlternativeStateIsValid(38, 35, 29, 35, true, true, false, false, true));
+    assert(!BQUltraAlternativeStateIsValid(38, 35, 29, 35, true, true, true, false, true));
     const uint8_t brandData[] = {0, 0, 3, 0};
     int32_t brand = -1;
     assert(BQRecoveryParseDeviceBrand(brandData, sizeof(brandData), 3, &brand) && brand == 3);

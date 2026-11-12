@@ -12,6 +12,10 @@
 			<integer>1</integer>
 			<key>UltraEnabledScreenClass</key>
 			<integer>29</integer>
+			<key>UltraScreenClassOptions</key>
+			<array>
+				<integer>29</integer>
+			</array>
 		</dict>
 		<key>24R364</key>
 		<dict>
@@ -21,6 +25,11 @@
 			<integer>1</integer>
 			<key>UltraEnabledScreenClass</key>
 			<integer>29</integer>
+			<key>UltraScreenClassOptions</key>
+			<array>
+				<integer>29</integer>
+				<integer>38</integer>
+			</array>
 		</dict>
 		<key>24R365</key>
 		<dict>
@@ -30,6 +39,11 @@
 			<integer>1</integer>
 			<key>UltraEnabledScreenClass</key>
 			<integer>29</integer>
+			<key>UltraScreenClassOptions</key>
+			<array>
+				<integer>29</integer>
+				<integer>38</integer>
+			</array>
 		</dict>
 		<key>24S118</key>
 		<dict>
@@ -39,6 +53,11 @@
 			<integer>1</integer>
 			<key>UltraEnabledScreenClass</key>
 			<integer>29</integer>
+			<key>UltraScreenClassOptions</key>
+			<array>
+				<integer>29</integer>
+				<integer>38</integer>
+			</array>
 		</dict>
 		<key>24S132</key>
 		<dict>
@@ -48,6 +67,23 @@
 			<integer>1</integer>
 			<key>UltraEnabledScreenClass</key>
 			<integer>29</integer>
+			<key>UltraScreenClassOptions</key>
+			<array>
+				<integer>29</integer>
+				<integer>38</integer>
+			</array>
+		</dict>
+		<key>24S5112a</key>
+		<dict>
+			<key>HermesEnabledDeviceBrand</key>
+			<integer>1</integer>
+			<key>UltraEnabledScreenClass</key>
+			<integer>29</integer>
+			<key>UltraScreenClassOptions</key>
+			<array>
+				<integer>29</integer>
+				<integer>38</integer>
+			</array>
 		</dict>
 		<key>24S5284h</key>
 		<dict>
@@ -57,6 +93,19 @@
 			<integer>1</integer>
 			<key>UltraEnabledScreenClass</key>
 			<integer>29</integer>
+			<key>UltraScreenClassOptions</key>
+			<array>
+				<integer>29</integer>
+				<integer>38</integer>
+			</array>
+			<key>ModelValidation</key>
+			<dict>
+				<key>Watch7,18</key>
+				<dict>
+					<key>ExpectedOriginalScreenClass</key>
+					<integer>35</integer>
+				</dict>
+			</dict>
 		</dict>
 	</dict>
 </dict>

@@ -23,9 +23,9 @@ This is **not** a claim that every MG key requires an offset. Most Boolean featu
 | Logical key | Opaque `CacheExtra` identifier | Activation value | Current treatment |
 | --- | --- | ---: | --- |
 | `DeviceBrand` | `fuKL2rMywRgQF1wowOA/cg` | `1` | Write the four-byte value at `DeviceBrandOffset`; remove this override when enabling. |
-| `main-screen-class` | `fdh+s6j3VijuyrK7xLjd7g` | `29` | Write the four-byte value at `ScreenClassOffset`; remove this override when enabling. |
+| `main-screen-class` | `fdh+s6j3VijuyrK7xLjd7g` | `29` (existing) or `38` (alternative) | Write the selected four-byte value at `ScreenClassOffset`; remove this override when enabling. |
 
-These values are **activation overrides**, not factory defaults. See [`MGDefaults.plist`](../../HermesEnabler2/MGDefaults.plist). Neither a value of `29` nor a visible switch proves that all face bundles, layouts, or compatibility checks are satisfied.
+These values are **activation overrides**, not factory defaults. The `38` alternative is offered only on the five analyzed builds; `24R359` remains limited to the existing `29` because its physical OTA was not verified. See [`MGDefaults.plist`](../../HermesEnabler2/MGDefaults.plist). Neither a value of `29` nor a visible switch proves that all face bundles, layouts, or compatibility checks are satisfied.
 
 ## Layouts recorded in the app
 
@@ -37,8 +37,11 @@ The canonical machine-readable table is [`MGOffsets.plist`](../../HermesEnabler2
 | `24S118`, `24S132` | `32B4CA84-FBDA-496C-9B79-2101D597158B` | `0x1950` | `0x348` / `0x16e9` | `0xeb0` / `0x1856` | `0x1680` |
 | `24S5284h` | `DB380F61-0014-418D-9799-876666B459E3` | `0x1950` | `0x348` / `0x16e9` | `0xeb0` / `0x1856` | `0x1680` |
 | `24R359` | `6F8372B0-1583-4031-A4BC-A54A18B0DD5A` | `0x1947` | `0x348` / `0x16e1` | `0xea8` / `0x184d` | `0x1678` |
+| `24S5112a` | `830A9A56-15CC-4BB4-A1C3-F5F6FDB79819` | `0x1950` | `0x348` / `0x16e9` | `0xeb0` / `0x1856` | `0x1680` |
 
 `24R359` is an **assumption** copied from `24R364`, not an independently verified physical full OTA. Its plist entry has `RecoveryVerified = false`: the ordinary face write path accepts its configured layout, but the experimental system-derived recovery paths reject it. A matching UUID is useful evidence, not proof that all field semantics are identical.
+
+For `24S5112a`, the contributor of [PR #52](https://github.com/pookjw/HermesEnabler/pull/52) reported successful Hermès activation on `Watch7,9` and supplied its cache UUID and face offsets. The descriptor records in the physical `Watch7,9` Full OTA match the configured DeviceBrand, screen-class and all eight Boolean indices. The cache UUID, length and presence-byte layout remain reported values rather than independently verified runtime observations. Its entry has `RecoveryVerified = false` because the recovery callback semantics and runtime behavior have not been fully validated; Ultra screen-class choices 29 and 38 are configured based on ClockKit analysis. See [OTA research](../OTA/README.md).
 
 Selected Boolean descriptor indices:
 
@@ -54,6 +57,8 @@ Selected Boolean descriptor indices:
 | Noise Exposure | `DeviceSupportsEnvironmentalDosimetry` | `SaW+DA+cbiqDHrex8MTABA` | 220 | 221 |
 
 These index values document the descriptor analysis and the app's assumptions. They do not imply that enabling a capability supplies missing physical hardware or that every consumer uses that one key.
+
+The `24S5112a` OTA descriptor indices match the `24S118` / `24S132` / `24S5284h` column for all eight Boolean keys. The broader recovery semantics have not been verified.
 
 ## Adding a build
 

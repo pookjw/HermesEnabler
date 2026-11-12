@@ -63,6 +63,9 @@ BOOL BQSetHermesEnabled(BOOL enabled, NSString **err);
 BOOL BQGetHermesEnabled(BOOL *enabled, NSString **err);
 BOOL BQSetUltraFacesEnabled(BOOL enabled, NSString **err);
 BOOL BQGetUltraFacesEnabled(BOOL *enabled, NSString **err);
+BOOL BQGetUltraFaceClass(NSInteger *screenClass, NSString **err);
+BOOL BQSetUltraFaceClass(NSInteger screenClass, NSString **err);
+BOOL BQSupportsLargerUltraFaceLayout(void);
 
 // Reads whether the respective capability overrides are recorded as enabled.
 BOOL BQGetAODSupport(BOOL *enabled, NSString **err);

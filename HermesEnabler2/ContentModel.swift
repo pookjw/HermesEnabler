@@ -22,6 +22,7 @@ final class ContentModel {
     var aodVibrancyEnabled = false
     var hermesEnabled = false
     var ultraFacesEnabled = false
+    var ultraFaceClass = 0
     var watchKeyboardEnabled = false
     var periodicALSUpdatesEnabled = false
     var raiseToSpeakEnabled = false
@@ -170,6 +171,7 @@ final class ContentModel {
         case backup, manualBackup, restoreBackup(String), deleteBackup(String)
         case hermes(Bool)
         case ultraFaces(Bool)
+        case ultraFaceClass(Int)
         case aod(Bool), aodSeconds(Bool), actionButton(Bool), doubleTap(Bool)
         case depth(Bool), absoluteAltimeter(Bool), alwaysOnCompass(Bool), aodVibrancy(Bool)
         case watchKeyboard(Bool), periodicALSUpdates(Bool), raiseToSpeak(Bool), continuousHeartRate(Bool)
@@ -186,7 +188,7 @@ final class ContentModel {
         var toggleFailed = false
         let shouldAlertOnFailure: Bool
         switch action {
-        case .hermes, .ultraFaces, .aod, .aodSeconds, .actionButton, .doubleTap,
+        case .hermes, .ultraFaces, .ultraFaceClass, .aod, .aodSeconds, .actionButton, .doubleTap,
              .depth, .absoluteAltimeter, .alwaysOnCompass, .aodVibrancy, .watchKeyboard,
              .periodicALSUpdates, .raiseToSpeak, .continuousHeartRate, .compassOrienteering,
              .environmentalDosimetry, .batteryInformation, .alwaysListening, .rotateToWake,
@@ -239,6 +241,10 @@ final class ContentModel {
             case .ultraFaces(let enabled):
                 result = checked(BQSetUltraFacesEnabled(enabled, &error))
                 ? "Ultra Faces turned \(enabled ? "on" : "off"). Restart the watch to reload it."
+                : ((error as String?) ?? "Could not update Ultra Faces.")
+            case .ultraFaceClass(let screenClass):
+                result = checked(BQSetUltraFaceClass(screenClass, &error))
+                ? "Ultra face layout updated. Restart the watch to reload it."
                 : ((error as String?) ?? "Could not update Ultra Faces.")
             case .aod(let enabled):
                 result = checked(BQSetAODSupport(enabled, &error))
@@ -385,8 +391,14 @@ final class ContentModel {
         var error: NSString?
         var value = ObjCBool(false)
         hermesEnabled = BQGetHermesEnabled(&value, &error) && value.boolValue
-        value = ObjCBool(false)
-        ultraFacesEnabled = BQGetUltraFacesEnabled(&value, &error) && value.boolValue
+        var screenClass = 0
+        if BQGetUltraFaceClass(&screenClass, &error) {
+            ultraFaceClass = screenClass
+            ultraFacesEnabled = screenClass != 0
+        } else {
+            ultraFaceClass = 0
+            ultraFacesEnabled = false
+        }
         value = ObjCBool(false)
         aodEnabled = BQGetAODSupport(&value, &error) && value.boolValue
         value = ObjCBool(false)
