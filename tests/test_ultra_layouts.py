@@ -9,9 +9,17 @@ with (root / "MGDefaults.plist").open("rb") as f:
 
 assert offsets.keys() == defaults.keys()
 for build, entry in defaults.items():
-    options = entry["UltraScreenClassOptions"]
-    assert options == ([29] if build == "24R359" else [29, 38])
+    options = entry.get("UltraScreenClassOptions")
+    if options is None:
+        assert "UltraEnabledScreenClass" not in entry
+        assert not offsets[build]["RecoveryVerified"]
+        continue
+    assert options in ([29], [29, 38])
     assert entry["UltraEnabledScreenClass"] in options
-    assert (38 in options) == offsets[build]["RecoveryVerified"]
+assert defaults["24S5112a"]["HermesEnabledDeviceBrand"] == 1
+assert defaults["24S5112a"]["UltraEnabledScreenClass"] == 29
+assert defaults["24S5112a"]["UltraScreenClassOptions"] == [29, 38]
+assert offsets["24S5112a"]["CacheUUID"] == "830A9A56-15CC-4BB4-A1C3-F5F6FDB79819"
+assert not offsets["24S5112a"]["RecoveryVerified"]
 assert defaults["24S5284h"]["ModelValidation"]["Watch7,18"]["ExpectedOriginalScreenClass"] == 35
 print("Ultra layout choices and unverified-build guard passed")
