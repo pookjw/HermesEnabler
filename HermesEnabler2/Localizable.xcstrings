@@ -1,6 +1,58 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Cache verification failed and rollback could not be confirmed. Restore a backup." : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "캐시 검증에 실패했고 이전 상태로 복구되었는지 확인할 수 없습니다. 백업을 복원하세요."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "キャッシュの検証に失敗し、ロールバックを確認できませんでした。バックアップを復元してください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "缓存验证失败，无法确认是否已回滚。请恢复备份。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "快取驗證失敗，無法確認是否已還原先前狀態。請還原備份。"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Die Cache-Prüfung ist fehlgeschlagen und die Rücksetzung konnte nicht bestätigt werden. Stelle ein Backup wieder her."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Falló la verificación de la caché y no se pudo confirmar la reversión. Restaura una copia de seguridad."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La vérification du cache a échoué et le retour en arrière n’a pas pu être confirmé. Restaurez une sauvegarde."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "A verificação da cache falhou e não foi possível confirmar a reversão. Restaure uma cópia de segurança."
+          }
+        }
+      }
+    },
     "Cannot verify that this external backup belongs to this watch. No data was written." : {
       "localizations" : {
         "ko" : {

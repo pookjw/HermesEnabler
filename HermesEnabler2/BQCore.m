@@ -826,8 +826,13 @@ static NSString *bq_create_gestalt_backup(NSString *kind, NSString **err) {
         }
         path = [bq_backups_directory() stringByAppendingPathComponent:[identifier stringByAppendingPathExtension:@"plist"]];
     }
-    if (![data writeToFile:path atomically:YES] ||
-        ![[NSData dataWithContentsOfFile:path] isEqualToData:data]) {
+    if (![data writeToFile:path atomically:YES]) {
+        if (err) *err = @"Backup could not be verified.";
+        return nil;
+    }
+    if (![[NSData dataWithContentsOfFile:path] isEqualToData:data]) {
+        // Do not leave a failed initial backup blocking all future attempts.
+        [[NSFileManager defaultManager] removeItemAtPath:path error:nil];
         if (err) *err = @"Backup could not be verified.";
         return nil;
     }
@@ -1044,15 +1049,29 @@ BOOL BQSaveGestalt(NSDictionary *dict, NSString **err) {
         return NO;
     }
     NSString *plist = [link stringByAppendingPathComponent:@"com.apple.MobileGestalt.plist"];
+    NSData *beforeWrite = [NSData dataWithContentsOfFile:plist];
+    if (!beforeWrite) {
+        BQEndEscape(h);
+        if (err) *err = NSLocalizedString(@"MobileGestalt plist missing or invalid", nil);
+        return NO;
+    }
     BOOL ok = bq_write_data(plist, data, err);
     if (ok) {
-        NSMutableDictionary *check = [NSMutableDictionary dictionaryWithContentsOfFile:plist];
-        if (!check) {
+        NSData *check = [NSData dataWithContentsOfFile:plist];
+        if (![check isEqualToData:data]) {
             ok = NO;
-            if (err) *err = NSLocalizedString(@"post-write verification failed", nil);
+            // A successful system call alone does not guarantee the intended
+            // bytes were persisted. Attempt to restore the pre-write cache.
+            NSString *rollbackError = nil;
+            if (!bq_write_data(plist, beforeWrite, &rollbackError) ||
+                ![[NSData dataWithContentsOfFile:plist] isEqualToData:beforeWrite]) {
+                BQLog(@"MG verification rollback failed: %@", rollbackError);
+                if (err) *err = NSLocalizedString(@"Cache verification failed and rollback could not be confirmed. Restore a backup.", nil);
+            } else if (err) {
+                *err = NSLocalizedString(@"post-write verification failed", nil);
+            }
         } else {
-            BQLog(@"MG saved: %lu bytes, %lu CacheExtra keys",
-                  (unsigned long)data.length, (unsigned long)[check[@"CacheExtra"] count]);
+            BQLog(@"MG saved and verified: %lu bytes", (unsigned long)data.length);
         }
     }
     BQEndEscape(h);
