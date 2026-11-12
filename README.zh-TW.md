@@ -15,6 +15,8 @@
 3. 在 iPhone 上打開 **Watch（手錶）App → 我的手錶 → App**，安裝 **HermesEnabler2**。
 4. 在 Apple Watch 上打開 **HermesEnabler2**，並依照 app 中的步驟操作。
 
+Windows 使用者也可使用 [WatchBridge](https://github.com/AdminZachary/iloader-for-windows/tags) 快速安裝 IPA。
+
 ### 使用 Xcode 建置
 
 1. 在 Xcode 中打開 [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj)。
