@@ -31,7 +31,7 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
     // MARK: - Backup information
 
     @Published var backups: [BackupRecord] = []
-    @Published var backupStatus = "Aucune sauvegarde"
+    @Published var backupStatus = String(localized: "No Backups")
     @Published var lastVerificationMessage = ""
 
     private var session: WCSession?
@@ -240,14 +240,14 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
             backups = records
 
             backupStatus = records.isEmpty
-                ? "Aucune sauvegarde"
-                : "\(records.count) sauvegarde(s)"
+                ? String(localized: "No Backups")
+                : String(localized: "\(records.count) backup(s)")
 
             print("[WC] Backup history loaded: \(records.count)")
 
         } catch {
             print("[WC] History loading error: \(error.localizedDescription)")
-            backupStatus = "Erreur de chargement"
+            backupStatus = String(localized: "Could not load backups")
         }
     }
 
@@ -270,7 +270,7 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
                 code: 1,
                 userInfo: [
                     NSLocalizedDescriptionKey:
-                        "Structure MobileGestalt invalide."
+                        String(localized: "Invalid MobileGestalt structure.")
                 ]
             )
         }
@@ -337,7 +337,7 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
                 domain: "HermesCompanion.Backup",
                 code: 1,
                 userInfo: [
-                    NSLocalizedDescriptionKey: "Le fichier reçu est vide."
+                    NSLocalizedDescriptionKey: String(localized: "The received file is empty.")
                 ]
             )
         }
@@ -348,7 +348,7 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
         if let expectedHash = metadata?["sha256"] as? String,
            expectedHash.lowercased() != receivedHash {
             throw NSError(domain: "HermesCompanion.Backup", code: 3,
-                          userInfo: [NSLocalizedDescriptionKey: "The received backup does not match the watch's checksum."])
+                          userInfo: [NSLocalizedDescriptionKey: String(localized: "The received backup does not match the watch's checksum.")])
         }
         // Session activation can resend the same original backup. Reuse an
         // existing record only after confirming the stored bytes still match.
@@ -378,7 +378,7 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
                 code: 2,
                 userInfo: [
                     NSLocalizedDescriptionKey:
-                        "La sauvegarde copiée ne correspond pas au fichier reçu."
+                        String(localized: "The saved backup does not match the received file.")
                 ]
             )
         }
@@ -443,7 +443,7 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
                 code: 10,
                 userInfo: [
                     NSLocalizedDescriptionKey:
-                        "Le fichier doit être au format .plist."
+                        String(localized: "The file must be a .plist.")
                 ]
             )
         }
@@ -479,7 +479,7 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
                 code: 11,
                 userInfo: [
                     NSLocalizedDescriptionKey:
-                        "La vérification de la copie a échoué."
+                        String(localized: "The saved copy could not be verified.")
                 ]
             )
         }
@@ -498,7 +498,7 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
             date: Date(),
             size: storedData.count,
             sha256: importedHash,
-            deviceIdentifier: "Import externe",
+            deviceIdentifier: "External import",
             hashOrigin: "External import"
         )
 
@@ -525,7 +525,7 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
 
     private func updateBackupInformation(_ record: BackupRecord) {
         loadBackupHistory()
-        backupStatus = "Sauvegarde reçue et vérifiée"
+        backupStatus = String(localized: "Backup received and verified")
 
         print("[WC] Backup successfully stored")
         print("[WC] File: \(record.fileName)")
@@ -550,13 +550,13 @@ final class WatchConnectivityManager: NSObject, ObservableObject {
 
             guard currentHash == record.sha256 else {
                 lastVerificationMessage =
-                    "SHA-256 différent : le fichier a été modifié."
+                    String(localized: "The SHA-256 differs: the file was modified.")
 
                 return .invalid
             }
 
             lastVerificationMessage =
-                "Intégrité confirmée : SHA-256 identique."
+                String(localized: "Integrity confirmed: the SHA-256 matches.")
 
             return .valid
 
@@ -650,7 +650,7 @@ extension WatchConnectivityManager: WCSessionDelegate {
                     let record = try Self.storeBackup(data: data, metadata: metadata)
                     self.updateBackupInformation(record)
                 } catch {
-                    self.backupStatus = "Backup rejected: \(error.localizedDescription)"
+                    self.backupStatus = String(localized: "Backup rejected: \(error.localizedDescription)")
                 }
             }
         } catch {
