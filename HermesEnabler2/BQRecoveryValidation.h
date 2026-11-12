@@ -7,9 +7,10 @@
 
 static inline bool BQUltraAlternativeStateIsValid(uint32_t current, uint32_t original, uint32_t enabled,
                                              uint32_t expectedOriginal, bool currentPresent,
-                                             bool originalPresent, bool hasCurrentOverride, bool hasOriginalOverride) {
+                                             bool originalPresent, bool hasCurrentOverride, bool hasOriginalOverride,
+                                             bool currentIsKnownUltra) {
     return currentPresent && originalPresent && !hasCurrentOverride && !hasOriginalOverride &&
-        original == expectedOriginal && (current == expectedOriginal || current == enabled);
+        original == expectedOriginal && (current == expectedOriginal || current == enabled || currentIsKnownUltra);
 }
 
 static inline bool BQRecoveryParseDeviceBrand(const uint8_t *bytes, size_t length, uint8_t maxBrand, int32_t *brandOut) {

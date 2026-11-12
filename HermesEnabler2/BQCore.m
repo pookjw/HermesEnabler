@@ -1681,7 +1681,7 @@ BOOL BQSupportsLargerUltraFaceLayout(void) {
     return bq_ultraOptions(bq_currentLayout()).count > 1;
 }
 
-BOOL BQGetUltraFacesEnabled(BOOL *enabled, NSString **err) {
+BOOL BQGetUltraFaceClass(NSInteger *screenClass, NSString **err) {
     NSDictionary *plist = BQLoadGestalt(err);
     NSMutableData *data = nil;
     NSUInteger valueOffset = 0, presentOffset = 0;
@@ -1699,11 +1699,19 @@ BOOL BQGetUltraFacesEnabled(BOOL *enabled, NSString **err) {
         return NO;
     }
     uint32_t actual = 0; memcpy(&actual, bytes + valueOffset, sizeof(actual));
-    if (enabled) *enabled = plist[@"CacheExtra"][@"fdh+s6j3VijuyrK7xLjd7g"] == nil && bytes[presentOffset] == 1 && [options containsObject:@(actual)];
+    BOOL valid = plist[@"CacheExtra"][@"fdh+s6j3VijuyrK7xLjd7g"] == nil && bytes[presentOffset] == 1 && [options containsObject:@(actual)];
+    if (screenClass) *screenClass = valid ? (NSInteger)actual : 0;
     return YES;
 }
 
-BOOL BQSetUltraFacesEnabled(BOOL enabled, NSString **err) {
+BOOL BQGetUltraFacesEnabled(BOOL *enabled, NSString **err) {
+    NSInteger screenClass = 0;
+    if (!BQGetUltraFaceClass(&screenClass, err)) return NO;
+    if (enabled) *enabled = screenClass != 0;
+    return YES;
+}
+
+static BOOL bq_setUltraFaces(BOOL enabled, NSInteger requestedClass, NSString **err) {
     if (!enabled && !BQBackupExists()) return bq_recoverNativeFace(NO, err);
     NSData *backupFile = [NSData dataWithContentsOfFile:BQBackupPath()];
     NSDictionary *backup = backupFile ? [NSPropertyListSerialization propertyListWithData:backupFile options:0 format:NULL error:NULL] : nil;
@@ -1737,18 +1745,20 @@ BOOL BQSetUltraFacesEnabled(BOOL enabled, NSString **err) {
         if (err) *err = NSLocalizedString(@"Ultra Faces cache layout is not supported on this watchOS build.", nil);
         return NO;
     }
-    id preference = [[NSUserDefaults standardUserDefaults] objectForKey:@"UltraScreenClass"];
     BOOL useAlternative = NO;
-    if (enabled && preference) {
-        if (![preference isKindOfClass:[NSNumber class]] || ![options containsObject:preference]) {
+    if (enabled && requestedClass != 0) {
+        if (requestedClass < 0 || (uint64_t)requestedClass > UINT32_MAX || ![options containsObject:@(requestedClass)]) {
             if (err) *err = NSLocalizedString(@"The selected Ultra face layout is unavailable on this watchOS build.", nil);
             return NO;
         }
-        ultraValue = [preference unsignedIntValue];
+        ultraValue = (uint32_t)requestedClass;
     }
     uint32_t defaultValue = 0;
     if (!bq_buildDefault(layout->build, @"UltraEnabledScreenClass", &defaultValue)) return NO;
-    useAlternative = enabled && ultraValue != defaultValue;
+    uint32_t previousValue = 0;
+    memcpy(&previousValue, bytes + valueOffset, sizeof(previousValue));
+    useAlternative = enabled && (ultraValue != defaultValue ||
+        (previousValue != defaultValue && [options containsObject:@(previousValue)]));
     if (useAlternative) {
         uint32_t currentValue = 0, originalValue = 0;
         memcpy(&currentValue, bytes + valueOffset, sizeof(currentValue));
@@ -1773,7 +1783,8 @@ BOOL BQSetUltraFacesEnabled(BOOL enabled, NSString **err) {
         NSString *key = @"fdh+s6j3VijuyrK7xLjd7g";
         if (!BQUltraAlternativeStateIsValid(currentValue, originalValue, ultraValue, expectedOriginal,
                                        bytes[presentOffset] == 1, backupBytes[presentOffset] == 1,
-                                       plist[@"CacheExtra"][key] != nil, backup[@"CacheExtra"][key] != nil)) {
+                                       plist[@"CacheExtra"][key] != nil, backup[@"CacheExtra"][key] != nil,
+                                       [options containsObject:@(currentValue)])) {
             if (err) *err = NSLocalizedString(@"Unexpected main-screen-class state; no changes written.", nil);
             return NO;
         }
@@ -1811,6 +1822,18 @@ BOOL BQSetUltraFacesEnabled(BOOL enabled, NSString **err) {
         return NO;
     }
     return YES;
+}
+
+BOOL BQSetUltraFacesEnabled(BOOL enabled, NSString **err) {
+    return bq_setUltraFaces(enabled, 0, err);
+}
+
+BOOL BQSetUltraFaceClass(NSInteger screenClass, NSString **err) {
+    if (screenClass <= 0) {
+        if (err) *err = NSLocalizedString(@"The selected Ultra face layout is unavailable on this watchOS build.", nil);
+        return NO;
+    }
+    return bq_setUltraFaces(YES, screenClass, err);
 }
 
 static BOOL bq_setMGCacheExtraKeys(NSArray<NSString *> *keys, BOOL enabled, NSString **err) {

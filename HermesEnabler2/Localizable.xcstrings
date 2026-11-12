@@ -12335,58 +12335,6 @@
         }
       }
     },
-    "A larger layout may not fit your screen and may affect other faces and complications. Turn off Ultra Faces before changing this option." : {
-      "localizations" : {
-        "ko" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "큰 레이아웃은 화면에 맞지 않을 수 있으며 다른 페이스와 컴플리케이션에도 영향을 줄 수 있습니다. 이 옵션을 바꾸려면 먼저 Ultra Faces를 끄세요."
-          }
-        },
-        "ja" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "大きいレイアウトは画面に収まらず、他の文字盤やコンプリケーションにも影響する場合があります。変更する前にUltra Facesをオフにしてください。"
-          }
-        },
-        "zh-Hans" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "较大的布局可能无法适合屏幕，也可能影响其他表盘和复杂功能。更改此选项前请关闭 Ultra Faces。"
-          }
-        },
-        "zh-Hant" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "較大的佈局可能無法適合螢幕，也可能影響其他錶面和複雜功能。更改此選項前請關閉 Ultra Faces。"
-          }
-        },
-        "de" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Ein größeres Layout passt möglicherweise nicht auf den Bildschirm und kann andere Zifferblätter und Komplikationen beeinflussen. Deaktiviere Ultra Faces vor dem Ändern."
-          }
-        },
-        "es" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Un diseño más grande puede no caber en la pantalla y afectar a otras esferas y complicaciones. Desactiva Ultra Faces antes de cambiar esta opción."
-          }
-        },
-        "fr" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Une disposition plus grande peut ne pas tenir à l’écran et affecter d’autres cadrans et complications. Désactivez Ultra Faces avant de modifier cette option."
-          }
-        },
-        "pt" : {
-          "stringUnit" : {
-            "state" : "translated",
-            "value" : "Uma disposição maior pode não caber no ecrã e afetar outros mostradores e complicações. Desative Ultra Faces antes de alterar esta opção."
-          }
-        }
-      }
-    },
     "Could not identify this watch model." : {
       "localizations" : {
         "ko" : {
@@ -12643,6 +12591,162 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "A disposição Ultra selecionada não está disponível nesta versão do watchOS."
+          }
+        }
+      }
+    },
+    "Not Active" : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "비활성화"
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "無効"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未启用"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "未啟用"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nicht aktiv"
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inactivo"
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inactif"
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Inativo"
+          }
+        }
+      }
+    },
+    "Ultra face layout updated. Restart the watch to reload it." : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ultra 페이스 레이아웃을 변경했습니다. 적용하려면 워치를 재시동하세요."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ultra文字盤のレイアウトを変更しました。再読み込みするにはApple Watchを再起動してください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ultra 表盘布局已更新。请重新启动手表以重新载入。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ultra 錶面佈局已更新。請重新啟動手錶以重新載入。"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ultra-Zifferblattlayout aktualisiert. Starte die Watch neu, um es zu laden."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Diseño de esfera Ultra actualizado. Reinicia el reloj para cargarlo."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disposition du cadran Ultra mise à jour. Redémarrez la montre pour la charger."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Disposição do mostrador Ultra atualizada. Reinicie o relógio para a carregar."
+          }
+        }
+      }
+    },
+    "A larger layout may not fit your screen and may affect other faces and complications. Changes apply immediately; restart the watch to reload them." : {
+      "localizations" : {
+        "ko" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "큰 레이아웃은 화면에 맞지 않을 수 있으며 다른 페이스와 컴플리케이션에도 영향을 줄 수 있습니다. 변경사항은 즉시 기록되며 적용하려면 워치를 재시동하세요."
+          }
+        },
+        "ja" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "大きいレイアウトは画面に収まらず、他の文字盤やコンプリケーションにも影響する場合があります。変更は直ちに保存されます。再読み込みするにはApple Watchを再起動してください。"
+          }
+        },
+        "zh-Hans" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "较大的布局可能无法适合屏幕，也可能影响其他表盘和复杂功能。更改立即写入；请重新启动手表以重新载入。"
+          }
+        },
+        "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "較大的佈局可能無法適合螢幕，也可能影響其他錶面和複雜功能。變更會立即寫入；請重新啟動手錶以重新載入。"
+          }
+        },
+        "de" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ein größeres Layout passt möglicherweise nicht auf den Bildschirm und kann andere Zifferblätter und Komplikationen beeinflussen. Änderungen werden sofort gespeichert; starte die Watch neu."
+          }
+        },
+        "es" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Un diseño más grande puede no caber en la pantalla y afectar a otras esferas y complicaciones. Los cambios se guardan de inmediato; reinicia el reloj."
+          }
+        },
+        "fr" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Une disposition plus grande peut ne pas tenir à l’écran et affecter d’autres cadrans et complications. Les modifications sont enregistrées immédiatement ; redémarrez la montre."
+          }
+        },
+        "pt" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Uma disposição maior pode não caber no ecrã e afetar outros mostradores e complicações. As alterações são guardadas de imediato; reinicie o relógio."
           }
         }
       }
