@@ -10,7 +10,7 @@
 
 ### macOS
 
-macOS에서는 미리 빌드된 IPA를 Sideloadly로 설치하거나 Xcode에서 직접 빌드할 수 있습니다. 두 방법 모두 iPhone이 대상 Apple Watch와 페어링되어 있어야 하며, Watch가 지원되는 watchOS 버전을 실행 중이어야 합니다.
+macOS에서는 미리 빌드된 IPA를 WatchBridge나 Sideloadly로 설치하거나 Xcode에서 직접 빌드할 수 있습니다. iPhone이 대상 Apple Watch와 페어링되어 있고, Watch가 지원되는 watchOS 버전을 실행 중인지 확인하세요.
 
 #### IPA 설치
 
@@ -30,6 +30,16 @@ macOS에서는 미리 빌드된 IPA를 Sideloadly로 설치하거나 Xcode에서
 1. Xcode에서 [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj)를 엽니다.
 2. 실행 대상으로 Apple Watch를 선택하고 **Run**을 누릅니다.
 3. Apple Watch에서 **HermesEnabler2**를 열고 앱의 안내를 따릅니다.
+
+#### WatchBridge로 설치
+
+macOS 11 이상에서는 Xcode를 설치하지 않아도 미리 빌드된 WatchBridge DMG를 사용할 수 있습니다.
+
+1. [WatchBridge Releases](https://github.com/AdminZachary/iloader-for-windows/releases)에서 해당 아키텍처의 DMG를 다운로드합니다. Apple Silicon은 `arm64`, Intel은 `x86_64`를 선택합니다. DMG를 열고 **WatchBridge.app**을 **응용 프로그램** 폴더로 드래그합니다.
+2. [HermesEnabler Releases](https://github.com/pookjw/HermesEnabler/releases)에서 원본 IPA를 다운로드합니다. 페어링된 iPhone을 USB로 연결하고 WatchBridge에서 선택합니다.
+3. 안내에 따라 개발자 모드 스위치를 표시합니다. Watch에서 직접 개발자 모드를 켜고 재시동한 뒤 확인합니다. 그런 다음 WatchBridge에서 IPA를 서명하고 설치합니다.
+
+처음 실행할 때 macOS가 앱을 차단하면 WatchBridge 릴리스 노트의 안내를 따르세요.
 
 ### Windows
 

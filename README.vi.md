@@ -10,7 +10,7 @@
 
 ### macOS
 
-Trên macOS, bạn có thể cài đặt file IPA dựng sẵn bằng Sideloadly hoặc tự build ứng dụng trực tiếp bằng Xcode. Dù dùng cách nào, iPhone cũng phải được ghép đôi với Apple Watch cần cài đặt và Apple Watch phải chạy phiên bản watchOS được hỗ trợ.
+Trên macOS, bạn có thể cài đặt file IPA dựng sẵn bằng WatchBridge hoặc Sideloadly, hoặc tự build ứng dụng trực tiếp bằng Xcode. Hãy đảm bảo iPhone đã ghép đôi với Apple Watch cần cài đặt và đồng hồ đang chạy phiên bản watchOS được hỗ trợ.
 
 #### Cài đặt IPA
 
@@ -30,6 +30,16 @@ Trên macOS, bạn có thể cài đặt file IPA dựng sẵn bằng Sideloadly
 1. Mở [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj) trong Xcode.
 2. Chọn Apple Watch của bạn làm đích chạy rồi nhấn **Run**.
 3. Mở **HermesEnabler2** trên Apple Watch và làm theo các bước trong ứng dụng.
+
+#### Cài đặt bằng WatchBridge
+
+Trên macOS 11 trở lên, bạn có thể dùng bản DMG dựng sẵn của WatchBridge mà không cần cài đặt Xcode.
+
+1. Tải DMG phù hợp từ [WatchBridge Releases](https://github.com/AdminZachary/iloader-for-windows/releases). Chọn `arm64` cho Apple Silicon hoặc `x86_64` cho Intel. Mở DMG rồi kéo **WatchBridge.app** vào thư mục **Ứng dụng**.
+2. Tải IPA gốc từ [HermesEnabler Releases](https://github.com/pookjw/HermesEnabler/releases). Kết nối iPhone đã ghép đôi qua USB và chọn thiết bị trong WatchBridge.
+3. Làm theo hướng dẫn để hiển thị công tắc Chế độ nhà phát triển. Bật chế độ này trên đồng hồ, khởi động lại và xác nhận. Sau đó ký và cài đặt IPA trong WatchBridge.
+
+Nếu macOS chặn lần mở đầu tiên, hãy làm theo hướng dẫn trong ghi chú phát hành của WatchBridge.
 
 ### Windows
 

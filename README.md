@@ -10,7 +10,7 @@
 
 ### macOS
 
-On macOS you can install the prebuilt IPA with Sideloadly or build the app directly with Xcode. Either way, the iPhone must be paired with the target Apple Watch, and the Watch must run a supported watchOS version.
+On macOS, you can install the prebuilt IPA with WatchBridge or Sideloadly, or build the app directly with Xcode. Make sure your iPhone is paired with the target Apple Watch and the Watch is running a supported watchOS version.
 
 #### Install the IPA
 
@@ -30,6 +30,16 @@ On macOS you can install the prebuilt IPA with Sideloadly or build the app direc
 1. Open [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj) in Xcode.
 2. Select your Apple Watch as the run destination and click **Run**.
 3. Open **HermesEnabler2** on your Apple Watch and follow the steps in the app.
+
+#### Install with WatchBridge
+
+On macOS 11 or later, you can use the prebuilt WatchBridge DMG without installing Xcode.
+
+1. Download the matching DMG from [WatchBridge Releases](https://github.com/AdminZachary/iloader-for-windows/releases): `arm64` for Apple Silicon or `x86_64` for Intel. Open the DMG and drag **WatchBridge.app** into **Applications**.
+2. Download the original IPA from [HermesEnabler Releases](https://github.com/pookjw/HermesEnabler/releases). Connect the paired iPhone over USB and select it in WatchBridge.
+3. Follow the prompts to reveal the Developer Mode switch. Enable Developer Mode on the Watch, restart it, and confirm. Then sign and install the IPA in WatchBridge.
+
+If macOS blocks the app on first launch, follow the instructions in the WatchBridge release notes.
 
 ### Windows
 
