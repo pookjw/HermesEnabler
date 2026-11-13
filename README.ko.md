@@ -35,7 +35,7 @@ macOS에서는 미리 빌드된 IPA를 WatchBridge나 Sideloadly로 설치하거
 
 macOS 11 이상에서는 Xcode를 설치하지 않아도 미리 빌드된 WatchBridge DMG를 사용할 수 있습니다.
 
-1. [WatchBridge Releases](https://github.com/AdminZachary/iloader-for-windows/releases)에서 해당 아키텍처의 DMG를 다운로드합니다. Apple Silicon은 `arm64`, Intel은 `x86_64`를 선택합니다. DMG를 열고 **WatchBridge.app**을 **응용 프로그램** 폴더로 드래그합니다.
+1. [WatchBridge Releases](https://github.com/AdminZachary/WatchBridge/releases/latest)에서 해당 아키텍처의 DMG를 다운로드합니다. Apple Silicon은 `arm64`, Intel은 `x86_64`를 선택합니다. DMG를 열고 **WatchBridge.app**을 **응용 프로그램** 폴더로 드래그합니다.
 2. [HermesEnabler Releases](https://github.com/pookjw/HermesEnabler/releases)에서 원본 IPA를 다운로드합니다. 페어링된 iPhone을 USB로 연결하고 WatchBridge에서 선택합니다.
 3. 안내에 따라 개발자 모드 스위치를 표시합니다. Watch에서 직접 개발자 모드를 켜고 재시동한 뒤 확인합니다. 그런 다음 WatchBridge에서 IPA를 서명하고 설치합니다.
 
@@ -43,11 +43,11 @@ macOS 11 이상에서는 Xcode를 설치하지 않아도 미리 빌드된 WatchB
 
 ### Windows
 
-Windows에서는 [WatchBridge](https://github.com/AdminZachary/iloader-for-windows)를 사용합니다. WatchBridge는 iPhone 호스트 앱과 Watch 앱이 함께 들어 있는 IPA를 설치하고 Apple Watch의 개발자 모드를 준비하는 커뮤니티 도구이며, Apple이나 이 프로젝트와 공식적으로 관련되어 있지 않습니다.
+Windows에서는 [WatchBridge](https://github.com/AdminZachary/WatchBridge)를 사용합니다. WatchBridge는 iPhone 호스트 앱과 Watch 앱이 함께 들어 있는 IPA를 설치하고 Apple Watch의 개발자 모드를 준비하는 커뮤니티 도구이며, Apple이나 이 프로젝트와 공식적으로 관련되어 있지 않습니다.
 
 1. [iTunes](https://www.apple.com/itunes/) 또는 Microsoft Store의 **Apple Devices** 앱을 설치하여 **Apple Mobile Device Service**를 준비합니다. WatchBridge는 USB 및 Wi-Fi 통신에 이 서비스가 필요합니다. WebView2는 Windows 11에 기본 포함되어 있습니다.
 2. iPhone이 대상 Apple Watch와 페어링되어 있는지 확인합니다. WatchBridge는 한 번에 하나의 페어링된 Watch만 지원하며, 여러 개가 페어링되어 있으면 준비 단계에서 추측하지 않고 중단합니다.
-3. [WatchBridge Releases](https://github.com/AdminZachary/iloader-for-windows/releases/latest)에서 `watchbridge-windows.zip`을 내려받아 압축을 풀고 `WatchBridge.exe`를 실행합니다. 실행 파일이 서명되어 있지 않아 첫 실행 시 Windows SmartScreen 경고가 표시될 수 있습니다.
+3. [WatchBridge Releases](https://github.com/AdminZachary/WatchBridge/releases/latest)에서 `watchbridge-windows.zip`을 내려받아 압축을 풀고 `WatchBridge.exe`를 실행합니다. 실행 파일이 서명되어 있지 않아 첫 실행 시 Windows SmartScreen 경고가 표시될 수 있습니다.
 4. [Releases](https://github.com/pookjw/HermesEnabler/releases)에서 IPA를 다운로드합니다. iPhone 호스트와 `Watch/*.app`이 모두 포함된 원본 IPA를 사용해야 하며, Watch 전용 패키지는 지원되지 않습니다.
 5. USB로 페어링된 iPhone을 연결하고 WatchBridge에서 해당 기기를 선택합니다.
 6. Watch를 페어링하고 Watch에서 신뢰 프롬프트를 확인합니다. **개발자 모드** 스위치를 요청한 뒤, Watch에서 **설정 → 개인정보 보호 및 보안 → 개발자 모드**를 열어 켜고 재시동한 후 확인합니다. 다시 WatchBridge로 돌아와 **Check again**을 누릅니다. WatchBridge는 개발자 모드를 대신 켜거나 Watch를 재시동하지 않습니다.

@@ -35,7 +35,7 @@ macOSでは、ビルド済みのIPAをWatchBridgeまたはSideloadlyでインス
 
 macOS 11以降では、Xcodeをインストールせずにビルド済みのWatchBridgeのDMGを使用できます。
 
-1. [WatchBridge Releases](https://github.com/AdminZachary/iloader-for-windows/releases)からMacに合ったDMGをダウンロードします。Apple Siliconは`arm64`、Intelは`x86_64`を選択します。DMGを開き、**WatchBridge.app**を**アプリケーション**フォルダにドラッグします。
+1. [WatchBridge Releases](https://github.com/AdminZachary/WatchBridge/releases/latest)からMacに合ったDMGをダウンロードします。Apple Siliconは`arm64`、Intelは`x86_64`を選択します。DMGを開き、**WatchBridge.app**を**アプリケーション**フォルダにドラッグします。
 2. [HermesEnabler Releases](https://github.com/pookjw/HermesEnabler/releases)から元のIPAをダウンロードします。ペアリング済みのiPhoneをUSBで接続し、WatchBridgeで選択します。
 3. 画面の案内に従ってデベロッパモードのスイッチを表示します。Watch上でオンにし、再起動して確認します。その後、WatchBridgeでIPAに署名してインストールします。
 
@@ -43,11 +43,11 @@ macOS 11以降では、Xcodeをインストールせずにビルド済みのWatc
 
 ### Windows
 
-Windowsでは[WatchBridge](https://github.com/AdminZachary/iloader-for-windows)を使用します。WatchBridgeは、iPhoneホストアプリとWatchアプリの両方を含むIPAをインストールし、Apple Watchのデベロッパモードを準備するコミュニティツールです。Appleおよびこのプロジェクトとは公式な関係はありません。
+Windowsでは[WatchBridge](https://github.com/AdminZachary/WatchBridge)を使用します。WatchBridgeは、iPhoneホストアプリとWatchアプリの両方を含むIPAをインストールし、Apple Watchのデベロッパモードを準備するコミュニティツールです。Appleおよびこのプロジェクトとは公式な関係はありません。
 
 1. [iTunes](https://www.apple.com/itunes/)またはMicrosoft Storeの**Apple Devices**アプリをインストールして、**Apple Mobile Device Service**を用意します。WatchBridgeはUSBとWi-Fiの通信にこのサービスを必要とします。WebView2はWindows 11に標準で含まれています。
 2. iPhoneが対象のApple Watchとペアリングされていることを確認します。WatchBridgeが対応するペアリング済みWatchは1台のみで、複数ペアリングされている場合は推測せず準備を中止します。
-3. [WatchBridge Releases](https://github.com/AdminZachary/iloader-for-windows/releases/latest)から`watchbridge-windows.zip`をダウンロードして展開し、`WatchBridge.exe`を実行します。実行ファイルは署名されていないため、初回起動時にWindows SmartScreenの警告が表示される場合があります。
+3. [WatchBridge Releases](https://github.com/AdminZachary/WatchBridge/releases/latest)から`watchbridge-windows.zip`をダウンロードして展開し、`WatchBridge.exe`を実行します。実行ファイルは署名されていないため、初回起動時にWindows SmartScreenの警告が表示される場合があります。
 4. [Releases](https://github.com/pookjw/HermesEnabler/releases)からIPAをダウンロードします。iPhoneホストと`Watch/*.app`の両方を含む元のIPAを使用してください。Watch専用パッケージはサポートされません。
 5. USBでペアリング済みのiPhoneを接続し、WatchBridgeでそのデバイスを選択します。
 6. Watchをペアリングし、Watch上で信頼の確認を行います。**デベロッパモード**のスイッチを要求したら、Watchで**設定 → プライバシーとセキュリティ → デベロッパモード**を開いてオンにし、再起動して確認します。WatchBridgeに戻り、**Check again**をクリックします。WatchBridgeがデベロッパモードを有効化したりWatchを再起動したりすることはありません。

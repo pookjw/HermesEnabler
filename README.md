@@ -35,7 +35,7 @@ On macOS, you can install the prebuilt IPA with WatchBridge or Sideloadly, or bu
 
 On macOS 11 or later, you can use the prebuilt WatchBridge DMG without installing Xcode.
 
-1. Download the matching DMG from [WatchBridge Releases](https://github.com/AdminZachary/iloader-for-windows/releases): `arm64` for Apple Silicon or `x86_64` for Intel. Open the DMG and drag **WatchBridge.app** into **Applications**.
+1. Download the matching DMG from [WatchBridge Releases](https://github.com/AdminZachary/WatchBridge/releases/latest): `arm64` for Apple Silicon or `x86_64` for Intel. Open the DMG and drag **WatchBridge.app** into **Applications**.
 2. Download the original IPA from [HermesEnabler Releases](https://github.com/pookjw/HermesEnabler/releases). Connect the paired iPhone over USB and select it in WatchBridge.
 3. Follow the prompts to reveal the Developer Mode switch. Enable Developer Mode on the Watch, restart it, and confirm. Then sign and install the IPA in WatchBridge.
 
@@ -43,11 +43,11 @@ If macOS blocks the app on first launch, follow the instructions in the WatchBri
 
 ### Windows
 
-Windows uses [WatchBridge](https://github.com/AdminZachary/iloader-for-windows), a community tool that prepares Developer Mode and installs an IPA containing both an iPhone host app and a Watch app. It is not affiliated with Apple or with this project.
+Windows uses [WatchBridge](https://github.com/AdminZachary/WatchBridge), a community tool that prepares Developer Mode and installs an IPA containing both an iPhone host app and a Watch app. It is not affiliated with Apple or with this project.
 
 1. Install **Apple Mobile Device Service** by installing [iTunes](https://www.apple.com/itunes/) or the **Apple Devices** app from the Microsoft Store. WatchBridge needs it for USB and Wi-Fi communication. WebView2 is built into Windows 11.
 2. Make sure your iPhone is paired with the target Apple Watch. WatchBridge supports only one paired Watch at a time; if more than one is paired, the preparation step stops instead of guessing.
-3. Download `watchbridge-windows.zip` from [WatchBridge Releases](https://github.com/AdminZachary/iloader-for-windows/releases/latest), extract it, and run `WatchBridge.exe`. The executable is unsigned, so Windows SmartScreen may warn on first launch.
+3. Download `watchbridge-windows.zip` from [WatchBridge Releases](https://github.com/AdminZachary/WatchBridge/releases/latest), extract it, and run `WatchBridge.exe`. The executable is unsigned, so Windows SmartScreen may warn on first launch.
 4. Download the IPA from [Releases](https://github.com/pookjw/HermesEnabler/releases). Use the original IPA that contains both the iPhone host and the `Watch/*.app`; Watch-only packages are not supported.
 5. Connect the paired iPhone over USB and select it in WatchBridge.
 6. Pair the Watch and confirm the trust prompt on the Watch. Request the **Developer Mode** switch, then on the Watch open **Settings → Privacy & Security → Developer Mode**, turn it on, restart, and confirm. Return to WatchBridge and click **Check again**. WatchBridge does not enable Developer Mode or restart the Watch for you.

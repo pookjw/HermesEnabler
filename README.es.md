@@ -35,7 +35,7 @@ En macOS puedes instalar el IPA ya compilado con WatchBridge o Sideloadly, o com
 
 En macOS 11 o posterior, puedes usar el DMG precompilado de WatchBridge sin instalar Xcode.
 
-1. Descarga el DMG correspondiente desde [WatchBridge Releases](https://github.com/AdminZachary/iloader-for-windows/releases). Elige `arm64` para Apple Silicon o `x86_64` para Intel. Abre el DMG y arrastra **WatchBridge.app** a **Aplicaciones**.
+1. Descarga el DMG correspondiente desde [WatchBridge Releases](https://github.com/AdminZachary/WatchBridge/releases/latest). Elige `arm64` para Apple Silicon o `x86_64` para Intel. Abre el DMG y arrastra **WatchBridge.app** a **Aplicaciones**.
 2. Descarga el IPA original desde [HermesEnabler Releases](https://github.com/pookjw/HermesEnabler/releases). Conecta el iPhone emparejado por USB y selecciónalo en WatchBridge.
 3. Sigue las indicaciones para mostrar el interruptor del modo de desarrollador. Actívalo en el reloj, reinícialo y confirma. Luego firma e instala el IPA en WatchBridge.
 
@@ -43,11 +43,11 @@ Si macOS bloquea la app al abrirla por primera vez, consulta las notas de la ver
 
 ### Windows
 
-En Windows se utiliza [WatchBridge](https://github.com/AdminZachary/iloader-for-windows), una herramienta comunitaria que prepara el modo de desarrollador e instala un IPA que contiene tanto la app anfitriona del iPhone como la app del Watch. No está afiliada a Apple ni a este proyecto.
+En Windows se utiliza [WatchBridge](https://github.com/AdminZachary/WatchBridge), una herramienta comunitaria que prepara el modo de desarrollador e instala un IPA que contiene tanto la app anfitriona del iPhone como la app del Watch. No está afiliada a Apple ni a este proyecto.
 
 1. Instala **Apple Mobile Device Service** instalando [iTunes](https://www.apple.com/itunes/) o la app **Apple Devices** de Microsoft Store. WatchBridge lo necesita para la comunicación por USB y Wi-Fi. WebView2 viene incluido en Windows 11.
 2. Comprueba que el iPhone esté emparejado con el Apple Watch de destino. WatchBridge admite un solo Watch emparejado a la vez; si hay más de uno, el paso de preparación se detiene en lugar de adivinar.
-3. Descarga `watchbridge-windows.zip` desde [WatchBridge Releases](https://github.com/AdminZachary/iloader-for-windows/releases/latest), extráelo y ejecuta `WatchBridge.exe`. El ejecutable no está firmado, por lo que Windows SmartScreen puede avisar en el primer inicio.
+3. Descarga `watchbridge-windows.zip` desde [WatchBridge Releases](https://github.com/AdminZachary/WatchBridge/releases/latest), extráelo y ejecuta `WatchBridge.exe`. El ejecutable no está firmado, por lo que Windows SmartScreen puede avisar en el primer inicio.
 4. Descarga el IPA desde [Releases](https://github.com/pookjw/HermesEnabler/releases). Usa el IPA original que contiene tanto la app anfitriona del iPhone como `Watch/*.app`; los paquetes solo para Watch no son compatibles.
 5. Conecta el iPhone emparejado por USB y selecciónalo en WatchBridge.
 6. Empareja el Watch y confirma el aviso de confianza en el Watch. Solicita el interruptor de **Modo de desarrollador**; después, en el Watch, abre **Ajustes → Privacidad y seguridad → Modo de desarrollador**, actívalo, reinicia y confirma. Vuelve a WatchBridge y pulsa **Check again**. WatchBridge no activa el modo de desarrollador ni reinicia el Watch por ti.
