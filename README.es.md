@@ -49,8 +49,7 @@ En Windows se utiliza [WatchBridge](https://github.com/AdminZachary/iloader-for-
 ## Precauciones
 
 - En Sideloadly, desactiva **Use automatic bundle ID** y utiliza un Bundle Identifier fijo. Usa el mismo Bundle Identifier y Apple ID en cada actualización para conservar los datos y la copia de seguridad existentes.
-- Los perfiles de aprovisionamiento de Apple Personal Team gratuito caducan a los siete días. Cuando ocurra, vuelve a compilar e instalar la app con el mismo Apple ID y Bundle Identifier.
-- Este proyecto usa la capacidad **App Groups**, que un Personal Team gratuito no puede aprovisionar. Puede ser necesario un equipo de desarrollador de pago; cambiar el Bundle Identifier no elimina esta limitación. No des por hecho que quitar la capacidad sea una solución completa: no se ha confirmado que la función principal de la app opere sin ella.
+- Se requiere una cuenta de Apple Developer de pago debido a la capacidad **App Groups**.
 - Si se instala la app del iPhone pero no aparece la del Watch, busca `Watch apps will be stripped from the IPA` en el registro de Sideloadly. Significa que se eliminó la app Watch incluida; instala la app Watch con Xcode.
 - Antes de eliminar la app, restaura siempre la copia de seguridad de MobileGestalt desde la app HermesEnabler2.
 

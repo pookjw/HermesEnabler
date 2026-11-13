@@ -49,8 +49,7 @@ Windowsでは[WatchBridge](https://github.com/AdminZachary/iloader-for-windows)�
 ## 注意事項
 
 - Sideloadlyで**Use automatic bundle ID**をオフにし、固定のBundle Identifierを使用してください。既存のアプリデータとバックアップを引き継ぐため、アップデート時は毎回同じBundle IdentifierとApple IDを使用してください。
-- 無料のApple Personal Teamのプロビジョニングプロファイルは7日で期限切れになります。期限切れ後は、同じApple IDとBundle Identifierを使ってアプリを再ビルド・再インストールしてください。
-- このプロジェクトは**App Groups**エンタイトルメントを使用しており、無料のPersonal Teamではプロビジョニングできません。有料の開発者チームが必要になる場合があります。Bundle Identifierを変更してもこの制限は解消されず、エンタイトルメントを削除した場合に主要機能が動作するかも確認されていません。
+- **App Groups**エンタイトルメントのため、有料のApple Developerアカウントが必要です。
 - iPhoneアプリはインストールされたのにWatchアプリが表示されない場合は、Sideloadlyのログで`Watch apps will be stripped from the IPA`を確認してください。これはIPA内のWatchアプリが削除されたことを示します。XcodeでWatchアプリをインストールしてください。
 - アプリを削除する前に、必ずHermesEnabler2アプリからMobileGestaltのバックアップを復元してください。
 

@@ -49,8 +49,7 @@ Trên Windows, dự án sử dụng [WatchBridge](https://github.com/AdminZachar
 ## Lưu ý
 
 - Trong Sideloadly, hãy tắt **Use automatic bundle ID** và sử dụng một Bundle Identifier cố định. Giữ nguyên Bundle Identifier và Apple ID cho mỗi lần cập nhật để ứng dụng có thể giữ lại dữ liệu và bản sao lưu hiện có.
-- Provisioning profile của Apple Personal Team miễn phí sẽ hết hạn sau bảy ngày. Khi điều đó xảy ra, hãy build và cài đặt lại ứng dụng bằng cùng Apple ID và Bundle Identifier.
-- Dự án này sử dụng entitlement **App Groups**, nhưng Personal Team miễn phí không thể cấp entitlement này. Bạn có thể cần một nhóm nhà phát triển trả phí; việc thay đổi Bundle Identifier không loại bỏ giới hạn này. Đừng cho rằng xóa entitlement là giải pháp hoàn chỉnh vì chức năng chính của ứng dụng khi không có entitlement này chưa được xác nhận.
+- Cần có tài khoản Apple Developer trả phí do yêu cầu entitlement **App Groups**.
 - Nếu ứng dụng iPhone đã được cài đặt nhưng ứng dụng Watch không xuất hiện, hãy kiểm tra nhật ký Sideloadly để tìm dòng `Watch apps will be stripped from the IPA`. Điều này có nghĩa là ứng dụng Watch được nhúng đã bị xóa; chỉ cài đặt ứng dụng iPhone sẽ không cài đặt được ứng dụng Watch. Hãy dùng Xcode để cài đặt ứng dụng Watch.
 - Trước khi xóa ứng dụng, hãy luôn khôi phục bản sao lưu MobileGestalt thông qua ứng dụng HermesEnabler2.
 

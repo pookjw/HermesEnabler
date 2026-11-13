@@ -49,8 +49,7 @@ Windows 上使用 [WatchBridge](https://github.com/AdminZachary/iloader-for-wind
 ## 注意事项
 
 - 在 Sideloadly 中关闭 **Use automatic bundle ID**，并使用固定的 Bundle Identifier。每次更新时都使用相同的 Bundle Identifier 和 Apple ID，以便保留现有应用数据和备份。
-- 免费 Apple Personal Team 的配置描述文件会在 7 天后过期。过期后，请使用相同的 Apple ID 和 Bundle Identifier 重新构建并安装应用。
-- 本项目使用 **App Groups** 权限，免费 Personal Team 无法为其配置签名。可能需要付费开发者团队；更改 Bundle Identifier 并不能消除此限制。不要认为移除此权限就一定能解决问题，因为尚未确认移除后应用的主要功能是否可用。
+- 由于 **App Groups** 权限，必须使用付费的 Apple Developer 账户。
 - 如果 iPhone App 已安装但 Watch App 没有出现，请在 Sideloadly 日志中查找 `Watch apps will be stripped from the IPA`。这表示内嵌的 Watch App 已被移除；请使用 Xcode 安装 Watch App。
 - 删除应用前，请务必通过 HermesEnabler2 应用恢复 MobileGestalt 备份。
 
