@@ -8,20 +8,41 @@
 
 ## Installation
 
-### IPA installieren
+### macOS
 
-1. Lade die IPA-Datei unter [Releases](https://github.com/pookjw/HermesEnabler/releases) herunter.
-2. Installiere sie mit [Sideloadly](https://sideloadly.io).
-3. Öffne auf dem iPhone die **Watch-App → Meine Watch → Apps** und installiere **HermesEnabler2**.
-4. Öffne **HermesEnabler2** auf der Apple Watch und folge den Schritten in der App.
+Unter macOS kannst du die fertige IPA mit Sideloadly installieren oder die App direkt mit Xcode erstellen. In beiden Fällen muss das iPhone mit der Ziel-Apple Watch gekoppelt sein und die Watch eine unterstützte watchOS-Version ausführen.
 
-Unter Windows kannst du auch [WatchBridge](https://github.com/AdminZachary/iloader-for-windows/tags) verwenden, um den Entwicklermodus auf deiner Apple Watch schnell zu aktivieren und die IPA-Datei zu installieren.
+#### IPA installieren
 
-### Mit Xcode erstellen
+1. Lade die IPA unter [Releases](https://github.com/pookjw/HermesEnabler/releases) herunter.
+2. Installiere [Sideloadly](https://sideloadly.io) auf dem Mac, verbinde das iPhone per Kabel und wähle es in Sideloadly aus.
+3. Ziehe die IPA in Sideloadly und gib deine Apple ID ein. Deaktiviere **Use automatic bundle ID**, lege einen festen Bundle Identifier fest und starte die Signierung.
+4. Öffne auf dem iPhone **Einstellungen → Allgemein → VPN & Geräteverwaltung** und vertraue deinem Entwicklerzertifikat.
+5. Öffne auf dem iPhone **Einstellungen → Datenschutz & Sicherheit → Entwicklermodus**, aktiviere ihn, starte neu und bestätige.
+6. Öffne auf dem iPhone die **Watch-App**, gehe zu **Meine Watch → Apps** und installiere **HermesEnabler2** auf der Watch.
+7. Öffne auf der Apple Watch **Einstellungen → Datenschutz & Sicherheit → Entwicklermodus**, aktiviere ihn, starte neu und bestätige. Wenn die Option nicht angezeigt wird, installiere zuerst die Watch-App und prüfe erneut.
+8. Öffne **HermesEnabler2** auf der Apple Watch und folge den Schritten in der App.
+
+#### Mit Xcode erstellen
 
 1. Öffne [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj) in Xcode.
 2. Wähle die Apple Watch als Run-Ziel aus und klicke auf **Run**.
 3. Öffne **HermesEnabler2** auf der Apple Watch und folge den Schritten in der App.
+
+### Windows
+
+Unter Windows verwendest du [WatchBridge](https://github.com/AdminZachary/iloader-for-windows), ein Community-Tool, das den Entwicklermodus vorbereitet und eine IPA installiert, die sowohl die iPhone-Host-App als auch die Watch-App enthält. Es steht weder mit Apple noch mit diesem Projekt in offizieller Verbindung.
+
+1. Installiere **Apple Mobile Device Service**, indem du [iTunes](https://www.apple.com/itunes/) oder die **Apple Devices**-App aus dem Microsoft Store installierst. WatchBridge benötigt den Dienst für USB- und Wi-Fi-Kommunikation. WebView2 ist in Windows 11 enthalten.
+2. Stelle sicher, dass dein iPhone mit der Ziel-Apple Watch gekoppelt ist. WatchBridge unterstützt jeweils nur eine gekoppelte Watch; sind mehrere gekoppelt, bricht der Vorbereitungsschritt ab, statt zu raten.
+3. Lade `watchbridge-windows.zip` von [WatchBridge Releases](https://github.com/AdminZachary/iloader-for-windows/releases/latest) herunter, entpacke es und starte `WatchBridge.exe`. Die ausführbare Datei ist nicht signiert, daher kann Windows SmartScreen beim ersten Start warnen.
+4. Lade die IPA unter [Releases](https://github.com/pookjw/HermesEnabler/releases) herunter. Verwende die Original-IPA, die sowohl die iPhone-Host-App als auch `Watch/*.app` enthält; reine Watch-Pakete werden nicht unterstützt.
+5. Verbinde das gekoppelte iPhone per USB und wähle es in WatchBridge aus.
+6. Koppele die Watch und bestätige die Vertrauensabfrage auf der Watch. Fordere den Schalter **Entwicklermodus** an, öffne dann auf der Watch **Einstellungen → Datenschutz & Sicherheit → Entwicklermodus**, aktiviere ihn, starte neu und bestätige. Kehre zu WatchBridge zurück und klicke auf **Check again**. WatchBridge aktiviert den Entwicklermodus nicht selbst und startet die Watch nicht neu.
+7. Melde dich mit deiner Apple ID an, wähle die HermesEnabler2-IPA und starte Signierung und Installation. WatchBridge installiert zuerst die iPhone-Host-App und danach die Watch-App.
+8. Öffne **HermesEnabler2** auf der Apple Watch und folge den Schritten in der App.
+
+> Die Vorbereitung des Entwicklermodus erfordert eine USB-Verbindung. Nach einer einmaligen USB-Kopplung können Installation und Erneuerung über Wi-Fi erfolgen.
 
 ## Hinweise
 

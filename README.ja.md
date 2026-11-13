@@ -8,20 +8,41 @@
 
 ## インストール方法
 
-### IPAをインストール
+### macOS
+
+macOSでは、ビルド済みのIPAをSideloadlyでインストールするか、Xcodeで直接ビルドできます。どちらの方法でも、iPhoneが対象のApple Watchとペアリングされていて、Watchが対応するwatchOSバージョンで動作している必要があります。
+
+#### IPAをインストール
 
 1. [Releases](https://github.com/pookjw/HermesEnabler/releases)からIPAをダウンロードします。
-2. [Sideloadly](https://sideloadly.io)を使ってインストールします。
-3. iPhoneの**Watchアプリ → マイウォッチ → アプリ**から**HermesEnabler2**をインストールします。
-4. Apple Watchで**HermesEnabler2**を開き、アプリの手順に従ってください。
+2. Macに[Sideloadly](https://sideloadly.io)をインストールし、ケーブルでiPhoneを接続してSideloadlyで選択します。
+3. IPAをSideloadlyにドラッグし、Apple IDを入力します。**Use automatic bundle ID**をオフにして固定のBundle Identifierを指定し、署名を開始します。
+4. iPhoneで**設定 → 一般 → VPNとデバイス管理**を開き、開発者証明書を信頼します。
+5. iPhoneで**設定 → プライバシーとセキュリティ → デベロッパモード**を開いてオンにし、再起動して確認します。
+6. iPhoneの**Watchアプリ → マイウォッチ → アプリ**から**HermesEnabler2**をWatchにインストールします。
+7. Apple Watchで**設定 → プライバシーとセキュリティ → デベロッパモード**を開いてオンにし、再起動して確認します。項目が表示されない場合は、先にWatchアプリをインストールしてから再度確認してください。
+8. Apple Watchで**HermesEnabler2**を開き、アプリの手順に従ってください。
 
-Windowsでは、[WatchBridge](https://github.com/AdminZachary/iloader-for-windows/tags)を使ってApple Watchのデベロッパモードをすばやく有効にし、IPAをインストールすることもできます。
-
-### Xcodeでビルド
+#### Xcodeでビルド
 
 1. Xcodeで[HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj)を開きます。
 2. 実行先にApple Watchを選択し、**Run**をクリックします。
 3. Apple Watchで**HermesEnabler2**を開き、アプリの手順に従ってください。
+
+### Windows
+
+Windowsでは[WatchBridge](https://github.com/AdminZachary/iloader-for-windows)を使用します。WatchBridgeは、iPhoneホストアプリとWatchアプリの両方を含むIPAをインストールし、Apple Watchのデベロッパモードを準備するコミュニティツールです。Appleおよびこのプロジェクトとは公式な関係はありません。
+
+1. [iTunes](https://www.apple.com/itunes/)またはMicrosoft Storeの**Apple Devices**アプリをインストールして、**Apple Mobile Device Service**を用意します。WatchBridgeはUSBとWi-Fiの通信にこのサービスを必要とします。WebView2はWindows 11に標準で含まれています。
+2. iPhoneが対象のApple Watchとペアリングされていることを確認します。WatchBridgeが対応するペアリング済みWatchは1台のみで、複数ペアリングされている場合は推測せず準備を中止します。
+3. [WatchBridge Releases](https://github.com/AdminZachary/iloader-for-windows/releases/latest)から`watchbridge-windows.zip`をダウンロードして展開し、`WatchBridge.exe`を実行します。実行ファイルは署名されていないため、初回起動時にWindows SmartScreenの警告が表示される場合があります。
+4. [Releases](https://github.com/pookjw/HermesEnabler/releases)からIPAをダウンロードします。iPhoneホストと`Watch/*.app`の両方を含む元のIPAを使用してください。Watch専用パッケージはサポートされません。
+5. USBでペアリング済みのiPhoneを接続し、WatchBridgeでそのデバイスを選択します。
+6. Watchをペアリングし、Watch上で信頼の確認を行います。**デベロッパモード**のスイッチを要求したら、Watchで**設定 → プライバシーとセキュリティ → デベロッパモード**を開いてオンにし、再起動して確認します。WatchBridgeに戻り、**Check again**をクリックします。WatchBridgeがデベロッパモードを有効化したりWatchを再起動したりすることはありません。
+7. Apple IDでサインインし、HermesEnabler2のIPAを選択して署名とインストールを開始します。WatchBridgeはiPhoneホストアプリを先にインストールし、その後Watchアプリをインストールします。
+8. Apple Watchで**HermesEnabler2**を開き、アプリの手順に従ってください。
+
+> デベロッパモードの準備にはUSB接続が必要です。USBで一度ペアリングした後は、Wi-Fiでインストールと更新を行えます。
 
 ## 注意事項
 
