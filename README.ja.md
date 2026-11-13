@@ -1,6 +1,6 @@
 # HermesEnabler 2
 
-[English](README.md) · [Tiếng Việt](README.vi.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
+[English](README.md) · [Nederlands](README.nl.md) · [Tiếng Việt](README.vi.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
 
 ![](image.png)
 
@@ -25,9 +25,17 @@ macOSでは、ビルド済みのIPAをSideloadlyでインストールするか�
 
 #### Xcodeでビルド
 
-1. Xcodeで[HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj)を開きます。
-2. 実行先にApple Watchを選択し、**Run**をクリックします。
-3. Apple Watchで**HermesEnabler2**を開き、アプリの手順に従ってください。
+デバイスのiOSとwatchOSのバージョンに対応するXcodeを搭載したMacと、iPhoneにペアリング済みのApple Watchが必要です。
+
+1. **Code → Download ZIP**からソースコードをダウンロードして展開するか、このリポジトリをクローンします。Xcodeで[HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj)を開きます。
+2. **Xcode → Settings → Accounts**（または**Apple Accounts**）でApple Accountを追加します。**TARGETS**の**HermesEnabler2**と**HermesCompanion**でそれぞれ**Signing & Capabilities**を開き、**Automatically manage signing**を有効にして、両方に自分の同じチームを選択します。
+3. 青いプロジェクトアイコンを選び、**PROJECT → HermesEnabler2 → Build Settings → All**を開きます。`COMPANION_BUNDLE_IDENTIFIER`を検索し、`com.example.HermesEnabler`を自分用の一意な識別子に変更します。**Debug**と**Release**には同じ値を設定し、各ターゲットの既存のBundle Identifier式は変更しないでください。
+4. iPhoneを接続してロックを解除し、信頼の確認に応答します。**Device Hub**または**Window → Devices and Simulators**でXcodeにWatchを検出させます。両方のデバイスで**設定 → プライバシーとセキュリティ → デベロッパモード**を有効にし、再起動して確認します。設定がない場合は、先にXcodeから接続を試みてから再度確認してください。
+5. **HermesEnabler2**スキームと実機の**Apple Watch**を実行先に選び、**▶ Run**をクリックします。インストールが完了したらWatchで**HermesEnabler2**を開き、アプリの手順に従ってください。**Build Succeeded**はコンパイル完了を意味し、インストールはまだ続いている場合があります。
+
+> Device HubがWatchに接続できない場合、ペアリング済みのiPhoneの電源を一時的に切って再試行すると改善したという報告があります。Watchのロックを解除し、Wi-FiとBluetoothを有効にしたままにして、接続後にiPhoneの電源を入れ直してください。この回避策がすべての環境で有効とは限りません。
+>
+> Personal Teamの有効期限とApp Groupsの署名制限については、下の**注意事項**を参照してください。今後の更新でも同じApple AccountとBundle Identifierを使用してください。
 
 ### Windows
 

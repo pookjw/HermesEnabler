@@ -1,6 +1,6 @@
 # HermesEnabler 2
 
-[English](README.md) · [Tiếng Việt](README.vi.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
+[English](README.md) · [Nederlands](README.nl.md) · [Tiếng Việt](README.vi.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
 
 ![](image.png)
 
@@ -25,9 +25,17 @@ macOS에서는 미리 빌드된 IPA를 Sideloadly로 설치하거나 Xcode에서
 
 #### Xcode로 직접 빌드
 
-1. Xcode에서 [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj)를 엽니다.
-2. 실행 대상으로 Apple Watch를 선택하고 **Run**을 누릅니다.
-3. Apple Watch에서 **HermesEnabler2**를 열고 앱의 안내를 따릅니다.
+기기의 iOS 및 watchOS 버전을 지원하는 Xcode가 설치된 Mac과 iPhone에 페어링된 Apple Watch가 필요합니다.
+
+1. **Code → Download ZIP**으로 소스 코드를 내려받아 압축을 풀거나 이 저장소를 클론합니다. Xcode에서 [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj)를 엽니다.
+2. **Xcode → Settings → Accounts** 또는 **Apple Accounts**에서 Apple 계정을 추가합니다. **TARGETS** 아래의 **HermesEnabler2**와 **HermesCompanion**에서 각각 **Signing & Capabilities**를 열고, **Automatically manage signing**을 켠 다음 두 타깃에 본인의 동일한 팀을 선택합니다.
+3. 파란색 프로젝트 아이콘을 선택한 뒤 **PROJECT → HermesEnabler2 → Build Settings → All**을 엽니다. `COMPANION_BUNDLE_IDENTIFIER`를 검색하고 `com.example.HermesEnabler`를 본인만의 고유한 식별자로 바꿉니다. **Debug**와 **Release**에 같은 값을 설정하고, 타깃의 기존 Bundle Identifier 표현식은 그대로 둡니다.
+4. iPhone을 연결하고 잠금을 해제한 뒤 신뢰 요청을 승인합니다. **Device Hub** 또는 **Window → Devices and Simulators**에서 Xcode가 Watch를 감지하도록 합니다. 두 기기에서 **설정 → 개인정보 보호 및 보안 → 개발자 모드**를 켜고 재시동한 뒤 확인합니다. 설정이 없으면 먼저 Xcode에서 연결을 시도한 뒤 다시 확인합니다.
+5. **HermesEnabler2** 스킴과 실제 **Apple Watch**를 실행 대상으로 선택하고 **▶ Run**을 누릅니다. 설치가 끝나면 Watch에서 **HermesEnabler2**를 열고 앱의 안내를 따릅니다. **Build Succeeded**는 컴파일이 끝났다는 뜻이며, 설치는 아직 진행 중일 수 있습니다.
+
+> Device Hub가 Watch에 연결되지 않을 때 페어링된 iPhone의 전원을 잠시 끄고 다시 시도하면 도움이 되었다는 보고가 있습니다. Watch는 잠금을 해제하고 Wi-Fi와 Bluetooth를 켜 둔 상태로 유지하며, 연결 후 iPhone을 다시 켭니다. 모든 환경에서 효과가 있는 방법은 아닙니다.
+>
+> Personal Team 만료 및 App Groups 서명 제한은 아래 **주의사항**을 참고하세요. 이후 업데이트에서도 같은 Apple 계정과 Bundle Identifier를 사용하세요.
 
 ### Windows
 

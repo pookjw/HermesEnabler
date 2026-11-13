@@ -1,6 +1,6 @@
 # HermesEnabler 2
 
-[English](README.md) · [Tiếng Việt](README.vi.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
+[English](README.md) · [Nederlands](README.nl.md) · [Tiếng Việt](README.vi.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
 
 ![](image.png)
 
@@ -25,9 +25,17 @@
 
 #### 使用 Xcode 构建
 
-1. 在 Xcode 中打开 [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj)。
-2. 选择 Apple Watch 作为运行目标，然后点击 **Run**。
-3. 在 Apple Watch 上打开 **HermesEnabler2**，并按照应用中的步骤操作。
+你需要一台安装了兼容设备 iOS 和 watchOS 版本的 Xcode 的 Mac，以及已与 iPhone 配对的 Apple Watch。
+
+1. 通过 **Code → Download ZIP** 下载并解压源代码，或克隆此仓库。在 Xcode 中打开 [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj)。
+2. 在 **Xcode → Settings → Accounts**（或 **Apple Accounts**）中添加 Apple 账户。在 **TARGETS** 下，分别打开 **HermesEnabler2** 和 **HermesCompanion** 的 **Signing & Capabilities**，启用 **Automatically manage signing**，并为两者选择自己的同一个团队。
+3. 选择蓝色项目图标，再打开 **PROJECT → HermesEnabler2 → Build Settings → All**。搜索 `COMPANION_BUNDLE_IDENTIFIER`，将 `com.example.HermesEnabler` 替换为自己的唯一标识符，为 **Debug** 和 **Release** 设置相同的值。保持各 target 现有的 Bundle Identifier 表达式不变。
+4. 连接并解锁 iPhone，接受信任提示，让 Xcode 通过 **Device Hub** 或 **Window → Devices and Simulators** 检测 Watch。在两台设备上启用**设置 → 隐私与安全性 → 开发者模式**，重新启动并确认。如果没有该设置，请先让 Xcode 尝试连接，再检查设置。
+5. 选择 **HermesEnabler2** scheme 和实体 **Apple Watch** 作为运行目标，然后点击 **▶ Run**。等待安装完成，在 Watch 上打开 **HermesEnabler2** 并按照应用中的步骤操作。**Build Succeeded** 表示编译完成，安装可能仍在进行。
+
+> 如果 Device Hub 无法连接 Watch，有用户报告暂时关闭已配对 iPhone 的电源后重试会有所帮助。保持 Watch 解锁，并启用 Wi-Fi 和蓝牙；连接成功后再开启 iPhone。此方法不一定适用于所有配置。
+>
+> 有关 Personal Team 到期和 App Groups 签名限制，请参阅下方的**注意事项**。后续更新请继续使用相同的 Apple 账户和 Bundle Identifier。
 
 ### Windows
 

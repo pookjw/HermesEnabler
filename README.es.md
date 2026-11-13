@@ -1,6 +1,6 @@
 # HermesEnabler 2
 
-[English](README.md) · [Tiếng Việt](README.vi.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
+[English](README.md) · [Nederlands](README.nl.md) · [Tiếng Việt](README.vi.md) · [한국어](README.ko.md) · [简体中文](README.zh-CN.md) · [繁體中文](README.zh-TW.md) · [日本語](README.ja.md) · [Español](README.es.md) · [Français](README.fr.md) · [Deutsch](README.de.md) · [Português](README.pt.md)
 
 ![](image.png)
 
@@ -25,9 +25,17 @@ En macOS puedes instalar el IPA ya compilado con Sideloadly o compilar la app di
 
 #### Compilar con Xcode
 
-1. Abre [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj) en Xcode.
-2. Selecciona el Apple Watch como destino de ejecución y pulsa **Run**.
-3. Abre **HermesEnabler2** en el Apple Watch y sigue los pasos de la app.
+Necesitas un Mac con una versión de Xcode compatible con las versiones de iOS y watchOS de tus dispositivos, y un Apple Watch emparejado con tu iPhone.
+
+1. Descarga y extrae el código fuente mediante **Code → Download ZIP**, o clona este repositorio. Abre [HermesEnabler2.xcodeproj](HermesEnabler2.xcodeproj) en Xcode.
+2. Añade tu cuenta de Apple en **Xcode → Settings → Accounts** (o **Apple Accounts**). Bajo **TARGETS**, abre **Signing & Capabilities** para **HermesEnabler2** y **HermesCompanion**, activa **Automatically manage signing** y selecciona tu propio equipo en ambos.
+3. Selecciona el icono azul del proyecto y después **PROJECT → HermesEnabler2 → Build Settings → All**. Busca `COMPANION_BUNDLE_IDENTIFIER` y sustituye `com.example.HermesEnabler` por un identificador único propio, con el mismo valor para **Debug** y **Release**. Conserva las expresiones existentes de Bundle Identifier de los targets.
+4. Conecta y desbloquea el iPhone, acepta los avisos de confianza y deja que Xcode detecte el Watch mediante **Device Hub** o **Window → Devices and Simulators**. En ambos dispositivos, activa **Ajustes → Privacidad y seguridad → Modo de desarrollador**, reinicia y confirma. Si no aparece el ajuste, deja que Xcode intente conectarse primero y vuelve a comprobarlo.
+5. Selecciona el esquema **HermesEnabler2** y tu **Apple Watch físico** como destino de ejecución, y pulsa **▶ Run**. Espera a que termine la instalación, abre **HermesEnabler2** en el Watch y sigue los pasos de la app. **Build Succeeded** significa que terminó la compilación; la instalación puede seguir en curso.
+
+> Si Device Hub no puede conectarse al Watch, a algunos usuarios les ha ayudado apagar temporalmente el iPhone emparejado y volver a intentarlo. Mantén el Watch desbloqueado, con Wi-Fi y Bluetooth activados, y vuelve a encender el iPhone después de conectar. Esta solución puede no funcionar en todas las configuraciones.
+>
+> Consulta **Precauciones** más abajo para conocer la caducidad de Personal Team y las limitaciones de firma de App Groups. Mantén la misma cuenta de Apple y Bundle Identifier en futuras actualizaciones.
 
 ### Windows
 
