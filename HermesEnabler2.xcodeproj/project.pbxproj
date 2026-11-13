@@ -147,6 +147,7 @@
 				ja,
 				ko,
 				pt,
+				vi,
 				"zh-Hans",
 				"zh-Hant",
 			);

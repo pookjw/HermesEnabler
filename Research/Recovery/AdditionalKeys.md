@@ -4,11 +4,11 @@ This record describes the physical-device OTA descriptor analysis used to compar
 
 ## Method and limits
 
-For `24R364`, `24R365`, `24S118`, `24S132`, `24S5112a`, and `24S5284h`, extract `libMobileGestalt.dylib` from a physical-device OTA dyld shared cache, apply slide fixups, locate the encrypted key string and its descriptor, and read the descriptor's stored index and type. Validate the relevant `CacheUUID`, data length, presence base, and offsets against the actual cache before any write. An index is not a device-specific default value.
+For `24R363`, `24R364`, `24R365`, `24S118`, `24S132`, `24S5086l`, `24S5112a`, and `24S5284h`, extract `libMobileGestalt.dylib` from a physical-device OTA dyld shared cache, apply slide fixups, locate the encrypted key string and its descriptor, and read the descriptor's stored index and type. Validate the relevant `CacheUUID`, data length, presence base, and offsets against the actual cache before any write. An index is not a device-specific default value.
 
-The `AdditionalIndexes` entries in `MGOffsets.plist` list only stored descriptors observed in the extracted binaries. A stored descriptor's raw eight-byte slot and presence marker must match the initial backup before a different current cache may be accepted for `CacheExtra` restoration. The implementation only uses this per-slot comparison when `RecoveryVerified` is true. `24S5112a` descriptor indexes were observed in the physical OTA, but its `RecoveryVerified` remains false; `24R359` still lacks a matching independently analyzed physical OTA. Both therefore require the entire raw cache to match for this path.
+The `AdditionalIndexes` entries in `MGOffsets.plist` list only stored descriptors observed in the extracted binaries. A stored descriptor's raw eight-byte slot and presence marker must match the initial backup before a different current cache may be accepted for `CacheExtra` restoration. The implementation only uses this per-slot comparison when `RecoveryVerified` is true. `24R363`, `24S5086l` and `24S5112a` descriptor indexes were observed in the physical OTA, but their `RecoveryVerified` flags remain false; `24R359` still lacks a matching independently analyzed physical OTA. Those builds therefore require the entire raw cache to match for this path.
 
-| Setting / opaque key | 24R364 / 24R365 | 24S118 / 24S132 / 24S5112a / 24S5284h | Descriptor type |
+| Setting / opaque key | 24R363 / 24R364 / 24R365 | 24S118 / 24S132 / 24S5086l / 24S5112a / 24S5284h | Descriptor type |
 | --- | ---: | ---: | ---: |
 | Depth / `Ijs+pw5tRyxqSy5kfgZNuQ` | `0xa2` | `0xa3` | `11` |
 | Absolute altimeter / `PFnuFyqMMnGUQQnTqS5byg` | `0xa1` | `0xa2` | `11` |
@@ -25,6 +25,8 @@ The `AdditionalIndexes` entries in `MGOffsets.plist` list only stored descriptor
 | Audio Intelligence / `rb2tKZxlj0Gm2tBmUQSLqQ` | `0xb2` | `0xb3` | `11` |
 
 The Swimming Workouts key `cRjPy4Ef+KZwJ+nfPeBV5Q` has index `0xffff` in the analyzed libraries. It has no ordinary stored slot and is deliberately absent from the table. The screen width and height descriptors are also unstored in the analyzed `24S118` library. Their cache-derived answers can depend on other inputs; a preset is not proof of a device's native dimensions.
+
+`24R363` matches the `24R364` / `24R365` column for all 13 keys, including `W2RPjaqovtsgiRB6ScePGA` and `rb2tKZxlj0Gm2tBmUQSLqQ`. `24S5086l` matches the `24S118` / `24S132` / `24S5284h` column for all 13 keys. These are descriptor observations from each build's own physical OTA library; they do not extend the `RecoveryVerified` scope.
 
 Type `5` for the On-Device Siri descriptor must not be treated as evidence that its native value is a Boolean. The app only accepts an existing backup override of numeric 0 or 1 for the Boolean-toggle path; other values are rejected rather than coerced. The OTA descriptor observation does not validate every callback dependency, real-device access, or the original state of a particular watch.
 
