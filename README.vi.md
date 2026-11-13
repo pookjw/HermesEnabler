@@ -14,8 +14,6 @@ Trên macOS, bạn có thể cài đặt file IPA dựng sẵn bằng Sideloadly
 
 #### Cài đặt IPA
 
-> **Sự cố đã biết với Sideloadly 0.72:** [Issue #43](https://github.com/pookjw/HermesEnabler/issues/43) cho biết phiên bản này có thể xóa ứng dụng Watch được nhúng trong quá trình ký. Nếu ứng dụng iPhone đã được cài đặt nhưng HermesEnabler2 không xuất hiện trên Apple Watch, hãy dùng Xcode. Báo cáo này chỉ áp dụng cho phiên bản 0.72; khả năng tương thích với các phiên bản khác chưa được xác nhận.
-
 1. Tải IPA từ trang [Releases](https://github.com/pookjw/HermesEnabler/releases).
 2. Cài đặt [Sideloadly](https://sideloadly.io) trên máy Mac, kết nối iPhone bằng cáp rồi chọn thiết bị trong Sideloadly.
 3. Kéo IPA vào Sideloadly và nhập Apple ID của bạn. Tắt **Use automatic bundle ID**, đặt một Bundle Identifier cố định rồi bắt đầu ký.

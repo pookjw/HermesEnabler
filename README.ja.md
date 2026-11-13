@@ -14,8 +14,6 @@ macOSでは、ビルド済みのIPAをSideloadlyでインストールするか�
 
 #### IPAをインストール
 
-> **Sideloadly 0.72の既知の問題:** [Issue #43](https://github.com/pookjw/HermesEnabler/issues/43)では、このバージョンが署名時にIPA内のWatchアプリを削除する場合があると報告されています。iPhoneアプリはインストールされたのにWatchにHermesEnabler2が表示されない場合は、Xcodeを使用してください。この報告は0.72に関するもので、他のバージョンとの互換性は確認されていません。
-
 1. [Releases](https://github.com/pookjw/HermesEnabler/releases)からIPAをダウンロードします。
 2. Macに[Sideloadly](https://sideloadly.io)をインストールし、ケーブルでiPhoneを接続してSideloadlyで選択します。
 3. IPAをSideloadlyにドラッグし、Apple IDを入力します。**Use automatic bundle ID**をオフにして固定のBundle Identifierを指定し、署名を開始します。

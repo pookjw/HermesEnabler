@@ -14,8 +14,6 @@ No macOS, você pode instalar o IPA já compilado com o Sideloadly ou compilar o
 
 #### Instalar o IPA
 
-> **Problema conhecido no Sideloadly 0.72:** O [issue #43](https://github.com/pookjw/HermesEnabler/issues/43) relata que esta versão pode remover o app Watch incorporado ao IPA durante a assinatura. Se o app do iPhone for instalado, mas o HermesEnabler2 não aparecer no Watch, use o Xcode. O relato é específico da versão 0.72; a compatibilidade com outras versões não foi confirmada.
-
 1. Baixe o IPA em [Releases](https://github.com/pookjw/HermesEnabler/releases).
 2. Instale o [Sideloadly](https://sideloadly.io) no Mac, conecte o iPhone com um cabo e selecione-o no Sideloadly.
 3. Arraste o IPA para o Sideloadly e informe seu Apple ID. Desative **Use automatic bundle ID**, defina um Bundle Identifier fixo e inicie a assinatura.
