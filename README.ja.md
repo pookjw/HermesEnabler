@@ -14,6 +14,8 @@ macOSでは、ビルド済みのIPAをSideloadlyでインストールするか�
 
 #### IPAをインストール
 
+> **Sideloadly 0.72の既知の問題:** [Issue #43](https://github.com/pookjw/HermesEnabler/issues/43)では、このバージョンが署名時にIPA内のWatchアプリを削除する場合があると報告されています。iPhoneアプリはインストールされたのにWatchにHermesEnabler2が表示されない場合は、Xcodeを使用してください。この報告は0.72に関するもので、他のバージョンとの互換性は確認されていません。
+
 1. [Releases](https://github.com/pookjw/HermesEnabler/releases)からIPAをダウンロードします。
 2. Macに[Sideloadly](https://sideloadly.io)をインストールし、ケーブルでiPhoneを接続してSideloadlyで選択します。
 3. IPAをSideloadlyにドラッグし、Apple IDを入力します。**Use automatic bundle ID**をオフにして固定のBundle Identifierを指定し、署名を開始します。
@@ -47,6 +49,9 @@ Windowsでは[WatchBridge](https://github.com/AdminZachary/iloader-for-windows)�
 ## 注意事項
 
 - Sideloadlyで**Use automatic bundle ID**をオフにし、固定のBundle Identifierを使用してください。既存のアプリデータとバックアップを引き継ぐため、アップデート時は毎回同じBundle IdentifierとApple IDを使用してください。
+- 無料のApple Personal Teamのプロビジョニングプロファイルは7日で期限切れになります。期限切れ後は、同じApple IDとBundle Identifierを使ってアプリを再ビルド・再インストールしてください。
+- このプロジェクトは**App Groups**エンタイトルメントを使用しており、無料のPersonal Teamではプロビジョニングできません。有料の開発者チームが必要になる場合があります。Bundle Identifierを変更してもこの制限は解消されず、エンタイトルメントを削除した場合に主要機能が動作するかも確認されていません。
+- iPhoneアプリはインストールされたのにWatchアプリが表示されない場合は、Sideloadlyのログで`Watch apps will be stripped from the IPA`を確認してください。これはIPA内のWatchアプリが削除されたことを示します。XcodeでWatchアプリをインストールしてください。
 - アプリを削除する前に、必ずHermesEnabler2アプリからMobileGestaltのバックアップを復元してください。
 
 ## クレジット

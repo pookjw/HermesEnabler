@@ -14,6 +14,8 @@ No macOS, você pode instalar o IPA já compilado com o Sideloadly ou compilar o
 
 #### Instalar o IPA
 
+> **Problema conhecido no Sideloadly 0.72:** O [issue #43](https://github.com/pookjw/HermesEnabler/issues/43) relata que esta versão pode remover o app Watch incorporado ao IPA durante a assinatura. Se o app do iPhone for instalado, mas o HermesEnabler2 não aparecer no Watch, use o Xcode. O relato é específico da versão 0.72; a compatibilidade com outras versões não foi confirmada.
+
 1. Baixe o IPA em [Releases](https://github.com/pookjw/HermesEnabler/releases).
 2. Instale o [Sideloadly](https://sideloadly.io) no Mac, conecte o iPhone com um cabo e selecione-o no Sideloadly.
 3. Arraste o IPA para o Sideloadly e informe seu Apple ID. Desative **Use automatic bundle ID**, defina um Bundle Identifier fixo e inicie a assinatura.
@@ -47,6 +49,9 @@ No Windows, use o [WatchBridge](https://github.com/AdminZachary/iloader-for-wind
 ## Precauções
 
 - No Sideloadly, desative **Use automatic bundle ID** e use um Bundle Identifier fixo. Use o mesmo Bundle Identifier e o mesmo Apple ID em todas as atualizações para preservar os dados e o backup existentes.
+- Os perfis de provisionamento do Apple Personal Team gratuito expiram após sete dias. Quando isso acontecer, compile e instale o app novamente usando o mesmo Apple ID e Bundle Identifier.
+- Este projeto usa o recurso **App Groups**, que não pode ser provisionado por um Personal Team gratuito. Pode ser necessária uma equipe de desenvolvedor paga; alterar o Bundle Identifier não remove essa limitação. Não presuma que remover o recurso seja uma solução completa: o funcionamento principal do app sem ele não foi confirmado.
+- Se o app do iPhone for instalado, mas o app do Watch não aparecer, procure `Watch apps will be stripped from the IPA` no log do Sideloadly. Isso indica que o app Watch incorporado foi removido; instale-o usando o Xcode.
 - Antes de apagar o app, restaure sempre o backup do MobileGestalt pelo app HermesEnabler2.
 
 ## Créditos

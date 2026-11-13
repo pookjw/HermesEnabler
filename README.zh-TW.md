@@ -14,6 +14,8 @@
 
 #### 安裝 IPA
 
+> **Sideloadly 0.72 已知問題：** [問題 #43](https://github.com/pookjw/HermesEnabler/issues/43) 回報此版本可能在簽署時移除 IPA 內嵌的 Watch App。如果 iPhone App 已安裝，但 Watch 上沒有 HermesEnabler2，請改用 Xcode。此回報針對 0.72 版本，其他版本的相容性尚未確認。
+
 1. 從 [Releases](https://github.com/pookjw/HermesEnabler/releases) 下載 IPA。
 2. 在 Mac 上安裝 [Sideloadly](https://sideloadly.io)，用傳輸線連接 iPhone，並在 Sideloadly 中選擇該裝置。
 3. 將 IPA 拖入 Sideloadly 並輸入 Apple ID。關閉 **Use automatic bundle ID**，指定固定的 Bundle Identifier，然後開始簽署。
@@ -47,6 +49,9 @@ Windows 上使用 [WatchBridge](https://github.com/AdminZachary/iloader-for-wind
 ## 注意事項
 
 - 在 Sideloadly 中關閉 **Use automatic bundle ID**，並使用固定的 Bundle Identifier。每次更新時都使用相同的 Bundle Identifier 和 Apple ID，以便保留現有的 App 資料和備份。
+- 免費 Apple Personal Team 的佈建描述檔會在 7 天後到期。到期後，請使用相同的 Apple ID 和 Bundle Identifier 重新建置並安裝 App。
+- 本專案使用 **App Groups** 權限，免費 Personal Team 無法為其佈建簽署。可能需要付費開發者團隊；更改 Bundle Identifier 並不能消除此限制。不要假設移除此權限就能完全解決問題，因為尚未確認移除後 App 的主要功能是否正常。
+- 如果 iPhone App 已安裝但 Watch App 沒有出現，請在 Sideloadly 紀錄中尋找 `Watch apps will be stripped from the IPA`。這表示內嵌的 Watch App 已遭移除；請使用 Xcode 安裝 Watch App。
 - 刪除 App 前，請務必透過 HermesEnabler2 App 還原 MobileGestalt 備份。
 
 ## 致謝

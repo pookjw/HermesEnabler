@@ -14,6 +14,8 @@ macOS에서는 미리 빌드된 IPA를 Sideloadly로 설치하거나 Xcode에서
 
 #### IPA 설치
 
+> **Sideloadly 0.72 알려진 문제:** [이슈 #43](https://github.com/pookjw/HermesEnabler/issues/43)에 따르면 이 버전은 서명 과정에서 IPA에 포함된 Watch 앱을 제거할 수 있습니다. iPhone 앱은 설치됐지만 Watch에 HermesEnabler2가 보이지 않으면 Xcode를 사용하세요. 이 보고는 0.72 버전에 관한 것이며 다른 버전의 호환성은 확인되지 않았습니다.
+
 1. [Releases](https://github.com/pookjw/HermesEnabler/releases)에서 IPA를 다운로드합니다.
 2. Mac에 [Sideloadly](https://sideloadly.io)를 설치하고, 케이블로 iPhone을 연결한 뒤 Sideloadly에서 해당 기기를 선택합니다.
 3. IPA를 Sideloadly로 끌어다 놓고 Apple ID를 입력합니다. **Use automatic bundle ID**를 끄고 고정된 Bundle Identifier를 지정한 뒤 서명을 시작합니다.
@@ -47,6 +49,9 @@ Windows에서는 [WatchBridge](https://github.com/AdminZachary/iloader-for-windo
 ## 주의사항
 
 - Sideloadly에서 **Use automatic bundle ID**를 끄고 고정된 Bundle Identifier를 사용하세요. 기존 앱 데이터와 백업을 유지할 수 있도록 업데이트할 때마다 같은 Bundle Identifier와 Apple ID를 사용하세요.
+- 무료 Apple Personal Team 프로비저닝 프로파일은 7일 후 만료됩니다. 만료되면 같은 Apple ID와 Bundle Identifier를 사용해 앱을 다시 빌드하고 설치하세요.
+- 이 프로젝트는 **App Groups** 권한을 사용하며 무료 Personal Team은 이를 프로비저닝할 수 없습니다. 유료 개발자 팀이 필요할 수 있습니다. Bundle Identifier를 바꿔도 이 제한은 해결되지 않으며, 권한을 제거해도 앱의 핵심 기능이 작동하는지는 확인되지 않았습니다.
+- iPhone 앱은 설치됐지만 Watch 앱이 나타나지 않으면 Sideloadly 로그에서 `Watch apps will be stripped from the IPA`를 확인하세요. 이 문구는 IPA에서 Watch 앱이 제거됐다는 뜻이며, iPhone 앱만 설치해서는 Watch 앱이 설치되지 않습니다. Xcode로 Watch 앱을 설치하세요.
 - 앱을 삭제하기 전에 반드시 HermesEnabler2 앱에서 MobileGestalt 백업을 복원하세요.
 
 ## 크레딧

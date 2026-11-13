@@ -14,6 +14,8 @@ Sous macOS, vous pouvez installer l’IPA déjà compilé avec Sideloadly ou com
 
 #### Installer l’IPA
 
+> **Problème connu avec Sideloadly 0.72 :** l’[issue #43](https://github.com/pookjw/HermesEnabler/issues/43) indique que cette version peut supprimer l’app Watch intégrée à l’IPA lors de la signature. Si l’app iPhone est installée mais que HermesEnabler2 n’apparaît pas sur la Watch, utilisez Xcode. Ce signalement concerne la version 0.72 ; la compatibilité des autres versions n’a pas été confirmée.
+
 1. Téléchargez l’IPA depuis [Releases](https://github.com/pookjw/HermesEnabler/releases).
 2. Installez [Sideloadly](https://sideloadly.io) sur le Mac, connectez l’iPhone avec un câble et sélectionnez-le dans Sideloadly.
 3. Faites glisser l’IPA dans Sideloadly et saisissez votre Apple ID. Désactivez **Use automatic bundle ID**, indiquez un Bundle Identifier fixe, puis lancez la signature.
@@ -47,6 +49,9 @@ Sous Windows, utilisez [WatchBridge](https://github.com/AdminZachary/iloader-for
 ## Précautions
 
 - Dans Sideloadly, désactivez **Use automatic bundle ID** et utilisez un Bundle Identifier fixe. Utilisez le même Bundle Identifier et le même Apple ID à chaque mise à jour pour conserver les données et la sauvegarde existantes.
+- Les profils de provisionnement Apple Personal Team gratuits expirent au bout de sept jours. Dans ce cas, reconstruisez et réinstallez l’app avec le même Apple ID et le même Bundle Identifier.
+- Ce projet utilise la capacité **App Groups**, qu’une Personal Team gratuite ne peut pas provisionner. Une équipe de développement payante peut être nécessaire ; modifier le Bundle Identifier ne supprime pas cette limitation. Ne considérez pas la suppression de cette capacité comme une solution complète : le fonctionnement principal de l’app sans elle n’a pas été confirmé.
+- Si l’app iPhone est installée mais que l’app Watch n’apparaît pas, recherchez `Watch apps will be stripped from the IPA` dans le journal Sideloadly. Cela signifie que l’app Watch intégrée a été supprimée ; installez-la avec Xcode.
 - Avant de supprimer l’app, restaurez impérativement votre sauvegarde MobileGestalt depuis l’app HermesEnabler2.
 
 ## Crédits
