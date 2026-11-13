@@ -10,7 +10,7 @@
 
 ### macOS
 
-Unter macOS kannst du die fertige IPA mit Sideloadly installieren oder die App direkt mit Xcode erstellen. In beiden Fällen muss das iPhone mit der Ziel-Apple Watch gekoppelt sein und die Watch eine unterstützte watchOS-Version ausführen.
+Unter macOS kannst du die fertige IPA mit WatchBridge oder Sideloadly installieren oder die App direkt mit Xcode erstellen. Das iPhone muss mit der gewünschten Apple Watch gekoppelt sein und die Watch muss eine unterstützte watchOS-Version ausführen.
 
 #### IPA installieren
 
@@ -31,13 +31,23 @@ Unter macOS kannst du die fertige IPA mit Sideloadly installieren oder die App d
 2. Wähle die Apple Watch als Run-Ziel aus und klicke auf **Run**.
 3. Öffne **HermesEnabler2** auf der Apple Watch und folge den Schritten in der App.
 
+#### Mit WatchBridge installieren
+
+Ab macOS 11 kannst du die fertige WatchBridge-DMG verwenden, ohne Xcode zu installieren.
+
+1. Lade die passende DMG unter [WatchBridge Releases](https://github.com/AdminZachary/WatchBridge/releases/latest) herunter. Wähle `arm64` für Apple Silicon oder `x86_64` für Intel. Öffne die DMG und ziehe **WatchBridge.app** in den Ordner **Programme**.
+2. Lade die ursprüngliche IPA unter [HermesEnabler Releases](https://github.com/pookjw/HermesEnabler/releases) herunter. Schließe das gekoppelte iPhone per USB an und wähle es in WatchBridge aus.
+3. Folge den Anweisungen, um den Schalter für den Entwicklermodus einzublenden. Aktiviere den Entwicklermodus auf der Watch, starte sie neu und bestätige die Aktivierung. Signiere und installiere die IPA anschließend in WatchBridge.
+
+Falls macOS den ersten Start blockiert, folge den Hinweisen in den Versionshinweisen zu WatchBridge.
+
 ### Windows
 
-Unter Windows verwendest du [WatchBridge](https://github.com/AdminZachary/iloader-for-windows), ein Community-Tool, das den Entwicklermodus vorbereitet und eine IPA installiert, die sowohl die iPhone-Host-App als auch die Watch-App enthält. Es steht weder mit Apple noch mit diesem Projekt in offizieller Verbindung.
+Unter Windows verwendest du [WatchBridge](https://github.com/AdminZachary/WatchBridge), ein Community-Tool, das den Entwicklermodus vorbereitet und eine IPA installiert, die sowohl die iPhone-Host-App als auch die Watch-App enthält. Es steht weder mit Apple noch mit diesem Projekt in offizieller Verbindung.
 
 1. Installiere **Apple Mobile Device Service**, indem du [iTunes](https://www.apple.com/itunes/) oder die **Apple Devices**-App aus dem Microsoft Store installierst. WatchBridge benötigt den Dienst für USB- und Wi-Fi-Kommunikation. WebView2 ist in Windows 11 enthalten.
 2. Stelle sicher, dass dein iPhone mit der Ziel-Apple Watch gekoppelt ist. WatchBridge unterstützt jeweils nur eine gekoppelte Watch; sind mehrere gekoppelt, bricht der Vorbereitungsschritt ab, statt zu raten.
-3. Lade `watchbridge-windows.zip` von [WatchBridge Releases](https://github.com/AdminZachary/iloader-for-windows/releases/latest) herunter, entpacke es und starte `WatchBridge.exe`. Die ausführbare Datei ist nicht signiert, daher kann Windows SmartScreen beim ersten Start warnen.
+3. Lade `watchbridge-windows.zip` von [WatchBridge Releases](https://github.com/AdminZachary/WatchBridge/releases/latest) herunter, entpacke es und starte `WatchBridge.exe`. Die ausführbare Datei ist nicht signiert, daher kann Windows SmartScreen beim ersten Start warnen.
 4. Lade die IPA unter [Releases](https://github.com/pookjw/HermesEnabler/releases) herunter. Verwende die Original-IPA, die sowohl die iPhone-Host-App als auch `Watch/*.app` enthält; reine Watch-Pakete werden nicht unterstützt.
 5. Verbinde das gekoppelte iPhone per USB und wähle es in WatchBridge aus.
 6. Koppele die Watch und bestätige die Vertrauensabfrage auf der Watch. Fordere den Schalter **Entwicklermodus** an, öffne dann auf der Watch **Einstellungen → Datenschutz & Sicherheit → Entwicklermodus**, aktiviere ihn, starte neu und bestätige. Kehre zu WatchBridge zurück und klicke auf **Check again**. WatchBridge aktiviert den Entwicklermodus nicht selbst und startet die Watch nicht neu.

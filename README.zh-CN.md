@@ -10,7 +10,7 @@
 
 ### macOS
 
-在 macOS 上，你可以用 Sideloadly 安装预构建的 IPA，也可以直接用 Xcode 构建应用。两种方式都要求 iPhone 已与目标 Apple Watch 配对，且手表运行受支持的 watchOS 版本。
+在 macOS 上，你可以用 WatchBridge 或 Sideloadly 安装预构建的 IPA，也可以直接用 Xcode 构建应用。请确认 iPhone 已与目标 Apple Watch 配对，且手表运行受支持的 watchOS 版本。
 
 #### 安装 IPA
 
@@ -31,13 +31,23 @@
 2. 选择 Apple Watch 作为运行目标，然后点击 **Run**。
 3. 在 Apple Watch 上打开 **HermesEnabler2**，并按照应用中的步骤操作。
 
+#### 使用 WatchBridge 安装
+
+在 macOS 11 或更新版本上，下载预构建的 WatchBridge DMG 即可使用，无需安装 Xcode。
+
+1. 从 [WatchBridge Releases](https://github.com/AdminZachary/WatchBridge/releases/latest) 下载对应架构的 DMG。Apple Silicon 选择 `arm64`，Intel 选择 `x86_64`。打开 DMG，将 **WatchBridge.app** 拖入「应用程序」。
+2. 从 [HermesEnabler Releases](https://github.com/pookjw/HermesEnabler/releases) 下载原始 IPA。通过 USB 连接已配对的 iPhone，并在 WatchBridge 中选择该设备。
+3. 按提示显示开发者模式开关，在手表上手动开启、重启并确认，然后回到 WatchBridge 签名并安装 IPA。
+
+如果 macOS 阻止首次打开，请参考 WatchBridge 发布说明中的首次启动指引。
+
 ### Windows
 
-Windows 上使用 [WatchBridge](https://github.com/AdminZachary/iloader-for-windows)。它是一个社区工具，可准备开发者模式，并安装同时包含 iPhone 宿主应用和 Watch 应用的 IPA。它与 Apple 或本项目没有官方关联。
+Windows 上使用 [WatchBridge](https://github.com/AdminZachary/WatchBridge)。它是一个社区工具，可准备开发者模式，并安装同时包含 iPhone 宿主应用和 Watch 应用的 IPA。它与 Apple 或本项目没有官方关联。
 
 1. 安装 [iTunes](https://www.apple.com/itunes/) 或 Microsoft Store 中的 **Apple Devices** 应用，以获取 **Apple Mobile Device Service**。WatchBridge 的 USB 和 Wi-Fi 通信都依赖该服务。Windows 11 已内置 WebView2。
 2. 确认 iPhone 已与目标 Apple Watch 配对。WatchBridge 一次仅支持一台已配对手表；如果配对了多台，准备步骤会停止，而不会猜测目标。
-3. 从 [WatchBridge Releases](https://github.com/AdminZachary/iloader-for-windows/releases/latest) 下载 `watchbridge-windows.zip`，解压并运行 `WatchBridge.exe`。该程序未签名，首次运行时 Windows SmartScreen 可能会提示。
+3. 从 [WatchBridge Releases](https://github.com/AdminZachary/WatchBridge/releases/latest) 下载 `watchbridge-windows.zip`，解压并运行 `WatchBridge.exe`。该程序未签名，首次运行时 Windows SmartScreen 可能会提示。
 4. 从 [Releases](https://github.com/pookjw/HermesEnabler/releases) 下载 IPA。请使用同时包含 iPhone 宿主和 `Watch/*.app` 的原始 IPA；不支持仅含 Watch 的包。
 5. 通过 USB 连接已配对的 iPhone，并在 WatchBridge 中选择该设备。
 6. 配对手表，并在手表上确认信任提示。请求**开发者模式**开关后，在手表上打开 **设置 → 隐私与安全性 → 开发者模式**，开启、重启并确认。返回 WatchBridge 并点击 **Check again**。WatchBridge 不会替你开启开发者模式或重启手表。

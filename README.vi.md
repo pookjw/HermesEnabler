@@ -10,7 +10,7 @@
 
 ### macOS
 
-Trên macOS, bạn có thể cài đặt file IPA dựng sẵn bằng Sideloadly hoặc tự build ứng dụng trực tiếp bằng Xcode. Dù dùng cách nào, iPhone cũng phải được ghép đôi với Apple Watch cần cài đặt và Apple Watch phải chạy phiên bản watchOS được hỗ trợ.
+Trên macOS, bạn có thể cài đặt file IPA dựng sẵn bằng WatchBridge hoặc Sideloadly, hoặc tự build ứng dụng trực tiếp bằng Xcode. Hãy đảm bảo iPhone đã ghép đôi với Apple Watch cần cài đặt và đồng hồ đang chạy phiên bản watchOS được hỗ trợ.
 
 #### Cài đặt IPA
 
@@ -31,13 +31,23 @@ Trên macOS, bạn có thể cài đặt file IPA dựng sẵn bằng Sideloadly
 2. Chọn Apple Watch của bạn làm đích chạy rồi nhấn **Run**.
 3. Mở **HermesEnabler2** trên Apple Watch và làm theo các bước trong ứng dụng.
 
+#### Cài đặt bằng WatchBridge
+
+Trên macOS 11 trở lên, bạn có thể dùng bản DMG dựng sẵn của WatchBridge mà không cần cài đặt Xcode.
+
+1. Tải DMG phù hợp từ [WatchBridge Releases](https://github.com/AdminZachary/WatchBridge/releases/latest). Chọn `arm64` cho Apple Silicon hoặc `x86_64` cho Intel. Mở DMG rồi kéo **WatchBridge.app** vào thư mục **Ứng dụng**.
+2. Tải IPA gốc từ [HermesEnabler Releases](https://github.com/pookjw/HermesEnabler/releases). Kết nối iPhone đã ghép đôi qua USB và chọn thiết bị trong WatchBridge.
+3. Làm theo hướng dẫn để hiển thị công tắc Chế độ nhà phát triển. Bật chế độ này trên đồng hồ, khởi động lại và xác nhận. Sau đó ký và cài đặt IPA trong WatchBridge.
+
+Nếu macOS chặn lần mở đầu tiên, hãy làm theo hướng dẫn trong ghi chú phát hành của WatchBridge.
+
 ### Windows
 
-Trên Windows, dự án sử dụng [WatchBridge](https://github.com/AdminZachary/iloader-for-windows), một công cụ cộng đồng dùng để chuẩn bị Chế độ nhà phát triển và cài đặt IPA chứa cả ứng dụng chủ trên iPhone lẫn ứng dụng Watch. Công cụ này không liên kết với Apple hoặc dự án này.
+Trên Windows, dự án sử dụng [WatchBridge](https://github.com/AdminZachary/WatchBridge), một công cụ cộng đồng dùng để chuẩn bị Chế độ nhà phát triển và cài đặt IPA chứa cả ứng dụng chủ trên iPhone lẫn ứng dụng Watch. Công cụ này không liên kết với Apple hoặc dự án này.
 
 1. Cài đặt **Apple Mobile Device Service** bằng cách cài [iTunes](https://www.apple.com/itunes/) hoặc ứng dụng **Apple Devices** từ Microsoft Store. WatchBridge cần dịch vụ này để giao tiếp qua USB và Wi-Fi. WebView2 được tích hợp sẵn trong Windows 11.
 2. Đảm bảo iPhone của bạn đã được ghép đôi với Apple Watch cần cài đặt. WatchBridge chỉ hỗ trợ một Apple Watch đã ghép đôi tại một thời điểm; nếu có nhiều hơn một Apple Watch được ghép đôi, bước chuẩn bị sẽ dừng thay vì tự chọn thiết bị.
-3. Tải `watchbridge-windows.zip` từ trang [WatchBridge Releases](https://github.com/AdminZachary/iloader-for-windows/releases/latest), giải nén rồi chạy `WatchBridge.exe`. File thực thi này chưa được ký nên Windows SmartScreen có thể hiển thị cảnh báo trong lần khởi chạy đầu tiên.
+3. Tải `watchbridge-windows.zip` từ trang [WatchBridge Releases](https://github.com/AdminZachary/WatchBridge/releases/latest), giải nén rồi chạy `WatchBridge.exe`. File thực thi này chưa được ký nên Windows SmartScreen có thể hiển thị cảnh báo trong lần khởi chạy đầu tiên.
 4. Tải IPA từ trang [Releases](https://github.com/pookjw/HermesEnabler/releases). Hãy dùng IPA gốc chứa cả ứng dụng chủ trên iPhone và `Watch/*.app`; các gói chỉ chứa ứng dụng Watch không được hỗ trợ.
 5. Kết nối iPhone đã ghép đôi qua USB rồi chọn thiết bị trong WatchBridge.
 6. Ghép đôi Apple Watch và xác nhận lời nhắc tin cậy trên Apple Watch. Yêu cầu hiển thị công tắc **Chế độ nhà phát triển**, sau đó trên Apple Watch, mở **Cài đặt → Quyền riêng tư & Bảo mật → Chế độ nhà phát triển**, bật chế độ này, khởi động lại rồi xác nhận. Quay lại WatchBridge và nhấn **Check again**. WatchBridge không tự bật Chế độ nhà phát triển hoặc khởi động lại Apple Watch cho bạn.
