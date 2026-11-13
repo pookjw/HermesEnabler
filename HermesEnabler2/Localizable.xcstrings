@@ -51,6 +51,12 @@
             "state" : "translated",
             "value" : "%1$lld × %2$lld 像素"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld × %2$lld pixel"
+          }
         }
       }
     },
@@ -104,6 +110,12 @@
             "state" : "translated",
             "value" : "%1$lld × %2$lld 像素"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld × %2$lld px"
+          }
         }
       }
     },
@@ -155,6 +167,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "%1$lld × %2$lld 像素"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld × %2$lld pixel"
           }
         }
       }
@@ -208,6 +226,12 @@
             "state" : "translated",
             "value" : "%1$lld × %2$lld 像素"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "%1$lld × %2$lld px"
+          }
         }
       }
     },
@@ -260,6 +284,12 @@
             "state" : "translated",
             "value" : "已從 iPhone 收到備份。\n\n檔案：%1$@\n\nSHA-256：\n%2$@\n\n檔案只會加入備份列表，不會還原 MobileGestalt。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã nhận một bản sao lưu từ iPhone của bạn.\n\nTệp: %@\n\nSHA-256:\n%@\n\nTệp sẽ chỉ được thêm vào thư viện sao lưu.\nSẽ không khôi phục MobileGestalt."
+          }
         }
       }
     },
@@ -311,6 +341,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "較大的佈局可能無法適合螢幕，也可能影響其他錶面和複雜功能。變更會立即寫入；請重新啟動手錶以重新載入。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bố cục lớn hơn có thể không vừa màn hình và có thể ảnh hưởng đến các mặt đồng hồ và tiện ích khác. Thay đổi có hiệu lực ngay; hãy khởi động lại đồng hồ để tải lại."
           }
         }
       }
@@ -365,6 +401,12 @@
             "state" : "translated",
             "value" : "Absolute Altimeter"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cao kế tuyệt đối"
+          }
         }
       }
     },
@@ -417,6 +459,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Absolute Altimeter 功能已關閉。重啟Carousel即可重新載入。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt khả năng Cao kế tuyệt đối. Hãy khởi động lại Carousel để tải lại."
           }
         }
       }
@@ -471,6 +519,12 @@
             "state" : "translated",
             "value" : "Absolute Altimeter 功能已開啟。重啟Carousel即可重新載入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật khả năng Cao kế tuyệt đối. Hãy khởi động lại Carousel để tải lại."
+          }
         }
       }
     },
@@ -522,6 +576,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "接受並導入"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chấp nhận và nhập"
           }
         }
       }
@@ -576,6 +636,12 @@
             "state" : "translated",
             "value" : "Action Button"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nút Tác vụ"
+          }
         }
       }
     },
@@ -628,6 +694,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Action Button 已關閉。重啟Carousel即可重新載入。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt Nút Tác vụ. Hãy khởi động lại Carousel để tải lại."
           }
         }
       }
@@ -682,6 +754,12 @@
             "state" : "translated",
             "value" : "Action Button 已開啟。重啟Carousel即可重新載入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật Nút Tác vụ. Hãy khởi động lại Carousel để tải lại."
+          }
         }
       }
     },
@@ -734,6 +812,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Always Listening 功能已關閉。重啟Carousel即可重新載入。 Siri 設定和支援的音訊硬體仍然適用。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt khả năng Luôn lắng nghe. Hãy khởi động lại Carousel để tải lại. Vẫn áp dụng cài đặt Siri và phần cứng âm thanh được hỗ trợ."
           }
         }
       }
@@ -788,6 +872,12 @@
             "state" : "translated",
             "value" : "Always Listening 功能已開啟。重啟Carousel即可重新載入。 Siri 設定和支援的音訊硬體仍然適用。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật khả năng Luôn lắng nghe. Hãy khởi động lại Carousel để tải lại. Vẫn áp dụng cài đặt Siri và phần cứng âm thanh được hỗ trợ."
+          }
         }
       }
     },
@@ -840,6 +930,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Always-On Compass"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "La bàn luôn bật"
           }
         }
       }
@@ -894,6 +990,12 @@
             "state" : "translated",
             "value" : "Always-On Compass 功能已關閉。重啟Carousel即可重新載入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt khả năng La bàn luôn bật. Hãy khởi động lại Carousel để tải lại."
+          }
         }
       }
     },
@@ -946,6 +1048,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Always-On Compass 功能已開啟。重啟Carousel即可重新載入。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật khả năng La bàn luôn bật. Hãy khởi động lại Carousel để tải lại."
           }
         }
       }
@@ -1000,6 +1108,12 @@
             "state" : "translated",
             "value" : "Always-On Display"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Màn hình luôn bật"
+          }
         }
       }
     },
@@ -1052,6 +1166,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "可能缺少 App Group ID，或此 watchOS 版本不相容。請檢查 app 的 App Group 設定與 watchOS 版本。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Có thể thiếu App Group ID hoặc phiên bản watchOS này không tương thích. Hãy kiểm tra cấu hình App Group của ứng dụng và phiên bản watchOS."
           }
         }
       }
@@ -1106,6 +1226,12 @@
             "state" : "translated",
             "value" : "外部備份正在等待您的確認。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Có một bản sao lưu bên ngoài đang chờ bạn xác nhận."
+          }
         }
       }
     },
@@ -1158,6 +1284,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "初始備份已存在，將不會被覆寫。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bản sao lưu ban đầu đã tồn tại và sẽ không bị ghi đè."
           }
         }
       }
@@ -1212,6 +1344,12 @@
             "state" : "translated",
             "value" : "使用任何功能前，必須先建立一份初始的 MobileGestalt 備份。它會保留為原始版本，且無法在此覆寫。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cần có bản sao lưu MobileGestalt ban đầu trước khi dùng bất kỳ tính năng nào. Bản này sẽ được giữ làm bản gốc và không thể bị ghi đè tại đây."
+          }
         }
       }
     },
@@ -1260,6 +1398,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "AOD 1 Hz"
+          }
+        },
+        "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "AOD 1 Hz"
@@ -1317,6 +1461,12 @@
             "state" : "translated",
             "value" : "AOD 1Hz 關閉。重啟Carousel即可重新載入。面必須支援 AOD 中的秒。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt AOD 1Hz. Hãy khởi động lại Carousel để tải lại. Mặt đồng hồ phải hỗ trợ hiển thị giây trong AOD."
+          }
         }
       }
     },
@@ -1369,6 +1519,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "AOD 1Hz 開啟。重啟Carousel即可重新載入。面必須支援 AOD 中的秒。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật AOD 1Hz. Hãy khởi động lại Carousel để tải lại. Mặt đồng hồ phải hỗ trợ hiển thị giây trong AOD."
           }
         }
       }
@@ -1423,6 +1579,12 @@
             "state" : "translated",
             "value" : "AOD 已關閉。重啟Carousel即可重新載入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt AOD. Hãy khởi động lại Carousel để tải lại."
+          }
         }
       }
     },
@@ -1475,6 +1637,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "AOD 已開啟。重啟Carousel即可重新載入。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật AOD. Hãy khởi động lại Carousel để tải lại."
           }
         }
       }
@@ -1529,6 +1697,12 @@
             "state" : "translated",
             "value" : "AOD Vibrancy"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Độ rực AOD"
+          }
         }
       }
     },
@@ -1581,6 +1755,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "AOD Vibrancy 功能已關閉。重啟Carousel即可重新載入。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt khả năng Độ rực AOD. Hãy khởi động lại Carousel để tải lại."
           }
         }
       }
@@ -1635,6 +1815,12 @@
             "state" : "translated",
             "value" : "AOD Vibrancy 功能已開啟。重啟Carousel即可重新載入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật khả năng Độ rực AOD. Hãy khởi động lại Carousel để tải lại."
+          }
         }
       }
     },
@@ -1684,6 +1870,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Apple Intelligence / Siri AI"
+          }
+        },
+        "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Apple Intelligence / Siri AI"
@@ -1741,6 +1933,12 @@
             "state" : "translated",
             "value" : "Apple Intelligence 功能已關閉。重啟手錶即可重新裝填。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt khả năng Apple Intelligence. Hãy khởi động lại đồng hồ để tải lại."
+          }
         }
       }
     },
@@ -1794,6 +1992,12 @@
             "state" : "translated",
             "value" : "Apple Intelligence 功能已開啟。重啟手錶即可重新裝填。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật khả năng Apple Intelligence. Hãy khởi động lại đồng hồ để tải lại."
+          }
         }
       }
     },
@@ -1843,6 +2047,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Audio Intelligence"
+          }
+        },
+        "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Audio Intelligence"
@@ -1900,6 +2110,12 @@
             "state" : "translated",
             "value" : "Audio Intelligence 功能已關閉。重啟手錶即可重新裝填。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt khả năng Audio Intelligence. Hãy khởi động lại đồng hồ để tải lại."
+          }
         }
       }
     },
@@ -1952,6 +2168,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Audio Intelligence 功能已開啟。重啟手錶即可重新裝填。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật khả năng Audio Intelligence. Hãy khởi động lại đồng hồ để tải lại."
           }
         }
       }
@@ -2006,6 +2228,12 @@
             "state" : "translated",
             "value" : "自動備份"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sao lưu tự động"
+          }
         }
       }
     },
@@ -2058,6 +2286,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "備份目前的 MG"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sao lưu MG hiện tại"
           }
         }
       }
@@ -2112,6 +2346,12 @@
             "state" : "translated",
             "value" : "進行變更前請先備份 MobileGestalt。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hãy sao lưu MobileGestalt trước khi thay đổi."
+          }
         }
       }
     },
@@ -2164,6 +2404,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "請先備份 MobileGestalt。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hãy sao lưu MobileGestalt trước."
           }
         }
       }
@@ -2218,6 +2464,12 @@
             "state" : "translated",
             "value" : "備份的快取配置與此手錶不相符。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bố cục bộ nhớ đệm của bản sao lưu không khớp với đồng hồ này."
+          }
         }
       }
     },
@@ -2270,6 +2522,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法刪除備份。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể xóa bản sao lưu."
           }
         }
       }
@@ -2324,6 +2582,12 @@
             "state" : "translated",
             "value" : "無法驗證備份。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể xác minh bản sao lưu."
+          }
         }
       }
     },
@@ -2376,6 +2640,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已刪除備份。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã xóa bản sao lưu."
           }
         }
       }
@@ -2430,6 +2700,12 @@
             "state" : "translated",
             "value" : "備份庫"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thư viện sao lưu"
+          }
         }
       }
     },
@@ -2482,6 +2758,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "備份已就緒。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bản sao lưu đã sẵn sàng."
           }
         }
       }
@@ -2536,6 +2818,12 @@
             "state" : "translated",
             "value" : "Battery Information"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thông tin pin"
+          }
         }
       }
     },
@@ -2588,6 +2876,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Battery Information 功能已關閉。重啟Carousel即可重新載入。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt khả năng Thông tin pin. Hãy khởi động lại Carousel để tải lại."
           }
         }
       }
@@ -2642,6 +2936,12 @@
             "state" : "translated",
             "value" : "Battery Information 功能已開啟。重啟Carousel即可重新載入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật khả năng Thông tin pin. Hãy khởi động lại Carousel để tải lại."
+          }
         }
       }
     },
@@ -2693,6 +2993,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "快取驗證失敗，無法確認是否已還原先前狀態。請還原備份。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xác minh bộ nhớ đệm thất bại và không thể xác nhận việc hoàn tác. Hãy khôi phục một bản sao lưu."
           }
         }
       }
@@ -2747,6 +3053,12 @@
             "state" : "translated",
             "value" : "加拿大"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Canada"
+          }
         }
       }
     },
@@ -2799,6 +3111,12 @@
             "state" : "translated",
             "value" : "取消"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hủy"
+          }
         }
       }
     },
@@ -2850,6 +3168,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法確認此外部備份屬於此手錶。未寫入任何資料。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể xác minh bản sao lưu bên ngoài này thuộc về đồng hồ này. Chưa có dữ liệu nào được ghi."
           }
         }
       }
@@ -2904,6 +3228,12 @@
             "state" : "translated",
             "value" : "能力旗標不會新增缺少的感測器，也不會覆寫「健康」權限。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Các cờ khả năng không thêm cảm biến còn thiếu và không ghi đè quyền Sức khỏe."
+          }
         }
       }
     },
@@ -2956,6 +3286,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "僅變更 RegionCode，不會更動銷售地區後綴。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chỉ thay đổi RegionCode. Hậu tố vùng bán hàng được giữ nguyên."
           }
         }
       }
@@ -3010,6 +3346,12 @@
             "state" : "translated",
             "value" : "變更的是 MobileGestalt 回報的尺寸，而非實際像素。不同的尺寸可能會裁切 watchOS 內容。套用後請重新啟動手錶；若版面變差，請還原原始尺寸。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thay đổi kích thước do MobileGestalt báo cáo, không phải pixel vật lý. Kích thước khác có thể làm cắt nội dung watchOS. Hãy khởi động lại đồng hồ sau khi áp dụng; khôi phục kích thước gốc nếu bố cục xấu đi."
+          }
         }
       }
     },
@@ -3062,6 +3404,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "僅變更銷售地區後綴。這可能導致出廠資訊工具回報不相符。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chỉ thay đổi hậu tố vùng bán hàng. Điều này có thể khiến các công cụ thông tin nhà máy báo không khớp."
           }
         }
       }
@@ -3116,6 +3464,12 @@
             "state" : "translated",
             "value" : "中國（大陸）"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trung Quốc (đại lục)"
+          }
         }
       }
     },
@@ -3168,6 +3522,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "選擇地區代碼"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chọn mã khu vực"
           }
         }
       }
@@ -3222,6 +3582,12 @@
             "state" : "translated",
             "value" : "選擇銷售地區"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chọn vùng bán hàng"
+          }
         }
       }
     },
@@ -3273,6 +3639,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "類別 29"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Class 29"
           }
         }
       }
@@ -3326,6 +3698,12 @@
             "state" : "translated",
             "value" : "類別 38"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Class 38"
+          }
         }
       }
     },
@@ -3377,6 +3755,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "2 級後備無法移動庫 — 此版本需要 27.2 上的應用程式組"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "class-2 fallback không thể di chuyển Library — bản build này cần app group trên 27.2"
           }
         }
       }
@@ -3431,6 +3815,12 @@
             "state" : "translated",
             "value" : "Compass Orienteering"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Định hướng bằng la bàn"
+          }
         }
       }
     },
@@ -3483,6 +3873,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Compass Orienteering 已關閉。重啟Carousel即可重新載入。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt Định hướng bằng la bàn. Hãy khởi động lại Carousel để tải lại."
           }
         }
       }
@@ -3537,6 +3933,12 @@
             "state" : "translated",
             "value" : "Compass Orienteering 已開啟。重啟Carousel即可重新載入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật Định hướng bằng la bàn. Hãy khởi động lại Carousel để tải lại."
+          }
         }
       }
     },
@@ -3589,6 +3991,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Continuous Heart Rate"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhịp tim liên tục"
           }
         }
       }
@@ -3643,6 +4051,12 @@
             "state" : "translated",
             "value" : "Continuous Heart Rate 已關閉。重啟Carousel即可重新載入。感測器硬體和運作狀況設定仍然適用。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt Nhịp tim liên tục. Hãy khởi động lại Carousel để tải lại. Vẫn áp dụng phần cứng cảm biến và cài đặt Sức khỏe."
+          }
         }
       }
     },
@@ -3695,6 +4109,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Continuous Heart Rate 已打开。重啟Carousel即可重新載入。感測器硬體和運作狀況設定仍然適用。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật Nhịp tim liên tục. Hãy khởi động lại Carousel để tải lại. Vẫn áp dụng phần cứng cảm biến và cài đặt Sức khỏe."
           }
         }
       }
@@ -3749,6 +4169,12 @@
             "state" : "translated",
             "value" : "控制"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Điều khiển"
+          }
         }
       }
     },
@@ -3801,6 +4227,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法更改設定"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể thay đổi cài đặt"
           }
         }
       }
@@ -3855,6 +4287,12 @@
             "state" : "translated",
             "value" : "無法識別 watchOS 版本。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể nhận dạng bản build watchOS."
+          }
         }
       }
     },
@@ -3906,6 +4344,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法識別此手錶型號。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể nhận dạng mẫu đồng hồ này."
           }
         }
       }
@@ -3960,6 +4404,12 @@
             "state" : "translated",
             "value" : "無法讀取尺寸"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể đọc kích thước"
+          }
         }
       }
     },
@@ -4012,6 +4462,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法讀取手錶的原始控制功能數值，未進行變更。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể đọc các giá trị điều khiển gốc của đồng hồ; chưa có thay đổi nào được thực hiện."
           }
         }
       }
@@ -4066,6 +4522,12 @@
             "state" : "translated",
             "value" : "無法讀取手錶的原始錶面數值，未進行變更。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể đọc các giá trị mặt đồng hồ gốc của đồng hồ; chưa có thay đổi nào được thực hiện."
+          }
         }
       }
     },
@@ -4118,6 +4580,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法更新 Absolute Altimeter 功能。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng Cao kế tuyệt đối."
           }
         }
       }
@@ -4172,6 +4640,12 @@
             "state" : "translated",
             "value" : "無法更新 Action Button 功能。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng Nút Tác vụ."
+          }
         }
       }
     },
@@ -4224,6 +4698,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法更新 Always Listening 功能。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng Luôn lắng nghe."
           }
         }
       }
@@ -4278,6 +4758,12 @@
             "state" : "translated",
             "value" : "無法更新 Always-On Compass 功能。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng La bàn luôn bật."
+          }
         }
       }
     },
@@ -4330,6 +4816,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法更新環境光能力。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng ánh sáng môi trường."
           }
         }
       }
@@ -4384,6 +4876,12 @@
             "state" : "translated",
             "value" : "無法更新 AOD 功能。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng AOD."
+          }
         }
       }
     },
@@ -4436,6 +4934,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法更新 AOD 翻頁書功能。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng flipbook AOD."
           }
         }
       }
@@ -4490,6 +4994,12 @@
             "state" : "translated",
             "value" : "無法更新 AOD Vibrancy 功能。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng Độ rực AOD."
+          }
         }
       }
     },
@@ -4542,6 +5052,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法更新 Apple Intelligence 功能。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng Apple Intelligence."
           }
         }
       }
@@ -4596,6 +5112,12 @@
             "state" : "translated",
             "value" : "無法更新 Audio Intelligence 功能。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng Audio Intelligence."
+          }
         }
       }
     },
@@ -4648,6 +5170,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法更新電池資訊能力。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng thông tin pin."
           }
         }
       }
@@ -4702,6 +5230,12 @@
             "state" : "translated",
             "value" : "無法更新指南針能力。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng la bàn."
+          }
         }
       }
     },
@@ -4754,6 +5288,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法更新連續心率能力。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng nhịp tim liên tục."
           }
         }
       }
@@ -4808,6 +5348,12 @@
             "state" : "translated",
             "value" : "無法更新 Depth Sensor 功能。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng Cảm biến độ sâu."
+          }
         }
       }
     },
@@ -4860,6 +5406,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法更新 DeviceBrand。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật DeviceBrand."
           }
         }
       }
@@ -4914,6 +5466,12 @@
             "state" : "translated",
             "value" : "無法更新 Double Tap 功能。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng Chạm đôi."
+          }
         }
       }
     },
@@ -4966,6 +5524,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法更新鍵盤能力。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng bàn phím."
           }
         }
       }
@@ -5020,6 +5584,12 @@
             "state" : "translated",
             "value" : "無法更新噪音暴露能力。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng mức độ tiếp xúc tiếng ồn."
+          }
         }
       }
     },
@@ -5072,6 +5642,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法更新 On-Device Siri 功能。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng Siri trên thiết bị."
           }
         }
       }
@@ -5126,6 +5702,12 @@
             "state" : "translated",
             "value" : "無法更新 Raise to Speak 功能。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng Nâng lên để nói."
+          }
         }
       }
     },
@@ -5178,6 +5760,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法更新 Raise Wrist to Wake 功能。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng Nhấc cổ tay để đánh thức."
           }
         }
       }
@@ -5232,6 +5820,12 @@
             "state" : "translated",
             "value" : "無法更新地區代碼。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật mã khu vực."
+          }
         }
       }
     },
@@ -5284,6 +5878,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法更新銷售地區。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật vùng bán hàng."
           }
         }
       }
@@ -5338,6 +5938,12 @@
             "state" : "translated",
             "value" : "無法更新螢幕尺寸。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật kích thước màn hình."
+          }
         }
       }
     },
@@ -5390,6 +5996,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法更新 Swimming Workouts 功能。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật khả năng Bài tập bơi."
           }
         }
       }
@@ -5444,6 +6056,12 @@
             "state" : "translated",
             "value" : "無法更新 Ultra Faces。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể cập nhật Mặt đồng hồ Ultra."
+          }
         }
       }
     },
@@ -5495,6 +6113,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法驗證手錶的其他原始值；未進行任何更改。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể xác minh các giá trị bổ sung gốc của đồng hồ; chưa có thay đổi nào được thực hiện."
           }
         }
       }
@@ -5549,6 +6173,12 @@
             "state" : "translated",
             "value" : "無法驗證手錶的原始 AOD 數值，未進行變更。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể xác minh các giá trị AOD gốc của đồng hồ; chưa có thay đổi nào được thực hiện."
+          }
         }
       }
     },
@@ -5601,6 +6231,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "建立備份"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tạo bản sao lưu"
           }
         }
       }
@@ -5655,6 +6291,12 @@
             "state" : "translated",
             "value" : "建立初始備份"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tạo bản sao lưu ban đầu"
+          }
         }
       }
     },
@@ -5707,6 +6349,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "請先建立初始備份。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hãy tạo bản sao lưu ban đầu trước."
           }
         }
       }
@@ -5761,6 +6409,12 @@
             "state" : "translated",
             "value" : "目前回報的尺寸"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kích thước báo cáo hiện tại"
+          }
         }
       }
     },
@@ -5813,6 +6467,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "刪除"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xóa"
           }
         }
       }
@@ -5867,6 +6527,12 @@
             "state" : "translated",
             "value" : "刪除失敗。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xóa thất bại."
+          }
         }
       }
     },
@@ -5919,6 +6585,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Depth Sensor"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cảm biến độ sâu"
           }
         }
       }
@@ -5973,6 +6645,12 @@
             "state" : "translated",
             "value" : "Depth Sensor 功能已關閉。重啟Carousel即可重新載入。仍然需要感測器硬體。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt khả năng Cảm biến độ sâu. Hãy khởi động lại Carousel để tải lại. Vẫn cần có phần cứng cảm biến."
+          }
         }
       }
     },
@@ -6025,6 +6703,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Depth Sensor 功能已開啟。重啟Carousel即可重新載入。仍然需要感測器硬體。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật khả năng Cảm biến độ sâu. Hãy khởi động lại Carousel để tải lại. Vẫn cần có phần cứng cảm biến."
           }
         }
       }
@@ -6079,6 +6763,12 @@
             "state" : "translated",
             "value" : "尚未驗證版本 %@ 的 DeviceBrand CacheData 佈局。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bố cục CacheData của DeviceBrand chưa được xác minh cho bản build %@."
+          }
         }
       }
     },
@@ -6131,6 +6821,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "DeviceBrand CacheData 佈局無法使用或未經驗證。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bố cục CacheData của DeviceBrand không khả dụng hoặc chưa được xác minh."
           }
         }
       }
@@ -6185,6 +6881,12 @@
             "state" : "translated",
             "value" : "CacheData 中沒有 DeviceBrand，未寫入變更。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DeviceBrand không có trong CacheData; chưa ghi thay đổi nào."
+          }
         }
       }
     },
@@ -6237,6 +6939,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "顯示"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiển thị"
           }
         }
       }
@@ -6291,6 +6999,12 @@
             "state" : "translated",
             "value" : "顯示與控制"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hiển thị & Điều khiển"
+          }
         }
       }
     },
@@ -6343,6 +7057,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Double Tap"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Chạm đôi"
           }
         }
       }
@@ -6397,6 +7117,12 @@
             "state" : "translated",
             "value" : "Double Tap 已關閉。重啟Carousel即可重新載入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt Chạm đôi. Hãy khởi động lại Carousel để tải lại."
+          }
         }
       }
     },
@@ -6450,6 +7176,12 @@
             "state" : "translated",
             "value" : "Double Tap 已開啟。重啟Carousel即可重新載入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật Chạm đôi. Hãy khởi động lại Carousel để tải lại."
+          }
         }
       }
     },
@@ -6501,6 +7233,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "轉義失敗 (%lld)"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "escape thất bại (%lld)"
           }
         }
       }
@@ -6555,6 +7293,12 @@
             "state" : "translated",
             "value" : "每次寫入或還原 MG 時，也會先自動建立一份備份。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mỗi lần ghi và khôi phục MG đều tạo trước một bản sao lưu tự động."
+          }
         }
       }
     },
@@ -6607,6 +7351,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "外部備份"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sao lưu bên ngoài"
           }
         }
       }
@@ -6661,6 +7411,12 @@
             "state" : "translated",
             "value" : "外部備份匯入失敗。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhập bản sao lưu bên ngoài thất bại."
+          }
         }
       }
     },
@@ -6713,6 +7469,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "外部備份導入成功。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã nhập bản sao lưu bên ngoài thành công."
           }
         }
       }
@@ -6767,6 +7529,12 @@
             "state" : "translated",
             "value" : "外部備份被拒絕。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã từ chối bản sao lưu bên ngoài."
+          }
         }
       }
     },
@@ -6819,6 +7587,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "功能"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tính năng"
           }
         }
       }
@@ -6873,6 +7647,12 @@
             "state" : "translated",
             "value" : "首次啟動"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Lần khởi chạy đầu tiên"
+          }
         }
       }
     },
@@ -6926,6 +7706,12 @@
             "state" : "translated",
             "value" : "健康與體能訓練"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sức khỏe & Bài tập"
+          }
         }
       }
     },
@@ -6974,6 +7760,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hermès"
+          }
+        },
+        "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "Hermès"
@@ -7031,6 +7823,12 @@
             "state" : "translated",
             "value" : "Hermès 已關閉。重啟Carousel即可重新載入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt Hermès. Hãy khởi động lại Carousel để tải lại."
+          }
         }
       }
     },
@@ -7084,6 +7882,12 @@
             "state" : "translated",
             "value" : "Hermès 已開啟。重啟Carousel即可重新載入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật Hermès. Hãy khởi động lại Carousel để tải lại."
+          }
         }
       }
     },
@@ -7132,6 +7936,12 @@
           }
         },
         "zh-Hant" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "HermesEnabler"
+          }
+        },
+        "vi" : {
           "stringUnit" : {
             "state" : "translated",
             "value" : "HermesEnabler"
@@ -7189,6 +7999,12 @@
             "state" : "translated",
             "value" : "香港"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hồng Kông"
+          }
         }
       }
     },
@@ -7242,6 +8058,12 @@
             "state" : "translated",
             "value" : "如果啟用 Ultra Faces，您將無法使用 Hermès Faubourg Party 臉孔。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nếu bạn bật Mặt đồng hồ Ultra, bạn sẽ không thể dùng mặt đồng hồ Hermès Faubourg Party."
+          }
         }
       }
     },
@@ -7293,6 +8115,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "進口"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ĐÃ NHẬP"
           }
         }
       }
@@ -7346,6 +8174,12 @@
             "state" : "translated",
             "value" : "匯入的備份驗證失敗並被刪除。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bản sao lưu đã nhập không vượt qua xác minh và đã bị xóa."
+          }
         }
       }
     },
@@ -7397,6 +8231,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "匯入的備份遺失或具有無效的 MobileGestalt 結構。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bản sao lưu đã nhập bị thiếu hoặc có cấu trúc MobileGestalt không hợp lệ."
           }
         }
       }
@@ -7451,6 +8291,12 @@
             "state" : "translated",
             "value" : "初始備份"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sao lưu ban đầu"
+          }
         }
       }
     },
@@ -7503,6 +8349,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "初始備份失敗。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sao lưu ban đầu thất bại."
           }
         }
       }
@@ -7557,6 +8409,12 @@
             "state" : "translated",
             "value" : "已儲存初始 MobileGestalt 備份。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã lưu bản sao lưu MobileGestalt ban đầu."
+          }
         }
       }
     },
@@ -7609,6 +8467,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "備份識別碼無效。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mã định danh bản sao lưu không hợp lệ."
           }
         }
       }
@@ -7663,6 +8527,12 @@
             "state" : "translated",
             "value" : "資料無效。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "dictionary không hợp lệ"
+          }
         }
       }
     },
@@ -7715,6 +8585,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "日本"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhật Bản"
           }
         }
       }
@@ -7769,6 +8645,12 @@
             "state" : "translated",
             "value" : "CacheData 中沒有 main-screen-class。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "main-screen-class không có trong CacheData."
+          }
         }
       }
     },
@@ -7821,6 +8703,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "手動備份"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sao lưu thủ công"
           }
         }
       }
@@ -7875,6 +8763,12 @@
             "state" : "translated",
             "value" : "手動備份失敗。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sao lưu thủ công thất bại."
+          }
         }
       }
     },
@@ -7927,6 +8821,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已儲存手動 MobileGestalt 備份。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã lưu bản sao lưu MobileGestalt thủ công."
           }
         }
       }
@@ -7981,6 +8881,12 @@
             "state" : "translated",
             "value" : "MG 備份"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Sao lưu MG"
+          }
         }
       }
     },
@@ -8033,6 +8939,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "MobileGestalt 存取失敗"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Truy cập MobileGestalt thất bại"
           }
         }
       }
@@ -8087,6 +8999,12 @@
             "state" : "translated",
             "value" : "此裝置無法存取 MobileGestalt。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể truy cập MobileGestalt trên thiết bị này."
+          }
         }
       }
     },
@@ -8140,6 +9058,12 @@
             "state" : "translated",
             "value" : "MobileGestalt CacheExtra 遺失或無效。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MobileGestalt CacheExtra bị thiếu hoặc không hợp lệ."
+          }
         }
       }
     },
@@ -8191,6 +9115,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "MobileGestalt 佈局在恢復前已更改；沒有寫入資料。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bố cục MobileGestalt đã thay đổi trước khi khôi phục; chưa có dữ liệu nào được ghi."
           }
         }
       }
@@ -8245,6 +9175,12 @@
             "state" : "translated",
             "value" : "MobileGestalt 或其備份無效。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MobileGestalt hoặc bản sao lưu của nó không hợp lệ."
+          }
         }
       }
     },
@@ -8298,6 +9234,12 @@
             "state" : "translated",
             "value" : "MobileGestalt 覆寫值 %@ 未儲存所要求的狀態。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ghi đè MobileGestalt %@ không lưu được trạng thái được yêu cầu."
+          }
         }
       }
     },
@@ -8349,6 +9291,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "MobileGestalt 覆蓋 %@ 未儲存請求的值。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Ghi đè MobileGestalt %@ không lưu được giá trị được yêu cầu."
           }
         }
       }
@@ -8403,6 +9351,12 @@
             "state" : "translated",
             "value" : "MobileGestalt plist 遺失或無效。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MobileGestalt plist bị thiếu hoặc không hợp lệ."
+          }
         }
       }
     },
@@ -8456,6 +9410,12 @@
             "state" : "translated",
             "value" : "MobileGestalt plist 遺失或無效。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MobileGestalt plist bị thiếu hoặc không hợp lệ"
+          }
         }
       }
     },
@@ -8507,6 +9467,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此 watchOS 版本無法還原其他原始值。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không có khôi phục bổ sung gốc cho bản build watchOS này."
           }
         }
       }
@@ -8561,6 +9527,12 @@
             "state" : "translated",
             "value" : "此 watchOS 版本不支援 AOD 復原。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không có khôi phục AOD gốc cho bản build watchOS này."
+          }
         }
       }
     },
@@ -8613,6 +9585,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此 watchOS 版本不支援控制功能復原。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không có khôi phục điều khiển gốc cho bản build watchOS này."
           }
         }
       }
@@ -8667,6 +9645,12 @@
             "state" : "translated",
             "value" : "此 watchOS 版本不支援原始錶面復原。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không có khôi phục mặt đồng hồ gốc cho bản build watchOS này."
+          }
         }
       }
     },
@@ -8718,6 +9702,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "新的外部備份"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bản sao lưu bên ngoài mới"
           }
         }
       }
@@ -8771,6 +9761,12 @@
             "state" : "translated",
             "value" : "沒有應用程式組 — 開啟“設定”→“2 級回退（實驗性）”，啟用它，然後重試"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "không có app group — hãy mở Cài đặt → Class-2 fallback (thử nghiệm), bật nó rồi thử lại"
+          }
         }
       }
     },
@@ -8822,6 +9818,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "沒有可用的備份。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không có bản sao lưu nào."
           }
         }
       }
@@ -8876,6 +9878,12 @@
             "state" : "translated",
             "value" : "沒有外部備份等待導入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không có bản sao lưu bên ngoài nào đang chờ nhập."
+          }
         }
       }
     },
@@ -8928,6 +9936,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Noise Exposure"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mức độ tiếp xúc tiếng ồn"
           }
         }
       }
@@ -8982,6 +9996,12 @@
             "state" : "translated",
             "value" : "Noise Exposure 功能已關閉。重啟Carousel即可重新載入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt khả năng Mức độ tiếp xúc tiếng ồn. Hãy khởi động lại Carousel để tải lại."
+          }
         }
       }
     },
@@ -9034,6 +10054,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Noise Exposure 功能已開啟。重啟Carousel即可重新載入。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật khả năng Mức độ tiếp xúc tiếng ồn. Hãy khởi động lại Carousel để tải lại."
           }
         }
       }
@@ -9088,6 +10114,12 @@
             "state" : "translated",
             "value" : "未啟用"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không hoạt động"
+          }
         }
       }
     },
@@ -9140,6 +10172,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "好"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "OK"
           }
         }
       }
@@ -9194,6 +10232,12 @@
             "state" : "translated",
             "value" : "On-Device Siri"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siri trên thiết bị"
+          }
         }
       }
     },
@@ -9246,6 +10290,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "On-Device Siri 功能已關閉。重啟手錶即可重新裝填。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt khả năng Siri trên thiết bị. Hãy khởi động lại đồng hồ để tải lại."
           }
         }
       }
@@ -9300,6 +10350,12 @@
             "state" : "translated",
             "value" : "On-Device Siri 功能已開啟。重啟手錶即可重新裝填。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật khả năng Siri trên thiết bị. Hãy khởi động lại đồng hồ để tải lại."
+          }
         }
       }
     },
@@ -9352,6 +10408,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "On-Screen Keyboard"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bàn phím trên màn hình"
           }
         }
       }
@@ -9406,6 +10468,12 @@
             "state" : "translated",
             "value" : "On-Screen Keyboard 功能已關閉。重啟Carousel即可重新載入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt khả năng Bàn phím trên màn hình. Hãy khởi động lại Carousel để tải lại."
+          }
         }
       }
     },
@@ -9458,6 +10526,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "On-Screen Keyboard 功能已開啟。重啟Carousel即可重新載入。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật khả năng Bàn phím trên màn hình. Hãy khởi động lại Carousel để tải lại."
           }
         }
       }
@@ -9512,6 +10586,12 @@
             "state" : "translated",
             "value" : "已還原原始螢幕尺寸。請重新啟動手錶。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã khôi phục kích thước màn hình gốc. Hãy khởi động lại đồng hồ."
+          }
         }
       }
     },
@@ -9564,6 +10644,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "其他／未變更"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khác / không thay đổi"
           }
         }
       }
@@ -9618,6 +10704,12 @@
             "state" : "translated",
             "value" : "Periodic Ambient Light Updates"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cập nhật ánh sáng môi trường định kỳ"
+          }
         }
       }
     },
@@ -9670,6 +10762,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "已關閉定期環境光更新。請重新啟動 Carousel 以重新載入。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt Cập nhật ánh sáng môi trường định kỳ. Hãy khởi động lại Carousel để tải lại."
           }
         }
       }
@@ -9724,6 +10822,12 @@
             "state" : "translated",
             "value" : "已開啟定期環境光更新。請重新啟動 Carousel 以重新載入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật Cập nhật ánh sáng môi trường định kỳ. Hãy khởi động lại Carousel để tải lại."
+          }
         }
       }
     },
@@ -9776,6 +10880,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "寫入後驗證失敗。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "xác minh sau khi ghi thất bại"
           }
         }
       }
@@ -9830,6 +10940,12 @@
             "state" : "translated",
             "value" : "預設組合"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cài đặt sẵn"
+          }
         }
       }
     },
@@ -9882,6 +10998,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Raise to Speak"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nâng lên để nói"
           }
         }
       }
@@ -9936,6 +11058,12 @@
             "state" : "translated",
             "value" : "Raise to Speak 已關閉。重啟Carousel即可重新載入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt Nâng lên để nói. Hãy khởi động lại Carousel để tải lại."
+          }
         }
       }
     },
@@ -9988,6 +11116,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Raise to Speak 已開啟。重啟Carousel即可重新載入。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật Nâng lên để nói. Hãy khởi động lại Carousel để tải lại."
           }
         }
       }
@@ -10042,6 +11176,12 @@
             "state" : "translated",
             "value" : "Raise Wrist to Wake"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nhấc cổ tay để đánh thức"
+          }
         }
       }
     },
@@ -10094,6 +11234,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Raise Wrist to Wake 功能已關閉。重啟Carousel即可重新載入。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt khả năng Nhấc cổ tay để đánh thức. Hãy khởi động lại Carousel để tải lại."
           }
         }
       }
@@ -10148,6 +11294,12 @@
             "state" : "translated",
             "value" : "Raise Wrist to Wake 功能已開啟。重啟Carousel即可重新載入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật khả năng Nhấc cổ tay để đánh thức. Hãy khởi động lại Carousel để tải lại."
+          }
         }
       }
     },
@@ -10200,6 +11352,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "復原"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khôi phục"
           }
         }
       }
@@ -10254,6 +11412,12 @@
             "state" : "translated",
             "value" : "地區"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khu vực"
+          }
         }
       }
     },
@@ -10307,6 +11471,12 @@
             "state" : "translated",
             "value" : "地區代碼"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mã khu vực"
+          }
         }
       }
     },
@@ -10358,6 +11528,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "區域代碼設定為 %@。重啟手錶即可重新裝填。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã đặt mã khu vực thành %@. Hãy khởi động lại đồng hồ để tải lại."
           }
         }
       }
@@ -10411,6 +11587,12 @@
             "state" : "translated",
             "value" : "RegionCode 具有不支援的值類型。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RegionCode có kiểu giá trị không được hỗ trợ."
+          }
         }
       }
     },
@@ -10463,6 +11645,12 @@
             "state" : "translated",
             "value" : "區域代碼不能為空。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "RegionCode không được để trống."
+          }
         }
       }
     },
@@ -10514,6 +11702,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "拒絕"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Từ chối"
           }
         }
       }
@@ -10568,6 +11762,12 @@
             "state" : "translated",
             "value" : "重新命名失敗：%@"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "đổi tên thất bại: %@"
+          }
         }
       }
     },
@@ -10619,6 +11819,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "報告的螢幕尺寸設定為 %1$lld × %2$lld。重新啟動手錶。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã đặt kích thước màn hình báo cáo thành %1$lld × %2$lld. Hãy khởi động lại đồng hồ."
           }
         }
       }
@@ -10673,6 +11879,12 @@
             "state" : "translated",
             "value" : "重新啟動 Carousel"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khởi động lại Carousel"
+          }
         }
       }
     },
@@ -10725,6 +11937,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "變更錶面能力後，請重新啟動 Carousel。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hãy khởi động lại Carousel sau khi thay đổi khả năng của mặt đồng hồ."
           }
         }
       }
@@ -10779,6 +11997,12 @@
             "state" : "translated",
             "value" : "還原失敗。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khôi phục thất bại."
+          }
         }
       }
     },
@@ -10831,6 +12055,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "還原 MG"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khôi phục MG"
           }
         }
       }
@@ -10885,6 +12115,12 @@
             "state" : "translated",
             "value" : "還原原始尺寸"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khôi phục kích thước gốc"
+          }
         }
       }
     },
@@ -10938,6 +12174,12 @@
             "state" : "translated",
             "value" : "要還原這個備份嗎？"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khôi phục bản sao lưu này?"
+          }
         }
       }
     },
@@ -10989,6 +12231,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "復原的檔案與所選的備份不符。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tệp đã khôi phục không khớp với bản sao lưu đã chọn."
           }
         }
       }
@@ -11043,6 +12291,12 @@
             "state" : "translated",
             "value" : "S7–S9 · 41 公釐"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S7–S9 · 41 mm"
+          }
         }
       }
     },
@@ -11095,6 +12349,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "S7–S9 · 45 公釐"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S7–S9 · 45 mm"
           }
         }
       }
@@ -11149,6 +12409,12 @@
             "state" : "translated",
             "value" : "S10–S12 · 42 公釐"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S10–S12 · 42 mm"
+          }
         }
       }
     },
@@ -11201,6 +12467,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "S10–S12 · 46 公釐"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "S10–S12 · 46 mm"
           }
         }
       }
@@ -11255,6 +12527,12 @@
             "state" : "translated",
             "value" : "銷售地區"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vùng bán hàng"
+          }
         }
       }
     },
@@ -11306,6 +12584,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "銷售區域欄位不一致；選擇一個值來對齊它們。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Các trường vùng bán hàng không khớp nhau; hãy chọn một giá trị để đồng bộ."
           }
         }
       }
@@ -11359,6 +12643,12 @@
             "state" : "translated",
             "value" : "銷售區域具有不支援的值類型。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vùng bán hàng có kiểu giá trị không được hỗ trợ."
+          }
         }
       }
     },
@@ -11410,6 +12700,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "銷售區域設定為 %@。重啟手錶即可重新裝填。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã đặt vùng bán hàng thành %@. Hãy khởi động lại đồng hồ để tải lại."
           }
         }
       }
@@ -11463,6 +12759,12 @@
             "state" : "translated",
             "value" : "銷售區域後綴不得為空。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hậu tố vùng bán hàng không được để trống."
+          }
         }
       }
     },
@@ -11515,6 +12817,12 @@
             "state" : "translated",
             "value" : "螢幕尺寸無效。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kích thước màn hình không hợp lệ."
+          }
         }
       }
     },
@@ -11566,6 +12874,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "螢幕尺寸具有不支援的值類型。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Kích thước màn hình có kiểu giá trị không được hỗ trợ."
           }
         }
       }
@@ -11620,6 +12934,12 @@
             "state" : "translated",
             "value" : "螢幕解析度"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Độ phân giải màn hình"
+          }
         }
       }
     },
@@ -11671,6 +12991,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "無法驗證螢幕解析度寫入。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể xác minh việc ghi độ phân giải màn hình."
           }
         }
       }
@@ -11725,6 +13051,12 @@
             "state" : "translated",
             "value" : "SE · 40 公釐"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SE · 40 mm"
+          }
         }
       }
     },
@@ -11777,6 +13109,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "SE · 44 公釐"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "SE · 44 mm"
           }
         }
       }
@@ -11831,6 +13169,12 @@
             "state" : "translated",
             "value" : "所選備份遺失或無效。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bản sao lưu đã chọn bị thiếu hoặc không hợp lệ."
+          }
         }
       }
     },
@@ -11883,6 +13227,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "所選備份已不存在。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bản sao lưu đã chọn không còn tồn tại."
           }
         }
       }
@@ -11937,6 +13287,12 @@
             "state" : "translated",
             "value" : "已還原所選備份。請重新啟動手錶。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã khôi phục bản sao lưu đã chọn. Hãy khởi động lại đồng hồ."
+          }
         }
       }
     },
@@ -11989,6 +13345,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "感測器"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cảm biến"
           }
         }
       }
@@ -12043,6 +13405,12 @@
             "state" : "translated",
             "value" : "感測器與體能訓練"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cảm biến & Bài tập"
+          }
         }
       }
     },
@@ -12095,6 +13463,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "序列化失敗：%@"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "serialize thất bại: %@"
           }
         }
       }
@@ -12149,6 +13523,12 @@
             "state" : "translated",
             "value" : "Siri & 智能"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siri & Intelligence"
+          }
         }
       }
     },
@@ -12201,6 +13581,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Siri AI 需要 watchOS 27、支援的手錶和配對的 Apple Intelligence iPhone。 Audio Intelligence 適用於 Series 12 / Ultra 4 硬體。這些標誌不能添加缺少的硬體或繞過服務資格。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Siri AI cần watchOS 27, một đồng hồ được hỗ trợ và một iPhone hỗ trợ Apple Intelligence đã ghép đôi. Audio Intelligence dành cho phần cứng Series 12 / Ultra 4. Các cờ này không thể thêm phần cứng còn thiếu hoặc vượt qua điều kiện đủ tư cách của dịch vụ."
           }
         }
       }
@@ -12255,6 +13641,12 @@
             "state" : "translated",
             "value" : "Siri Listening Capability"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khả năng lắng nghe của Siri"
+          }
         }
       }
     },
@@ -12307,6 +13699,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "部分選項需要對應的顯示、感測器或音訊硬體。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Một số tùy chọn yêu cầu phần cứng màn hình, cảm biến hoặc âm thanh tương ứng."
           }
         }
       }
@@ -12361,6 +13759,12 @@
             "state" : "translated",
             "value" : "正在重新啟動介面。若沒有反應，請查看 app 記錄。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đang bắt đầu respring. Hãy xem nhật ký ứng dụng nếu không có gì xảy ra."
+          }
         }
       }
     },
@@ -12413,6 +13817,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "狀態"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trạng thái"
           }
         }
       }
@@ -12467,6 +13877,12 @@
             "state" : "translated",
             "value" : "Swimming Workouts"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bài tập bơi"
+          }
         }
       }
     },
@@ -12519,6 +13935,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Swimming Workouts 功能已關閉。重啟Carousel即可重新載入。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt khả năng Bài tập bơi. Hãy khởi động lại Carousel để tải lại."
           }
         }
       }
@@ -12573,6 +13995,12 @@
             "state" : "translated",
             "value" : "Swimming Workouts 功能已開啟。重啟Carousel即可重新載入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật khả năng Bài tập bơi. Hãy khởi động lại Carousel để tải lại."
+          }
         }
       }
     },
@@ -12625,6 +14053,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "台灣"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đài Loan"
           }
         }
       }
@@ -12679,6 +14113,12 @@
             "state" : "translated",
             "value" : "無法寫入暫存檔案。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "ghi tệp tạm thất bại"
+          }
         }
       }
     },
@@ -12730,6 +14170,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "其他值已寫入，但無法驗證。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Các giá trị bổ sung đã được ghi nhưng không thể xác minh."
           }
         }
       }
@@ -12784,6 +14230,12 @@
             "state" : "translated",
             "value" : "AOD 數值已寫入，但無法驗證。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Các giá trị AOD đã được ghi nhưng không thể xác minh."
+          }
         }
       }
     },
@@ -12837,6 +14289,12 @@
             "state" : "translated",
             "value" : "快取已寫入，但無法驗證 DeviceBrand。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bộ nhớ đệm đã được ghi, nhưng không thể xác minh DeviceBrand."
+          }
         }
       }
     },
@@ -12888,6 +14346,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "快取已寫入，但無法驗證原始值。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bộ nhớ đệm đã được ghi, nhưng không thể xác minh các giá trị gốc."
           }
         }
       }
@@ -12942,6 +14406,12 @@
             "state" : "translated",
             "value" : "控制功能數值已寫入，但無法驗證。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Các giá trị điều khiển đã được ghi nhưng không thể xác minh."
+          }
         }
       }
     },
@@ -12994,6 +14464,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "系統會先自動備份目前的 MG。還原後請重新啟動手錶。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "MG hiện tại sẽ được sao lưu tự động trước. Hãy khởi động lại đồng hồ sau khi khôi phục."
           }
         }
       }
@@ -13048,6 +14524,12 @@
             "state" : "translated",
             "value" : "錶面數值已寫入，但無法驗證。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Các giá trị mặt đồng hồ đã được ghi nhưng không thể xác minh."
+          }
         }
       }
     },
@@ -13100,6 +14582,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "初始備份受到保護，無法刪除。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bản sao lưu ban đầu được bảo vệ và không thể xóa."
           }
         }
       }
@@ -13154,6 +14642,12 @@
             "state" : "translated",
             "value" : "MobileGestalt 備份無效。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bản sao lưu MobileGestalt không hợp lệ."
+          }
         }
       }
     },
@@ -13205,6 +14699,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "原始螢幕類別為 Ultra 版面。關閉 Ultra Faces 可能需要較早的備份。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Screen class gốc là bố cục Ultra. Có thể cần một bản sao lưu cũ hơn để tắt Mặt đồng hồ Ultra."
           }
         }
       }
@@ -13259,6 +14759,12 @@
             "state" : "translated",
             "value" : "快取缺少必要的 AOD 數值，未進行變更。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thiếu các giá trị AOD cần thiết trong bộ nhớ đệm; chưa có thay đổi nào được thực hiện."
+          }
         }
       }
     },
@@ -13312,6 +14818,12 @@
             "state" : "translated",
             "value" : "快取缺少必要的錶面數值，未進行變更。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Thiếu các giá trị mặt đồng hồ cần thiết trong bộ nhớ đệm; chưa có thay đổi nào được thực hiện."
+          }
         }
       }
     },
@@ -13363,6 +14875,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此 watchOS 版本不支援所選的 Ultra 錶面佈局。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bố cục mặt đồng hồ Ultra đã chọn không khả dụng trên bản build watchOS này."
           }
         }
       }
@@ -13417,6 +14935,12 @@
             "state" : "translated",
             "value" : "設定已儲存，但無法確認是否已啟用。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cài đặt đã được ghi, nhưng không thể xác minh trạng thái bật của nó."
+          }
         }
       }
     },
@@ -13469,6 +14993,12 @@
             "state" : "translated",
             "value" : "確認的原始 DeviceBrand 已是 Hermès；關閉功能不會還原為非 Hermès 值。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "DeviceBrand gốc đã xác nhận của đồng hồ vốn đã là Hermès; việc tắt sẽ không khôi phục được giá trị không phải Hermès."
+          }
         }
       }
     },
@@ -13520,6 +15050,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ultra 錶面佈局"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bố cục mặt đồng hồ Ultra"
           }
         }
       }
@@ -13574,6 +15110,12 @@
             "state" : "translated",
             "value" : "Ultra 錶面佈局已更新。請重新啟動手錶以重新載入。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã cập nhật bố cục mặt đồng hồ Ultra. Hãy khởi động lại đồng hồ để tải lại."
+          }
         }
       }
     },
@@ -13626,6 +15168,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ultra Faces"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mặt đồng hồ Ultra"
           }
         }
       }
@@ -13680,6 +15228,12 @@
             "state" : "translated",
             "value" : "無法驗證 Ultra Faces 快取變更。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không thể xác minh các thay đổi bộ nhớ đệm của Mặt đồng hồ Ultra."
+          }
         }
       }
     },
@@ -13732,6 +15286,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "此 watchOS 版本不支援 Ultra Faces 快取佈局。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bố cục bộ nhớ đệm của Mặt đồng hồ Ultra không được hỗ trợ trên bản build watchOS này."
           }
         }
       }
@@ -13786,6 +15346,12 @@
             "state" : "translated",
             "value" : "Ultra Faces 已關閉。重啟手錶即可重新裝填。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã tắt Mặt đồng hồ Ultra. Hãy khởi động lại đồng hồ để tải lại."
+          }
         }
       }
     },
@@ -13839,6 +15405,12 @@
             "state" : "translated",
             "value" : "Ultra Faces 已開啟。重啟手錶即可重新裝填。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Đã bật Mặt đồng hồ Ultra. Hãy khởi động lại đồng hồ để tải lại."
+          }
         }
       }
     },
@@ -13891,6 +15463,12 @@
             "state" : "translated",
             "value" : "Ultra 驗證失敗，無法還原先前的快取。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xác minh Ultra thất bại và không thể khôi phục bộ nhớ đệm trước đó."
+          }
         }
       }
     },
@@ -13942,6 +15520,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "Ultra 驗證失敗；已還原先前的快取。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Xác minh Ultra thất bại; đã khôi phục bộ nhớ đệm trước đó."
           }
         }
       }
@@ -13996,6 +15580,12 @@
             "state" : "translated",
             "value" : "無法使用"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Không khả dụng"
+          }
         }
       }
     },
@@ -14047,6 +15637,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "螢幕類別狀態與預期不符；未寫入任何變更。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Trạng thái main-screen-class không như mong đợi; chưa ghi thay đổi nào."
           }
         }
       }
@@ -14101,6 +15697,12 @@
             "state" : "translated",
             "value" : "MobileGestalt 快取佈局異常，未寫入變更。"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Bố cục bộ nhớ đệm MobileGestalt không như mong đợi; chưa ghi thay đổi nào."
+          }
         }
       }
     },
@@ -14153,6 +15755,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "英國"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Vương quốc Anh"
           }
         }
       }
@@ -14207,6 +15815,12 @@
             "state" : "translated",
             "value" : "美國"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Hoa Kỳ"
+          }
         }
       }
     },
@@ -14258,6 +15872,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "不支援的螢幕解析度預設。"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Cài đặt sẵn độ phân giải màn hình không được hỗ trợ."
           }
         }
       }
@@ -14312,6 +15932,12 @@
             "state" : "translated",
             "value" : "工具"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Tiện ích"
+          }
         }
       }
     },
@@ -14364,6 +15990,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "語音"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Giọng nói"
           }
         }
       }
@@ -14418,6 +16050,12 @@
             "state" : "translated",
             "value" : "手錶能力"
           }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Khả năng của đồng hồ"
+          }
         }
       }
     },
@@ -14470,6 +16108,12 @@
           "stringUnit" : {
             "state" : "translated",
             "value" : "錶面"
+          }
+        },
+        "vi" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Mặt đồng hồ"
           }
         }
       }
