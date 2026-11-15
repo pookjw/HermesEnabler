@@ -44,6 +44,23 @@ No Windows, use o [WatchBridge](https://github.com/AdminZachary/iloader-for-wind
 
 > A preparação do Modo de Desenvolvedor exige conexão USB. Depois de emparelhar uma vez por USB, as instalações e renovações podem usar Wi-Fi.
 
+### Linux
+
+O WatchBridge oferece suporte ao Linux em x86_64 a partir da versão [v0.1.3](https://github.com/AdminZachary/WatchBridge/releases/tag/v0.1.3).
+
+1. Baixe o pacote `.deb` para Debian/Ubuntu ou o `.rpm` para Fedora. Na pasta de downloads, execute o comando da sua distribuição (o primeiro para Debian/Ubuntu, o segundo para Fedora).
+
+   ```bash
+   sudo apt install usbmuxd ./WatchBridge_0.1.3_amd64.deb
+   ```
+   ```bash
+   sudo dnf install usbmuxd ./WatchBridge-0.1.3-1.x86_64.rpm
+   ```
+
+2. Conecte por USB o iPhone já emparelhado com o Apple Watch de destino. Abra o WatchBridge (`watchbridge`) e selecione o iPhone. Se o iPhone não for detectado, verifique se o `usbmuxd` está em execução.
+3. Siga as instruções do WatchBridge para preparar o Modo de Desenvolvedor. Ative o modo no relógio, reinicie o relógio e confirme.
+4. Baixe o IPA original em [HermesEnabler Releases](https://github.com/pookjw/HermesEnabler/releases) com o app para iPhone e o app integrado para Watch. Entre com seu Apple ID no WatchBridge, selecione o IPA e instale-o. Abra o **HermesEnabler2** no relógio.
+
 ## Precauções
 
 - No Sideloadly, desative **Use automatic bundle ID** e use um Bundle Identifier fixo. Use o mesmo Bundle Identifier e o mesmo Apple ID em todas as atualizações para preservar os dados e o backup existentes.

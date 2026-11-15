@@ -44,6 +44,23 @@ Windows 上使用 [WatchBridge](https://github.com/AdminZachary/iloader-for-wind
 
 > 開發者模式準備需要 USB 連接。透過 USB 配對一次後，即可使用 Wi-Fi 安裝與續簽。
 
+### Linux
+
+WatchBridge 自 [v0.1.3](https://github.com/AdminZachary/WatchBridge/releases/tag/v0.1.3) 起支援 x86_64 Linux。
+
+1. Debian/Ubuntu 下載 `.deb`，Fedora 下載 `.rpm`。在下載目錄執行對應指令（第一條適用於 Debian/Ubuntu，第二條適用於 Fedora）。
+
+   ```bash
+   sudo apt install usbmuxd ./WatchBridge_0.1.3_amd64.deb
+   ```
+   ```bash
+   sudo dnf install usbmuxd ./WatchBridge-0.1.3-1.x86_64.rpm
+   ```
+
+2. 透過 USB 連接已與目標 Apple Watch 配對的 iPhone，啟動 WatchBridge（`watchbridge`）並選取該 iPhone。若無法偵測到手機，請確認 `usbmuxd` 正在執行。
+3. 依照 WatchBridge 的提示準備開發者模式。在手錶上手動開啟開發者模式、重新啟動並確認。
+4. 從 [HermesEnabler Releases](https://github.com/pookjw/HermesEnabler/releases) 下載同時包含 iPhone App 和內嵌 Watch App 的原始 IPA。在 WatchBridge 登入 Apple ID，選取 IPA 並安裝，再於手錶上打開 **HermesEnabler2**。
+
 ## 注意事項
 
 - 在 Sideloadly 中關閉 **Use automatic bundle ID**，並使用固定的 Bundle Identifier。每次更新時都使用相同的 Bundle Identifier 和 Apple ID，以便保留現有的 App 資料和備份。

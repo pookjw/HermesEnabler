@@ -44,6 +44,23 @@ Windowsでは[WatchBridge](https://github.com/AdminZachary/iloader-for-windows)�
 
 > デベロッパモードの準備にはUSB接続が必要です。USBで一度ペアリングした後は、Wi-Fiでインストールと更新を行えます。
 
+### Linux
+
+WatchBridgeは[v0.1.3](https://github.com/AdminZachary/WatchBridge/releases/tag/v0.1.3)からx86_64のLinuxに対応しています。
+
+1. Debian/Ubuntuでは`.deb`、Fedoraでは`.rpm`をダウンロードします。ダウンロード先のフォルダで対応するコマンドを実行します（1つ目はDebian/Ubuntu、2つ目はFedora用です）。
+
+   ```bash
+   sudo apt install usbmuxd ./WatchBridge_0.1.3_amd64.deb
+   ```
+   ```bash
+   sudo dnf install usbmuxd ./WatchBridge-0.1.3-1.x86_64.rpm
+   ```
+
+2. 対象のApple Watchとペアリング済みのiPhoneをUSBで接続し、WatchBridge（`watchbridge`）を起動してiPhoneを選択します。iPhoneが認識されない場合は、`usbmuxd`が動作していることを確認します。
+3. WatchBridgeの案内に従ってデベロッパモードを準備します。Watchでデベロッパモードをオンにし、Watchを再起動して確認します。
+4. [HermesEnabler Releases](https://github.com/pookjw/HermesEnabler/releases)から、iPhoneアプリと内蔵のWatchアプリを含む元のIPAをダウンロードします。WatchBridgeでApple IDにサインインし、IPAを選択してインストールします。Watchで**HermesEnabler2**を開きます。
+
 ## 注意事項
 
 - Sideloadlyで**Use automatic bundle ID**をオフにし、固定のBundle Identifierを使用してください。既存のアプリデータとバックアップを引き継ぐため、アップデート時は毎回同じBundle IdentifierとApple IDを使用してください。
