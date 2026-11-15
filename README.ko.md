@@ -4,7 +4,7 @@
 
 ![](image.png)
 
-> watchOS 26.6.1과 watchOS 27.0부터 27.3 beta 1까지 지원합니다.
+> watchOS 26.0부터 27.3 beta 1까지 지원합니다.
 
 ## 설치 방법
 
