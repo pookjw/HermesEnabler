@@ -29,6 +29,15 @@ assert offsets["24R5315i"]["ScreenClassOffset"] == 0xea8
 assert offsets["24R5315i"]["ScreenClassPresentOffset"] == 0x184d
 assert not offsets["24R5315i"]["RecoveryVerified"]
 assert defaults["24R5315i"]["UltraScreenClassOptions"] == [29, 38]
+assert offsets["23U95"]["CacheUUID"] == "3BE19A76-F253-4CE4-AAC1-DF6D801CAAB1"
+assert offsets["23U95"]["CacheDataLength"] == 0x18a5
+assert offsets["23U95"]["PresenceBase"] == 0x15e8
+assert offsets["23U95"]["DeviceBrandOffset"] == 0x338
+assert offsets["23U95"]["DeviceBrandPresentOffset"] == 0x164f
+assert offsets["23U95"]["ScreenClassOffset"] == 0xe38
+assert offsets["23U95"]["ScreenClassPresentOffset"] == 0x17af
+assert not offsets["23U95"]["RecoveryVerified"]
+assert defaults["23U95"]["UltraScreenClassOptions"] == [29, 38]
 assert offsets["24R363"]["CacheUUID"] == "6F8372B0-1583-4031-A4BC-A54A18B0DD5A"
 assert offsets["24R363"]["CacheDataLength"] == 0x1947
 assert offsets["24R363"]["DeviceBrandOffset"] == 0x348

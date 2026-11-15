@@ -34,6 +34,7 @@ The canonical machine-readable table is [`MGOffsets.plist`](../../HermesEnabler2
 | Builds | UUID | Length | Brand value / presence | Screen value / presence | Presence base |
 | --- | --- | ---: | --- | --- | ---: |
 | `24R363` | `6F8372B0-1583-4031-A4BC-A54A18B0DD5A` | `0x1947` | `0x348` / `0x16e1` | `0xea8` / `0x184d` | `0x1678` |
+| `23U95` | `3BE19A76-F253-4CE4-AAC1-DF6D801CAAB1` | `0x18a5` | `0x338` / `0x164f` | `0xe38` / `0x17af` | `0x15e8` |
 | `24R5315i` | `A4A7B9EC-7C2A-4E22-B1D2-179C9F27F6F1` | `0x1947` | `0x348` / `0x16e1` | `0xea8` / `0x184d` | `0x1678` |
 | `24R364`, `24R365` | `6F8372B0-1583-4031-A4BC-A54A18B0DD5A` | `0x1947` | `0x348` / `0x16e1` | `0xea8` / `0x184d` | `0x1678` |
 | `24S118`, `24S132` | `32B4CA84-FBDA-496C-9B79-2101D597158B` | `0x1950` | `0x348` / `0x16e9` | `0xeb0` / `0x1856` | `0x1680` |

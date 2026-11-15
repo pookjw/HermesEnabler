@@ -4,7 +4,7 @@
 
 ![](image.png)
 
-> Chỉ hỗ trợ watchOS 27.0 đến 27.3 beta 1.
+> Hỗ trợ watchOS 26.6.1 và watchOS 27.0 đến 27.3 beta 1.
 
 ## Cài đặt
 
