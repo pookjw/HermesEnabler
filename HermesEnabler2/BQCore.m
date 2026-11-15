@@ -820,10 +820,10 @@ static NSString *bq_create_gestalt_backup(NSString *kind, NSString **err) {
         }
         data = [NSData dataWithContentsOfFile:[link stringByAppendingPathComponent:@"com.apple.MobileGestalt.plist"]];
         BQEndEscape(h);
-    }
-    if (!bq_valid_gestalt_data(data)) {
-        if (err) *err = NSLocalizedString(@"MobileGestalt plist is missing or invalid.", nil);
-        return nil;
+        if (!bq_valid_gestalt_data(data)) {
+            if (err) *err = NSLocalizedString(@"MobileGestalt plist is missing or invalid.", nil);
+            return nil;
+        }
     }
     // Reuse the latest identical automatic snapshot without deleting history.
     if ([kind isEqualToString:@"auto"]) {
