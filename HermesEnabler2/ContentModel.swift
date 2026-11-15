@@ -215,7 +215,12 @@ final class ContentModel {
             if !success { toggleFailed = true }
             return success
         }
-        if !BQCoreInit() {
+        let requiresMCM: Bool
+        switch action {
+        case .backup, .manualBackup: requiresMCM = false
+        default: requiresMCM = true
+        }
+        if requiresMCM && !BQCoreInit() {
             toggleFailed = shouldAlertOnFailure
             result = "MobileGestalt access is unavailable on this device."
         } else {

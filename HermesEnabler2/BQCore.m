@@ -810,14 +810,17 @@ static NSString *bq_create_gestalt_backup(NSString *kind, NSString **err) {
         if (err) *err = NSLocalizedString(@"Create the initial backup first.", nil);
         return nil;
     }
-    NSString *link = nil;
-    int64_t h = BQEscape(kMGCaches, &link);
-    if (h < 0) {
-        if (err) *err = bq_escape_error(h);
-        return nil;
+    NSData *data = [NSData dataWithContentsOfFile:BQMobileGestaltPath()];
+    if (!bq_valid_gestalt_data(data)) {
+        NSString *link = nil;
+        int64_t h = BQEscape(kMGCaches, &link);
+        if (h < 0) {
+            if (err) *err = bq_escape_error(h);
+            return nil;
+        }
+        data = [NSData dataWithContentsOfFile:[link stringByAppendingPathComponent:@"com.apple.MobileGestalt.plist"]];
+        BQEndEscape(h);
     }
-    NSData *data = [NSData dataWithContentsOfFile:[link stringByAppendingPathComponent:@"com.apple.MobileGestalt.plist"]];
-    BQEndEscape(h);
     if (!bq_valid_gestalt_data(data)) {
         if (err) *err = NSLocalizedString(@"MobileGestalt plist is missing or invalid.", nil);
         return nil;
@@ -968,6 +971,23 @@ NSArray<NSDictionary *> *BQListGestaltBackups(void) {
 
 NSString *BQMobileGestaltPath(void) {
     return [kMGCaches stringByAppendingPathComponent:@"com.apple.MobileGestalt.plist"];
+}
+
+NSString *BQProbeGestaltWriteAccess(void) {
+    NSString *path = BQMobileGestaltPath();
+    int fd = open(path.fileSystemRepresentation, O_WRONLY);
+    int writeError = fd < 0 ? errno : 0;
+    if (fd >= 0) close(fd);
+
+    fd = open(path.fileSystemRepresentation, O_RDWR);
+    int readWriteError = fd < 0 ? errno : 0;
+    if (fd >= 0) close(fd);
+
+    NSString *result = [NSString stringWithFormat:@"O_WRONLY: %s (errno %d)\nO_RDWR: %s (errno %d)",
+                        writeError ? strerror(writeError) : "allowed", writeError,
+                        readWriteError ? strerror(readWriteError) : "allowed", readWriteError];
+    BQLog(@"MG direct write-open probe: %@", result);
+    return result;
 }
 
 BOOL BQInPlaceWrite(void) {

@@ -37,6 +37,7 @@ NSMutableDictionary *BQLoadGestalt(NSString **err);
 BOOL BQSaveGestalt(NSDictionary *dict, NSString **err);
 BOOL BQRestoreGestalt(NSString **err);
 BOOL BQBackupExists(void);
+NSString *BQProbeGestaltWriteAccess(void);
 NSString *BQBackupPath(void);
 NSString *BQCreateGestaltBackup(BOOL initial, NSString **err);
 BOOL BQImportGestaltBackup(NSData *data, NSString **identifier, NSString **err);
