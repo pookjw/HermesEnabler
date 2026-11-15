@@ -4,7 +4,7 @@
 
 ![](image.png)
 
-> Compatible avec watchOS 26.0 à 27.3 beta 1.
+> Compatible avec watchOS 27.0 à 27.3 beta 1.
 
 ## Installation
 
@@ -46,6 +46,7 @@ Sous Windows, utilisez [WatchBridge](https://github.com/AdminZachary/iloader-for
 
 ## Précautions
 
+- La prise en charge de watchOS 26 est expérimentale.
 - Dans Sideloadly, désactivez **Use automatic bundle ID** et utilisez un Bundle Identifier fixe. Utilisez le même Bundle Identifier et le même Apple ID à chaque mise à jour pour conserver les données et la sauvegarde existantes.
 - Un compte Apple Developer payant est requis en raison de la capacité **App Groups**.
 - Si l’app iPhone est installée mais que l’app Watch n’apparaît pas, recherchez `Watch apps will be stripped from the IPA` dans le journal Sideloadly. Cela signifie que l’app Watch intégrée a été supprimée ; installez-la avec Xcode.
