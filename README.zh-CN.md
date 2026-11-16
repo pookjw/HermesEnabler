@@ -4,7 +4,7 @@
 
 ![](image.png)
 
-> 支持 watchOS 26.6.1 以及 watchOS 27.0 至 27.3 beta 1。
+> 支持 watchOS 27.0 至 27.3 beta 1。
 
 ## 安装
 
@@ -46,6 +46,7 @@ Windows 上使用 [WatchBridge](https://github.com/AdminZachary/iloader-for-wind
 
 ## 注意事项
 
+- 对 watchOS 26 的支持是实验性的。
 - 在 Sideloadly 中关闭 **Use automatic bundle ID**，并使用固定的 Bundle Identifier。每次更新时都使用相同的 Bundle Identifier 和 Apple ID，以便保留现有应用数据和备份。
 - 由于 **App Groups** 权限，必须使用付费的 Apple Developer 账户。
 - 如果 iPhone App 已安装但 Watch App 没有出现，请在 Sideloadly 日志中查找 `Watch apps will be stripped from the IPA`。这表示内嵌的 Watch App 已被移除；请使用 Xcode 安装 Watch App。

@@ -4,7 +4,7 @@
 
 ![](image.png)
 
-> Hỗ trợ watchOS 26.6.1 và watchOS 27.0 đến 27.3 beta 1.
+> Hỗ trợ watchOS 27.0 đến 27.3 beta 1.
 
 ## Cài đặt
 
@@ -46,6 +46,7 @@ Trên Windows, dự án sử dụng [WatchBridge](https://github.com/AdminZachar
 
 ## Lưu ý
 
+- Hỗ trợ watchOS 26 đang ở giai đoạn thử nghiệm.
 - Trong Sideloadly, hãy tắt **Use automatic bundle ID** và sử dụng một Bundle Identifier cố định. Giữ nguyên Bundle Identifier và Apple ID cho mỗi lần cập nhật để ứng dụng có thể giữ lại dữ liệu và bản sao lưu hiện có.
 - Cần có tài khoản Apple Developer trả phí do yêu cầu entitlement **App Groups**.
 - Nếu ứng dụng iPhone đã được cài đặt nhưng ứng dụng Watch không xuất hiện, hãy kiểm tra nhật ký Sideloadly để tìm dòng `Watch apps will be stripped from the IPA`. Điều này có nghĩa là ứng dụng Watch được nhúng đã bị xóa; chỉ cài đặt ứng dụng iPhone sẽ không cài đặt được ứng dụng Watch. Hãy dùng Xcode để cài đặt ứng dụng Watch.

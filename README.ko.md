@@ -4,7 +4,7 @@
 
 ![](image.png)
 
-> watchOS 26.6.1과 watchOS 27.0부터 27.3 beta 1까지 지원합니다.
+> watchOS 27.0부터 27.3 beta 1까지 지원합니다.
 
 ## 설치 방법
 
@@ -46,6 +46,7 @@ Windows에서는 [WatchBridge](https://github.com/AdminZachary/iloader-for-windo
 
 ## 주의사항
 
+- watchOS 26 지원은 실험적입니다.
 - Sideloadly에서 **Use automatic bundle ID**를 끄고 고정된 Bundle Identifier를 사용하세요. 기존 앱 데이터와 백업을 유지할 수 있도록 업데이트할 때마다 같은 Bundle Identifier와 Apple ID를 사용하세요.
 - **App Groups** 권한으로 인해 유료 Apple Developer 계정이 필요합니다.
 - iPhone 앱은 설치됐지만 Watch 앱이 나타나지 않으면 Sideloadly 로그에서 `Watch apps will be stripped from the IPA`를 확인하세요. 이 문구는 IPA에서 Watch 앱이 제거됐다는 뜻이며, iPhone 앱만 설치해서는 Watch 앱이 설치되지 않습니다. Xcode로 Watch 앱을 설치하세요.
