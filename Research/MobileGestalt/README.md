@@ -75,6 +75,7 @@ Selected Boolean descriptor indices:
 | Keyboard | `WatchKeyboardCapability` | `MQJ1mlVrhOwaUUVJehJSVA` | 698 | 699 |
 | AOD Vibrancy | `DeviceSupportsAODVibrancy` | `ykpu7qyhqFweVMKtxNylWA` | 156 | 157 |
 | Noise Exposure | `DeviceSupportsEnvironmentalDosimetry` | `SaW+DA+cbiqDHrex8MTABA` | 220 | 221 |
+| Watch Speaker Playback | `DeviceSupportsWatchSpeakerPlayback` | `rJl1HTk57uav5OTZZAyc6g` | — | — |
 
 These index values document the descriptor analysis and the app's assumptions. They do not imply that enabling a capability supplies missing physical hardware or that every consumer uses that one key.
 

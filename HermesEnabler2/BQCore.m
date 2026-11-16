@@ -2449,6 +2449,12 @@ BOOL BQGetSwimmingWorkouts(BOOL *enabled, NSString **err) {
     ], enabled, err);
 }
 
+BOOL BQGetWatchSpeakerPlayback(BOOL *enabled, NSString **err) {
+    return bq_getMGCacheExtraKeys(@[
+        @"rJl1HTk57uav5OTZZAyc6g" // DeviceSupportsWatchSpeakerPlayback
+    ], enabled, err);
+}
+
 BOOL BQSetAODSupport(BOOL enabled, NSString **err) {
     // DeviceSupportsAlwaysOnDisplay is the main capability; ClockKit also
     // reads DeviceSupportsAlwaysOnTime while loading CLKDevice information.
@@ -2564,6 +2570,12 @@ BOOL BQSetRotateToWake(BOOL enabled, NSString **err) {
 BOOL BQSetSwimmingWorkouts(BOOL enabled, NSString **err) {
     return bq_setMGCacheExtraKeys(@[
         @"cRjPy4Ef+KZwJ+nfPeBV5Q" // DeviceSupportsSwimmingWorkouts
+    ], enabled, err);
+}
+
+BOOL BQSetWatchSpeakerPlayback(BOOL enabled, NSString **err) {
+    return bq_setMGCacheExtraKeys(@[
+        @"rJl1HTk57uav5OTZZAyc6g" // DeviceSupportsWatchSpeakerPlayback
     ], enabled, err);
 }
 
