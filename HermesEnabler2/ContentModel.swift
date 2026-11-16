@@ -34,6 +34,7 @@ final class ContentModel {
     var rotateToWakeEnabled = false
     var swimmingWorkoutsEnabled = false
     var watchSpeakerPlaybackEnabled = false
+    var watchSpeakerPlaybackAvailable = false
     var appleIntelligenceEnabled = false
     var onDeviceSiriEnabled = false
     var audioIntelligenceEnabled = false
@@ -331,7 +332,9 @@ final class ContentModel {
                 : ((error as String?) ?? "Could not update Swimming Workouts capability.")
             case .watchSpeakerPlayback(let enabled):
                 result = checked(BQSetWatchSpeakerPlayback(enabled, &error))
-                ? "Watch Speaker Playback capability turned \(enabled ? "on" : "off"). Restart Carousel to reload it."
+                ? (enabled
+                   ? "Watch Speaker Playback override enabled. Restart Carousel to reload it."
+                   : "Initial Watch Speaker Playback override restored. Restart Carousel to reload it.")
                 : ((error as String?) ?? "Could not update Watch Speaker Playback capability.")
             case .regionCode(let code):
                 guard !code.isEmpty else {
@@ -451,7 +454,8 @@ final class ContentModel {
         value = ObjCBool(false)
         swimmingWorkoutsEnabled = BQGetSwimmingWorkouts(&value, &error) && value.boolValue
         value = ObjCBool(false)
-        watchSpeakerPlaybackEnabled = BQGetWatchSpeakerPlayback(&value, &error) && value.boolValue
+        watchSpeakerPlaybackAvailable = BQGetWatchSpeakerPlayback(&value, &error)
+        watchSpeakerPlaybackEnabled = watchSpeakerPlaybackAvailable && value.boolValue
         value = ObjCBool(false)
         appleIntelligenceEnabled = BQGetAppleIntelligence(&value, &error) && value.boolValue
         value = ObjCBool(false)

@@ -23,7 +23,13 @@ struct DisplayAndControlsView: View {
             Section("Voice") {
                 Toggle("Raise to Speak", isOn: Binding(get: { model.raiseToSpeakEnabled }, set: { model.perform(.raiseToSpeak($0)) }))
                 Toggle("Siri Listening Capability", isOn: Binding(get: { model.alwaysListeningEnabled }, set: { model.perform(.alwaysListening($0)) }))
-                Toggle("Watch Speaker Playback", isOn: Binding(get: { model.watchSpeakerPlaybackEnabled }, set: { model.perform(.watchSpeakerPlayback($0)) }))
+                Toggle("Watch Speaker Playback Override", isOn: Binding(get: { model.watchSpeakerPlaybackEnabled }, set: { model.perform(.watchSpeakerPlayback($0)) }))
+                    .disabled(!model.watchSpeakerPlaybackAvailable)
+                if !model.watchSpeakerPlaybackAvailable {
+                    Text("Watch Speaker Playback override is unavailable.")
+                        .font(.footnote)
+                        .foregroundStyle(.secondary)
+                }
             }
             Text("Some options require matching display, sensor, or audio hardware.")
                 .font(.footnote)
