@@ -45,6 +45,23 @@ Trên Windows, dự án sử dụng [WatchBridge](https://github.com/AdminZachar
 
 > Quá trình chuẩn bị Chế độ nhà phát triển yêu cầu kết nối USB. Sau lần ghép đôi đầu tiên qua USB, việc cài đặt và gia hạn có thể sử dụng Wi-Fi.
 
+### Linux
+
+WatchBridge hỗ trợ Linux trên x86_64 từ phiên bản [v0.1.3](https://github.com/AdminZachary/WatchBridge/releases/tag/v0.1.3).
+
+1. Tải gói `.deb` cho Debian/Ubuntu hoặc `.rpm` cho Fedora. Trong thư mục tải xuống, chạy lệnh tương ứng (lệnh đầu cho Debian/Ubuntu, lệnh thứ hai cho Fedora).
+
+   ```bash
+   sudo apt install usbmuxd ./WatchBridge_0.1.3_amd64.deb
+   ```
+   ```bash
+   sudo dnf install usbmuxd ./WatchBridge-0.1.3-1.x86_64.rpm
+   ```
+
+2. Kết nối qua USB với iPhone đã ghép đôi với Apple Watch cần cài đặt. Mở WatchBridge (`watchbridge`) và chọn iPhone. Nếu không phát hiện được iPhone, hãy kiểm tra xem `usbmuxd` có đang chạy không.
+3. Làm theo hướng dẫn trong WatchBridge để chuẩn bị Chế độ nhà phát triển. Bật chế độ này trên đồng hồ, khởi động lại đồng hồ và xác nhận.
+4. Tải IPA gốc từ [HermesEnabler Releases](https://github.com/pookjw/HermesEnabler/releases) có cả ứng dụng iPhone và ứng dụng Watch nhúng. Đăng nhập bằng Apple ID trong WatchBridge, chọn IPA rồi cài đặt. Mở **HermesEnabler2** trên đồng hồ.
+
 ## Lưu ý
 
 - Không hỗ trợ watchOS 26.

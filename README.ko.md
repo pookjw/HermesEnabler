@@ -45,6 +45,23 @@ Windows에서는 [WatchBridge](https://github.com/AdminZachary/iloader-for-windo
 
 > 개발자 모드 준비에는 USB 연결이 필요합니다. USB로 한 번 페어링한 뒤에는 Wi-Fi로 설치 및 갱신할 수 있습니다.
 
+### Linux
+
+WatchBridge는 [v0.1.3](https://github.com/AdminZachary/WatchBridge/releases/tag/v0.1.3)부터 x86_64 Linux를 지원합니다.
+
+1. Debian/Ubuntu에서는 `.deb`, Fedora에서는 `.rpm` 패키지를 다운로드합니다. 다운로드 폴더에서 해당 명령을 실행합니다. 첫 번째는 Debian/Ubuntu용, 두 번째는 Fedora용입니다.
+
+   ```bash
+   sudo apt install usbmuxd ./WatchBridge_0.1.3_amd64.deb
+   ```
+   ```bash
+   sudo dnf install usbmuxd ./WatchBridge-0.1.3-1.x86_64.rpm
+   ```
+
+2. 대상 Apple Watch와 이미 페어링된 iPhone을 USB로 연결합니다. WatchBridge(`watchbridge`)를 실행하고 iPhone을 선택합니다. iPhone이 감지되지 않으면 `usbmuxd`가 실행 중인지 확인합니다.
+3. WatchBridge의 안내에 따라 개발자 모드를 준비합니다. Watch에서 개발자 모드를 켜고 재시동한 다음 확인합니다.
+4. [HermesEnabler Releases](https://github.com/pookjw/HermesEnabler/releases)에서 iPhone 앱과 내장 Watch 앱이 모두 들어 있는 원본 IPA를 다운로드합니다. WatchBridge에서 Apple ID로 로그인한 후 IPA를 선택하여 설치합니다. Watch에서 **HermesEnabler2**를 엽니다.
+
 ## 주의사항
 
 - watchOS 26은 지원하지 않습니다.

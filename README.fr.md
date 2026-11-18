@@ -45,6 +45,23 @@ Sous Windows, utilisez [WatchBridge](https://github.com/AdminZachary/iloader-for
 
 > La préparation du mode développeur nécessite une connexion USB. Après un premier appairage en USB, les installations et renouvellements peuvent se faire en Wi-Fi.
 
+### Linux
+
+WatchBridge prend en charge Linux sur x86_64 à partir de la version [v0.1.3](https://github.com/AdminZachary/WatchBridge/releases/tag/v0.1.3).
+
+1. Téléchargez le paquet `.deb` pour Debian/Ubuntu ou le paquet `.rpm` pour Fedora. Dans le dossier de téléchargement, exécutez la commande correspondante (la première pour Debian/Ubuntu, la seconde pour Fedora).
+
+   ```bash
+   sudo apt install usbmuxd ./WatchBridge_0.1.3_amd64.deb
+   ```
+   ```bash
+   sudo dnf install usbmuxd ./WatchBridge-0.1.3-1.x86_64.rpm
+   ```
+
+2. Connectez en USB l’iPhone déjà associé à l’Apple Watch cible, puis lancez WatchBridge (`watchbridge`) et sélectionnez l’iPhone. S’il n’est pas détecté, vérifiez que `usbmuxd` est en cours d’exécution.
+3. Suivez les instructions de WatchBridge pour préparer le mode développeur. Activez-le sur la montre, redémarrez-la et confirmez.
+4. Téléchargez depuis [HermesEnabler Releases](https://github.com/pookjw/HermesEnabler/releases) l’IPA d’origine qui contient l’app iPhone et l’app Watch intégrée. Connectez-vous avec votre identifiant Apple dans WatchBridge, sélectionnez l’IPA et installez-le. Ouvrez **HermesEnabler2** sur la montre.
+
 ## Précautions
 
 - watchOS 26 n’est pas pris en charge.
