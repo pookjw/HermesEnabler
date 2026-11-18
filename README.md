@@ -5,6 +5,7 @@
 ![](image.png)
 
 > Supported on watchOS 27.0 through 27.3 beta 1.
+> If you’re using an unsupported watchOS version, use [Clocky](https://github.com/pookjw/Clocky).
 
 ## Installation
 

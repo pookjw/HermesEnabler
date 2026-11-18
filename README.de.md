@@ -5,6 +5,7 @@
 ![](image.png)
 
 > Kompatibel mit watchOS 27.0 bis 27.3 Beta 1.
+> Wenn du eine nicht unterstützte watchOS-Version verwendest, nutze [Clocky](https://github.com/pookjw/Clocky).
 
 ## Installation
 
