@@ -46,7 +46,7 @@ Unter Windows verwendest du [WatchBridge](https://github.com/AdminZachary/iloade
 
 ## Hinweise
 
-- Die Unterstützung für watchOS 26 ist experimentell.
+- watchOS 26 wird nicht unterstützt.
 - Deaktiviere in Sideloadly **Use automatic bundle ID** und verwende einen festen Bundle Identifier. Verwende bei jedem Update denselben Bundle Identifier und dieselbe Apple ID, damit vorhandene App-Daten und Backups erhalten bleiben.
 - Wird die iPhone-App installiert, aber die Watch-App nicht angezeigt, suche im Sideloadly-Protokoll nach `Watch apps will be stripped from the IPA`. Das bedeutet, dass die eingebettete Watch-App entfernt wurde; installiere sie mit Xcode.
 - Stelle vor dem Löschen der App unbedingt dein MobileGestalt-Backup über die HermesEnabler2-App wieder her.

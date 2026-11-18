@@ -46,7 +46,7 @@ Trên Windows, dự án sử dụng [WatchBridge](https://github.com/AdminZachar
 
 ## Lưu ý
 
-- Hỗ trợ watchOS 26 đang ở giai đoạn thử nghiệm.
+- Không hỗ trợ watchOS 26.
 - Trong Sideloadly, hãy tắt **Use automatic bundle ID** và sử dụng một Bundle Identifier cố định. Giữ nguyên Bundle Identifier và Apple ID cho mỗi lần cập nhật để ứng dụng có thể giữ lại dữ liệu và bản sao lưu hiện có.
 - Nếu ứng dụng iPhone đã được cài đặt nhưng ứng dụng Watch không xuất hiện, hãy kiểm tra nhật ký Sideloadly để tìm dòng `Watch apps will be stripped from the IPA`. Điều này có nghĩa là ứng dụng Watch được nhúng đã bị xóa; chỉ cài đặt ứng dụng iPhone sẽ không cài đặt được ứng dụng Watch. Hãy dùng Xcode để cài đặt ứng dụng Watch.
 - Trước khi xóa ứng dụng, hãy luôn khôi phục bản sao lưu MobileGestalt thông qua ứng dụng HermesEnabler2.

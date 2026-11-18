@@ -46,7 +46,7 @@ Windowsでは[WatchBridge](https://github.com/AdminZachary/iloader-for-windows)�
 
 ## 注意事項
 
-- watchOS 26 のサポートは実験的です。
+- watchOS 26 はサポートされていません。
 - Sideloadlyで**Use automatic bundle ID**をオフにし、固定のBundle Identifierを使用してください。既存のアプリデータとバックアップを引き継ぐため、アップデート時は毎回同じBundle IdentifierとApple IDを使用してください。
 - iPhoneアプリはインストールされたのにWatchアプリが表示されない場合は、Sideloadlyのログで`Watch apps will be stripped from the IPA`を確認してください。これはIPA内のWatchアプリが削除されたことを示します。XcodeでWatchアプリをインストールしてください。
 - アプリを削除する前に、必ずHermesEnabler2アプリからMobileGestaltのバックアップを復元してください。

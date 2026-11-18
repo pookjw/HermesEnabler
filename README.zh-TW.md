@@ -46,7 +46,7 @@ Windows 上使用 [WatchBridge](https://github.com/AdminZachary/iloader-for-wind
 
 ## 注意事項
 
-- 對 watchOS 26 的支援是實驗性的。
+- 不支援 watchOS 26。
 - 在 Sideloadly 中關閉 **Use automatic bundle ID**，並使用固定的 Bundle Identifier。每次更新時都使用相同的 Bundle Identifier 和 Apple ID，以便保留現有的 App 資料和備份。
 - 如果 iPhone App 已安裝但 Watch App 沒有出現，請在 Sideloadly 紀錄中尋找 `Watch apps will be stripped from the IPA`。這表示內嵌的 Watch App 已遭移除；請使用 Xcode 安裝 Watch App。
 - 刪除 App 前，請務必透過 HermesEnabler2 App 還原 MobileGestalt 備份。

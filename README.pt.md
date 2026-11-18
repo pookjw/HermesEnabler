@@ -46,7 +46,7 @@ No Windows, use o [WatchBridge](https://github.com/AdminZachary/iloader-for-wind
 
 ## Precauções
 
-- O suporte ao watchOS 26 é experimental.
+- O watchOS 26 não é suportado.
 - No Sideloadly, desative **Use automatic bundle ID** e use um Bundle Identifier fixo. Use o mesmo Bundle Identifier e o mesmo Apple ID em todas as atualizações para preservar os dados e o backup existentes.
 - Se o app do iPhone for instalado, mas o app do Watch não aparecer, procure `Watch apps will be stripped from the IPA` no log do Sideloadly. Isso indica que o app Watch incorporado foi removido; instale-o usando o Xcode.
 - Antes de apagar o app, restaure sempre o backup do MobileGestalt pelo app HermesEnabler2.
