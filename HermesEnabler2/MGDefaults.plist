@@ -147,6 +147,20 @@
 				<integer>38</integer>
 			</array>
 		</dict>
+		<key>24S5091f</key>
+		<dict>
+			<key>MaxDeviceBrand</key>
+			<integer>2</integer>
+			<key>HermesEnabledDeviceBrand</key>
+			<integer>1</integer>
+			<key>UltraEnabledScreenClass</key>
+			<integer>29</integer>
+			<key>UltraScreenClassOptions</key>
+			<array>
+				<integer>29</integer>
+				<integer>38</integer>
+			</array>
+		</dict>
 		<key>23U95</key>
 		<dict>
 			<key>HermesEnabledDeviceBrand</key>

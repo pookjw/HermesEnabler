@@ -100,9 +100,23 @@ assert offsets["24S5086l"]["PresenceBase"] == 0x1680
 assert not offsets["24S5086l"]["RecoveryVerified"]
 assert defaults["24S5086l"]["MaxDeviceBrand"] == 2
 assert defaults["24S5086l"]["UltraScreenClassOptions"] == [29, 38]
+assert offsets["24S5091f"]["CacheUUID"] == "982796A1-310A-4948-ACC0-6457C87BE79F"
+assert offsets["24S5091f"]["CacheDataLength"] == 0x1950
+assert offsets["24S5091f"]["DeviceBrandOffset"] == 0x348
+assert offsets["24S5091f"]["DeviceBrandPresentOffset"] == 0x16e9
+assert offsets["24S5091f"]["ScreenClassOffset"] == 0xeb0
+assert offsets["24S5091f"]["ScreenClassPresentOffset"] == 0x1856
+assert offsets["24S5091f"]["PresenceBase"] == 0x1680
+assert not offsets["24S5091f"]["RecoveryVerified"]
+assert offsets["24S5091f"]["Indexes"] == offsets["24S5086l"]["Indexes"]
+assert offsets["24S5091f"]["AdditionalIndexes"] == offsets["24S5086l"]["AdditionalIndexes"]
+assert defaults["24S5091f"]["MaxDeviceBrand"] == 2
+assert defaults["24S5091f"]["HermesEnabledDeviceBrand"] == 1
+assert defaults["24S5091f"]["UltraEnabledScreenClass"] == 29
+assert defaults["24S5091f"]["UltraScreenClassOptions"] == [29, 38]
 # Descriptor indexes were extracted from physical-device OTA libraries.
 # The unstored swimming-workout descriptor (0xffff) must never become an offset.
-for build in ("24R363", "24R364", "24R365", "24R5315i", "24S118", "24S132", "24S5086l", "24S5112a", "24S5284h"):
+for build in ("24R363", "24R364", "24R365", "24R5315i", "24S118", "24S132", "24S5086l", "24S5091f", "24S5112a", "24S5284h"):
     layout = offsets[build]
     additional = layout["AdditionalIndexes"]
     assert len(additional) == (11 if build == "24R5315i" else 13)

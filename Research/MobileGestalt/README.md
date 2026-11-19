@@ -51,6 +51,7 @@ The canonical machine-readable table is [`MGOffsets.plist`](../../HermesEnabler2
 | `24R364`, `24R365` | `6F8372B0-1583-4031-A4BC-A54A18B0DD5A` | `0x1947` | `0x348` / `0x16e1` | `0xea8` / `0x184d` | `0x1678` |
 | `24S118`, `24S132` | `32B4CA84-FBDA-496C-9B79-2101D597158B` | `0x1950` | `0x348` / `0x16e9` | `0xeb0` / `0x1856` | `0x1680` |
 | `24S5086l` | `E7D9878A-EC20-4CED-AFA4-5AA134AC5F20` | `0x1950` | `0x348` / `0x16e9` | `0xeb0` / `0x1856` | `0x1680` |
+| `24S5091f` | `982796A1-310A-4948-ACC0-6457C87BE79F` | `0x1950` | `0x348` / `0x16e9` | `0xeb0` / `0x1856` | `0x1680` |
 | `24S5284h` | `DB380F61-0014-418D-9799-876666B459E3` | `0x1950` | `0x348` / `0x16e9` | `0xeb0` / `0x1856` | `0x1680` |
 | `24R359` | `6F8372B0-1583-4031-A4BC-A54A18B0DD5A` | `0x1947` | `0x348` / `0x16e1` | `0xea8` / `0x184d` | `0x1678` |
 | `24S5112a` | `830A9A56-15CC-4BB4-A1C3-F5F6FDB79819` | `0x1950` | `0x348` / `0x16e9` | `0xeb0` / `0x1856` | `0x1680` |
@@ -61,11 +62,13 @@ The canonical machine-readable table is [`MGOffsets.plist`](../../HermesEnabler2
 
 `24S5086l` (27.2 beta 1) was analyzed from a physical `Watch7,9` Full OTA. It has the `0x1950` layout of the `24S118` / `24S132` / `24S5284h` family but a distinct cache UUID. All eight primary Boolean indices and all 13 additional indices match that family. Its DeviceBrand handler has the same `marketing-software-behavior` byte-2 read and 1–2 acceptance as `24R363`, so `MaxDeviceBrand` is 2. Its `RecoveryVerified` flag is false for the same reason: the library was analyzed statically, not exercised on a watch.
 
+`24S5091f` (27.2 beta 2) was analyzed from a physical `Watch7,5` Full OTA. It has the `0x1950` layout and `0x1680` presence base of the `24S118` / `24S132` / `24S5086l` / `24S5284h` family but its own cache UUID. All eight primary Boolean indices, all 13 additional indices, and the DeviceBrand and screen-class indices match that family. Its extracted ClockKit maps screen class 29 to size 6 and 38 to size 9, with categories 4 and 6 accepted by `isUltra`. The `MGDefaults` entry uses the conservative `MaxDeviceBrand = 2` bound from the 27.2 beta 1 analysis. `RecoveryVerified` is false: the library and ClockKit were analyzed statically and no cache write or recovery callback was exercised on a watch.
+
 For `24S5112a`, the contributor of [PR #52](https://github.com/pookjw/HermesEnabler/pull/52) reported successful Hermès activation on `Watch7,9` and supplied its cache UUID and face offsets. The descriptor records in the physical `Watch7,9` Full OTA match the configured DeviceBrand, screen-class and all eight Boolean indices. The cache UUID, length and presence-byte layout remain reported values rather than independently verified runtime observations. Its entry has `RecoveryVerified = false` because the recovery callback semantics and runtime behavior have not been fully validated; Ultra screen-class choices 29 and 38 are configured based on ClockKit analysis. See [OTA research](../OTA/README.md).
 
 Selected Boolean descriptor indices:
 
-| Feature | MG key | Opaque identifier | `24R363` / `24R364` / `24R365` | `24S118` / `24S132` / `24S5086l` / `24S5284h` |
+| Feature | MG key | Opaque identifier | `24R363` / `24R364` / `24R365` | `24S118` / `24S132` / `24S5086l` / `24S5091f` / `24S5284h` |
 | --- | --- | --- | ---: | ---: |
 | AOD | `DeviceSupportsAlwaysOnDisplay` | `2OOJf1VhaM7NxfRok3HbWQ` | 173 | 174 |
 | AOD time | `DeviceSupportsAlwaysOnTime` | `j8/Omm6s1lsmTDFsXjsBfA` | 175 | 176 |
@@ -79,7 +82,7 @@ Selected Boolean descriptor indices:
 
 These index values document the descriptor analysis and the app's assumptions. They do not imply that enabling a capability supplies missing physical hardware or that every consumer uses that one key.
 
-The `24S5112a` OTA descriptor indices match the `24S118` / `24S132` / `24S5086l` / `24S5284h` column for all eight Boolean keys. The broader recovery semantics have not been verified.
+The `24S5091f` and `24S5112a` OTA descriptor indices match the `24S118` / `24S132` / `24S5086l` / `24S5284h` column for all eight Boolean keys. The broader recovery semantics have not been verified.
 
 The `24R363` descriptors match the `24R364` / `24R365` column. `24R5315i` matches that column for the same eight keys as well.
 
@@ -89,4 +92,4 @@ Follow the [physical OTA workflow](../OTA/README.md). Do not copy offsets just b
 
 For `24R5315i`, the cache layout and descriptor indices were analyzed from a physical `Watch7,9` Full OTA. Device runtime behavior and native recovery callbacks have not been verified; its `RecoveryVerified` flag is false. Two additional descriptors found in later builds were absent from the extracted binary. See [OTA research](../OTA/README.md).
 
-For `24R363`, `24S5086l` and the earlier analyzed builds, the same limitation applies: the OTA and descriptor tables establish the byte layout and index assignments, not the runtime answers or the behavior of the native recovery callbacks. Those builds are configured for the ordinary face write path only.
+For `24R363`, `24S5086l`, `24S5091f` and the earlier analyzed builds, the same limitation applies: the OTA and descriptor tables establish the byte layout and index assignments, not the runtime answers or the behavior of the native recovery callbacks. Those builds are configured for the ordinary face write path only.
