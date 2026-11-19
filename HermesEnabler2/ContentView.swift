@@ -73,5 +73,20 @@ struct ContentView: View {
         } message: { error in
             Text(error.message)
         }
+        #if targetEnvironment(simulator) && DEBUG
+        // Explicit simulator-only smoke hook. Never invoked during normal use.
+        // Example: simctl launch ... --native-smoke-index 2
+        .onAppear {
+            let arguments = ProcessInfo.processInfo.arguments
+            if let flag = arguments.firstIndex(of: "--native-smoke-index"),
+               arguments.indices.contains(flag + 1),
+               let index = Int(arguments[flag + 1]), (0..<6).contains(index) {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
+                    let result = BQOriginalHermes.presentFace(at: index) ?? "(nil)"
+                    NSLog("[BQ_NATIVE_SMOKE] index=\(index) result=\(result)")
+                }
+            }
+        }
+        #endif
     }
 }

@@ -5,6 +5,14 @@ struct WatchFacesView: View {
 
     var body: some View {
         List {
+
+            Section("Apple Originals (Experimental)") {
+                NavigationLink { OriginalHermesView() } label: {
+                    Text("Original Hermès (App Only)")
+                }
+                Text("Displays Apple-installed native FaceViews without modifying MobileGestalt or the system Face Gallery.")
+                    .font(.caption2).foregroundStyle(.secondary)
+            }
             Section {
                 Toggle("Hermès", isOn: Binding(get: { model.hermesEnabled }, set: { model.perform(.hermes($0)) }))
                 Toggle("Ultra Faces", isOn: Binding(get: { model.ultraFacesEnabled }, set: { model.perform(.ultraFaces($0)) }))

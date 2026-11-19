@@ -9,6 +9,14 @@ struct BackupView: View {
 
         List {
 
+            Section("Apple Originals (Experimental)") {
+                NavigationLink { OriginalHermesView() } label: {
+                    Text("Original Hermès (App Only)")
+                }
+                Text("Displays Apple-installed native FaceViews without modifying MobileGestalt or the system Face Gallery.")
+                    .font(.caption2).foregroundStyle(.secondary)
+            }
+
             // Initial backup requirement
             if !model.hasBackup {
 
