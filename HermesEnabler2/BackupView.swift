@@ -4,6 +4,7 @@ import SwiftUI
 struct BackupView: View {
 
     let model: ContentModel
+    @State private var writeAccessResult: String?
 
     var body: some View {
 
@@ -34,6 +35,16 @@ struct BackupView: View {
                     Text("Every MG write and restore also creates an automatic backup first.")
                         .font(.footnote)
                         .foregroundStyle(.secondary)
+                }
+            }
+
+            Section("Diagnostics") {
+                Button("Check Direct Write Access") {
+                    writeAccessResult = BQProbeGestaltWriteAccess()
+                }
+                if let writeAccessResult {
+                    Text(writeAccessResult)
+                        .font(.footnote.monospaced())
                 }
             }
 
